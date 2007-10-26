@@ -1,0 +1,12 @@
+0.1: intial Alpha tube
+0.3: Materials Added
+0.4: Physics collistion added
+0.5-0.6: models added
+0.7: Fixed T junction Collistion
+0.7.5: Fixed T junction properly
+0.8: Added new Pipe Alpha Model B
+0.9: added new pipe Alpha model C
+0.9.5: Updated spawnlist, Fixed pipe C size
+1.0: Added double size tubes (bugged?)
+1.1: added chair, and removed bugged doubesize models
+1.2: Added Pipe D

@@ -1,0 +1,18 @@
+"1005"
+{
+	"Information"
+	{
+		"name"		"spacebuild - Tunnels"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/s1t1.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/s1t1s.mdl"
+		}
+	}
+}
