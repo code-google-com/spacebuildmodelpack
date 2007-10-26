@@ -1,0 +1,14 @@
+"1005"
+{
+	"Information"
+	{
+		"name"		"spacebuild -interiors"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/chair.mdl"
+		}
+	}
+}

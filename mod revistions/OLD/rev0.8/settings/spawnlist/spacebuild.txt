@@ -1,0 +1,42 @@
+"1005"
+{
+	"Information"
+	{
+		"name"		"spacebuild"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/tube.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/tubex.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/tube90.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/tubet.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/tube90b.mdl"
+		}
+		"6"
+		{
+			"model"		"models//Spacebuild/tube10.mdl"
+		}
+		"7"
+		{
+			"model"		"models//Spacebuild/tube5.mdl"
+		}
+		"8"
+		{
+			"model"		"models//Spacebuild/tubeb.mdl"
+		}
+	}
+}
