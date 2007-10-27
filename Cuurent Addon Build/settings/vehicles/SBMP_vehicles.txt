@@ -54,7 +54,7 @@
 		
 		"KeyValues"
 		{
-			"model"				"models/Spacebuild/neopod"
+			"model"				"models/Spacebuild/neopod.mdl"
 			"solid"				"6"
 			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
 		}
@@ -68,7 +68,7 @@
 		
 		"KeyValues"
 		{
-			"model"				"models/Spacebuild/neopodt"
+			"model"				"models/Spacebuild/neopodt.mdl"
 			"solid"				"6"
 			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
 		}
