@@ -45,5 +45,32 @@
 			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
 		}
 	}
-
+	"3"
+	{
+		"Name"			"Open Pod"		// Name that the client will see.
+		"vname"			"sbmp_pod"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/pod"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/neopod"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	"4"
+	{
+		"Name"			"Closed Pod"		// Name that the client will see.
+		"vname"			"sbmp_podt"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/podt"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/neopodt"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
 }
