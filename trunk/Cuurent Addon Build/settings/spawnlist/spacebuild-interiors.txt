@@ -14,5 +14,17 @@
 		{
 			"model"		"models//Spacebuild/chair2.mdl"
 		}
+		"3"
+		{
+			"model"		"models//Spacebuild/neopod.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/neopodt.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/neopodo.mdl"
+		}
 	}
 }
