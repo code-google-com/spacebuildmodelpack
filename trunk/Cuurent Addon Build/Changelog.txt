@@ -21,3 +21,4 @@ ALPHA B
 0.5b-0.8b: added and refined vehicles
 0.9B: Added Standard and Square tubes
 1.0b: Added spawn icons
+1.1b: added Mill Cock
