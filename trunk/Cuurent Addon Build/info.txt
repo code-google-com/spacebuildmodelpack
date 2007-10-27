@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"name"		"SpaceBuild ModelPack Alpha B"
-	"version"	"0.9b"
+	"version"	"1.0b"
 	"up_date"	"16th October 2007"
 	"author_name"	"PJB, Cheesman55, Firgov Umbra, Squad08"
 	"author_email"	"pokejoyboy@aol.com"
