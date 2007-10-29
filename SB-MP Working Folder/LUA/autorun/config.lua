@@ -1,3 +1,5 @@
+SecureActive = true //change this to false to disable the stool!
+
 if(SERVER) then AddCSLuaFile("autorun/config.lua") end
 local models = {}
 
