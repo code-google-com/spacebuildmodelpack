@@ -16,23 +16,20 @@
 		}
 		"3"
 		{
-			"model"		"models//Spacebuild/s2t1.mdl"
+			"model"		"models//Spacebuild/s1t1t.mdl"
 		}
 		"4"
 		{
-			"model"		"models//Spacebuild/s2t1s.mdl"
+			"model"		"models//Spacebuild/s1t190.mdl"
 		}
 		"5"
 		{
-			"model"		"models//Spacebuild/s3t1.mdl"
+			"model"		"models//Spacebuild/s1t190b.mdl"
 		}
 		"6"
 		{
-			"model"		"models//Spacebuild/s3t1s.mdl"
+			"model"		"models//Spacebuild/s1t1.mdl"
 		}
-		"7"
-		{
-			"model"		"models//Spacebuild/stube1.mdl"
-		}
+
 	}
 }
