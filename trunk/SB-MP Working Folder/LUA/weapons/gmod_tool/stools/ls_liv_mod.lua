@@ -22,7 +22,7 @@ if ( CLIENT ) then
 end
 
 if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 Addon.'" ) return end
-if not GAMEMODE.IsSpaceBuildDerived then return end
+if not GAMEMODE.IsSpaceBuildDerived or not SecureActive then return end
 include("autorun/config.lua")
 local ls_liv_mod = {}
 if (SERVER) then
