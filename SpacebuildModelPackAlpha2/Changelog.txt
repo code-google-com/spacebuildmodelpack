@@ -1,0 +1,28 @@
+0.1: intial Alpha tube
+0.3: Materials Added
+0.4: Physics collistion added
+0.5-0.6: models added
+0.7: Fixed T junction Collistion
+0.7.5: Fixed T junction properly
+0.8: Added new Pipe Alpha Model B
+0.9: added new pipe Alpha model C
+0.9.5: Updated spawnlist, Fixed pipe C size
+1.0: Added double size tubes (bugged?)
+1.1: added chair, and removed bugged doubesize models
+1.2: Added Pipe D
+1.3: Pipe DB added, removed doublesize from menu
+ALPHA A ENDS
+
+ALPHA B
+0.1b: added new tube and end
+0.2b: added second new tube and end
+0.3b: Started using SVN
+0.4b: Added Chairs
+0.5b-0.8b: added and refined vehicles
+0.9B: Added Standard and Square tubes
+1.0b: Added spawn icons
+1.1b: added Mill Cock
+1.2B: Bugfix
+1.3B: More Models
+1.4b: Added Snakes LUA
+1.5B: added lots and lots of models

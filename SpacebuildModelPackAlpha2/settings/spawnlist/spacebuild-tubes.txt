@@ -1,0 +1,78 @@
+"1006"
+{
+	"Information"
+	{
+		"name"		"spacebuild-tubes"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/s1t15w.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/s1t16w.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/s1t190.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/s1t190b.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/s1t1s.mdl"
+		}
+		"6"
+		{
+			"model"		"models//Spacebuild/s1t1t.mdl"
+		}
+		"7"
+		{
+			"model"		"models//Spacebuild/s1t1x.mdl"
+		}
+		"8"
+		{
+			"model"		"models//Spacebuild/s2t1.mdl"
+		}
+		"9"
+		{
+			"model"		"models//Spacebuild/s2t1s.mdl"
+		}
+		"10"
+		{
+			"model"		"models//Spacebuild/s2t1t.mdl"
+		}
+		"11"
+		{
+			"model"		"models//Spacebuild/s2t1x.mdl"
+		}
+		"12"
+		{
+			"model"		"models//Spacebuild/s3t1.mdl"
+		}
+		"13"
+		{
+			"model"		"models//Spacebuild/s3t190.mdl"
+		}
+		"14"
+		{
+			"model"		"models//Spacebuild/s3t1s.mdl"
+		}
+		"15"
+		{
+			"model"		"models//Spacebuild/s3t1x.mdl"
+		}
+		"16"
+		{
+			"model"		"models//Spacebuild/stube1.mdl"
+		}
+		"17"
+		{
+			"model"		"models//Spacebuild/s1t1.mdl"
+		}
+	}
+}
