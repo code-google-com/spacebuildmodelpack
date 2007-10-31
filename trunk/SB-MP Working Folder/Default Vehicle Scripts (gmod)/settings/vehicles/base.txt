@@ -1,0 +1,51 @@
+"Vehicles"
+{
+
+	"0"
+	{
+		"Name"			"Jeep"					// The name that will show to the client
+		"vname"			"jeep"					// The name that lua will use
+		"ent"			"prop_vehicle_jeep"		// The entity to spawn
+		"material"		"vgui/vehicles/jeep"	// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/buggy.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/jeep_test.txt"
+		}
+	}
+	
+	
+	"1"
+	{
+		"Name"			"Airboat"
+		"vname"			"airboat"
+		"ent"			"prop_vehicle_airboat"
+		"material"		"vgui/vehicles/airboat"
+		
+		"KeyValues"
+		{
+			"model"				"models/airboat.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/airboat.txt"
+		}
+	}
+	
+	
+	"2"
+	{
+		"Name"			"Pod"
+		"vname"			"pod"
+		"ent"			"prop_vehicle_prisoner_pod"
+		"material"		"vgui/vehicles/pod"
+		
+		"KeyValues"
+		{
+			"model"				"models/vehicles/prisoner_pod_inner.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	
+}
