@@ -2,77 +2,78 @@
 {
 	"Information"
 	{
-		"name"		"spacebuild-tubes"
+		"name"		"Lol spacebuild parts"
 	}
 	"Entries"
 	{
 		"1"
 		{
-			"model"		"models//Spacebuild/s1t15w.mdl"
+			"model"		"models//Spacebuild/s1t1.mdl"
 		}
 		"2"
 		{
-			"model"		"models//Spacebuild/s1t16w.mdl"
+			"model"		"models//Spacebuild/s1t15w.mdl"
 		}
 		"3"
 		{
-			"model"		"models//Spacebuild/s1t190.mdl"
+			"model"		"models//Spacebuild/s1t16w.mdl"
 		}
 		"4"
 		{
-			"model"		"models//Spacebuild/s1t190b.mdl"
+			"model"		"models//Spacebuild/s1t190.mdl"
 		}
 		"5"
 		{
-			"model"		"models//Spacebuild/s1t1s.mdl"
+			"model"		"models//Spacebuild/s1t190b.mdl"
 		}
 		"6"
 		{
-			"model"		"models//Spacebuild/s1t1t.mdl"
+			"model"		"models//Spacebuild/s1t1s.mdl"
 		}
 		"7"
 		{
-			"model"		"models//Spacebuild/s1t1x.mdl"
+			"model"		"models//Spacebuild/s1t1t.mdl"
 		}
 		"8"
 		{
-			"model"		"models//Spacebuild/s2t1.mdl"
+			"model"		"models//Spacebuild/s1t1x.mdl"
 		}
 		"9"
 		{
-			"model"		"models//Spacebuild/s2t1s.mdl"
+			"model"		"models//Spacebuild/s2t1.mdl"
 		}
 		"10"
 		{
-			"model"		"models//Spacebuild/s2t1t.mdl"
+			"model"		"models//Spacebuild/s2t1s.mdl"
 		}
 		"11"
 		{
-			"model"		"models//Spacebuild/s2t1x.mdl"
+			"model"		"models//Spacebuild/s2t1t.mdl"
 		}
 		"12"
 		{
-			"model"		"models//Spacebuild/s3t1.mdl"
+			"model"		"models//Spacebuild/s2t1x.mdl"
 		}
 		"13"
 		{
-			"model"		"models//Spacebuild/s3t190.mdl"
+			"model"		"models//Spacebuild/s3t1.mdl"
 		}
 		"14"
 		{
-			"model"		"models//Spacebuild/s3t1s.mdl"
+			"model"		"models//Spacebuild/s3t190.mdl"
 		}
 		"15"
 		{
-			"model"		"models//Spacebuild/s3t1x.mdl"
+			"model"		"models//Spacebuild/s3t1s.mdl"
 		}
 		"16"
 		{
-			"model"		"models//Spacebuild/stube1.mdl"
+			"model"		"models//Spacebuild/s3t1x.mdl"
 		}
 		"17"
 		{
-			"model"		"models//Spacebuild/s1t1.mdl"
+			"model"		"models//Spacebuild/stube1.mdl"
 		}
 	}
 }
+
