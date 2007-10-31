@@ -14,20 +14,5 @@ function AddLSShipHabModel(modelname, path)
 end
 
 //Put the models under here
+AddLSShipHabModel("Tube part", "Spacebuild/s1t1.mdl")
 AddLSShipHabModel("Tube part", "models/Spacebuild/s1t1.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t1s.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t1t.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t1x.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t15w.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t16w.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t190.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t190b.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s2t1s.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s2t1.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s3t1s.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s3t1.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/stube1.mdl")
-AddLSShipHabModel("Tube part", "models/Spacebuild/s1t1s.mdl")
-
-
-
