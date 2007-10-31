@@ -1,19 +1,5 @@
-SecureActive = true //change this to false to disable the stool!
+THIS IS NOT A CONFIG FILE IT IS A LIST FOR DEV PURPOSES!
 
-if(SERVER) then AddCSLuaFile("autorun/config.lua") end
-local models = {}
-
-function getLSShipModels()
-	return models
-end
-
-function AddLSShipHabModel(modelname, path)
-	if not modelname or not path then return end
-	table.insert(models, {modelname, path, 'base_livable_module'})
-	models[modelname] = path
-end
-
-//Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
 AddLSShipHabModel("Style 1 Tube 5 Way", "models//Spacebuild/s1t15w.mdl")
 AddLSShipHabModel("Style 1 Tube 6 Way", "models//Spacebuild/s1t16w.mdl")
@@ -31,3 +17,24 @@ AddLSShipHabModel("Style 2 Tube 90 turn", "models//Spacebuild/s3t190.mdl")
 AddLSShipHabModel("Style 2 Tube 4 way", "models//Spacebuild/s3t1x.mdl")
 AddLSShipHabModel("Style 2 Tube to standard", "models//Spacebuild/s3t1s.mdl")
 AddLSShipHabModel("Standard Tube", "models//Spacebuild/stube1.mdl")
+
+
+
+
+models//Spacebuild/s1t1.mdl
+models//Spacebuild/s1t15w.mdl
+models//Spacebuild/s1t16w.mdl
+models//Spacebuild/s1t190.mdl
+models//Spacebuild/s1t190b.mdl
+models//Spacebuild/s1t1s.mdl
+models//Spacebuild/s1t1t.mdl
+models//Spacebuild/s1t1x.mdl
+models//Spacebuild/s2t1.mdl
+models//Spacebuild/s2t1s.mdl
+models//Spacebuild/s2t1t.mdl
+models//Spacebuild/s2t1x.mdl
+models//Spacebuild/s3t1.mdl
+models//Spacebuild/s3t190.mdl
+models//Spacebuild/s3t1s.mdl
+models//Spacebuild/s3t1x.mdl
+models//Spacebuild/stube1.mdl
