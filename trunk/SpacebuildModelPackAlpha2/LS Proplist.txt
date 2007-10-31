@@ -13,9 +13,9 @@ AddLSShipHabModel("Style 2 Tube 3 way", "models//Spacebuild/s2t1t.mdl")
 AddLSShipHabModel("Style 2 Tube 4 way", "models//Spacebuild/s2t1x.mdl")
 AddLSShipHabModel("Style 2 Tube to standard", "models//Spacebuild/s2t1s.mdl")
 AddLSShipHabModel("Style 3 Tube 1x", "models//Spacebuild/s3t1.mdl")
-AddLSShipHabModel("Style 2 Tube 90 turn", "models//Spacebuild/s3t190.mdl")
-AddLSShipHabModel("Style 2 Tube 4 way", "models//Spacebuild/s3t1x.mdl")
-AddLSShipHabModel("Style 2 Tube to standard", "models//Spacebuild/s3t1s.mdl")
+AddLSShipHabModel("Style 3 Tube 90 turn", "models//Spacebuild/s3t190.mdl")
+AddLSShipHabModel("Style 3 Tube 4 way", "models//Spacebuild/s3t1x.mdl")
+AddLSShipHabModel("Style 3 Tube to standard", "models//Spacebuild/s3t1s.mdl")
 AddLSShipHabModel("Standard Tube", "models//Spacebuild/stube1.mdl")
 
 
