@@ -31,7 +31,7 @@ if (SERVER) then
 		local maxhealth = 600 //make it based on the ent
 		local mass = 1000 //make it get the ents mass
 		RD_AddResource(ent, "energy", 0)
-		RD_AddResource(ent, "water", 0)
+		RD_AddResource(ent, "coolant", 0)
 		RD_AddResource(ent, "air", 0)
 		LS_RegisterEnt(ent, "Module")
 		return {}, maxhealth, mass
