@@ -166,7 +166,7 @@ function ENT:Climate_Control()
 			end
 			if self.hasheat then
 				temperature = 288
-				if self.heat != 0
+				if self.heat and self.heat != 0 then
 					self.heat = 0
 				end
 			end
