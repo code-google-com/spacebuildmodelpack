@@ -156,7 +156,7 @@ function ENT:Climate_Control()
 					self.hasheat = true
 				end
 			end
-			if self.giveGravity == 1 and gravity != 1 then
+			if self.giveGravity == 1 then
 				RD_ConsumeResource(self.Entity, "energy", self.size * Coolant_Increment)
 				gravity = 1
 			end	
@@ -179,7 +179,6 @@ function ENT:Climate_Control()
 		self.presurized = 0			
 	end
 	SB_Update_Environment(self.num, nil, gravity, habitat, atmosphere, temperature)
-	//SB_Update_Environment(self.num, nil, 1, 1, 1, 288)
 end
 
 function ENT:Think()
