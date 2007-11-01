@@ -18,12 +18,12 @@ function ENT:Initialize()
 	SB_Add_Environment(self.Entity, nil, 0, 0, 0, 0)
 	if not (WireAddon == nil) then
 		self.WireDebugName = self.PrintName
-		self.Inputs = Wire_CreateInputs(self.Entity, { "On", "Air", "Heat", "Gravity" })
+		self.Inputs = Wire_CreateInputs(self.Entity, { "On", "Air", "Heat" }) //, "Gravity"
 		self.Outputs = Wire_CreateOutputs(self.Entity, { "On", "Air", "Heat" })
 	end
 	self.giveAir = 1;
 	self.giveHeat = 1;
-	self.giveGravity = 1;
+	//self.giveGravity = 1;
 	self.size = math.Round(self.Entity:BoundingRadius()/48);
 	self.IgnoreClasses = {self.Entity:GetClass()}
 end
@@ -63,12 +63,12 @@ function ENT:TriggerInput(iname, value)
 		else
 			self.giveHeat = 0
 		end
-	elseif (iname == "Gravity") then
+	/*elseif (iname == "Gravity") then
 		if value > 0 then
 			self.giveGravity = 1
 		else
 			self.giveGravity = 0
-		end
+		end*/
 	end
 end
 
@@ -156,10 +156,10 @@ function ENT:Climate_Control()
 					self.hasheat = true
 				end
 			end
-			if self.giveGravity == 1 then
+			/*if self.giveGravity == 1 then
 				RD_ConsumeResource(self.Entity, "energy", self.size * Coolant_Increment)
 				gravity = 1
-			end	
+			end*/	
 			RD_ConsumeResource(self.Entity, "energy", self.size * Energy_Increment)	
 			if self.hasair then
 				habitat = 1
