@@ -1,5 +1,5 @@
 #summary Space build Model Pack Milestones
-#labels Featured,Phase-Design,Phase-Implementation
+#labels Featured,Phase-Requirements,Phase-Implementation
 
 = Introduction =
 
@@ -10,57 +10,60 @@ Milestones: (what we plan to release)
 Build     Status
 
 Alpha1: RELEASED
-Basic Tube set
+  * Basic Tube set
 
 Alpha2: RELEASED
-Life support
-Vehicles (bugged)
-New tubes (3 sets)
-Cockpit
+  * Life support
+  * Vehicles (bugged)
+  * New tubes (3 sets)
+  * Cockpit
 
 
 Alpha3: Pending
-Final alpha Tubesets
-Doube size Tubes
-Doube Width Tubes
-Cargo Bays
-Stackable Cargo Bays
-Fighter Bays
-Stackable Fighter Bays
-Fighter Models
-Cap Plates
-Bat Signal
-PJB signal
-Search Light
-Bridge
-LS - resorces
-- Easter Egg Models
+        (Patch 1)
+  * Final alpha Tubesets
+  * Doube size Tubes
+  * Doube Width Tubes
+  * Cargo Bays
+  * Fighter Bays
+  * Cap Plates
+
+          (Final)
+  * Stackable Cargo Bays
+  * Stackable Fighter Bays
+  * Fighter Models
+  * Bat Signal
+  * PJB signal
+  * Search Light
+  * Bridge
+  * LS - resorces
+  * Easter Egg Models
 
 Beta 1: Unstarted
-Hull Plates
-Hull Sections
-New Style 1 Tubes
-New S1 Bays
-Airlocks
-Half Tubes
+  * Hull Plates
+  * Hull Sections
+  * New Style 1 Tubes
+  * New S1 Bays
+  * Airlocks
+  * Half Tubes
 
 Beta 2: Unstarted
-Spacebuild Map Alpha
-LS models
-Weighting Of props
-New Cargo Bays
-More Bays
-Decorative Props
-Weapon Models (CDS)
+  * Spacebuild Map Alpha
+  * LS models
+  * Weighting Of props
+  * New Cargo Bays
+  * More Bays
+  * Decorative Props
+  * Weapon Models (CDS)
 
 Beta 3: Unstarted
-CDS weapon pack
-Finalized LS tool set
-Style 2 & 3 Tubes and Bays
-Bridges
-Fighter Models
-Cockpits & chairs & Pods
-Massive LOL model
-Weapon Models
+  * CDS weapon pack
+  * Finalized LS tool set
+  * Style 2 & 3 Tubes and Bays
+  * Bridges
+  * Fighter Models
+  * Cockpits & chairs & Pods
+  * Massive LOL model
+  * Weapon Models
 
 Pre-Release 1: Planning Stages
