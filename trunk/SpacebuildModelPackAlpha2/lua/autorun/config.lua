@@ -13,6 +13,12 @@ function AddLSShipHabModel(modelname, path)
 	models[modelname] = path
 end
 
+function AddLSShipDefResModel(modelname, path) //The Default resource module (contains air, coolant, energy based on the size)
+	if not modelname or not path then return end
+	table.insert(models, {modelname, path, 'base_default_res_module'})
+	models[modelname] = path
+end
+
 //Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
 AddLSShipHabModel("Style 1 Tube 5 Way", "models//Spacebuild/s1t15w.mdl")
@@ -31,3 +37,4 @@ AddLSShipHabModel("Style 3 Tube 90 turn", "models//Spacebuild/s3t190.mdl")
 AddLSShipHabModel("Style 3 Tube 4 way", "models//Spacebuild/s3t1x.mdl")
 AddLSShipHabModel("Style 3 Tube to standard", "models//Spacebuild/s3t1s.mdl")
 AddLSShipHabModel("Standard Tube", "models//Spacebuild/stube1.mdl")
+AddLSShipDefResModel("test", "models/props_lab/powerbox01a.mdl")

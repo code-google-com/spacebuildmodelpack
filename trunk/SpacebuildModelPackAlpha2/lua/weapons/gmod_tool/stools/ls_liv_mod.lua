@@ -36,6 +36,17 @@ if (SERVER) then
 		LS_RegisterEnt(ent, "Module")
 		return {}, maxhealth, mass
 	end
+	ls_liv_mod.base_default_res_module = function( ply, ent, system_type, system_class, model )
+		local hash = {}
+		hash.size = math.Round(ent:BoundingRadius()/32)
+		local maxhealth = hash.size * 1000
+		local mass = hash.size * 150
+		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
+		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
+		RD_AddResource(ent, "air", math.Round((hash.size/3) * 17000))
+		LS_RegisterEnt(ent, "Resource Module")
+		return hash, maxhealth, mass
+	end
 end
 
 RD2_ToolRegister( TOOL, getLSShipModels(), nil, "ls_liv_mod", 30, ls_liv_mod )
