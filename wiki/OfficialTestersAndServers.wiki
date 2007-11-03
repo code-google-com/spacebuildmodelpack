@@ -1,0 +1,8 @@
+#summary The Official Testers and Test Servers
+
+=The official Testers are=
+  * .:WDM:.Themage
+  * Blayze
+
+=official test servers=
+"Lost Worlds, 208.16.30.58:27015"
