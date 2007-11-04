@@ -4,40 +4,35 @@
 = Introduction =
 
 This document shows the milestones of the Spacebuild Model Pack
+Be aware this may be outdated, if obviously so please contact an administration officer.
 
-= Details =
-Milestones: (what we plan to release)
-Build     Status
-
-Alpha1: RELEASED
-  * Basic Tube set
-
-Alpha2: RELEASED
-  * Life support
-  * Vehicles (bugged)
-  * New tubes (3 sets)
-  * Cockpit
-
-
-Alpha3: Pending
-        (Patch 1)
-  * Final alpha Tubesets
-  * Doube size Tubes
-  * Doube Width Tubes
-  * Cargo Bays
-  * Fighter Bays
-  * Cap Plates
-
-          (Final)
-  * Stackable Cargo Bays
-  * Stackable Fighter Bays
-  * Fighter Models
-  * Bat Signal
-  * PJB signal
-  * Search Light
-  * Bridge
-  * LS - resorces
-  * Easter Egg Models
+= Milestones: (what we plan to release) =
+|| *Build* || *Status* || 
+|| *Alpha1* || *RELEASED* ||
+||Basic Tube set|| Depreciated ||
+|| *Alpha2* || *RELEASED* ||
+||Life support||Post Production||
+||Vehicles||bugged||
+||New tubes 3 sets||In progress||
+||Cockpit||Bugged||
+|| *Alpha3* || *Pending* ||
+|| *Patch 1 *||
+||Final alpha Tube sets||In progress||
+||Double size Tubes||In Progress||
+||Double Width Tubes||In Progress||
+||Cargo Bays||In Progress||
+||Fighter Bays||In progress||
+||Cap Plates||Unstarted||
+|| *Final patch* ||
+||Stackable Cargo Bays||Unstarted||
+||Stackable Fighter Bays||Unstarted||
+||Fighter Models||Unstarted||
+||Bat Signal||Finished||
+||PJB signal||Finished||
+||Search Light||Finished||
+||Bridge section||Concept||
+||LS - resources||Post Production||
+||Easter Egg Models||In Progress||
 
 Beta 1: Unstarted
   * Hull Plates
