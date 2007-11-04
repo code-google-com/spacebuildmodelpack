@@ -1,0 +1,76 @@
+"Vehicles"
+{
+
+	"0"
+	{
+		"Name"			"Captains Chair"		// Name that the client will see.
+		"vname"			"sbmp_chair"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/chair1"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/chair.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	
+	
+	"1"
+	{
+		"Name"			"Fighter Chair TEST VERSTION"		// Name that the client will see.
+		"vname"			"sbmp_chair2"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/chair2"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/chair2.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	"2"
+	{
+		"Name"			"Millitary CockPit"		// Name that the client will see.
+		"vname"			"sbmp_milcock"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/milcock"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/milcock.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	"3"
+	{
+		"Name"			"Open Pod"		// Name that the client will see.
+		"vname"			"sbmp_pod"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/pod"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/neopod.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+	"4"
+	{
+		"Name"			"Closed Pod"		// Name that the client will see.
+		"vname"			"sbmp_podt"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/podt"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/neopodt.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
+}
