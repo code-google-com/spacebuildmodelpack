@@ -6,8 +6,11 @@ This page explains how to install the test version of the pack, how to update it
 it also explains how to report bugs.
 
 = How to install The SVN version =
-You will need a SVN client, such as [http://tortoisesvn.tigris.org/]TortoiseSVN, you must then create a new folder in your garrysmod/garrysmod/addons folder, and right click it, select the SVN checkout option. 
-In the box asking for a URL enter http://spacebuildmodelpack.googlecode.com/svn/trunk/SpacebuildModelPackAlpha2/
+You will need a SVN client, such as [http://tortoisesvn.tigris.org TortoiseSVN], you must then create a new folder in your garrysmod/garrysmod/addons folder, and right click it, select the SVN checkout option. 
+In the box asking for a URL enter 
+{{{
+http://spacebuildmodelpack.googlecode.com/svn/trunk/SpacebuildModelPackAlpha2/
+}}}
 Click Ok and it will install the latest version.
 
 Make sure you also:
@@ -27,7 +30,7 @@ Make sure you Also:
 
 = If you find a bug =
   * Take a screenshot showing the problem (if it is possible to do so)
-  * (if possible) upload the screenshot to [http://imageshack.us/]ImageShack
+  * (if possible) upload the screenshot to [http://imageshack.us Image Shack]
   * Post the DIRECT LINK to the image while submitting a bug report on the [http://code.google.com/p/spacebuildmodelpack/issues/list]Issues page
 
 Before Submitting a bug:
