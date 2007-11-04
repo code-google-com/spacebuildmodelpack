@@ -3,6 +3,7 @@
 =The official Testers are=
   * .:WDM:.Themage
   * Blayze
+  * ={TSC}=Hyster!a 
 
 =official test servers=
 "Lost Worlds, 208.16.30.58:27015"
