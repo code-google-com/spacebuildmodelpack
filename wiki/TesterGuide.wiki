@@ -2,8 +2,7 @@
 #labels Featured,Phase-Implementation,Phase-Support
 
 = Introduction =
-This page explains how to install the test version of the pack, how to update it.
-it also explains how to report bugs.
+This page explains how to install the test version of the pack, how to update it, And how to spawn props not in the spawn menu, it also explains how to report bugs.
 
 = How to install The SVN version =
 You will need a SVN client, such as [http://tortoisesvn.tigris.org TortoiseSVN], you must then create a new folder in your garrysmod/garrysmod/addons folder, and right click it, select the SVN checkout option. 
@@ -27,6 +26,19 @@ Suggested options:
 
 Make sure you Also:
   * delete all files starting with the name 'spacebuild' in the garrysmod/garrysmod/settings/spawnlists/ folder
+
+= Spawning props not visible in the spawn menu =
+Many props are not in the spawn menu, they are usable however
+  * under the icons of models in the spawn menu click the 'folder' icon
+  * Browse using the folders below that icon to the 'Spacebuild' folder
+  * double click an objects name to spawn it
+To make your own spawn menu
+  * follow the above instructions
+  * hold shit or ctrl and select the models you want to add
+  * right click and select 'add to new menu'
+  * enter a menu name
+  * check the menu appears and works
+  * Click the 'save' button next to the 'folder' icon
 
 = If you find a bug =
   * Take a screenshot showing the problem (if it is possible to do so)
