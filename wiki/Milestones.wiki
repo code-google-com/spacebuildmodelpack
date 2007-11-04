@@ -33,32 +33,28 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Bridge section||Concept||
 ||LS - resources||Post Production||
 ||Easter Egg Models||In Progress||
-
-Beta 1: Unstarted
-  * Hull Plates
-  * Hull Sections
-  * New Style 1 Tubes
-  * New S1 Bays
-  * Airlocks
-  * Half Tubes
-
-Beta 2: Unstarted
-  * Spacebuild Map Alpha
-  * LS models
-  * Weighting Of props
-  * New Cargo Bays
-  * More Bays
-  * Decorative Props
-  * Weapon Models (CDS)
-
-Beta 3: Unstarted
-  * CDS weapon pack
-  * Finalized LS tool set
-  * Style 2 & 3 Tubes and Bays
-  * Bridges
-  * Fighter Models
-  * Cockpits & chairs & Pods
-  * Massive LOL model
-  * Weapon Models
-
-Pre-Release 1: Planning Stages
+|| *Beta 1* || *Unstarted* ||
+||Hull Plates||Unstarted||
+||Hull Sections||Unstarted||
+||New Style 1 Tubes||Concept||
+||New S1 Bays||Unstarted||
+||Airlocks||concept||
+||Half Tubes||Unstarted||
+|| *Beta 2* || *Unstarted* ||
+||Spacebuild Map Alpha||Concept||
+||LS models||Started||
+||Weighting Of props||Unstarted||
+||New Cargo Bays||Unstarted||
+||More Bays||Unstarted||
+||Decorative Props||Unstarted||
+||Weapon Models (CDS)||Unstarted||
+|| *Beta 3* || Unstarted ||
+||CDS weapon pack||Unstarted||
+||Finalized LS tool set||Started||
+||Style 2 & 3 Tubes and Bays||Unstarted||
+||Bridges||Concept||
+||Fighter Models||Unstarted||
+||Cockpits & chairs & Pods||Concept||
+||Massive LOL model||Unstarted||
+||Weapon Models||Unstarted||
+|| *Pre-Release 1* || *Unstarted* ||
