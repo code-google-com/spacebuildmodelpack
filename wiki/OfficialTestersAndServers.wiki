@@ -5,7 +5,7 @@
   * Blayze
   * ={TSC}=Hyster!a 
 
-Offical Testers should read this page [TesterGuide]
+Official Testers should read this page [TesterGuide]
 
 =official test servers=
 "Lost Worlds, 208.16.30.58:27015"
