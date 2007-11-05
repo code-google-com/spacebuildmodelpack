@@ -3,7 +3,7 @@
 	"name"		"SpaceBuild ModelPack Alpha B"
 	"version"	"1.5b"
 	"up_date"	"16th October 2007"
-	"author_name"	"PJB, Cheesman55, Firgov Umbra, Squad08, Omni, SnakeSVx"
+	"author_name"	"PJB, Cheesman55, Firgof Umbra, Squad08, Omni, SnakeSVx"
 	"author_email"	"pokejoyboy@aol.com"
 	"author_url"	"www.pjb.i8.com"
 	"info"		"Spacebuild Model Pack"
