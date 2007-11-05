@@ -16,7 +16,7 @@
 	// Loadtimes will increase slightly with every addon you have with 
 	//  this set to 1 - so only set override if you really need to.
 
-	"override"	"0"
+	"override"	"1"
 	
 	// Won't be active unless the following GCFs are available and
 	// are mounted
