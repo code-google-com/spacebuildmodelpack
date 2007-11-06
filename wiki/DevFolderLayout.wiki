@@ -24,15 +24,16 @@ This folder has the following sub folders
   * Addon Files: - Place for adding files that need to be checked before adding to the main addon, this is best used for placing work you are not sure about When, or how it needs to be added. this will be rarely used, but should not be ignored.
   * Compiled models: this is used for placing the SMD files, Compile scripts, and any other nesserery files for a model before it is compiled. this is so a model can be recompiled at ease later with a different mass or similar.
   * Conspt Art: This folder is to be used for storing artwork relating to consepts.
-  * ImagesScreenshots: This folder is used for any good screenshots of models, or in game use of models, primarily used for forum updates.
+  * ImagesScreenshots : This folder is used for any good screenshots of models, or in game use of models, primarily used for forum updates.
   * LUA: this folder is for LUA files that are currently being worked on, but are not yet ready for testing.
   * Models: This folder is for the Raw model files, for instance .MAX, .W3d, .M3D, .OBJ Etc, place any models raw data you are working on here.
-  * OutDated: this folder is for any files that are outdated and should *not* be added to the final version of the addon.
+  * OutDated : this folder is for any files that are outdated and should *not* be added to the final version of the addon.
   * Textures: this folder contains textures for use
     #VMT: this folder contains fully converted textures that are ready for use or implementation into the game
     #Non-VMT: this folder contains raw images that need to be converted into textures, *DO NOT PLACE IMAGES HERE IF THEY ARE NOT FOR CONVERSION*
-    #Matlib: This is for material Library's for 3d modeling applications, use this to store your material librarys
+    #Matlib: This is for material Library's for 3d modeling applications, use this to store your material library's
     #Raw: Place images here that are Raw image files, and need to be edited to work as textures
+    #Original Texture Images: This is for the original texture images that have been converted to VMF/VMT
   * DXF Models: This folder is for DXF exports from Hammer that need to be converted into working models.
   * Untextured: This folder is for models that have yet to be textured.
   * Un-Collided Models: this folder is for models that do not have a working collision mesh
