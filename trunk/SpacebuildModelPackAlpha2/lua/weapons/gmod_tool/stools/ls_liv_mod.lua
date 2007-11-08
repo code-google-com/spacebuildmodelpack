@@ -22,11 +22,10 @@ if ( CLIENT ) then
 end
 
 if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 Addon.'" ) return end
-if not GAMEMODE.IsSpaceBuildDerived or not SecureActive then return end
+if not GAMEMODE.IsSpaceBuildDerived then return end
 include("autorun/config.lua")
 local ls_liv_mod = {}
 if (SERVER) then
-	
 	ls_liv_mod.base_livable_module = function( ply, ent, system_type, system_class, model )
 		local maxhealth = 600 //make it based on the ent
 		local mass = 1000 //make it get the ents mass
@@ -35,17 +34,6 @@ if (SERVER) then
 		RD_AddResource(ent, "air", 0)
 		LS_RegisterEnt(ent, "Module")
 		return {}, maxhealth, mass
-	end
-	ls_liv_mod.base_default_res_module = function( ply, ent, system_type, system_class, model )
-		local hash = {}
-		hash.size = math.Round(ent:BoundingRadius()/32)
-		local maxhealth = hash.size * 1000
-		local mass = hash.size * 150
-		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
-		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
-		RD_AddResource(ent, "air", math.Round((hash.size/3) * 17000))
-		LS_RegisterEnt(ent, "Resource Module")
-		return hash, maxhealth, mass
 	end
 end
 
