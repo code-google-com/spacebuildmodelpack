@@ -34,14 +34,13 @@ function ENT:Destruct()
 end
 
 function ENT:Use( pl)
-	Msg("Use\n")
 	if(CurTime() > self.lastfire + self.delay) then
-		Msg("Firing\n")
 		local ent = ents.Create( "plasma" )
-			ent:SetPos( self.Entity:GetUp())
+			ent:SetPos( self.Entity:GetPos())
 			ent:SetAngles( self.Entity:GetAngles( ) )
 			ent:SetOwner( ply )
 		ent:Spawn( )
+		constraint.NoCollide(self.Entity, ent, 0, 0)
 		self.lastfire = CurTime()
 	end
 end
