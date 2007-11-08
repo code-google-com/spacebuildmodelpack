@@ -15,6 +15,7 @@ function ENT:Initialize( )
 	self.Entity:GetPhysicsObject( ):SetVelocity( self.Entity:GetAngles() * 750000 )
 	self.owner = 0
 	self.hit = false
+	self.CDSIgnore = true
 end
 
 function ENT:SetOwner(owner)
@@ -27,9 +28,9 @@ function ENT:PhysicsCollide( data, physobj )
 		self.hit = true
 		local effect, snd
 		if CombatDamageSystem then
-			cds_damagepos(self.Entity:GetPos(), 50, 33.5, 100, nil, self.owner)
+			cds_damagepos(self.Entity:GetPos(), 25, 33.5, 100, nil, self.owner)
 		else //todo: maybe add GCombat support?
-			data.HitEntity:TakeDamage( 100, self.owner)
+			data.HitEntity:TakeDamage( 75, self.owner)
 		end
 		effect = EffectData( )
 			effect:SetScale( 10 )
