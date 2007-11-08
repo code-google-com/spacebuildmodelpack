@@ -1,23 +1,40 @@
-SecureActive = true //change this to false to disable the stool!
-
 if(SERVER) then AddCSLuaFile("autorun/config.lua") end
 local models = {}
+local resmodels = {}
+local weaponmodels = {}
 
 function getLSShipModels()
 	return models
 end
 
+function getLSResShipModels()
+	return resmodels
+end
+
+function getLSWeaponShipModels()
+	return weaponmodels
+end
+
 function AddLSShipHabModel(modelname, path)
 	if not modelname or not path then return end
 	table.insert(models, {modelname, path, 'base_livable_module'})
-	models[modelname] = path
+	//models[modelname] = path
 end
 
 function AddLSShipDefResModel(modelname, path) //The Default resource module (contains air, coolant, energy based on the size)
 	if not modelname or not path then return end
-	table.insert(models, {modelname, path, 'base_default_res_module'})
-	models[modelname] = path
+	table.insert(resmodels, {modelname, path, 'base_default_res_module'})
+	//resmodels[modelname] = path
 end
+
+function AddLSShipWeaponModel(modelname, path)
+	if not modelname or not path then return end
+	table.insert(weaponmodels, {modelname, path, 'base_weapons_module'})
+	//weaponmodels[modelname] = path
+end
+
+//testmodelweapon
+AddLSShipWeaponModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
 
 //Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
