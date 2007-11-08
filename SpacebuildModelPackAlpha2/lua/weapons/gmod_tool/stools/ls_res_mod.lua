@@ -27,12 +27,18 @@ local ls_res_mod = {}
 if (SERVER) then
 	ls_res_mod.base_default_res_module = function( ply, ent, system_type, system_class, model )
 		local hash = {}
-		hash.size = math.Round(ent:BoundingRadius()/32)
+		local min, max = ent:WorldSpaceAABB()
+		local size = max-min
+		local square = (max.x - min.x) * (max.y - min.y)
+		local volume = square * (max.z - min.z);
+		Msg("Volume: "..tostring(volume).."\n")
+		hash.size = volume/7.59; //math.Round(ent:BoundingRadius()/32)
 		local maxhealth = hash.size * 1000
 		local mass = hash.size * 150
-		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
-		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
-		RD_AddResource(ent, "air", math.Round((hash.size/3) * 17000))
+		RD_AddResource(ent, "energy", math.Round(hash.size))
+		RD_AddResource(ent, "coolant", math.Round(hash.size))
+		RD_AddResource(ent, "air", math.Round(hash.size))
+		hash.size = math.Round(hash.size)
 		LS_RegisterEnt(ent, "Resource Module")
 		return hash, maxhealth, mass
 	end
