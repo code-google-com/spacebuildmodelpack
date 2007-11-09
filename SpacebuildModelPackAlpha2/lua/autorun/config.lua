@@ -64,3 +64,4 @@ AddLSShipDefResModel("medium cache", "models//Spacebuild/resourcecachemedium.mdl
 AddLSShipDefResModel("large cache", "models//Spacebuild/resourcecachelarge.mdl")
 AddLSShipDefResModel("huge cache", "models//Spacebuild/resourcecachehuge.mdl")
 AddLSShipDefResModel("massive Cache", "models//Spacebuild/resourcecachemassive.mdl")
+AddLSShipWeaponModel("Plasma Cannon", "models//spacebuild/plasgun.mdl")
