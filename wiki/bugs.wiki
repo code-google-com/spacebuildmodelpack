@@ -1,0 +1,9 @@
+#summary How to submit bugs found in the project
+
+= If you find a bug =
+  * Take a screenshot showing the problem (if it is possible to do so)
+  * (if possible) upload the screenshot to [http://imageshack.us Image Shack]
+  * Post the DIRECT LINK to the image, or upload the image while submitting a bug report on the [http://code.google.com/p/spacebuildmodelpack/issues/list]Issues page
+
+Before Submitting a bug:
+  * Check the bug has not already been submitted, if it has post an update to it as a comment, rather than a new reply.
