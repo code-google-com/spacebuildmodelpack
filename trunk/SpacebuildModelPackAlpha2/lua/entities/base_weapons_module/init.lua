@@ -10,7 +10,7 @@ function ENT:Initialize()
 	self.BaseClass.Initialize(self)
 	self.damaged = 0
 	self.lastfire = 0
-	self.delay = 0.2
+	self.delay = 0.5
 	if not (WireAddon == nil) then
 		self.WireDebugName = self.PrintName
 		self.Outputs = Wire_CreateOutputs(self.Entity, { "Air", "Energy", "Coolant", "Max Air", "Max Energy", "Max Coolant" })
@@ -36,7 +36,7 @@ end
 function ENT:Use( pl)
 	if(CurTime() > self.lastfire + self.delay) then
 		local ent = ents.Create( "plasma" )
-			ent:SetPos( self.Entity:GetPos())
+			ent:SetPos( self.Entity:GetPos() + (self.Entity:GetForward() * -80))
 			ent:SetAngles( self.Entity:GetAngles( ) )
 			ent:SetOwner( ply )
 		ent:Spawn( )
