@@ -76,7 +76,7 @@
 	"5"
 	{
 		"Name"			"ragdoll Pod"		// Name that the client will see.
-		"vname"			"sbmp_pod"		// Name that Lua will use.
+		"vname"			"sbmp_rgpod"		// Name that Lua will use.
 		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
 		"material"		"spacebuild/podt"		// material to use for the icon (64x64)
 		
