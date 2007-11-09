@@ -2,10 +2,9 @@
 {
 	"$baseTexture" "spacebuild/lighto"
 	"$translucent" 1
-	"$nocull" 1	
+	"$nocull" 0	
 	"$surfaceprop" "metal"
-	"$envmap" "env_cubemap"
 	"$envmaptint" "[ 1.0 1.0 1.0 ]"
-	"$selfillum" 1
+	"$selfillum" 0
 	"$model" 1
 }
