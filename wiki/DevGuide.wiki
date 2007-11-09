@@ -50,4 +50,4 @@ Make sure you Also:
 see [Spawning Spawning non lists props]
 
 = If you find a bug =
-Please follow the [bugs bug sumbistion guide]
+Please follow the [bugs bug reporting guide]
