@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "spacebuild/sbchairfabric01bga0"
+	"$surfaceprop" "metal"
+	"$basetexture"		"spacebuild/chair1"
+	"$vertexcolor" 		1 
+	"$nolod" 			1 
+}
