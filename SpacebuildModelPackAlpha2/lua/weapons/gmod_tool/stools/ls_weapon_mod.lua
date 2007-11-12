@@ -25,11 +25,15 @@ if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 A
 include("autorun/config.lua")
 local ls_weapon_mod = {}
 if (SERVER) then
-	ls_weapon_mod.base_weapons_module = function( ply, ent, system_type, system_class, model )
+	ls_weapon_mod.base_weapons_module = function( ply, ent, system_type, system_class, model)
 		local hash = {}
 		hash.size = math.Round(ent:BoundingRadius()/32)
 		local maxhealth = hash.size * 1000
 		local mass = hash.size * 150
+		if ply.extra then
+			hash.strength = tonumber(ply.extra['test'])
+			ply.extra = nil
+		end
 		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
 		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
 		RD_AddResource(ent, "air", math.Round((hash.size/3) * 17000))
@@ -38,4 +42,9 @@ if (SERVER) then
 	end
 end
 
-RD2_ToolRegister( TOOL, getLSWeaponShipModels(), nil, "ls_weapon_mod", 30, ls_weapon_mod )
+local tab = {}
+tab['test'] = {}
+tab['test']['min'] = 10
+tab['test']['max'] = 100
+
+RD2_ToolRegister( TOOL, getLSWeaponShipModels(), nil, "ls_weapon_mod", 30, ls_weapon_mod, tab )
