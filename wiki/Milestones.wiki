@@ -19,10 +19,10 @@ Be aware this may be outdated, if obviously so please contact an administration 
 || *Patch 1 *||
 ||Final alpha Tube sets||In progress||
 ||Double size Tubes||In Progress||
-||Double Width Tubes||In Progress||
-||Cargo Bays||In Progress||
-||Fighter Bays||In progress||
-||Cap Plates||Unstarted||
+||Double Width Tubes||Started||
+||Cargo Bays||Converting||
+||Fighter Bays||Converting||
+||Cap Plates||Started||
 || *Final patch* ||
 ||Stackable Cargo Bays||Unstarted||
 ||Stackable Fighter Bays||Unstarted||
