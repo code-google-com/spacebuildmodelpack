@@ -12,9 +12,9 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Basic Tube set|| Depreciated ||
 || *Alpha2* || *RELEASED* ||
 ||Life support||Post Production||
-||Vehicles||bugged||
+||Vehicles||Working||
 ||New tubes 3 sets||In progress||
-||Cockpit||Bugged||
+||Cockpit||Working||
 || *Alpha3* || *Pending* ||
 || *Patch 1 *||
 ||Final alpha Tube sets||In progress||
