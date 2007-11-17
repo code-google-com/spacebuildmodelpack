@@ -1,5 +1,5 @@
 #summary Developer Production Guide
-#labels Phase-QA,Featured,Phase-Implementation
+#labels Phase-QA,Phase-Implementation
 
 = Introduction =
 This page outlines when and what you should develop as part of the team.
