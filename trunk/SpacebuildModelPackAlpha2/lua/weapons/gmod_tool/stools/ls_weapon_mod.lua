@@ -31,7 +31,7 @@ if (SERVER) then
 		local maxhealth = hash.size * 1000
 		local mass = hash.size * 150
 		if ply.extra then
-			hash.strength = tonumber(ply.extra['test'])
+			Msg(tonumber(ply.extra['test']).."||"..tonumber(ply.extra['test2']))
 			ply.extra = nil
 		end
 		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
@@ -44,7 +44,10 @@ end
 
 local tab = {}
 tab['test'] = {}
+tab['test']['type'] = "slider"
 tab['test']['min'] = 10
 tab['test']['max'] = 100
+tab['test2'] = {}
+tab['test2']['type'] = "checkbox"
 
 RD2_ToolRegister( TOOL, getLSWeaponShipModels(), nil, "ls_weapon_mod", 30, ls_weapon_mod, tab )
