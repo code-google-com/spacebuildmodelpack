@@ -33,8 +33,8 @@ if (SERVER) then
 		local volume = square * (max.z - min.z);
 		Msg("Volume: "..tostring(volume).."\n")
 		hash.size = volume/7.59; //math.Round(ent:BoundingRadius()/32)
-		local maxhealth = hash.size * 1000
-		local mass = math.round(hash.size/40)
+		local maxhealth = math.Round(hash.size/6)
+		local mass = math.Round(hash.size/40)
 		RD_AddResource(ent, "energy", math.Round(hash.size))
 		RD_AddResource(ent, "coolant", math.Round(hash.size))
 		RD_AddResource(ent, "air", math.Round(hash.size))
