@@ -10,6 +10,8 @@ In the box asking for a URL enter
 {{{
 http://spacebuildmodelpack.googlecode.com/svn/trunk/SpacebuildModelPackAlpha2/
 }}}
+Under username enter your Gmail account name, mine would be DarthPJB ( *not* DarthPJB@gmail.com)
+For your password you will need to enter your googlecode password, this is a password that only you have access to and can be found [http://code.google.com/hosting/settings Here on the googlecode settings page]
 Click Ok and it will install the latest version.
 
 Make sure you also:
