@@ -1,5 +1,5 @@
 
-TOOL.Category = '(Life Support)'
+TOOL.Category = 'Spacebuild Tools'
 TOOL.Name = '#LS Ship Modules'
 TOOL.Command = nil
 TOOL.ConfigName = ''
