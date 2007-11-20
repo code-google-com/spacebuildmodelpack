@@ -16,3 +16,6 @@ Any Modeler:
   * [http://www.gimp.org/ GIMP, free image editing software, very good.]
 = All Users =
   * [http://nemesis.thewavelength.net/index.php?p=25 GCF scape, great tool allowing access to all files from any Source game on steam, good for ripping reference models textures and alike from a game] 
+
+= reference =
+  * [http://developer.valvesoftware.com/wiki/Unit The units of a player compared to his movement]
