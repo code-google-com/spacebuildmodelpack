@@ -11,6 +11,8 @@ Your job is to produce either:
   * Collision Models
   * Model Rigs and Animations
 
+3ds Max users reference [Maxguide] this for a how-to
+
 The production is freeflow, so unless specifically said something is needed you work to your own devices. however if you find a non-textured model, or non-collided model in one of the assigned areas you should do the texture work, or collision for that model as a priority, On starting work on such a model mark the filename _S to show work has started. For instance UncollidedBridge.max would be Uncollisdedbridge_S.max, this will stop anyone else doing the same model, when you have finished it, move it to the relevant folder.
 
 If you are specifically asked to do something by a project lead this should take priority over any other models, for instance if DarthPJB asked you to make an engine mount, this would take priority over a computer console, unless another lead had asked that model to be made.
