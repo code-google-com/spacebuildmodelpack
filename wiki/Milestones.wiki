@@ -22,14 +22,14 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Double Width Tubes||Started||
 ||Cargo Bays||Finished||
 ||Fighter Bays||Finished||
+||Bat Signal||Finished||
+||PJB signal||Finished||
+||Search Light||Finished||
 ||Cap Plates||Started (10% done)||
 || *Final patch* ||
 ||Stackable Cargo Bays||Unstarted||
 ||Stackable Fighter Bays||Unstarted||
 ||Fighter Models||Unstarted||
-||Bat Signal||Finished||
-||PJB signal||Finished||
-||Search Light||Finished||
 ||Bridge section||Concept||
 ||LS - resources||Post Production||
 ||Easter Egg Models||In Progress||
