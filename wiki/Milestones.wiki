@@ -17,12 +17,12 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Cockpit||Working||
 || *Alpha3* || *Pending* ||
 || *Patch 1 *||
-||Final alpha Tube sets||In progress||
+||Final alpha Tube sets||Delayed||
 ||Double size Tubes||In Progress||
 ||Double Width Tubes||Started||
-||Cargo Bays||Converting||
-||Fighter Bays||Converting||
-||Cap Plates||Started||
+||Cargo Bays||Finished||
+||Fighter Bays||Finished||
+||Cap Plates||Started (10% done)||
 || *Final patch* ||
 ||Stackable Cargo Bays||Unstarted||
 ||Stackable Fighter Bays||Unstarted||
