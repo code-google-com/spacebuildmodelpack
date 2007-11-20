@@ -6,8 +6,9 @@
   * [http://www.chaosincarnate.net/cannonfodder/cftools.htm SMD Export] (V6/7/8)
   * [http://www.wunderboy.org/sourceapps.php#max_vtf VTF (texture) Support] (V6/7/8/9)
 
-Everyone:
+Any Modeler:
   * [http://www.wunderboy.org/apps/guistudiomdl2.php GUI StudiMDL, much better than the SDK studio MDL.]
+  * [http://www.chaosincarnate.net/cannonfodder/cftools.htm Another MDL tool, this time capable of decompileing also, however outdated compared to studiMDL]
 = Texture Artists =
   * [http://www.wunderboy.org/sourceapps.php#vtf_shell VTF shell extensions, (thumbnails in explorer)]
   * [http://nemesis.thewavelength.net/index.php?p=41 VTF edit, used for conversion of VTF textures]
