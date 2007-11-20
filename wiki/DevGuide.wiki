@@ -5,9 +5,10 @@
 This page explains how to install the test version of the pack, how to update it, how to commit to it, And how to spawn props not in the spawn menu, it also explains how to report bugs.
 
 = Links =
-If you need an explanation of the SVN folder layout, please read [DevFolderLayout Here]
-If you need an explanation of what you should be doing, please read [DevProductionGuide   Here]
-There is a list of handy tools [ToolSet Here]
+  * If you need an explanation of the SVN folder layout, please read [DevFolderLayout Here]
+  * If you need an explanation of what you should be doing, please read [DevProductionGuide   Here]
+  * There is a list of handy tools [ToolSet Here]
+  * 3ds tips are [Maxguide here]
 
 = How to install The SVN version =
 You will need a SVN client, such as [http://tortoisesvn.tigris.org TortoiseSVN], you must then create a new folder in your documents folder, and right click it, select the SVN checkout option. 
