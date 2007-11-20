@@ -8,6 +8,6 @@
 Everyone:
   * [http://www.wunderboy.org/apps/guistudiomdl2.php GUI StudiMDL, much better than the SDK studio MDL.]
 = Texture Artists =
-  * [http://www.wunderboy.org/sourceapps.php#vtf_shell VTF shell extensions, (thumbnails in explore)
+  * [http://www.wunderboy.org/sourceapps.php#vtf_shell VTF shell extensions, (thumbnails in explorer)]
   * [http://nemesis.thewavelength.net/index.php?p=41 VTF edit, used for conversion of VTF textures]
   * [http://www.gimp.org/ GIMP, free image editing software, very good.]
