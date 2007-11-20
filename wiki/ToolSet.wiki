@@ -8,8 +8,11 @@
 
 Any Modeler:
   * [http://www.wunderboy.org/apps/guistudiomdl2.php GUI StudiMDL, much better than the SDK studio MDL.]
-  * [http://www.chaosincarnate.net/cannonfodder/cftools.htm Another MDL tool, this time capable of decompileing also, however outdated compared to studiMDL]
+  * [http://www.chaosincarnate.net/cannonfodder/cftools.htm Another MDL tool, this time capable of decompiling also, however outdated compared to studiMDL]
+  * [http://www.chaosincarnate.net/cannonfodder/cftools.htm MDL decompiler]
 = Texture Artists =
   * [http://www.wunderboy.org/sourceapps.php#vtf_shell VTF shell extensions, (thumbnails in explorer)]
   * [http://nemesis.thewavelength.net/index.php?p=41 VTF edit, used for conversion of VTF textures]
   * [http://www.gimp.org/ GIMP, free image editing software, very good.]
+= All Users =
+  * [http://nemesis.thewavelength.net/index.php?p=25 GCF scape, great tool allowing access to all files from any Source game on steam, good for ripping reference models textures and alike from a game] 
