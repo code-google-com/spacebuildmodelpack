@@ -2,8 +2,9 @@
 #labels Phase-Design,Phase-Implementation
 =Modeling=
 3dsMax users:
-  * [http://www.wunderboy.org/sourceapps.php#max9_smd SMD Export]
-  * [http://www.wunderboy.org/sourceapps.php#max_vtf VTF (texture) Support]
+  * [http://www.wunderboy.org/sourceapps.php#max9_smd SMD Export] (V9)
+  * [http://www.chaosincarnate.net/cannonfodder/cftools.htm SMD Export] (V6/7/8)
+  * [http://www.wunderboy.org/sourceapps.php#max_vtf VTF (texture) Support] (V6/7/8/9)
 
 Everyone:
   * [http://www.wunderboy.org/apps/guistudiomdl2.php GUI StudiMDL, much better than the SDK studio MDL.]
