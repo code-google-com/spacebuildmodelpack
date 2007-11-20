@@ -1,0 +1,9 @@
+#summary List of pages needed for the wiki
+#labels Phase-Requirements,Phase-Implementation,Phase-Design
+  * Team Guide
+  * Links Page
+  * Main Wiki Page
+  * Modeler guide
+  * Texture guide
+  * Conversation Tutorials
+  * Updated Folder Layout
