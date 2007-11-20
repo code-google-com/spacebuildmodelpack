@@ -27,7 +27,7 @@ function ENT:PhysicsCollide( data, physobj )
 		self.hit = true
 		local effect, snd
 		if CombatDamageSystem then
-			cds_damagepos(self.Entity:GetPos(), 20, 34, 50, nil, self.owner)
+			cds_damagepos(self.Entity:GetPos(), 20, 34, 100, self.owner)
 		else //todo: maybe add GCombat support?
 			data.HitEntity:TakeDamage( 75, self.owner)
 		end
