@@ -30,7 +30,7 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Stackable Cargo Bays||Unstarted||
 ||Stackable Fighter Bays||Unstarted||
 ||Fighter Models||Unstarted||
-||Bridge section||Concept||
+||Bridge section||Started (50%)||
 ||LS - resources||Post Production||
 ||Easter Egg Models||In Progress||
 || *Beta 1* || *Unstarted* ||
