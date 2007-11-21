@@ -27,7 +27,7 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Search Light||Finished||
 ||Cap Plates||Started (10% done)||
 || *Final patch* ||
-||Stackable Cargo Bays||Unstarted||
+||Stackable Cargo Bays||In Progress||
 ||Stackable Fighter Bays||Unstarted||
 ||Fighter Models||Unstarted||
 ||Bridge section||Started (50%)||
