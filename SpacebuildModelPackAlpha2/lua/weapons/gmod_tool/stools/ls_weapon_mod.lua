@@ -40,6 +40,13 @@ if (SERVER) then
 		LS_RegisterEnt(ent, "Resource Module")
 		return hash, maxhealth, mass
 	end
+
+	ls_weapon_mod.test = function( ply, ent, system_type, system_class, model)
+		local hash = {}
+		local maxhealth = 100
+		local mass = 100
+		return hash, maxhealth, mass
+	end
 end
 
 local tab = {}

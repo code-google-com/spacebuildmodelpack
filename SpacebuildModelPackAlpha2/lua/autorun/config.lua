@@ -33,8 +33,15 @@ function AddLSShipWeaponModel(modelname, path)
 	//weaponmodels[modelname] = path
 end
 
-//testmodelweapon
-AddLSShipWeaponModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
+function AddLSAirLockModel(modelname, path)
+	if not modelname or not path then return end
+	table.insert(weaponmodels, {modelname, path, 'test'})
+	//weaponmodels[modelname] = path
+end
+
+//testairlocks
+AddLSAirLockModel("Test1", "models//spacebuild/Test1.mdl")
+AddLSAirLockModel("Test2", "models//spacebuild/Test2.mdl")
 
 //Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
