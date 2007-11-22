@@ -1,8 +1,8 @@
 // Output .MDL
-$modelname Spacebuild/test.mdl
+$modelname Spacebuild/test2.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "test.SMD"
+$body studio "test2.SMD"
 
 // Directory of materials that the model uses
 $cdmaterials spacebuild
@@ -20,13 +20,13 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle_closed "test_idle_closed" loop fps 30
-$sequence idle_open "test_idle_open" loop fps 30
-$sequence test_open "test_open" loop fps 30
-$sequence test_close "test_close" loop fps 30
+$sequence idle_closed "test2_closed_idle" loop fps 30
+$sequence idle_open "test2_open_idle" loop fps 30
+$sequence test_open "test2_open" loop fps 30
+$sequence test_close "test2_close" loop fps 30
 
 // Physics data
-$collisionmodel "testphys.SMD" {
+$collisionmodel "test2phys.SMD" {
 	$concave
 	$mass 100.0
 	$inertia 1.00
