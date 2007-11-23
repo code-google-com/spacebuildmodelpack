@@ -7,28 +7,33 @@ local Ground = 1 + 0 + 2 + 8 + 32
 
 function ENT:Initialize()
 	self.BaseClass.Initialize(self)
-	self.open = false;
+	self.open = false
+	self.doingsequence = false
 end
 
 function ENT:Use()
-	Msg("Using\n")
+	if self.doingsequence then return end
 	if(self.open) then
-		local sequence = self.Entity:LookupSequence("test_close") 
-		Msg("Sequence closing: "..tostring(sequence).."\n")
+		self.doingsequence = true
+		local sequence = self.Entity:LookupSequence("idle_closed")
 		self.Entity:SetSequence(sequence)
-		self.Entity:LookupSequence("idle_closed")
-		Msg("Sequence closing: "..tostring(sequence).."\n")
-		self.Entity:SetSequence(sequence) 
-		self.open = false
+		timer.Simple( 1 , Close2, self.Entity)
 	else
-		local sequence = self.Entity:LookupSequence("test_open") 
-		Msg("Sequence opening: "..tostring(sequence).."\n")
+		self.doingsequence = true
+		local sequence = self.Entity:LookupSequence("idle_open") 
 		self.Entity:SetSequence(sequence)
-		self.Entity:LookupSequence("idle_open") 
-		Msg("Sequence opening: "..tostring(sequence).."\n")
-		self.Entity:SetSequence(sequence)
-		self.open = true
+		timer.Simple( 1 , Open2, self.Entity)
 	end
+end
+
+function Close2(ent)
+	ent.open = false
+	ent.doingsequence = false
+end
+
+function Open2(ent)
+	ent.open = true
+	ent.doingsequence = false
 end
 
 /*function ENT:TurnOn()
