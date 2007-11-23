@@ -26,3 +26,4 @@ ALPHA B
 1.3B: More Models
 1.4b: Added Snakes LUA
 1.5B: added lots and lots of models
+1.6: Finshed upgrade to SVN, Changelog Ends, see SVN log
