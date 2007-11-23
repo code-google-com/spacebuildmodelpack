@@ -20,10 +20,10 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle_closed "test_idle_closed" loop fps 30
-$sequence idle_open "test_idle_open" loop fps 30
-$sequence test_open "test_open" loop fps 30
-$sequence test_close "test_close" loop fps 30
+$sequence idle_closed "test_idle_closed" loop fps 1
+$sequence idle_open "test_idle_open" loop fps 1
+$sequence test_open "test_open" loop fps 10
+$sequence test_close "test_close" loop fps 10
 
 // Physics data
 $collisionmodel "testphys.SMD" {

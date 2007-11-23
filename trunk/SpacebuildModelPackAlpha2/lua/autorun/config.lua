@@ -42,7 +42,7 @@ end
 //testairlocks
 AddLSAirLockModel("Test1", "models//spacebuild/Test.mdl")
 AddLSAirLockModel("Test2", "models//spacebuild/Test2.mdl")
-AddLSAirLockModel("Test2", "models//spacebuild/Test3.mdl")
+AddLSAirLockModel("Test3", "models//spacebuild/Test3.mdl")
 
 //Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
