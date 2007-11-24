@@ -4,4 +4,6 @@
 	"$surfaceprop" "metal"
 	"$vertexcolor" 		1 
 	"$nolod" 			1 
+	"$surfaceprop" "metal"
+	"$model     1"
 }
