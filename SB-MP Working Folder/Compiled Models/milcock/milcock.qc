@@ -37,7 +37,7 @@ $sequence idle "milcock_ref" loop fps 15
 
 
 // Physics data
-$collisionmodel "milcock.SMD" {
+$collisionmodel "milcockphys.SMD" {
 	$concave
 	$mass 100.0
 	$inertia 1.00
