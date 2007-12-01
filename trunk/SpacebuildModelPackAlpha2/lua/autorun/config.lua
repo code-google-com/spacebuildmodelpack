@@ -35,14 +35,14 @@ end
 
 function AddLSAirLockModel(modelname, path)
 	if not modelname or not path then return end
-	table.insert(weaponmodels, {modelname, path, 'test'})
+	table.insert(weaponmodels, {modelname, path, 'airlock'})
 	//weaponmodels[modelname] = path
 end
 
 //testairlocks
-AddLSAirLockModel("Test1", "models//spacebuild/Test.mdl")
-AddLSAirLockModel("Test2", "models//spacebuild/Test2.mdl")
-AddLSAirLockModel("Test3", "models//spacebuild/Test3.mdl")
+AddLSAirLockModel("Test1", "models//spacebuild/TestE.mdl")
+AddLSAirLockModel("Test2", "models//spacebuild/Test2E.mdl")
+AddLSAirLockModel("Test3", "models//spacebuild/Test3E.mdl")
 
 //Put the models under here
 AddLSShipHabModel("Style 1 Tube x1", "models//Spacebuild/s1t1.mdl")
