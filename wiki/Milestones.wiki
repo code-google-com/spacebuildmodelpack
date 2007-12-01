@@ -17,22 +17,22 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Cockpit||Working||
 || *Alpha3* || *Pending* ||
 || *Patch 1 *||
-||Final alpha Tube sets||Delayed||
-||Double size Tubes||In Progress||
-||Double Width Tubes||Started||
+||Final alpha Tube sets||Started (25%)||
+||Double size Tubes||Compiling||
+||Double Width Tubes||Compiling||
 ||Cargo Bays||Finished||
 ||Fighter Bays||Finished||
 ||Bat Signal||Finished||
 ||PJB signal||Finished||
 ||Search Light||Finished||
-||Cap Plates||Started (10% done)||
+||Cap Plates||Started (20% done)||
 || *Final patch* ||
 ||Stackable Cargo Bays||In Progress||
 ||Stackable Fighter Bays||Unstarted||
-||Fighter Models||Unstarted||
+||Fighter Models||Started (50%)||
 ||Bridge section||Started (50%)||
 ||LS - resources||Post Production||
-||Easter Egg Models||In Progress||
+||Easter Egg Models||Finished||
 || *Beta 1* || *Unstarted* ||
 ||Hull Plates||Unstarted||
 ||Hull Sections||Unstarted||
