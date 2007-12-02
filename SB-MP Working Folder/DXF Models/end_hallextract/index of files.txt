@@ -1,0 +1,26 @@
+				[LxWxH]
+003 - metal plate 		[128x128x2]
+004 - glass plate 		[128x128x2]
+005 - plate w/dome 		[128x128x64]
+006 - 
+...
+013 - hallway endcap, glass	[128x128x96]
+014 - ESCAPE TUBE		[96X96X96]
+015 - Escape Tube Cap		[96x96x48]
+016 - capped escape tube	[80x80x192]
+017 - cockpit with chair	[320x128x128]
+018 - cockpit chair		[64x64x48]
+019 - cockpit chair 2		[96x72x96]
+020 - glass hallway		[128x128x128]
+021 - raised pylon		[128x128x16]
+022 - hexagonal tubecap		[128x16x128]
+023 - hexagonal tubecap 2	[128x32x128]
+024 - hexagonal tubecap 3	[128x64x128]
+025 - octagonal tubecap		[128x16x128]
+026 - octagonal tubecap 2	[128x32x128]
+027 - octagonal tubecap 3	[128x64x128]
+028 - square tubecap		[128x16x128]
+029 - square tubecap 2		[128x32x128]
+030 - square tubecap 3		[128x64x128]
+
+031-XXX : Differing sizes of tube
