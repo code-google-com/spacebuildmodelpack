@@ -27,10 +27,13 @@ local ls_res_mod = {}
 if (SERVER) then
 	ls_res_mod.base_default_res_module = function( ply, ent, system_type, system_class, model )
 		local hash = {}
+		local angles = ent:GetAngles()
+		ent:SetAngles(Vector(0, 0, 0))
 		local min, max = ent:WorldSpaceAABB()
 		local size = max-min
 		local square = (max.x - min.x) * (max.y - min.y)
 		local volume = square * (max.z - min.z);
+		ent:SetAngles(angles)
 		Msg("Volume: "..tostring(volume).."\n")
 		hash.size = volume/7.59; //math.Round(ent:BoundingRadius()/32)
 		local maxhealth = math.Round(hash.size/6)
