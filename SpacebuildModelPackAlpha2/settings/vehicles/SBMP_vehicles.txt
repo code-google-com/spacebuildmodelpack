@@ -185,4 +185,18 @@
 			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
 		}
 	}
+	"13"
+	{
+		"Name"			"Military Cockpit 6"		// Name that the client will see.
+		"vname"			"sbmp_mcocksix"		// Name that Lua will use.
+		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
+		"material"		"spacebuild/milcock"		// material to use for the icon (64x64)
+		
+		"KeyValues"
+		{
+			"model"				"models/Spacebuild/milcock6a.mdl"
+			"solid"				"6"
+			"vehiclescript"		"scripts/vehicles/prisoner_pod.txt"
+		}
+	}
 }
