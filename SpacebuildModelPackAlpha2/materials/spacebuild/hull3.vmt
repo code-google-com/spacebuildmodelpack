@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "spacebuild/hull3"
+	"$bumpmap" "spacebuild/hull3_bump"
+	"$envmap"  "spacebuild/hull3_spec"
+	"$surfaceprop" "metal"
+	"$model"     1
+}
