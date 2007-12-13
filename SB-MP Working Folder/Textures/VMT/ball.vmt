@@ -2,6 +2,5 @@
 {
 	"$basetexture" "spacebuild/ball"
 	"$surfaceprop" "metal"
-	"$vertexcolor" 		1 
-	"$nolod" 			1 
+	"$translucent" 1
 }
