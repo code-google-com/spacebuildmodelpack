@@ -27,10 +27,10 @@ Be aware this may be outdated, if obviously so please contact an administration 
 ||Search Light||Finished||
 ||Cap Plates||Started (20% done)||
 || *Final patch* ||
-||Stackable Cargo Bays||In Progress||
+||Stackable Cargo Bays||Converting||
 ||Stackable Fighter Bays||Unstarted||
-||Fighter Models||Started (50%)||
-||Bridge section||Started (50%)||
+||Fighter Models||Started (80%)||
+||Bridge section||Started (90%)||
 ||LS - resources||Post Production||
 ||Easter Egg Models||Finished||
 || *Beta 1* || *Unstarted* ||
