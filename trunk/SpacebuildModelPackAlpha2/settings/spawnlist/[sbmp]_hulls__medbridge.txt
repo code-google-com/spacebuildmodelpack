@@ -1,0 +1,14 @@
+"26"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Hulls: Medbridge"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/medbridge.mdl"
+		}
+	}
+}

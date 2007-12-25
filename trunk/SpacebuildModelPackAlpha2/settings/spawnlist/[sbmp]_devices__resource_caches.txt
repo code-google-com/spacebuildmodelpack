@@ -1,0 +1,38 @@
+"29"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Devices: Resource Caches"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/resourcecachehuge.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/resourcecachelarge.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/resourcecachemassive.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/resourcecachemedium.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/resourcecachesmall.mdl"
+		}
+		"6"
+		{
+			"model"		"models//Spacebuild/resourcecachetiny.mdl"
+		}
+		"7"
+		{
+			"model"		"models//Spacebuild/smallairtank.mdl"
+		}
+	}
+}

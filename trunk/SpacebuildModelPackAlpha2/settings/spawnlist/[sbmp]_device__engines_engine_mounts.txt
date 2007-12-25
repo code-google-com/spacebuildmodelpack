@@ -1,0 +1,30 @@
+"27"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Device: Engines/Engine Mounts"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/emount1_milcock4.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/emount2_milcock4.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/emount3_milcock6.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/engineidea.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/enginemount1.mdl"
+		}
+	}
+}
