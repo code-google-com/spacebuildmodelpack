@@ -1,0 +1,98 @@
+"25"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Hulls: Medbridge2"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/medbridge2.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/medbridge2_emptyhull.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/medbridge2_emptyhull_90.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/medbridge2_emptyhull_t.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/medbridge2_emptyhull_x.mdl"
+		}
+		"6"
+		{
+			"model"		"models//Spacebuild/medbridge2_enginehull.mdl"
+		}
+		"7"
+		{
+			"model"		"models//Spacebuild/medbridge2_enginehull2.mdl"
+		}
+		"8"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay.mdl"
+		}
+		"9"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay2.mdl"
+		}
+		"10"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay2longcap.mdl"
+		}
+		"11"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay2_noglass.mdl"
+		}
+		"12"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay3.mdl"
+		}
+		"13"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay3a.mdl"
+		}
+		"14"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay3sidebaycap.mdl"
+		}
+		"15"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay3transcap.mdl"
+		}
+		"16"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbayshortcap.mdl"
+		}
+		"17"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbayshortcap2.mdl"
+		}
+		"18"
+		{
+			"model"		"models//Spacebuild/medbridge2_fighterbay_noglass.mdl"
+		}
+		"19"
+		{
+			"model"		"models//Spacebuild/medbridge2_flatcap.mdl"
+		}
+		"20"
+		{
+			"model"		"models//Spacebuild/medbridge2_s128cap.mdl"
+		}
+		"21"
+		{
+			"model"		"models//Spacebuild/medbridge2_twolevel.mdl"
+		}
+		"22"
+		{
+			"model"		"models//Spacebuild/medbridge2_widey.mdl"
+		}
+	}
+}

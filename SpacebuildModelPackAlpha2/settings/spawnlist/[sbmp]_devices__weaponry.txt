@@ -1,0 +1,14 @@
+"30"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Devices: Weaponry"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/plasgun.mdl"
+		}
+	}
+}
