@@ -1,0 +1,94 @@
+"41"
+{
+	"Information"
+	{
+		"name"		"[SBMP] Tubes: Alpha 3"
+	}
+	"Entries"
+	{
+		"1"
+		{
+			"model"		"models//Spacebuild/stxdw.mdl"
+		}
+		"2"
+		{
+			"model"		"models//Spacebuild/stxds.mdl"
+		}
+		"3"
+		{
+			"model"		"models//Spacebuild/sttdw.mdl"
+		}
+		"4"
+		{
+			"model"		"models//Spacebuild/stdl.mdl"
+		}
+		"5"
+		{
+			"model"		"models//Spacebuild/stdldw.mdl"
+		}
+		"6"
+		{
+			"model"		"models//Spacebuild/stds.mdl"
+		}
+		"7"
+		{
+			"model"		"models//Spacebuild/stds90.mdl"
+		}
+		"8"
+		{
+			"model"		"models//Spacebuild/stdw.mdl"
+		}
+		"9"
+		{
+			"model"		"models//Spacebuild/stol.mdl"
+		}
+		"10"
+		{
+			"model"		"models//Spacebuild/stql.mdl"
+		}
+		"11"
+		{
+			"model"		"models//Spacebuild/stqldw.mdl"
+		}
+		"13"
+		{
+			"model"		"models//Spacebuild/sttds.mdl"
+		}
+		"14"
+		{
+			"model"		"models//Spacebuild/st90dw.mdl"
+		}
+		"15"
+		{
+			"model"		"models//Spacebuild/st2dw.mdl"
+		}
+		"16"
+		{
+			"model"		"models//Spacebuild/st2stds.mdl"
+		}
+		"17"
+		{
+			"model"		"models//Spacebuild/st2stdw.mdl"
+		}
+		"18"
+		{
+			"model"		"models//Spacebuild/st4wdw.mdl"
+		}
+		"19"
+		{
+			"model"		"models//Spacebuild/st5wds.mdl"
+		}
+		"20"
+		{
+			"model"		"models//Spacebuild/st5wdw.mdl"
+		}
+		"21"
+		{
+			"model"		"models//Spacebuild/st6wds.mdl"
+		}
+		"22"
+		{
+			"model"		"models//Spacebuild/st6wdw.mdl"
+		}
+	}
+}
