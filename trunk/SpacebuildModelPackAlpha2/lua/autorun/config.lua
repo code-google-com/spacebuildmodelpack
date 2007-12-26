@@ -66,7 +66,6 @@ AddLSShipHabModel("Standard Tube 5-way, Doublesize","models/Spacebuild/ST5wDS.md
 AddLSShipHabModel("Standard Tube 6-way, Doublesize","models/Spacebuild/ST6wDS.mdl")
 AddLSShipHabModel("Standard Tube 6-way, Doublewide","models/Spacebuild/ST6wDW.mdl")
 AddLSShipHabModel("Standard Tube 2, Doublewide","models/Spacebuild/st2dw.mdl")
-AddLSShipHabModel("Standard Tube 2, ","models/Spacebuild/.mdl")
 AddLSShipHabModel("Standard Tube 2, Standard to Doublesize","models/Spacebuild/ST2StDS.mdl")
 AddLSShipHabModel("Standard Tube 2, Standard to Doublewide","models/Spacebuild/ST2StDW.mdl")
 AddLSShipHabModel("Standard Tube 90-degree, Doublewide","models/Spacebuild/ST90DW.mdl")
@@ -95,7 +94,7 @@ AddLSShipHabModel("Medium Bridge 2, Fighterbay 2: glassless","models/Spacebuild/
 AddLSShipHabModel("Medium Bridge 2, Fighterbay 3","models/Spacebuild/medbridge2_fighterbay3.mdl")
 AddLSShipHabModel("Medium Bridge 2, Fighterbay 3 Revision A","models/Spacebuild/medbridge2_fighterbay3a.mdl")
 AddLSShipHabModel("Medium Bridge 2, Fighterbay 3 Transfer Cap","models/Spacebuild/medbridge2_FighterBay3TransCap.mdl")
-AddLSShipHabModel("Medium Bridge 2, Two Level,"models/Spacebuild/medbridge2_twolevel.mdl")
+AddLSShipHabModel("Medium Bridge 2, Two Level","models/Spacebuild/medbridge2_twolevel.mdl")
 AddLSShipHabModel("Medium Bridge 2, Wide Transfer","models/Spacebuild/medbridge2_widey.mdl")
 
 AddLSShipHabModel("PuddleJumper","models/Spacebuild/pj.mdl")
