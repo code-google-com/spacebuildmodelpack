@@ -103,7 +103,7 @@
 	}
 	"7"
 	{
-		"Name"			"Military Cockpit Boned 3"		// Name that the client will see.
+		"Name"			"Military Cockpit 3b"		// Name that the client will see.
 		"vname"			"sbmp_mcockthreeb"		// Name that Lua will use.
 		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
 		"material"		"spacebuild/milcock"		// material to use for the icon (64x64)
@@ -118,7 +118,7 @@
 	"8"
 	{
 		"Name"			"Military Cockpit 4"		// Name that the client will see.
-		"vname"			"sbmp_mcockfoura"		// Name that Lua will use.
+		"vname"			"sbmp_mcockfourb"		// Name that Lua will use.
 		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
 		"material"		"spacebuild/milcock"		// material to use for the icon (64x64)
 		
@@ -131,8 +131,8 @@
 	}
 	"9"
 	{
-		"Name"			"Military Cockpit boned 4"		// Name that the client will see.
-		"vname"			"sbmp_mcockfourb"		// Name that Lua will use.
+		"Name"			"Military Cockpit 4b"		// Name that the client will see.
+		"vname"			"sbmp_mcockfoura"		// Name that Lua will use.
 		"ent"			"prop_vehicle_prisoner_pod"		// Name of entity that the vehicle will spawn.
 		"material"		"spacebuild/milcock"		// material to use for the icon (64x64)
 		
