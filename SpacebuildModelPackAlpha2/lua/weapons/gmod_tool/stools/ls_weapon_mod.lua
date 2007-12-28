@@ -3,7 +3,7 @@ TOOL.Category = 'Spacebuild Tools'
 TOOL.Name = '#LS Ship Weapon Modules'
 TOOL.Command = nil
 TOOL.ConfigName = ''
-if (CLIENT and LocalPlayer():GetInfo("RD_UseLSTab") == "1") then TOOL.Tab = "Life Support" end
+if (CLIENT and GetConVarNumber("RD_UseLSTab") == 1) then TOOL.Tab = "Life Support" end
 
 TOOL.ClientConVar['type'] = 'base_default_weapon_module'
 TOOL.ClientConVar['model'] = 'models/props_wasteland/laundry_washer003.mdl'
