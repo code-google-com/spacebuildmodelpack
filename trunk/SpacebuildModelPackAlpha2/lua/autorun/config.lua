@@ -1,6 +1,6 @@
 if(SERVER) then AddCSLuaFile("autorun/config.lua") end
 
-local version = "Alpha 3"
+local version = "SVN(1.5b)"
 
 if SVX_PF then
 	function SBMP_isActive()
