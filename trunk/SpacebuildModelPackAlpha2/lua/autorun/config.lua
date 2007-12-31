@@ -1,4 +1,14 @@
 if(SERVER) then AddCSLuaFile("autorun/config.lua") end
+
+local version = "Alpha 3"
+
+if SVX_PF then
+	function SBMP_isActive()
+		return true
+	end
+	PF_RegisterPlugin("Spacebuild Model Pack", version, SBMP_isActive,  "Addon")
+end
+
 local models = {}
 local resmodels = {}
 local weaponmodels = {}
