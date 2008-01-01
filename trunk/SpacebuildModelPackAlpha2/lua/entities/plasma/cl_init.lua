@@ -15,6 +15,11 @@ function ENT:Draw()
 	render.DrawSprite( pos, math.Max( self.Size - 4, 0 ), math.Max( self.Size - 4, 0 ), Color( 255, 255, 255, 255 ) )
 end
 
+function ENT:DrawTranslucent( bDontDrawModel )
+	if ( bDontDrawModel ) then return end
+	self:Draw()
+end
+
 function ENT:OnRemove()
 end
 
