@@ -6,7 +6,7 @@ if SVX_PF then
 	function SBMP_isActive()
 		return true
 	end
-	PF_RegisterPlugin("Spacebuild Model Pack", version, SBMP_isActive,  "Addon")
+	PF_RegisterPlugin("Spacebuild Model Pack", version, SBMP_isActive, nil, nil, "Addon")
 end
 
 local models = {}
