@@ -2,12 +2,17 @@ if(SERVER) then AddCSLuaFile("autorun/config.lua") end
 
 local version = "SVN(1.5b)"
 
-if SVX_PF then
-	function SBMP_isActive()
-		return true
+local function registerPF()
+	if SERVER then
+		if SVX_PF then
+			function SBMP_isActive()
+				return true
+			end
+			PF_RegisterPlugin("Spacebuild Model Pack", version, SBMP_isActive, nil, nil, "Addon")
+		end
 	end
-	PF_RegisterPlugin("Spacebuild Model Pack", version, SBMP_isActive, nil, nil, "Addon")
 end
+timer.Simple(5, registerPF)--Needed to make sure the Plugin Framework gets loaded first
 
 local models = {}
 local resmodels = {}
