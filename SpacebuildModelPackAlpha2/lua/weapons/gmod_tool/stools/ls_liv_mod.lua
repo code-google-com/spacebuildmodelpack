@@ -28,13 +28,13 @@ local ls_liv_mod = {}
 if (SERVER) then
 	ls_liv_mod.base_livable_module = function( ply, ent, system_type, system_class, model )
 		local maxhealth = nil
-		if not CombatDamageSystem then
-			maxhealth = 600 //make it based on the ent
-		end
 		local mass = 1000 //default mass
 		local phys = ent:GetPhysicsObject()
 		if phys:IsValid() then
 			mass = phys:GetMass()
+		end
+		if not CombatDamageSystem then
+			maxhealth = mass * 2
 		end
 		RD_AddResource(ent, "energy", 0)
 		RD_AddResource(ent, "coolant", 0)
