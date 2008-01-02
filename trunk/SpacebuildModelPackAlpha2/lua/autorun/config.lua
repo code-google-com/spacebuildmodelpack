@@ -111,6 +111,7 @@ AddLSShipHabModel("Medium Bridge 2, Fighterbay 3 Revision A","models/Spacebuild/
 AddLSShipHabModel("Medium Bridge 2, Fighterbay 3 Transfer Cap","models/Spacebuild/medbridge2_FighterBay3TransCap.mdl")
 AddLSShipHabModel("Medium Bridge 2, Two Level","models/Spacebuild/medbridge2_twolevel.mdl")
 AddLSShipHabModel("Medium Bridge 2, Wide Transfer","models/Spacebuild/medbridge2_widey.mdl")
+AddLSShipHabModel("Medium Birdge 2, Bridge","models/Spacebuild/medbridge2.mdl")
 
 AddLSShipHabModel("PuddleJumper","models/Spacebuild/pj.mdl")
 AddLSShipHabModel("PuddleJumper B","models/Spacebuild/pjbr.mdl")
