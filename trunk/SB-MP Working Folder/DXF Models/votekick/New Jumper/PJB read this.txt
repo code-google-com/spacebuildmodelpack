@@ -17,9 +17,8 @@ On the front, the darker texture goes around the windscreen and on the part that
 On the rear the whole door and around it should be darker texture, and one side of the door, with a boarder there should be the flooring texture.
 
 
+Sorry about you needing to lower the poly count again, but im pretty sure redoing it has made it easier to texture. Can the finished model be twice the size as the other one, Avon has said in the stargate thread that the new gates are not far away.
 
-
-Sorry about you needing to lower the poly count again, but im pretty sure redoing it has made it easier to texture.
 
 ------------
 Votekick : )
