@@ -56,5 +56,8 @@ tab['test']['min'] = 10
 tab['test']['max'] = 100
 tab['test2'] = {}
 tab['test2']['type'] = "checkbox"
+tab['test3']['type'] = "text"
+tab['test3']['text'] = "Test text"
+tab['test4']['type'] = "text"
 
 RD2_ToolRegister( TOOL, getLSWeaponShipModels(), nil, "ls_weapon_mod", 30, ls_weapon_mod, tab )
