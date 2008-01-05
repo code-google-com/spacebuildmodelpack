@@ -30,9 +30,9 @@ if (SERVER) then
 		hash.size = math.Round(ent:BoundingRadius()/32)
 		local maxhealth = hash.size * 1000
 		local mass = hash.size * 150
-		if ply.extra then
-			Msg(tonumber(ply.extra['test']).."||"..tonumber(ply.extra['test2']))
-			ply.extra = nil
+		if ply.custom then
+			Msg(tonumber(ply.custom['test']).."||"..tonumber(ply.custom['test2']).."||"..tostring(ply.custom['test3']).."||"..tostring(ply.custom['test4']))
+			ply.custom = nil
 		end
 		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
 		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
@@ -56,8 +56,10 @@ tab['test']['min'] = 10
 tab['test']['max'] = 100
 tab['test2'] = {}
 tab['test2']['type'] = "checkbox"
+tab['test3'] = {}
 tab['test3']['type'] = "text"
 tab['test3']['text'] = "Test text"
+tab['test4'] = {}
 tab['test4']['type'] = "text"
 
 RD2_ToolRegister( TOOL, getLSWeaponShipModels(), nil, "ls_weapon_mod", 30, ls_weapon_mod, tab )
