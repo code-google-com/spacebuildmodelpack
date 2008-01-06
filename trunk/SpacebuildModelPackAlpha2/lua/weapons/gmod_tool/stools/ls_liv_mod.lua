@@ -1,3 +1,5 @@
+if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 Addon.'" ) return end
+if not GAMEMODE.IsSpaceBuildDerived then return end
 
 TOOL.Category = 'Spacebuild Tools'
 TOOL.Name = '#LS Ship Modules'
@@ -21,9 +23,6 @@ if ( CLIENT ) then
 	language.Add( 'SBoxLimit_ls_liv_mod', 'Maximum Life Support Modules Reached' )
 end
 
-if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 Addon.'" ) return end
-if not GAMEMODE.IsSpaceBuildDerived then return end
-include("autorun/config.lua")
 local ls_liv_mod = {}
 if (SERVER) then
 	ls_liv_mod.base_livable_module = function( ply, ent, system_type, system_class, model )
