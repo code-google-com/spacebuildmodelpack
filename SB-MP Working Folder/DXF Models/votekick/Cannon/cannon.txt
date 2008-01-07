@@ -1,0 +1,8 @@
+Cannon_prt1:
+This piece moves, when fired this part of the cannon moves back wards, until it closes the side slit.
+
+Cannon_prt2:
+This piece remains stationary, only connecting to the base.
+
+Cannon_whole:
+716 polys, not bad...
