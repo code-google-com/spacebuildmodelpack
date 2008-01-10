@@ -10,6 +10,7 @@ function ENT:Initialize()
 	self.open = false
 	self.doingsequence = false
 	self.model = string.sub( self.Entity:GetModel(), 1, -6 )
+	self:SetAutomaticFrameAdvance(true) --Test, found this in the base_entity and it had something to do with animations, which this is using
 end
 
 function ENT:Use()
