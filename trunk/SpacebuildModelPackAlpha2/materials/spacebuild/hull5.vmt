@@ -2,7 +2,6 @@
 {
 	"$basetexture" "spacebuild/hull5"
 	"$bumpmap" "spacebuild/hull5_bump"
-	"$envmap"  "spacebuild/hull5_spec"
 	"$surfaceprop" "metal"
 	"$model"     1
 }

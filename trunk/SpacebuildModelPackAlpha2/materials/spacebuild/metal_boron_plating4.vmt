@@ -1,7 +1,6 @@
 "VertexLitGeneric"
 {
 	"$basetexture" "spacebuild/metal_boron_plating4"
-//	"$envmap"  "metal_boron_platesA_desatur"
 	"$surfaceprop" "metal"
 	"$model"     1
 }
