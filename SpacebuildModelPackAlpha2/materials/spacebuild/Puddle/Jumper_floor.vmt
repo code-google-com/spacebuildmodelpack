@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "spacebuild/Jumper_floor"
+	"$bumpmap" "spacebuild/Jumper_floornormal"
+	"$model"     1
+}

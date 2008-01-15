@@ -2,7 +2,6 @@
 {
 	"$basetexture" "spacebuild/chairfabric01li6"
 	"$surfaceprop" "metal"
-	"$basetexture"		"spacebuild/chair1"
 	"$vertexcolor" 		1 
 	"$nolod" 			1 
 }
