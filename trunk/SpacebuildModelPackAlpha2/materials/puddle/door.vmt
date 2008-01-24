@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "puddle/door"
+	"$basetexture2""puddle/door2"
+	"$bumpmap"     "puddle/doornorm"
+	"$surfaceprop" "metal"
+	"$model"     1
+}

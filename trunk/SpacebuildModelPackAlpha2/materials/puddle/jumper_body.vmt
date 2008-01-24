@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "puddle/jumper_body"
+	"$basetexture2""puddle/jumper_body2"
+	"$bumpmap"     "puddle/jumper_body_norm"
+	"$surfaceprop" "metal"
+	"$model"     1
+}

@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "puddle/wingsin"
+	"$basetexture2""puddle/wingsin2"
+	"$bumpmap"     "puddle/wingsinnorm"
+	"$surfaceprop" "metal"
+	"$model"     1
+}
