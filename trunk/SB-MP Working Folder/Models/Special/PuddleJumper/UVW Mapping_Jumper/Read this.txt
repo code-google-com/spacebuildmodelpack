@@ -1,0 +1,17 @@
+I made the VTF files and had issues when exporting the SMD file. the jumpers themselves are fairly simple and are in 4 pieces,
+
+- The Glass(untouched)
+- Body
+- Door
+- Wings
+
+Both models use the same texture with the exception of the Wings.
+
+The physics model for both of them seem to lack a doorway, and the modles i was hoping for were...
+
+PJ
+PJW
+PJD
+Remembering how they worked before...
+
+just add a 2 to the end of the file name or somthing, should be fine.
