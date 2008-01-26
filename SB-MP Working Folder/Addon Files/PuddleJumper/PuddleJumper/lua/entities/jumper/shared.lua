@@ -5,5 +5,5 @@ ENT.Author	= "Catdaemon -edit LightDemon/VoteKick"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
-ENT.Spawnable	= false
-ENT.AdminSpawnable = false
+ENT.Spawnable	= true
+ENT.AdminSpawnable = true
