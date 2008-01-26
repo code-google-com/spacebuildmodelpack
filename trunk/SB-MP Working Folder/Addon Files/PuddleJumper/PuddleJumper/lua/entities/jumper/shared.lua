@@ -1,7 +1,7 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName	= "Puddle Jumper"
-ENT.Author	= "Catdaemon -edit LightDemon/VoteKick"
+ENT.Author	= "SpaceBuild Models Pack"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
