@@ -1,0 +1,9 @@
+ENT.Type = "anim"
+ENT.Base = "base_anim"
+ENT.PrintName	= "Puddle Jumper"
+ENT.Author	= "Catdaemon -edit LightDemon/VoteKick"
+ENT.Contact	= ""
+ENT.Purpose	= ""
+ENT.Instructions= ""
+ENT.Spawnable	= false
+ENT.AdminSpawnable = false
