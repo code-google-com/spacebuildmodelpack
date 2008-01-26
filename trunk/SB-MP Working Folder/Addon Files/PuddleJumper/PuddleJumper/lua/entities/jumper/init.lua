@@ -18,13 +18,10 @@ end
 
 function ENT:Initialize()
 	self.Entity:SetNetworkedInt("health",HEALTH)
-
 	if (!self.Sound) then
  		self.Sound = CreateSound( self.Entity, soundx )
  	end
-
 	self.Entity:SetUseType( SIMPLE_USE )
-	
 	self.Firee=nil
 	self.Inflight=false
 	self.Pilot=false
@@ -92,7 +89,7 @@ function ENT:Think()
 		if self.Sound then
 			self.Sound:ChangePitch(math.Clamp(self.Entity:GetVelocity():Length()/5,1,150),0.001)
 		end
-		self.Pilot:SetPos(self.Entity:GetPos())
+		self.Pilot:SetPos(self.Entity:GetPos())//+ self.Entity:GetForward()*100
 		if self.Pilot:KeyDown(IN_USE) then
 			self.Sound:Stop()
 
@@ -132,6 +129,7 @@ function ENT:Use(ply,caller)
 
 		ply:Spectate( OBS_MODE_CHASE  )
 		ply:SpectateEntity( self.Entity )
+		//ply:SetPos(self.Entity:GetPos() + self.Entity:GetForward()*100)
 		ply:DrawViewModel(false)
 		ply:DrawWorldModel(false)
 		ply:StripWeapons()
@@ -155,13 +153,13 @@ function ENT:PhysicsSimulate( phys, deltatime )
 			
 		end
 	if self.Inflight and self.Pilot and self.Pilot:IsValid() then
-	self.Entity:SetModel("models/Jumper/pj.mdl")
+	self.Entity:SetModel("models/puddle/pj.mdl")
 	else
-	self.Entity:SetModel("models/Jumper/pjd.mdl")
+	self.Entity:SetModel("models/puddle/pjd.mdl")
 	end
 	if 
 	self.Pilot:KeyDown(IN_SPEED) then
-		self.Entity:SetModel("models/Jumper/pjw.mdl")
+		self.Entity:SetModel("models/puddle/pjw.mdl")
 	end
 	
 	if self.Pilot:KeyDown(IN_RELOAD) then
