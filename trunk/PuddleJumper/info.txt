@@ -1,0 +1,13 @@
+"AddonInfo"
+{
+	"name"		"Puddle Jumper"
+	"version"	"3.0"
+	"up_date"	""
+	"author_name"	"Catdaemon -edit by LIghtDemon/VoteKick"
+	"author_email"	""
+	"author_url"	""
+	
+	"info"		""
+	"override"	"0"
+
+}
