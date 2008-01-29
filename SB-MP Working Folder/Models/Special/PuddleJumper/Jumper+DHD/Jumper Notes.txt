@@ -1,0 +1,33 @@
+Puddle Jumper NOTES:
+
+
+Current Jumper Model
+
+-Fix collision mesh in PJD.mdl
+-Retexture wings
+-Add DHD
+
+
+
+New Jumper Model
+
+- Remake Jumper model
+	-Make sure wing models dont poke through seats when closed.
+	-Curve the whole body
+
+	-Animate Wings open/close
+	-Animate Door open/close
+	
+	-Redo DHD
+
+	-Name in polys somewhere in model
+
+- Retexture wings
+	-Name in texutre also
+
+- Cut jumper into pieces for destroyed effect
+	-Wing 1
+	-Wing 2
+	-door piece
+	-Body pieces, 3 or 4 maybe
+	-front piece
