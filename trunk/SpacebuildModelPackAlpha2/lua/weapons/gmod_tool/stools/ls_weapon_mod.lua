@@ -33,14 +33,30 @@ if (SERVER) then
 			Msg(tonumber(ply.custom['test']).."||"..tonumber(ply.custom['test2']).."||"..tostring(ply.custom['test3']).."||"..tostring(ply.custom['test4']))
 			ply.custom = nil
 		end
-		RD_AddResource(ent, "energy", math.Round((hash.size/3) * 18000))
-		RD_AddResource(ent, "coolant", math.Round((hash.size/3) * 16000))
-		RD_AddResource(ent, "air", math.Round((hash.size/3) * 17000))
-		LS_RegisterEnt(ent, "Resource Module")
+		RD_AddResource(ent, "energy", 0)
+		RD_AddResource(ent, "coolant", 0)
+		RD_AddResource(ent, "air", 0)
+		return hash, maxhealth, mass
+	end
+	
+	ls_weapon_mod.railgun = function( ply, ent, system_type, system_class, model)
+		local hash = {}
+		hash.size = math.Round(ent:BoundingRadius()/32)
+		local maxhealth = hash.size * 1000
+		local mass = hash.size * 150
+		RD_AddResource(ent, "energy", 0)
+		RD_AddResource(ent, "coolant", 0)
 		return hash, maxhealth, mass
 	end
 
 	ls_weapon_mod.test = function( ply, ent, system_type, system_class, model)
+		local hash = {}
+		local maxhealth = 100
+		local mass = 100
+		return hash, maxhealth, mass
+	end
+	
+	ls_weapon_mod.explosion_test = function( ply, ent, system_type, system_class, model)
 		local hash = {}
 		local maxhealth = 100
 		local mass = 100

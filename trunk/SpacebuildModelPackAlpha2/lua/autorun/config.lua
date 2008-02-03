@@ -54,6 +54,9 @@ function AddLSAirLockModel(modelname, path)
 	//weaponmodels[modelname] = path
 end
 
+table.insert(weaponmodels, {"Railgun","models/spacebuild/plasgun.mdl", "railgun"})
+table.insert(weaponmodels, {"Bomb Test","models/weapons/w_bugbait.mdl", "explosion_test"})
+
 //testairlocks
 AddLSAirLockModel("Test1", "models/spacebuild/TestE.mdl")
 AddLSAirLockModel("Test2", "models/spacebuild/Test2E.mdl")
