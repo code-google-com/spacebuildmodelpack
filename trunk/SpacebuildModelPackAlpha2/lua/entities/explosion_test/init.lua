@@ -17,9 +17,7 @@ function ENT:Initialize( )
 end
 
 function ENT:Think()
-	if self.hit then
-		self.Entity:Remove()
-	end
+	
 end
 
 function ENT:Use(ply)
@@ -27,7 +25,7 @@ function ENT:Use(ply)
 		self.exploding = true
 		if CDS then
 			Msg("Using CDS Explosion func\n")
-			CDS.Explosion(self:GetPos(), 1024, 100, 10, ply)
+			CDS.Explosion(self:GetPos(), 1024, 100, 10, ply, true)
 		else
 			for key,found in pairs(ents.FindInSphere(self:GetPos(),1024)) do
 				if found and found:IsValid() then
@@ -45,6 +43,12 @@ function ENT:Use(ply)
 				end
 			end
 		end
-		self.exploding = false
+		self.hit = true
+	end
+end
+
+function ENT:PhysicsUpdate(PhysObj)
+	if self.hit then
+		self.Entity:Remove()
 	end
 end

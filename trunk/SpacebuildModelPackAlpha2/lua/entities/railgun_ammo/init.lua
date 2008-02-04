@@ -54,11 +54,12 @@ function ENT:PhysicsCollide( data, physobj )
 end
 
 function ENT:Think()
-	if self.hit then
-		self.Entity:Remove()
-	end
+	
 end
 
 function ENT:PhysicsUpdate(PhysObj)
 	PhysObj:ApplyForceCenter(self.Entity:GetForward() * -(self.force * 1000))
+	if self.hit then
+		self.Entity:Remove()
+	end
 end
