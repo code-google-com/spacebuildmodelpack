@@ -22,22 +22,27 @@ function ENT:Think()
 	end
 end
 
-function ENT:Use()
+function ENT:Use(ply)
 	if not self.exploding then
 		self.exploding = true
-		for key,found in pairs(ents.FindInSphere(self:GetPos(),1024)) do
-			if found and found:IsValid() then
-				local pos = found:LocalToWorld(found:OBBCenter())
-				//line of sight check
-				local angle = pos - self:GetPos()
-				//angle:Normalize()
-				local physobj = found:GetPhysicsObject()
-				if physobj and physobj:IsValid() then
-					physobj:ApplyForceOffset(angle * (128/self:GetPos():Distance(found:GetPos())) * 100 * self.damage, found:GetPos() + Vector(math.random(-20,20),math.random(-20,20),math.random(20,40)))
-				else
-					found:SetVelocity(angle* (128/self:GetPos():Distance(found:GetPos())) * 100 * self.damage)
+		if CDS then
+			Msg("Using CDS Explosion func\n")
+			CDS.Explosion(self:GetPos(), 1024, 100, 10, ply)
+		else
+			for key,found in pairs(ents.FindInSphere(self:GetPos(),1024)) do
+				if found and found:IsValid() then
+					local pos = found:LocalToWorld(found:OBBCenter())
+					//line of sight check
+					local angle = pos - self:GetPos()
+					angle:Normalize()
+					local physobj = found:GetPhysicsObject()
+					if physobj and physobj:IsValid() then
+						physobj:ApplyForceOffset(angle * (128/self:GetPos():Distance(found:GetPos())) * 100 * self.damage, found:GetPos() + Vector(math.random(-20,20),math.random(-20,20),math.random(20,40)))
+					else
+						found:SetVelocity(angle* (128/self:GetPos():Distance(found:GetPos())) * 100 * self.damage)
+					end
+					found:TakeDamage(self.damage * (128/self:GetPos():Distance(found:GetPos())))
 				end
-				found:TakeDamage(self.damage * (128/self:GetPos():Distance(found:GetPos())))
 			end
 		end
 		self.exploding = false
