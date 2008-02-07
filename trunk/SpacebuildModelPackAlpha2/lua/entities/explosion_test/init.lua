@@ -13,6 +13,7 @@ function ENT:Initialize( )
 	self.Entity:GetPhysicsObject( ):Wake( )
 	self.damage = 100
 	self.hit = false
+	self.armed = false
 	self.CDSIgnore = true //change to be able to be destroyed, but ignore heatdamage
 end
 
@@ -21,11 +22,13 @@ function ENT:Think()
 end
 
 function ENT:Use(ply)
-	if not self.exploding then
+	if not self.armed then
+		self.armed = true
+	elseif not self.exploding then
 		self.exploding = true
 		if CDS then
 			Msg("Using CDS Explosion func\n")
-			CDS.Explosion(self:GetPos(), 1024, 100, 10, ply, true)
+			CDS.Explosion(self, 1024, 100, 10, ply, true)
 		else
 			for key,found in pairs(ents.FindInSphere(self:GetPos(),1024)) do
 				if found and found:IsValid() then
