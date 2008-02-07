@@ -19,7 +19,8 @@ function ENT:Initialize( )
 end
 
 function ENT:Think()
-	if not self.armed or self.hit then return false end
+	if self.hit then self.Entity:Remove() return false end
+	if not self.armed then return false end
 	local enttable = ents.FindInSphere(self:GetPos() ,100)
 	if table.Count(enttable) > 1 then
 		if CDS then
