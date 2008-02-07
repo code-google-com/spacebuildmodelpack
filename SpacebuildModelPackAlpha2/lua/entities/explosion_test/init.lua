@@ -14,26 +14,20 @@ function ENT:Initialize( )
 	self.damage = 100
 	self.hit = false
 	self.armed = false
+	self.arming = false
 	self.CDSIgnore = true //change to be able to be destroyed, but ignore heatdamage
 end
 
 function ENT:Think()
-	
-end
-
-function ENT:Use(ply)
-	if not self.armed then
-		self.armed = true
-	elseif not self.exploding then
-		self.exploding = true
+	if not self.armed or self.hit then return false end
+	local enttable = ents.FindInSphere(self:GetPos() ,100)
+	if table.Count(enttable) > 1 then
 		if CDS then
-			Msg("Using CDS Explosion func\n")
-			CDS.Explosion(self, 1024, 100, 10, ply, true)
+			CDS.Explosion(self, 128, 200, 10, ply, true)
 		else
-			for key,found in pairs(ents.FindInSphere(self:GetPos(),1024)) do
+			for key,found in pairs(ents.FindInSphere(self:GetPos(),128)) do
 				if found and found:IsValid() then
 					local pos = found:LocalToWorld(found:OBBCenter())
-					//line of sight check
 					local angle = pos - self:GetPos()
 					angle:Normalize()
 					local physobj = found:GetPhysicsObject()
@@ -47,6 +41,20 @@ function ENT:Use(ply)
 			end
 		end
 		self.hit = true
+	end
+end
+
+function ENT:SetArmed(val)
+	if self.armed != val then
+		self.armed = val
+		self.arming = false
+	end
+end
+
+function ENT:Use(ply)
+	if not self.arming then
+		timer.Simple(3, self.SetArmed, self, !self.armed)
+		self.arming = true
 	end
 end
 
