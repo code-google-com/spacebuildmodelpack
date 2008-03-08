@@ -19,5 +19,7 @@
 		"10"		"models/SmallBridge/SBcorridorEnd/sbcorridorend.mdl"
 		"11"		"models/SmallBridge/SBcorridorCurveS/sbcorridorcurves.mdl"
 		"12"		"models/SmallBridge/SBcorridorFlip/sbcorridorflip.mdl"
+		"13"		"models/SmallBridge/SBcorridorSlantL/sbcorridorslantl.mdl"
+		"14"		"models/SmallBridge/SBcorridorSlantR/sbcorridorslantr.mdl"
 	}
 }
