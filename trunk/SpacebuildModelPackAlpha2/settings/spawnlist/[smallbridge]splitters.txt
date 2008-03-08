@@ -1,0 +1,14 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Splitters"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBcorridorEStoDW/sbcorridorestodw.mdl"
+		"2"		"models/SmallBridge/SBcorridorEDto2SW/sbcorridoredto2sw.mdl"
+		"3"		"models/SmallBridge/SBcorridorV/sbcorridorv.mdl"
+	}
+}
