@@ -1,0 +1,15 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Height Transfer"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBcorridorRamp/sbcorridorramp.mdl"
+		"2"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
+		"3"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
+		"4"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
+	}
+}

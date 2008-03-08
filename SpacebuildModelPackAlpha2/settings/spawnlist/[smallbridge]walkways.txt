@@ -1,0 +1,15 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Walkways"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBwalkwayE/sbwalkwaye.mdl"
+		"2"		"models/SmallBridge/SBwalkwayR/sbwalkwayr.mdl"
+		"3"		"models/SmallBridge/SBwalkwayT/sbwalkwayt.mdl"
+		"4"		"models/SmallBridge/SBwalkwayX/sbwalkwayx.mdl"
+	}
+}
