@@ -1,0 +1,12 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Station Parts"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBcommandBridge/sbcommandbridge.mdl"
+	}
+}
