@@ -22,8 +22,8 @@ end
 
 function ENT:FireRail(ply)
 	Msg("Firing fire\n")
-	//local ent = ents.Create( "railgun_ammo" )
-	local ent = ents.Create( "cds_physical_bullet" )
+	local ent = ents.Create( "railgun_ammo" )
+	//local ent = ents.Create( "cds_physical_bullet" )
 			ent:SetPos( self.Entity:GetPos() + (self.Entity:GetForward() * -80))
 			ent:SetAngles( self.Entity:GetAngles( ) )
 			ent:SetOwner( ply )
@@ -33,8 +33,9 @@ function ENT:FireRail(ply)
 		if obj:IsValid() then
 			obj:ApplyForceCenter( self.Entity:GetForward() * self.force ) 
 		end
-		ent.Force = self.force
 		constraint.NoCollide(self.Entity, ent, 0, 0)
+		//ent.Force = self.force
+		//ent.Damage = 1
 		self.lastfire = CurTime()
 end
 
