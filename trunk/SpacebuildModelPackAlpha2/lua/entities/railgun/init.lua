@@ -22,7 +22,8 @@ end
 
 function ENT:FireRail(ply)
 	Msg("Firing fire\n")
-	local ent = ents.Create( "railgun_ammo" )
+	//local ent = ents.Create( "railgun_ammo" )
+	local ent = ents.Create( "cds_physical_bullet" )
 			ent:SetPos( self.Entity:GetPos() + (self.Entity:GetForward() * -80))
 			ent:SetAngles( self.Entity:GetAngles( ) )
 			ent:SetOwner( ply )
@@ -32,6 +33,7 @@ function ENT:FireRail(ply)
 		if obj:IsValid() then
 			obj:ApplyForceCenter( self.Entity:GetForward() * self.force ) 
 		end
+		ent.Force = self.force
 		constraint.NoCollide(self.Entity, ent, 0, 0)
 		self.lastfire = CurTime()
 end
@@ -39,7 +41,7 @@ end
 function ENT:TriggerInput(iname, value)
 	if iname == "Force type" then
 		if value >= 0 then
-			if value == 0 then
+			/*if value == 0 then
 				self.force = 5000
 				self.type = 0
 			elseif value == 1 then
@@ -51,7 +53,8 @@ function ENT:TriggerInput(iname, value)
 			elseif value == 3 then
 				self.force = 100000
 				self.type = 3
-			end
+			end*/
+			self.force = value
 		end
 	elseif iname == "fire" then
 		if(CurTime() > self.lastfire + (self.delay * (self.type+1))) then
