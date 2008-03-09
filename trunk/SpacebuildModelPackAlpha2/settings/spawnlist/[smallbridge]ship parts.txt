@@ -11,5 +11,6 @@
 		"2"		"models/SmallBridge/SBcorridorEdoors/sbcorridoredoors.mdl"
 		"3"		"models/SmallBridge/SBEdoors/sbedoors.mdl"
 		"4"		"models/SmallBridge/SBengine1/sbengine1.mdl"
+		"5"		"models/SmallBridge/SBenginedw1/sbenginedw1.mdl"
 	}
 }
