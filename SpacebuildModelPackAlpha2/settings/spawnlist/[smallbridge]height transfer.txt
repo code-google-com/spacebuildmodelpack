@@ -15,5 +15,6 @@
 		"6"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
 		"7"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
 		"8"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
+		"9"		"models/SmallBridge/SBcorridorRamphalf/sbcorridorramphalf.mdl"
 	}
 }
