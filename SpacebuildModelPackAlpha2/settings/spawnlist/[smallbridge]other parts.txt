@@ -5,8 +5,4 @@
 		"version"		"2"
 		"name"		"[SmallBridge]Other Parts"
 	}
-	"Entries"
-	{
-		"1"		"models/SmallBridge/SBconsole1/sbconsole1.mdl"
-	}
 }
