@@ -1,0 +1,15 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Elevator Parts"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBpanelelev0s/sbpanelelev0s.mdl"
+		"2"		"models/SmallBridge/SBpanelelev1s/sbpanelelev1s.mdl"
+		"3"		"models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl"
+		"4"		"models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl"
+	}
+}
