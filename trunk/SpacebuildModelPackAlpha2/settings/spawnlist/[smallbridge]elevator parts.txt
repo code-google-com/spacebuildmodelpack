@@ -11,5 +11,16 @@
 		"2"		"models/SmallBridge/SBpanelelev1s/sbpanelelev1s.mdl"
 		"3"		"models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl"
 		"4"		"models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl"
+		"5"		"models/SmallBridge/SBpanelelev2sE/sbpanelelev2se.mdl"
+		"6"		"models/SmallBridge/SBelevBase/sbelevbase.mdl"
+		"7"		"models/SmallBridge/SBelevBaseE/sbelevbasee.mdl"
+		"8"		"models/SmallBridge/SBelevBaseR/sbelevbaser.mdl"
+		"9"		"models/SmallBridge/SBelevMid/sbelevmid.mdl"
+		"10"		"models/SmallBridge/SBelevMidE/sbelevmide.mdl"
+		"11"		"models/SmallBridge/SBelevMidR/sbelevmidr.mdl"
+		"12"		"models/SmallBridge/SBelevTop/sbelevtop.mdl"
+		"13"		"models/SmallBridge/SBelevTopE/sbelevtope.mdl"
+		"14"		"models/SmallBridge/SBelevTopR/sbelevtopr.mdl"
+		"15"		"models/SmallBridge/SBelevShaft/sbelevshaft.mdl"
 	}
 }
