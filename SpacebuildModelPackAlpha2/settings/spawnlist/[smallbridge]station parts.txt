@@ -8,5 +8,6 @@
 	"Entries"
 	{
 		"1"		"models/SmallBridge/SBcommandBridge/sbcommandbridge.mdl"
+		"2"		"models/SmallBridge/SBcommandBridgeElev/sbcommandbridgeelev.mdl"
 	}
 }
