@@ -159,12 +159,11 @@ AddLSShipHabModel("SmallBridge, Elevator Shaft","models/SmallBridge/SBelevShaft/
 AddLSShipHabModel("SmallBridge, SmallBridge-Medbridge","models/SmallBridge/SBconverterSBMB/sbconvertersbmb.mdl")
 
 
-AddLSShipHabModel("PuddleJumper B","models/puddle/pjbr.mdl")
 AddLSShipHabModel("PuddleJumper C","models/puddle/pjd.mdl")
 AddLSShipHabModel("PuddleJumper Wide","models/puddle/pjw.mdl")
 AddLSShipHabModel("PuddleJumper Doublewide","models/puddle/pjdw.mdl")
-AddLSShipHabModel("Bay A","models/Spacebuild/probay.mdl")
 
+AddLSShipHabModel("Bay A","models/Spacebuild/probay.mdl")
 AddLSShipDefResModel("test", "models/props_lab/powerbox01a.mdl")
 AddLSShipDefResModel("Cargobay", "models/Spacebuild/cbay1.mdl")
 AddLSShipDefResModel("CargoCrate", "models/Spacebuild/cargo1.mdl")
