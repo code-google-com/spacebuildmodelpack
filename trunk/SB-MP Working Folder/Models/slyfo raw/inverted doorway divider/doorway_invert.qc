@@ -1,8 +1,8 @@
 // Output .MDL
-$modelname Spacebuild/SFwing.mdl
+$modelname Spacebuild/doorway_invert.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "doorway invert_detail.SMD"
+$body studio "doorway_invert_detail.SMD"
 
 // Directory of materials that the model uses
 $cdmaterials spacebuild
@@ -21,10 +21,10 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "doorway invert_detail.SMD" loop fps 15
+$sequence idle "doorway_invert_detail.SMD" loop fps 15
 
 // Physics data
-$collisionmodel "doorway invert_phys.SMD" {
+$collisionmodel "doorway_invert_phys.SMD" {
 	$concave
 	$mass 250.0
 	$inertia 1.00
