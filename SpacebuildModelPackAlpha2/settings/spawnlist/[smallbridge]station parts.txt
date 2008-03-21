@@ -9,5 +9,6 @@
 	{
 		"1"		"models/SmallBridge/SBcommandBridge/sbcommandbridge.mdl"
 		"2"		"models/SmallBridge/SBcommandBridgeElev/sbcommandbridgeelev.mdl"
+		"3"		"models/SmallBridge/SBvisorbridge1/sbvisorbridge1.mdl"
 	}
 }
