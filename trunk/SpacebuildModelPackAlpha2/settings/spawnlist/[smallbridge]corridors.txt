@@ -24,5 +24,9 @@
 		"15"		"models/SmallBridge/SBcorridorSlanthalfL/sbcorridorslanthalfl.mdl"
 		"16"		"models/SmallBridge/SBcorridorSlanthalfR/sbcorridorslanthalfr.mdl"
 		"17"		"models/SmallBridge/SBcorridorEnddw/sbcorridorenddw.mdl"
+		"18"		"models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl"
+		"19"		"models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl"
+		"20"		"models/SmallBridge/SBcorridorEdhdw/sbcorridoredhdw.mdl"
+		"21"		"models/SmallBridge/SBcorridorEdhdw2/sbcorridoredhdw2.mdl"
 	}
 }
