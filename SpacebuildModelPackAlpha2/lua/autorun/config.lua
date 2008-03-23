@@ -176,5 +176,6 @@ AddLSShipDefResModel("Massive Cache", "models/Spacebuild/resourcecachemassive.md
 AddLSShipDefResModel("Modular Unit X-01", "models/Spacebuild/milcock4_multipod1.mdl")
 AddLSShipDefResModel("SmallBridge, Small Wall Cache", "models/SmallBridge/SBwallcacheS/SBwallcacheS.mdl")
 AddLSShipDefResModel("SmallBridge, Large Wall Cache", "models/SmallBridge/SBwallcacheL/SBwallcacheL.mdl")
+AddLSShipDefResModel("SmallBridge, External Wall Cache", "models/SmallBridge/SBwallcacheE1/SBwallcacheE1.mdl")
 
 AddLSShipWeaponModel("Plasma Cannon", "models/spacebuild/plasgun.mdl")
