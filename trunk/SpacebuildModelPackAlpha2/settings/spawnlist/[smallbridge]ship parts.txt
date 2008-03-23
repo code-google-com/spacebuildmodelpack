@@ -17,5 +17,7 @@
 		"8"		"models/SmallBridge/SBenginedw1/sbenginedw1.mdl"
 		"9"		"models/SmallBridge/SBlanddock1/sblanddock1.mdl"
 		"10"		"models/SmallBridge/SBlanddockramp1/sblanddockramp1.mdl"
+		"14"		"models/SmallBridge/SBlanddock1dw/sblanddock1dw.mdl"
+		"15"		"models/SmallBridge/SBlanddockramp1dw/sblanddockramp1dw.mdl"
 	}
 }
