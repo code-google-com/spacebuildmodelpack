@@ -1,0 +1,19 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Corridors, Double Width"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBcorridorEdw/sbcorridoredw.mdl"
+		"2"		"models/SmallBridge/SBcorridorRdw/sbcorridorrdw.mdl"
+		"3"		"models/SmallBridge/SBcorridorTdw/sbcorridortdw.mdl"
+		"4"		"models/SmallBridge/SBcorridorXdw/sbcorridorxdw.mdl"
+		"5"		"models/SmallBridge/SBcorridorEdw2/sbcorridoredw2.mdl"
+		"6"		"models/SmallBridge/SBcorridorEnddw/sbcorridorenddw.mdl"
+		"7"		"models/SmallBridge/SBcorridorEdhdw/sbcorridoredhdw.mdl"
+		"8"		"models/SmallBridge/SBcorridorEdhdw2/sbcorridoredhdw2.mdl"
+	}
+}

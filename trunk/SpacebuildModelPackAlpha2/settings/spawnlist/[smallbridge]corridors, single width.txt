@@ -3,7 +3,7 @@
 	"Information"
 	{
 		"version"		"2"
-		"name"		"[SmallBridge]Corridors"
+		"name"		"[SmallBridge]Corridors, Single Width"
 	}
 	"Entries"
 	{
@@ -14,8 +14,6 @@
 		"5"		"models/SmallBridge/SBcorridorE2/sbcorridore2.mdl"
 		"6"		"models/SmallBridge/SBcorridorE3/sbcorridore3.mdl"
 		"7"		"models/SmallBridge/SBcorridorE4/sbcorridore4.mdl"
-		"8"		"models/SmallBridge/SBcorridorEdw/sbcorridoredw.mdl"
-		"9"		"models/SmallBridge/SBcorridorEdw2/sbcorridoredw2.mdl"
 		"10"		"models/SmallBridge/SBcorridorEnd/sbcorridorend.mdl"
 		"11"		"models/SmallBridge/SBcorridorFlip/sbcorridorflip.mdl"
 		"12"		"models/SmallBridge/SBcorridorCurveS/sbcorridorcurves.mdl"
@@ -23,10 +21,7 @@
 		"14"		"models/SmallBridge/SBcorridorSlantR/sbcorridorslantr.mdl"
 		"15"		"models/SmallBridge/SBcorridorSlanthalfL/sbcorridorslanthalfl.mdl"
 		"16"		"models/SmallBridge/SBcorridorSlanthalfR/sbcorridorslanthalfr.mdl"
-		"17"		"models/SmallBridge/SBcorridorEnddw/sbcorridorenddw.mdl"
 		"18"		"models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl"
 		"19"		"models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl"
-		"20"		"models/SmallBridge/SBcorridorEdhdw/sbcorridoredhdw.mdl"
-		"21"		"models/SmallBridge/SBcorridorEdhdw2/sbcorridoredhdw2.mdl"
 	}
 }
