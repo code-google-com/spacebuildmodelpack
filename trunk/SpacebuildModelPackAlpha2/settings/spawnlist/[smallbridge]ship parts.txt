@@ -8,8 +8,6 @@
 	"Entries"
 	{
 		"1"		"models/SmallBridge/SBbridge1/sbbridge1.mdl"
-		"2"		"models/SmallBridge/SBcorridorEdoors/sbcorridoredoors.mdl"
-		"3"		"models/SmallBridge/SBEdoorsNarrower/sbedoorsnarrower.mdl"
 		"4"		"models/SmallBridge/SBengine1/sbengine1.mdl"
 		"5"		"models/SmallBridge/SBenginesw1L/sbenginesw1l.mdl"
 		"6"		"models/SmallBridge/SBenginesw1M/sbenginesw1m.mdl"
@@ -17,7 +15,13 @@
 		"8"		"models/SmallBridge/SBenginedw1/sbenginedw1.mdl"
 		"9"		"models/SmallBridge/SBlanddock1/sblanddock1.mdl"
 		"10"		"models/SmallBridge/SBlanddockramp1/sblanddockramp1.mdl"
-		"14"		"models/SmallBridge/SBlanddock1dw/sblanddock1dw.mdl"
-		"15"		"models/SmallBridge/SBlanddockramp1dw/sblanddockramp1dw.mdl"
+		"11"		"models/SmallBridge/SBlanddock1dw/sblanddock1dw.mdl"
+		"12"		"models/SmallBridge/SBlanddockramp1dw/sblanddockramp1dw.mdl"
+		"13"		"models/SmallBridge/SBcorridorEdoors/sbcorridoredoors.mdl"
+		"14"		"models/SmallBridge/SBcorridorEdoors2/sbcorridoredoors2.mdl"
+		"15"		"models/SmallBridge/SBcorridorEdoorsdw/sbcorridoredoorsdw.mdl"
+		"16"		"models/SmallBridge/SBcorridorEdoors2dw/sbcorridoredoors2dw.mdl"
+		"17"		"models/SmallBridge/SBEdoorsNarrower/sbedoorsnarrower.mdl"
+		"18"		"models/SmallBridge/SBEdoorsNarrower2/sbedoorsnarrower2.mdl"
 	}
 }
