@@ -24,5 +24,7 @@
 		"15"		"models/SmallBridge/SBEdoorsNarrower/sbedoorsnarrower.mdl"
 		"16"		"models/SmallBridge/SBEdoorsNarrower2/sbedoorsnarrower2.mdl"
 		"17"		"models/SmallBridge/SBbridgeO1/sbbridgeo1.mdl"
+		"18"		"models/SmallBridge/SBbridgeO1base/sbbridgeo1base.mdl"
+		"19"		"models/SmallBridge/SBbridgeO1cover/sbbridgeo1cover.mdl"
 	}
 }
