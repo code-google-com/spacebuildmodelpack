@@ -31,5 +31,6 @@
 		"22"		"models/SmallBridge/SBelevBaseEdh/sbelevbaseedh.mdl"
 		"23"		"models/SmallBridge/SBelevMidEdh/sbelevmidedh.mdl"
 		"24"		"models/SmallBridge/SBelevTopEdh/sbelevtopedh.mdl"
+		"25"		"models/SmallBridge/SBelevShaft2/sbelevshaft2.mdl"
 	}
 }
