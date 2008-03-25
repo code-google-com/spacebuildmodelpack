@@ -187,6 +187,9 @@ AddLSShipHabModel("SmallBridge, Elevator Top R","models/SmallBridge/SBelevTopR/s
 AddLSShipHabModel("SmallBridge, Elevator Top T","models/SmallBridge/SBelevTopT/sbelevtopt.mdl")
 AddLSShipHabModel("SmallBridge, Elevator Top X","models/SmallBridge/SBelevTopX/sbelevtopx.mdl")
 AddLSShipHabModel("SmallBridge, Elevator Shaft","models/SmallBridge/SBelevShaft/sbelevshaft.mdl")
+AddLSShipHabModel("SmallBridge, Triangle 1","models/SmallBridge/SBtriangleE1/sbtrianglee1.mdl")
+AddLSShipHabModel("SmallBridge, Triangle 2","models/SmallBridge/SBtriangleE2/sbtrianglee2.mdl")
+AddLSShipHabModel("SmallBridge, Triangle 3","models/SmallBridge/SBtriangleE3/sbtrianglee3.mdl")
 AddLSShipHabModel("SmallBridge, SmallBridge to Medbridge","models/SmallBridge/SBconverterSBMB/sbconvertersbmb.mdl")
 
 
