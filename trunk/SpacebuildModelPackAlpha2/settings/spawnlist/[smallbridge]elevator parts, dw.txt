@@ -19,5 +19,9 @@
 		"10"		"models/SmallBridge/SBelevMidRdw/sbelevmidrdw.mdl"
 		"11"		"models/SmallBridge/SBelevTopRdw/sbelevtoprdw.mdl"
 		"12"		"models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl"
+		"13"		"models/SmallBridge/SBpanelelev1sdw/sbpanelelev1sdw.mdl"
+		"14"		"models/SmallBridge/SBelevBaseTdw/sbelevbasetdw.mdl"
+		"15"		"models/SmallBridge/SBelevMidTdw/sbelevmidtdw.mdl"
+		"16"		"models/SmallBridge/SBelevTopTdw/sbelevtoptdw.mdl"
 	}
 }
