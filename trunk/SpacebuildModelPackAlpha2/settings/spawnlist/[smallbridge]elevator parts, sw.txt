@@ -28,5 +28,8 @@
 		"19"		"models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl"
 		"20"		"models/SmallBridge/SBpanelelev2sE/sbpanelelev2se.mdl"
 		"21"		"models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl"
+		"22"		"models/SmallBridge/SBelevBaseEdh/sbelevbaseedh.mdl"
+		"23"		"models/SmallBridge/SBelevMidEdh/sbelevmidedh.mdl"
+		"24"		"models/SmallBridge/SBelevTopEdh/sbelevtopedh.mdl"
 	}
 }
