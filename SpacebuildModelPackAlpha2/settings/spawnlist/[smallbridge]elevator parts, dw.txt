@@ -28,5 +28,9 @@
 		"19"		"models/SmallBridge/SBpanelelev2sdw/sbpanelelev2sdw.mdl"
 		"20"		"models/SmallBridge/SBpanelelev2sEdw/sbpanelelev2sedw.mdl"
 		"21"		"models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl"
+		"22"		"models/SmallBridge/SBelevBaseEdhdw/sbelevbaseedhdw.mdl"
+		"23"		"models/SmallBridge/SBelevMidEdhdw/sbelevmidedhdw.mdl"
+		"24"		"models/SmallBridge/SBelevTopEdhdw/sbelevtopedhdw.mdl"
+		"25"		"models/SmallBridge/SBelevShaftdw2/sbelevshaftdw2.mdl"
 	}
 }
