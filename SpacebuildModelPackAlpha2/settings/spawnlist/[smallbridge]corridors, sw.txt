@@ -3,7 +3,7 @@
 	"Information"
 	{
 		"version"		"2"
-		"name"		"[SmallBridge]Corridors, Single Width"
+		"name"		"[SmallBridge]Corridors, SW"
 	}
 	"Entries"
 	{

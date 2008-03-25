@@ -1,0 +1,32 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Elevator Parts, SW"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBelevBase/sbelevbase.mdl"
+		"2"		"models/SmallBridge/SBelevMid/sbelevmid.mdl"
+		"3"		"models/SmallBridge/SBelevTop/sbelevtop.mdl"
+		"4"		"models/SmallBridge/SBelevBaseE/sbelevbasee.mdl"
+		"5"		"models/SmallBridge/SBelevMidE/sbelevmide.mdl"
+		"6"		"models/SmallBridge/SBelevTopE/sbelevtope.mdl"
+		"7"		"models/SmallBridge/SBelevBaseR/sbelevbaser.mdl"
+		"8"		"models/SmallBridge/SBelevMidR/sbelevmidr.mdl"
+		"9"		"models/SmallBridge/SBelevTopR/sbelevtopr.mdl"
+		"10"		"models/SmallBridge/SBelevBaseT/sbelevbaset.mdl"
+		"11"		"models/SmallBridge/SBelevMidT/sbelevmidt.mdl"
+		"12"		"models/SmallBridge/SBelevTopT/sbelevtopt.mdl"
+		"13"		"models/SmallBridge/SBelevBaseX/sbelevbasex.mdl"
+		"14"		"models/SmallBridge/SBelevMidX/sbelevmidx.mdl"
+		"15"		"models/SmallBridge/SBelevTopX/sbelevtopx.mdl"
+		"16"		"models/SmallBridge/SBelevShaft/sbelevshaft.mdl"
+		"17"		"models/SmallBridge/SBpanelelev0s/sbpanelelev0s.mdl"
+		"18"		"models/SmallBridge/SBpanelelev1s/sbpanelelev1s.mdl"
+		"19"		"models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl"
+		"20"		"models/SmallBridge/SBpanelelev2sE/sbpanelelev2se.mdl"
+		"21"		"models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl"
+	}
+}
