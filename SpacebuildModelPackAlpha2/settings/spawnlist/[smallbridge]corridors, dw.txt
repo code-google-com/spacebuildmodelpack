@@ -15,5 +15,6 @@
 		"6"		"models/SmallBridge/SBcorridorEnddw/sbcorridorenddw.mdl"
 		"7"		"models/SmallBridge/SBcorridorEdhdw/sbcorridoredhdw.mdl"
 		"8"		"models/SmallBridge/SBcorridorEdhdw2/sbcorridoredhdw2.mdl"
+		"9"		"models/SmallBridge/SBcorridorFlipdw/sbcorridorflipdw.mdl"
 	}
 }
