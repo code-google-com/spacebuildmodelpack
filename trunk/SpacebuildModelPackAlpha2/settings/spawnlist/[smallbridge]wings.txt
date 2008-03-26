@@ -1,0 +1,17 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Wings"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/SBwingLS1L/sbwingls1l.mdl"
+		"2"		"models/SmallBridge/SBwingLS1R/sbwingls1r.mdl"
+		"3"		"models/SmallBridge/SBwingS1L/sbwings1l.mdl"
+		"4"		"models/SmallBridge/SBwingS1R/sbwings1r.mdl"
+		"5"		"models/SmallBridge/SBwingM1L/sbwingm1l.mdl"
+		"6"		"models/SmallBridge/SBwingM1R/sbwingm1r.mdl"
+	}
+}
