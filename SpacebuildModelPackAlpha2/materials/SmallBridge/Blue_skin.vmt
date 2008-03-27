@@ -1,6 +1,6 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "SmallBridge/Blue"
+	"$basetexture" "SmallBridge/Blue_skin"
 	"$surfaceprop" "metal"
 	"$model"     1
 }

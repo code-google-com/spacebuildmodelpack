@@ -7,8 +7,8 @@
 	}
 	"Entries"
 	{
-		"1"		"models/SmallBridge/SBconsole1/sbconsole1.mdl"
-		"2"		"models/SmallBridge/SBconsole1low/sbconsole1low.mdl"
-		"3"		"models/SmallBridge/SBconsoletop1/sbconsoletop1.mdl"
+		"1"		"models/SmallBridge/SBconsole1low/sbconsole1low.mdl"
+		"2"		"models/SmallBridge/SBconsoletop1/sbconsoletop1.mdl"
+		"3"		"models/SmallBridge/SBconsole1s/sbconsole1s.mdl"
 	}
 }
