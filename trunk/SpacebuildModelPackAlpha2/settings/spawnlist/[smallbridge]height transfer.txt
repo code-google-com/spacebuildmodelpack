@@ -8,13 +8,9 @@
 	"Entries"
 	{
 		"1"		"models/SmallBridge/SBcorridorRamp/sbcorridorramp.mdl"
-		"2"		"models/SmallBridge/SBelevTop/sbelevtop.mdl"
-		"3"		"models/SmallBridge/SBelevMid/sbelevmid.mdl"
-		"4"		"models/SmallBridge/SBelevBase/sbelevbase.mdl"
-		"5"		"models/SmallBridge/SBelevShaft/sbelevshaft.mdl"
-		"6"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
-		"7"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
-		"8"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
-		"9"		"models/SmallBridge/SBcorridorRamphalf/sbcorridorramphalf.mdl"
+		"2"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
+		"3"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
+		"4"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
+		"5"		"models/SmallBridge/SBcorridorRamphalf/sbcorridorramphalf.mdl"
 	}
 }

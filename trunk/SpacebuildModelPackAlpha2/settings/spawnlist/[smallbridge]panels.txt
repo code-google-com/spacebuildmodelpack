@@ -7,11 +7,11 @@
 	}
 	"Entries"
 	{
-		"1"		"models/SmallBridge/SBpanelSolid/sbpanelsolid.mdl"
-		"2"		"models/SmallBridge/SBpanelDoor/sbpaneldoor.mdl"
-		"3"		"models/SmallBridge/SBpanelSquareDoor/sbpanelsquaredoor.mdl"
-		"4"		"models/SmallBridge/SBpanelSoliddw/sbpanelsoliddw.mdl"
-		"5"		"models/SmallBridge/SBpanelDoordw/sbpaneldoordw.mdl"
-		"6"		"models/SmallBridge/SBpanelSquareDoordw/sbpanelsquaredoordw.mdl"
+		"1"		"models/SmallBridge/SBpanelDoor/sbpaneldoor.mdl"
+		"2"		"models/SmallBridge/SBpanelSquareDoor/sbpanelsquaredoor.mdl"
+		"3"		"models/SmallBridge/SBpanelSolidg/sbpanelsolidg.mdl"
+		"4"		"models/SmallBridge/SBpanelDoordw/sbpaneldoordw.mdl"
+		"5"		"models/SmallBridge/SBpanelSquareDoordw/sbpanelsquaredoordw.mdl"
+		"6"		"models/SmallBridge/SBpanelSolidgdw/sbpanelsolidgdw.mdl"
 	}
 }
