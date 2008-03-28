@@ -20,5 +20,6 @@
 		"11"		"models/SmallBridge/SBdropbay4mid/sbdropbay4mid.mdl"
 		"12"		"models/SmallBridge/SBdropbay4right/sbdropbay4right.mdl"
 		"13"		"models/SmallBridge/SBdropbay4left/sbdropbay4left.mdl"
+		"15"		"models/SmallBridge/SBdropbay1midD/sbdropbay1midd.mdl"
 	}
 }
