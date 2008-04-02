@@ -3,7 +3,7 @@
 	"Information"
 	{
 		"version"		"2"
-		"name"		"[SmallBridge]Elevator Parts, SW"
+		"name"		"[SmallBridge]Elevator Parts, Small"
 	}
 	"Entries"
 	{
@@ -32,5 +32,8 @@
 		"23"		"models/SmallBridge/SBelevMidEdh/sbelevmidedh.mdl"
 		"24"		"models/SmallBridge/SBelevTopEdh/sbelevtopedh.mdl"
 		"25"		"models/SmallBridge/SBelevShaft2/sbelevshaft2.mdl"
+		"26"		"models/SmallBridge/SBelevBaseEdl/sbelevbaseedl.mdl"
+		"27"		"models/SmallBridge/SBelevMidEdl/sbelevmidedl.mdl"
+		"28"		"models/SmallBridge/SBelevTopEdl/sbelevtopedl.mdl"
 	}
 }
