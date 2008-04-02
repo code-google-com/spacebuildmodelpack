@@ -26,5 +26,8 @@
 		"17"		"models/SmallBridge/SBtriangleE2/sbtrianglee2.mdl"
 		"18"		"models/SmallBridge/SBtriangleE3/sbtrianglee3.mdl"
 		"19"		"models/SmallBridge/SBcorridorEFlip/sbcorridoreflip.mdl"
+		"20"		"models/SmallBridge/SBcorridorRtri/sbcorridorrtri.mdl"
+		"21"		"models/SmallBridge/SBcorridorTdl/sbcorridortdl.mdl"
+		"22"		"models/SmallBridge/SBcorridorTdldw/sbcorridortdldw.mdl"
 	}
 }

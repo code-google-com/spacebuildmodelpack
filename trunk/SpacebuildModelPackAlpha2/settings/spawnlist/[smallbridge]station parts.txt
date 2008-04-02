@@ -12,5 +12,6 @@
 		"3"		"models/SmallBridge/SBvisorbridge1/sbvisorbridge1.mdl"
 		"4"		"models/SmallBridge/SBcorridorSGC1/sbcorridorsgc1.mdl"
 		"5"		"models/SmallBridge/SBhangardhdw1/sbhangardhdw1.mdl"
+		"6"		"models/SmallBridge/SBocthub1/sbocthub1.mdl"
 	}
 }
