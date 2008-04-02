@@ -3,7 +3,7 @@
 	"Information"
 	{
 		"version"		"2"
-		"name"		"[SmallBridge]Elevator Parts, DW"
+		"name"		"[SmallBridge]Elevator Parts, Large"
 	}
 	"Entries"
 	{
