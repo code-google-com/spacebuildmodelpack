@@ -13,5 +13,7 @@
 		"4"		"models/SmallBridge/SBpanelDoordw/sbpaneldoordw.mdl"
 		"5"		"models/SmallBridge/SBpanelSquareDoordw/sbpanelsquaredoordw.mdl"
 		"6"		"models/SmallBridge/SBpanelSolidgdw/sbpanelsolidgdw.mdl"
+		"7"		"models/SmallBridge/SBpanelDH/sbpaneldh.mdl"
+		"8"		"models/SmallBridge/SBpanelDHDW/sbpaneldhdw.mdl"
 	}
 }
