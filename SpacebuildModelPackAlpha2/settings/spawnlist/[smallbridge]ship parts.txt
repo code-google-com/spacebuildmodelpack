@@ -26,5 +26,7 @@
 		"17"		"models/SmallBridge/SBlanddockramp1/sblanddockramp1.mdl"
 		"18"		"models/SmallBridge/SBlanddock1dw/sblanddock1dw.mdl"
 		"19"		"models/SmallBridge/SBlanddockramp1dw/sblanddockramp1dw.mdl"
+		"20"		"models/SmallBridge/SBlanddock1dwdh/sblanddock1dwdh.mdl"
+		"21"		"models/SmallBridge/SBlanddockramp1dwdh/sblanddockramp1dwdh.mdl"
 	}
 }
