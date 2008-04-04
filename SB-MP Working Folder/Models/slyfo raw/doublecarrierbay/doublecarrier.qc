@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/doublecarrier.mdl
+$modelname Slyfo/doublecarrier.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "doublecarrier_detail.smd"

@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/ccockpit.mdl
+$modelname Slyfo/ccockpit.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "ccockpit_detail.smd"

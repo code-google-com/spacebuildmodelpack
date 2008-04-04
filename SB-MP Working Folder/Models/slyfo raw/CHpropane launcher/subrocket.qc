@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/subrocket.mdl
+$modelname Slyfo/subrocket.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "subrocket.SMD"
