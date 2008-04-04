@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/carriersplit.mdl
+$modelname Slyfo/carriersplit.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "carriersplit_detail.smd"

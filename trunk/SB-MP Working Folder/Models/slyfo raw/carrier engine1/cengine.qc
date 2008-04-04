@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/cengine.mdl
+$modelname Slyfo/cengine.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "cengine_detail.smd"

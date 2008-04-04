@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/hub3.mdl
+$modelname Slyfo/hub3.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "hub3_detail.smd"
