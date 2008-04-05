@@ -26,5 +26,13 @@
 		"17"		"models/Slyfo/smalltri.mdl"
 		"18"		"models/Slyfo/straighthull.mdl"
 		"19"		"models/Slyfo/trit.mdl"
+		"20"		"models/Slyfo/doublehull.mdl"
+		"21"		"models/Slyfo/smallrad.mdl"
+		"22"		"models/Slyfo/largerad.mdl"
+		"23"		"models/Slyfo/triangularhub.mdl"
+		"24"		"models/Slyfo/tjoint.mdl"
+		"25"		"models/Slyfo/tjointdouble.mdl"
+		"26"		"models/Slyfo/xjoint.mdl"
+		"27"		"models/Slyfo/xjointdouble.mdl"
 	}
 }
