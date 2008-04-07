@@ -34,5 +34,6 @@
 		"25"		"models/Slyfo/tjointdouble.mdl"
 		"26"		"models/Slyfo/xjoint.mdl"
 		"27"		"models/Slyfo/xjointdouble.mdl"
+		"28"		"models/Slyfo/shuttle.mdl"
 	}
 }
