@@ -37,5 +37,8 @@
 		"28"		"models/Slyfo/shuttle.mdl"
 		"29"		"models/Slyfo/shuttlehatchclosed.mdl"
 		"30"		"models/Slyfo/shuttlehatchopen.mdl"
+		"31"		"models/Slyfo/rex1peice.mdl"
+		"32"		"models/Slyfo/rexbottom.mdl"
+		"33"		"models/Slyfo/rextop.mdl"
 	}
 }
