@@ -40,5 +40,15 @@
 		"31"		"models/Slyfo/rex1peice.mdl"
 		"32"		"models/Slyfo/rexbottom.mdl"
 		"33"		"models/Slyfo/rextop.mdl"
+		"34"		"models/Slyfo/dwbent.mdl"
+		"35"		"models/Slyfo/dwbump.mdl"
+		"36"		"models/Slyfo/dwsmooth.mdl"
+		"37"		"models/Slyfo/longhangar.mdl"
+		"38"		"models/Slyfo/thcockpit.mdl"
+		"39"		"models/Slyfo/thhangar.mdl"
+		"40"		"models/Slyfo/thhull.mdl"
+		"41"		"models/Slyfo/thlong.mdl"
+		"42"		"models/Slyfo/thnoramp.mdl"
+		"43"		"models/Slyfo/thramp.mdl"
 	}
 }

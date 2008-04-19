@@ -19,5 +19,7 @@
 		"10"		"models/SmallBridge/SBdoor/sbdoor.mdl"
 		"11"		"models/SmallBridge/SBdoorsquare/sbdoorsquare.mdl"
 		"12"		"models/SmallBridge/SBdoorwide/sbdoorwide.mdl"
+		"13"		"models/SmallBridge/SBpanelSquareDoordockin/sbpanelsquaredoordockin.mdl"
+		"14"		"models/SmallBridge/SBpanelSquareDoordocko/sbpanelsquaredoordocko.mdl"
 	}
 }
