@@ -29,5 +29,9 @@
 		"20"		"models/SmallBridge/SBcorridorRtri/sbcorridorrtri.mdl"
 		"21"		"models/SmallBridge/SBcorridorTdl/sbcorridortdl.mdl"
 		"22"		"models/SmallBridge/SBcorridorTdldw/sbcorridortdldw.mdl"
+		"23"		"models/SmallBridge/SBcorridorEhalf/sbcorridorehalf.mdl"
+		"24"		"models/SmallBridge/SBcorridorTdwsl/sbcorridortdwsl.mdl"
+		"25"		"models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl"
+		"26"		"models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl"
 	}
 }
