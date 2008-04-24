@@ -41,7 +41,7 @@ local V = {
 								limitview		=	"0"
 							},
 				Members = {
-								HandleAnimation = HandleSBMPVehicleAnimation,
+								HandleAnimation = HandleSBMPSitAnimation,
 							}
 }
 list.Set( "Vehicles", "sbmp_chair2", V )
@@ -213,7 +213,7 @@ local V = {
 
 				Author = "SpaceBuild Model Pack",
 				Information = "Open Escape Pod",
-				Model = "models/Spacebuild/neopod.mdl",
+				Model = "models/Spacebuild/neopodt.mdl",
 				KeyValues = {
 								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
 								limitview		=	"0"
