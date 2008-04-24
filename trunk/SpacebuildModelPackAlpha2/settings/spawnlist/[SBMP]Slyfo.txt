@@ -50,5 +50,14 @@
 		"41"		"models/Slyfo/thlong.mdl"
 		"42"		"models/Slyfo/thnoramp.mdl"
 		"43"		"models/Slyfo/thramp.mdl"
+		"44"		"models/Slyfo/sidecockpit.mdl"
+		"45"		"models/Slyfo/tramp.mdl"
+		"46"		"models/Slyfo/trampdouble.mdl"
+		"47"		"models/Slyfo/tramptriple.mdl"
+		"48"		"models/Slyfo/tramptripleinv.mdl"
+		"49"		"models/Slyfo/xramp.mdl"
+		"50"		"models/Slyfo/xrampdouble.mdl"
+		"51"		"models/Slyfo/rampleft.mdl"
+		"52"		"models/Slyfo/rampright.mdl"
 	}
 }
