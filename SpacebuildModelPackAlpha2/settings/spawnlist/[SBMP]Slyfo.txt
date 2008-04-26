@@ -77,5 +77,14 @@
 		"68"		"models/Slyfo/sccleft.mdl"
 		"69"		"models/Slyfo/sccright.mdl"
 		"70"		"models/Slyfo/unbendable.mdl"
+		"71"		"models/Slyfo/mcpdropbayhatch.mdl"
+		"72"		"models/Slyfo/nacshortsleft.mdl"
+		"73"		"models/Slyfo/nacshortsright.mdl"
+		"74"		"models/Slyfo/nacshuttleleft.mdl"
+		"75"		"models/Slyfo/nacshuttleright.mdl"
+		"76"		"models/Slyfo/nactngleft.mdl"
+		"77"		"models/Slyfo/nactngright.mdl"
+		"78"		"models/Slyfo/t-eng.mdl"
+		"79"		"models/Slyfo/mcpdropbay.mdl"
 	}
 }
