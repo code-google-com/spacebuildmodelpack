@@ -53,4 +53,4 @@ if CLIENT then //Make's sure this is running on the client, we don't want dedica
 	end
 end
 end
-hook.Add( "Initialize", "initializing", SpaceBuild_SVN_Init ); 
+hook.Add( "InitPostEntity", "SBMP Cleanup", SpaceBuild_SVN_Init );
