@@ -20,10 +20,10 @@ New Jumper Model
 	
 	-Redo DHD
 
-	-Name in polys somewhere in model
+	-Sign actual model
 
 - Retexture wings
-	-Name in texutre also
+	-Sign texutre also
 
 - Cut jumper into pieces for destroyed effect
 	-Wing 1
