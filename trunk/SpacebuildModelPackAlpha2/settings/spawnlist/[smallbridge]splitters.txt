@@ -19,5 +19,6 @@
 		"10"		"models/SmallBridge/SBcorridorEStoDHdwmid/sbcorridorestodhdwmid.mdl"
 		"11"		"models/SmallBridge/SBcorridorEStoDHdwup/sbcorridorestodhdwup.mdl"
 		"12"		"models/SmallBridge/SBconverterSBtoMB/sbconvertersbtomb.mdl"
+		"13"		"models/SmallBridge/SBcorridorVwide/sbcorridorvwide.mdl"
 	}
 }
