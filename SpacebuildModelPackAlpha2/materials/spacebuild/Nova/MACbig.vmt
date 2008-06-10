@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "MACbig"
+	"$surfaceprop" "metal"
+	"$model" 1
+}
