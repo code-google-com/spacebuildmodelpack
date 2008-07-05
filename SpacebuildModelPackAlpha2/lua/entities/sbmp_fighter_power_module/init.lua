@@ -1,3 +1,20 @@
+resource.AddFile("models/Spacebuild/emount4_fighter.mdl")
+resource.AddFile("models/Spacebuild/emount4_fighter.dx80.vtx")
+resource.AddFile("models/Spacebuild/emount4_fighter.dx90.vtx")
+resource.AddFile("models/Spacebuild/emount4_fighter.phy")
+resource.AddFile("models/Spacebuild/emount4_fighter.vvd")
+
+resource.AddFile("materials/spacebuild/iron_rails.vmt")
+resource.AddFile("materials/spacebuild/iron_rails.vtf")
+resource.AddFile("materials/spacebuild/light.vtf")
+resource.AddFile("materials/spacebuild/light.vtf")
+resource.AddFile("materials/spacebuild/MetalSet_1-2.vmt")
+resource.AddFile("materials/spacebuild/MetalSet_1-2.vtf")
+resource.AddFile("materials/spacebuild/metalmap.vmt")
+resource.AddFile("materials/spacebuild/metalmap.vtf")
+resource.AddFile("materials/spacebuild/hull.vmt")
+resource.AddFile("materials/spacebuild/hull.vtf")
+
 //From Spacetech's BH Cache, and his dubiously implemented shield
 //And from my old joystick module, from which this evolved from
 AddCSLuaFile("cl_init.lua")
