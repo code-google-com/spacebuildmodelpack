@@ -63,10 +63,10 @@ AddLSAirLockModel("Test2", "models/spacebuild/Test2E.mdl")
 AddLSAirLockModel("Test3", "models/spacebuild/Test3E.mdl")
 
 //Put the models under here
-AddLSShipHabModel("Style 1 Tube x1", "models/Spacebuild/s1t1.mdl")
-AddLSShipHabModel("Style 1 Tube 5 Way", "models/Spacebuild/s1t15w.mdl")
-AddLSShipHabModel("Style 1 Tube 6 Way", "models/Spacebuild/s1t16w.mdl")
-AddLSShipHabModel("Style 1 Tube 90 Turn", "models/Spacebuild/s1t190.mdl")
+AddLSShipHabModel("Style 1 Tube x1", "models/Spacebuild/s1t1.mdl")-- Added to new Stool 
+AddLSShipHabModel("Style 1 Tube 5 Way", "models/Spacebuild/s1t15w.mdl")-- Added to new Stool 
+AddLSShipHabModel("Style 1 Tube 6 Way", "models/Spacebuild/s1t16w.mdl")-- Added to new Stool 
+AddLSShipHabModel("Style 1 Tube 90 Turn", "models/Spacebuild/s1t190.mdl")-- Added to new Stool 
 AddLSShipHabModel("Style 1 Tube 90 Other Turn", "models/Spacebuild/s1t190b.mdl")
 AddLSShipHabModel("Style 1 Tube 3 Way", "models/Spacebuild/s1t1t.mdl")
 AddLSShipHabModel("Style 1 Tube 4 Way", "models/Spacebuild/s1t1x.mdl")
