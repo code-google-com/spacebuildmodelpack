@@ -28,7 +28,7 @@ function ENT:TurnOn()
 		self:SetOOO(1)
 		self:UpdateSize(self.Entity.sbenvironment.size, self.maxsize) //We turn the forcefield that contains the environment on
 		if self.environment and not self.environment:IsSpace() then //Fill the environment with air if the surounding environment has o2, replace with CO2
-			self.sbenvironment.air.o2 = self.sbenvironment.air.o2 + self.environment:Convert(0, 1, math.Round(self.sbenvironment.air.max/20))
+			self.sbenvironment.air.o2 = self.sbenvironment.air.o2 + self.environment:Convert(0, 1, math.Round(self.sbenvironment.air.max/18))
 		end
 		if not (WireAddon == nil) then Wire_TriggerOutput(self.Entity, "On", self.Active) end
 	end
