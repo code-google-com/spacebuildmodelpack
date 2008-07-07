@@ -214,7 +214,7 @@ function ENT:Climate_Control()
 			self.coolant2 = RD.GetResourceAmount(self.Entity, "nitrogen")
 			self.energy = RD.GetResourceAmount(self.Entity, "energy")
 			//First let check our air supply and try to stabilize it if we got oxygen left in storage at a rate of 5 oxygen per second
-			if self.sbenvironment.air.o2 < self.sbenvironment.air.max * self.maxO2Level then
+			if self.sbenvironment.air.o2 < self.sbenvironment.air.max * (self.maxO2Level/100) then
 				//We need some energy to fire the pump!
 				local energyneeded =  5 * math.ceil(self.maxsize/1024)
 				local mul = 1
