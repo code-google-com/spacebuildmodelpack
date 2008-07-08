@@ -36,10 +36,11 @@ local function spawn_hab_func(ent,type,sub_type,devinfo,Extra_Data,ent_extras)
 	CAF.GetAddon("Resource Distribution").AddResource(ent, "energy", 0)
 	CAF.GetAddon("Resource Distribution").AddResource(ent, "nitrogen", 0)
 	CAF.GetAddon("Resource Distribution").AddResource(ent, "water", 0)
+	CAF.GetAddon("Resource Distribution").AddResource(ent, "carbon dioxide", 0)
 	CAF.GetAddon("Resource Distribution").AddResource(ent, "oxygen", 0)
 	local mass = 1000
 	local phys = ent:GetPhysicsObject()
-	if phys:IsValid() and phys.GetVolume then
+	if phys:IsValid() then
 		mass = phys:GetMass()
 	end
 	local maxhealth = mass * 10
