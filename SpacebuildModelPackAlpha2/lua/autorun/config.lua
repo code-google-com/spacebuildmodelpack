@@ -201,20 +201,23 @@ AddLSShipHabModel("PuddleJumper Wide","models/puddle/pjw.mdl")
 AddLSShipHabModel("PuddleJumper Doublewide","models/puddle/pjdw.mdl")
 
 AddLSShipHabModel("Bay A","models/Spacebuild/probay.mdl")
-AddLSShipDefResModel("Test", "models/props_lab/powerbox01a.mdl")
-AddLSShipDefResModel("Cargobay", "models/Spacebuild/cbay1.mdl")
-AddLSShipDefResModel("CargoCrate", "models/Spacebuild/cargo1.mdl")
-AddLSShipDefResModel("Tiny Cache", "models/Spacebuild/resourcecachetiny.mdl")
-AddLSShipDefResModel("Small Cache", "models/Spacebuild/resourcecachesmall.mdl")
-AddLSShipDefResModel("Medium Cache", "models/Spacebuild/resourcecachemedium.mdl")
-AddLSShipDefResModel("Large Cache", "models/Spacebuild/resourcecachelarge.mdl")
-AddLSShipDefResModel("Huge Cache", "models/Spacebuild/resourcecachehuge.mdl")
-AddLSShipDefResModel("Massive Cache", "models/Spacebuild/resourcecachemassive.mdl")
-AddLSShipDefResModel("Modular Unit X-01", "models/Spacebuild/milcock4_multipod1.mdl")
+--[[
+Added to lua/rd2/stools/sbmp_res_mods/base_res_modules.lua, put all the new ones in there to!
+
+AddLSShipDefResModel("Test", "models/props_lab/powerbox01a.mdl")--
+AddLSShipDefResModel("Cargobay", "models/Spacebuild/cbay1.mdl")--
+AddLSShipDefResModel("CargoCrate", "models/Spacebuild/cargo1.mdl")--
+AddLSShipDefResModel("Tiny Cache", "models/Spacebuild/resourcecachetiny.mdl")--
+AddLSShipDefResModel("Small Cache", "models/Spacebuild/resourcecachesmall.mdl")--
+AddLSShipDefResModel("Medium Cache", "models/Spacebuild/resourcecachemedium.mdl")--
+AddLSShipDefResModel("Large Cache", "models/Spacebuild/resourcecachelarge.mdl")--
+AddLSShipDefResModel("Huge Cache", "models/Spacebuild/resourcecachehuge.mdl")--
+AddLSShipDefResModel("Massive Cache", "models/Spacebuild/resourcecachemassive.mdl")--
+AddLSShipDefResModel("Modular Unit X-01", "models/Spacebuild/milcock4_multipod1.mdl")--
 AddLSShipDefResModel("Slyfo Tank 1", "models/Slyfo/t-eng.mdl")
 AddLSShipDefResModel("Slyfo Power Crystal", "models/Slyfo/powercrystal.mdl")
 AddLSShipDefResModel("SmallBridge, Small Wall Cache", "models/SmallBridge/SBwallcacheS/SBwallcacheS.mdl")
 AddLSShipDefResModel("SmallBridge, Large Wall Cache", "models/SmallBridge/SBwallcacheL/SBwallcacheL.mdl")
 AddLSShipDefResModel("SmallBridge, External Wall Cache", "models/SmallBridge/SBwallcacheE1/SBwallcacheE1.mdl")
-
+]]
 AddLSShipWeaponModel("Plasma Cannon", "models/spacebuild/plasgun.mdl")

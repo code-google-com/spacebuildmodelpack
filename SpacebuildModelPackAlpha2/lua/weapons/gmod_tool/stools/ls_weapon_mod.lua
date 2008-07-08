@@ -1,3 +1,4 @@
+return 
 if not ( RES_DISTRIB == 2 ) then Error("Please Install Resource Distribution 2 Addon.'" ) return end
 
 TOOL.Category = 'Spacebuild Tools'
