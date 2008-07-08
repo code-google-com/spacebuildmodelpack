@@ -402,7 +402,8 @@ function ENT:OnEnvironment(ent)
 	if not ent then return end
 	if ent == self then return end
 	local pos = ent:GetPos()
-	if pos:Distance(self:GetPos()) < self:GetSize() then
+	local dist = pos:Distance(self:GetPos())
+	if dist < self:GetSize() then
 		local min, max = ent:WorldSpaceAABB()
 		if table.HasValue(ents.FindInBox( min, max ), ent) then
 			if not ent.environment then
@@ -418,7 +419,7 @@ function ENT:OnEnvironment(ent)
 							ent.environment = self
 							//self:UpdateGravity(ent)
 						else
-							if pos:Distance(self:GetPos()) < pos:Distance(ent.environment:GetPos()) then
+							if dist < pos:Distance(ent.environment:GetPos()) then
 								ent.environment = self
 							end
 						end
