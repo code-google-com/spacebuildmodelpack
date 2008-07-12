@@ -25,12 +25,12 @@ function ENT:TurnOn()
 	if (self.Active == 0) then
 		self.Entity:EmitSound( "apc_engine_start" )
 		self.Active = 1
-		self:SetOOO(1)
 		self:UpdateSize(self.Entity.sbenvironment.size, self.maxsize) //We turn the forcefield that contains the environment on
 		if self.environment and not self.environment:IsSpace() then //Fill the environment with air if the surounding environment has o2, replace with CO2
-			self.sbenvironment.air.o2 = self.sbenvironment.air.o2 + self.environment:Convert(0, 1, math.Round(self.sbenvironment.air.max/18))
+			self.sbenvironment.air.o2 = self.sbenvironment.air.o2 + self.environment:Convert(0, -1, math.Round(self.sbenvironment.air.max/18))
 		end
 		if not (WireAddon == nil) then Wire_TriggerOutput(self.Entity, "On", self.Active) end
+		self:SetOOO(1)
 	end
 end
 
@@ -39,21 +39,32 @@ function ENT:TurnOff()
 		self.Entity:StopSound( "apc_engine_start" )
 		self.Entity:EmitSound( "apc_engine_stop" )
 		self.Active = 0
-		self:SetOOO(0)
 		if self.environment then //flush all resources into the environment if we are in one (used for the slownes of the SB updating process, we don't want errors do we?)
 			if self.sbenvironment.air.o2 > 0 then
-				local left = self.environment:Convert(1, 0, self.sbenvironment.air.o2)
-				if left > 0 then
-					left = self.environment:Convert(2, 0, left)
-					if left > 0 then
-						self.environment:Convert(3, 0, left)
-					end
-				end
+				local left = self.environment:Convert(-1, 0, self.sbenvironment.air.o2)
+				local RD = CAF.GetAddon("Resource Distribution")
+				RD.SupplyResource(self, "oxygen", left)
+			end
+			if self.sbenvironment.air.co2 > 0 then
+				local left = self.environment:Convert(-1, 1, self.sbenvironment.air.co2)
+				local RD = CAF.GetAddon("Resource Distribution")
+				RD.SupplyResource(self, "carbon dioxide", left)
+			end
+			if self.sbenvironment.air.n > 0 then
+				local left = self.environment:Convert(-1, 2, self.sbenvironment.air.n)
+				local RD = CAF.GetAddon("Resource Distribution")
+				RD.SupplyResource(self, "nitrogen", left)
+			end
+			if self.sbenvironment.air.h > 0 then
+				local left = self.environment:Convert(-1, 3, self.sbenvironment.air.h)
+				local RD = CAF.GetAddon("Resource Distribution")
+				RD.SupplyResource(self, "hydrogen", left)
 			end
 		end
 		self.sbenvironment.temperature = 0
 		self:UpdateSize(self.Entity.sbenvironment.size, 0) //We turn the forcefield that contains the environment off!
 		if not (WireAddon == nil) then Wire_TriggerOutput(self.Entity, "On", self.Active) end
+		self:SetOOO(0)
 	end
 end
 
@@ -174,6 +185,79 @@ function ENT:UpdateSize(oldsize, newsize)
 			self.sbenvironment.air.co2 = 0
 			self.sbenvironment.air.n = 0
 			self.sbenvironment.air.h = 0
+			self.sbenvironment.air.empty = 0
+			self.sbenvironment.size = newsize
+		elseif newsize == 0 then
+			local tomuch = self.sbenvironment.air.o2
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 0, tomuch)
+			end
+			tomuch = self.sbenvironment.air.co2
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 1, tomuch)
+			end
+			tomuch = self.sbenvironment.air.n
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 2, tomuch)
+			end
+			tomuch = self.sbenvironment.air.h
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 3, tomuch)
+			end
+			self.sbenvironment.air.o2 = 0
+			self.sbenvironment.air.co2 = 0
+			self.sbenvironment.air.n = 0
+			self.sbenvironment.air.h = 0
+			self.sbenvironment.air.empty = 0
+			self.sbenvironment.size = 0
+		else
+			self.sbenvironment.air.o2 = (newsize/oldsize) * self.sbenvironment.air.o2
+			self.sbenvironment.air.co2 = (newsize/oldsize) * self.sbenvironment.air.co2
+			self.sbenvironment.air.n = (newsize/oldsize) * self.sbenvironment.air.n
+			self.sbenvironment.air.h = (newsize/oldsize) * self.sbenvironment.air.h
+			self.sbenvironment.air.empty = (newsize/oldsize) * self.sbenvironment.air.empty
+			self.sbenvironment.size = newsize
+		end
+		self.sbenvironment.air.max = math.Round(100 * 5 * (self:GetVolume()/1000) * self.sbenvironment.atmosphere)
+		if self.sbenvironment.air.o2 > self.sbenvironment.air.max then
+			local tomuch = self.sbenvironment.air.o2 - self.sbenvironment.air.max
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 0, tomuch)
+				self.sbenvironment.air.o2 = self.sbenvironment.air.max + tomuch
+			end
+		end
+		if self.sbenvironment.air.co2 > self.sbenvironment.air.max then
+			local tomuch = self.sbenvironment.air.co2 - self.sbenvironment.air.max
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 1, tomuch)
+				self.sbenvironment.air.co2 = self.sbenvironment.air.max + tomuch
+			end
+		end
+		if self.sbenvironment.air.n > self.sbenvironment.air.max then
+			local tomuch = self.sbenvironment.air.n - self.sbenvironment.air.max
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 2, tomuch)
+				self.sbenvironment.air.n = self.sbenvironment.air.max + tomuch
+			end
+		end
+		if self.sbenvironment.air.h > self.sbenvironment.air.max then
+			local tomuch = self.sbenvironment.air.h - self.sbenvironment.air.max
+			if self.environment then
+				tomuch = self.environment:Convert(-1, 3, tomuch)
+				self.sbenvironment.air.h = self.sbenvironment.air.max + tomuch
+			end
+		end
+	end
+end
+
+/*function ENT:UpdateSize(oldsize, newsize)
+	if oldsize == newsize then return end
+	if oldsize and newsize and type(oldsize) == "number" and type(newsize) == "number" and oldsize >= 0 and newsize >= 0 then
+		if oldsize == 0 then
+			self.sbenvironment.air.o2 = 0
+			self.sbenvironment.air.co2 = 0
+			self.sbenvironment.air.n = 0
+			self.sbenvironment.air.h = 0
 			self.sbenvironment.size = newsize
 		elseif newsize == 0 then
 			self.sbenvironment.air.o2 = 0
@@ -190,7 +274,7 @@ function ENT:UpdateSize(oldsize, newsize)
 		end
 		self.sbenvironment.air.max = math.Round(100 * 5 * (self:GetVolume()/1000) * self.sbenvironment.atmosphere)
 	end
-end
+end*/
 
 function ENT:Climate_Control()
 	local RD = CAF.GetAddon("Resource Distribution")
