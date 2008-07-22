@@ -238,3 +238,22 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_stpod", V )
+
+local V = { 	
+				Name = "Light Combat Corvette", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Light Combat Corvette Pre-Made Ship",
+				Model = "models/Spacebuild/Light_Combat_Corvette.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_lightcombatcorvette", V )
+
