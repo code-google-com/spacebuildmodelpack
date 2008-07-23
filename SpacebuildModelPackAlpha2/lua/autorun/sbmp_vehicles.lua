@@ -255,5 +255,23 @@ local V = {
 								HandleAnimation = HandleSBMPVehicleAnimation,
 							}
 }
-list.Set( "Vehicles", "sbmp_lightcombatcorvette", V )
+list.Set( "Vehicles", "sbmp_lcomcorv", V )
+
+local V = { 	
+				Name = "Mil_Cock_7", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Military Cockpit 7",
+				Model = "models/Spacebuild/Mil_Cock_7.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_milcock7", V )
 
