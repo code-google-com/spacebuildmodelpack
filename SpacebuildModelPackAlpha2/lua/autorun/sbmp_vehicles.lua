@@ -307,3 +307,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_podt", V )
+
+local V = { 	
+				Name = "Corvette Chair", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Chair from a Light Combat Corvette",
+				Model = "models/Spacebuild/Corvette_Chair.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPSitAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_corvette_chair", V )
