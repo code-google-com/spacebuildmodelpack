@@ -293,3 +293,17 @@ local V = {
 }
 list.Set( "Vehicles", "sbmp_milcock8", V )
 
+local V = { 	
+				Name = "Drop Pod", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "emergency drop pod",
+				Model = "models/Spacebuild/Nova/drop_pod.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							}
+}
+list.Set( "Vehicles", "sbmp_podt", V )
