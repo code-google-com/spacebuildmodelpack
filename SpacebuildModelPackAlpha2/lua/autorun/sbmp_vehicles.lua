@@ -325,3 +325,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_corvette_chair", V )
+
+local V = { 	
+				Name = "Mil Cock 2 Redux", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Military Cockpit 2 Redux",
+				Model = "models/Spacebuild/MilCock2_Redux.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_milcock2redux", V )
