@@ -306,7 +306,7 @@ local V = {
 								limitview		=	"0"
 							}
 }
-list.Set( "Vehicles", "sbmp_podt", V )
+list.Set( "Vehicles", "sbmp_droppod", V )
 
 local V = { 	
 				Name = "Corvette Chair", 
