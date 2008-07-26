@@ -2,6 +2,6 @@
 {
 	"$basetexture" "VGUI/entities/sbmp_milcock7"
 	"$vertexcolor" 		1 
-	"$vertexalpha" 		1 
+	"$vertexalpha" 		0
 	"$nolod" 		1 
 }

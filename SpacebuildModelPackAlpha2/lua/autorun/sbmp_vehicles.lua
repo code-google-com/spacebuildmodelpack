@@ -47,7 +47,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_chair2", V )
 
 local V = { 	
-				Name = "Military CockPit", 
+				Name = "Military CockPit 1", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -192,7 +192,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcocksix", V )
 
 local V = { 	
-				Name = "Closed Pod", 
+				Name = "Pod, Closed", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -207,7 +207,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_pod", V )
 
 local V = { 	
-				Name = "Open Pod", 
+				Name = "Pod, Open", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -258,7 +258,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_lcomcorv", V )
 
 local V = { 	
-				Name = "Mil_Cock_7", 
+				Name = "Military Cockpit 7", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -276,7 +276,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_milcock7", V )
 
 local V = { 	
-				Name = "Mil_Cock_8", 
+				Name = "Military Cockpit 8", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -327,7 +327,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_corvette_chair", V )
 
 local V = { 	
-				Name = "Mil Cock 2 Redux", 
+				Name = "Military Cockpit 2 Redux", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -345,7 +345,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_milcock2redux", V )
 
 local V = { 	
-				Name = "Mil Cock 3 Redux", 
+				Name = "Military Cockpit 3 Redux", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
