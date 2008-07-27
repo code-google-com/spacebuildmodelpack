@@ -361,3 +361,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_milcock3redux", V )
+
+local V = { 	
+				Name = "Military Cockpit 6 Redux", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Military Cockpit 6 Redux",
+				Model = "models/Spacebuild/MilCock6_Redux.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_milcock6redux", V )
