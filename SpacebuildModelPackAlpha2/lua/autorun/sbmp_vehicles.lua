@@ -11,7 +11,7 @@ local function HandleSBMPSitAnimation( vehicle, player )
 end
 
 local V = { 	
-				Name = "Captains Chair", 
+				Name = "Captain's Chair", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -47,7 +47,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_chair2", V )
 
 local V = { 	
-				Name = "Military CockPit 1", 
+				Name = "Military Cockpit 1", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -65,7 +65,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_milcock", V )
 
 local V = { 	
-				Name = "Military CockPit 2", 
+				Name = "Military Cockpit 2", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -83,7 +83,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcocktwo", V )
 
 local V = { 	
-				Name = "Military CockPit 3", 
+				Name = "Military Cockpit 3", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -101,7 +101,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcockthree", V )
 
 local V = { 	
-				Name = "Military CockPit 3B", 
+				Name = "Military Cockpit 3B", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -119,7 +119,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcockthreeb", V )
 
 local V = { 	
-				Name = "Military CockPit 4", 
+				Name = "Military Cockpit 4", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -138,7 +138,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcockfourb", V )
 
 local V = { 	
-				Name = "Military CockPit 4B", 
+				Name = "Military Cockpit 4B", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -156,7 +156,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcockfoura", V )
 
 local V = { 	
-				Name = "Military CockPit 5", 
+				Name = "Military Cockpit 5", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
@@ -174,7 +174,7 @@ local V = {
 list.Set( "Vehicles", "sbmp_mcockfive", V )
 
 local V = { 	
-				Name = "Military CockPit 6", 
+				Name = "Military Cockpit 6", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
