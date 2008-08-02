@@ -3,6 +3,11 @@ $modelname Slyfo/consolescreenbig.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "consolescreenbig_detail.smd"
+$texturegroup skinfamilies
+{
+	{ "sbmetalfloor01bs8"   }
+	{ "rt_camera"           }
+}
 
 // Directory of materials that the model uses
 $cdmaterials spacebuild
