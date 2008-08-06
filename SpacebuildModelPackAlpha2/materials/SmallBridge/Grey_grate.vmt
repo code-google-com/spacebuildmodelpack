@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "SmallBridge/Grey_grate"
+	"$surfaceprop" "metal"
+	"$model"     1
+	"$translucent" 1
+}

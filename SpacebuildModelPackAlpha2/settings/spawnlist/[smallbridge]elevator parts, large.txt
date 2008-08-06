@@ -5,32 +5,67 @@
 		"version"		"2"
 		"name"		"[SmallBridge]Elevator Parts, Large"
 	}
-	"Entries"
+	
+
+
+"Entries"
 	{
-		"1"		"models/SmallBridge/SBelevBasedw/sbelevbasedw.mdl"
-		"2"		"models/SmallBridge/SBelevMiddw/sbelevmiddw.mdl"
-		"3"		"models/SmallBridge/SBelevTopdw/sbelevtopdw.mdl"
-		"4"		"models/SmallBridge/SBelevBaseEdw/sbelevbaseedw.mdl"
-		"5"		"models/SmallBridge/SBelevMidEdw/sbelevmidedw.mdl"
-		"6"		"models/SmallBridge/SBelevTopEdw/sbelevtopedw.mdl"
-		"7"		"models/SmallBridge/SBelevBaseRdw/sbelevbaserdw.mdl"
-		"8"		"models/SmallBridge/SBelevMidRdw/sbelevmidrdw.mdl"
-		"9"		"models/SmallBridge/SBelevTopRdw/sbelevtoprdw.mdl"
-		"10"		"models/SmallBridge/SBelevBaseTdw/sbelevbasetdw.mdl"
-		"11"		"models/SmallBridge/SBelevMidTdw/sbelevmidtdw.mdl"
-		"12"		"models/SmallBridge/SBelevTopTdw/sbelevtoptdw.mdl"
-		"13"		"models/SmallBridge/SBelevBaseXdw/sbelevbasexdw.mdl"
-		"14"		"models/SmallBridge/SBelevMidXdw/sbelevmidxdw.mdl"
-		"15"		"models/SmallBridge/SBelevTopXdw/sbelevtopxdw.mdl"
-		"16"		"models/SmallBridge/SBelevShaftdw/sbelevshaftdw.mdl"
-		"17"		"models/SmallBridge/SBpanelelev0sdw/sbpanelelev0sdw.mdl"
-		"18"		"models/SmallBridge/SBpanelelev1sdw/sbpanelelev1sdw.mdl"
-		"19"		"models/SmallBridge/SBpanelelev2sdw/sbpanelelev2sdw.mdl"
-		"20"		"models/SmallBridge/SBpanelelev2sEdw/sbpanelelev2sedw.mdl"
-		"21"		"models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl"
-		"22"		"models/SmallBridge/SBelevBaseEdhdw/sbelevbaseedhdw.mdl"
-		"23"		"models/SmallBridge/SBelevMidEdhdw/sbelevmidedhdw.mdl"
-		"24"		"models/SmallBridge/SBelevTopEdhdw/sbelevtopedhdw.mdl"
-		"25"		"models/SmallBridge/SBelevShaftdw2/sbelevshaftdw2.mdl"
-	}
+		
+
+
+"1"		"models/SmallBridge/SBelevBasedw/sbelevbasedw.mdl"
+		
+"2"		"models/SmallBridge/SBelevMiddw/sbelevmiddw.mdl"
+		
+"3"		"models/SmallBridge/SBelevTopdw/sbelevtopdw.mdl"
+		
+"4"		"models/SmallBridge/SBelevBaseEdw/sbelevbaseedw.mdl"
+		
+"5"		"models/SmallBridge/SBelevMidEdw/sbelevmidedw.mdl"
+		
+"6"		"models/SmallBridge/SBelevTopEdw/sbelevtopedw.mdl"
+		
+"7"		"models/SmallBridge/SBelevBaseRdw/sbelevbaserdw.mdl"
+		
+"8"		"models/SmallBridge/SBelevMidRdw/sbelevmidrdw.mdl"
+		
+"9"		"models/SmallBridge/SBelevTopRdw/sbelevtoprdw.mdl"
+		
+"10"		"models/SmallBridge/SBelevBaseTdw/sbelevbasetdw.mdl"
+		
+"11"		"models/SmallBridge/SBelevMidTdw/sbelevmidtdw.mdl"
+		
+"12"		"models/SmallBridge/SBelevTopTdw/sbelevtoptdw.mdl"
+		
+"13"		"models/SmallBridge/SBelevBaseXdw/sbelevbasexdw.mdl"
+		
+"14"		"models/SmallBridge/SBelevMidXdw/sbelevmidxdw.mdl"
+		
+"15"		"models/SmallBridge/SBelevTopXdw/sbelevtopxdw.mdl"
+
+"16"		"models/SmallBridge/SBelevBaseEdhdw/sbelevbaseedhdw.mdl"
+		
+"17"		"models/SmallBridge/SBelevMidEdhdw/sbelevmidedhdw.mdl"
+		
+"18"		"models/SmallBridge/SBelevTopEdhdw/sbelevtopedhdw.mdl"
+			
+"19"		"models/SmallBridge/SBelevShaftdw/sbelevshaftdw.mdl"
+"20"		"models/SmallBridge/SBelevShaftdw2/sbelevshaftdw2.mdl"
+	
+		
+"21"		"models/SmallBridge/SBpanelelev0sdw/sbpanelelev0sdw.mdl"
+		
+"22"		"models/SmallBridge/SBpanelelev1sdw/sbpanelelev1sdw.mdl"
+		
+"23"		"models/SmallBridge/SBpanelelev2sdw/sbpanelelev2sdw.mdl"
+		
+"24"		"models/SmallBridge/SBpanelelev2sEdw/sbpanelelev2sedw.mdl"
+		
+"25"		"models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl"
+		
+	
+
+
+
+}
 }

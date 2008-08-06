@@ -1,0 +1,13 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "SmallBridge/Metalfloor_2-3"
+	"$surfaceprop" "metal"
+	"$bumpmap" "SmallBridge/Metalfloor_2-3_bump"
+	"$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "60"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .8 1]"
+}
+
+

@@ -5,33 +5,72 @@
 		"version"		"2"
 		"name"		"[SmallBridge]Corridors, SW"
 	}
-	"Entries"
+	
+
+"Entries"
 	{
-		"1"		"models/SmallBridge/SBcorridorE1/sbcorridore1.mdl"
-		"2"		"models/SmallBridge/SBcorridorR/sbcorridorr.mdl"
-		"3"		"models/SmallBridge/SBcorridorT/sbcorridort.mdl"
-		"4"		"models/SmallBridge/SBcorridorX/sbcorridorx.mdl"
-		"5"		"models/SmallBridge/SBcorridorE2/sbcorridore2.mdl"
-		"6"		"models/SmallBridge/SBcorridorE3/sbcorridore3.mdl"
-		"7"		"models/SmallBridge/SBcorridorE4/sbcorridore4.mdl"
-		"8"		"models/SmallBridge/SBcorridorEnd/sbcorridorend.mdl"
-		"9"		"models/SmallBridge/SBcorridorCurveS/sbcorridorcurves.mdl"
-		"10"		"models/SmallBridge/SBcorridorSlantL/sbcorridorslantl.mdl"
-		"11"		"models/SmallBridge/SBcorridorSlantR/sbcorridorslantr.mdl"
-		"12"		"models/SmallBridge/SBcorridorSlanthalfL/sbcorridorslanthalfl.mdl"
-		"13"		"models/SmallBridge/SBcorridorSlanthalfR/sbcorridorslanthalfr.mdl"
-		"14"		"models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl"
-		"15"		"models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl"
-		"16"		"models/SmallBridge/SBtriangleE1/sbtrianglee1.mdl"
-		"17"		"models/SmallBridge/SBtriangleE2/sbtrianglee2.mdl"
-		"18"		"models/SmallBridge/SBtriangleE3/sbtrianglee3.mdl"
-		"19"		"models/SmallBridge/SBcorridorEFlip/sbcorridoreflip.mdl"
-		"20"		"models/SmallBridge/SBcorridorRtri/sbcorridorrtri.mdl"
-		"21"		"models/SmallBridge/SBcorridorTdl/sbcorridortdl.mdl"
-		"22"		"models/SmallBridge/SBcorridorTdldw/sbcorridortdldw.mdl"
-		"23"		"models/SmallBridge/SBcorridorEhalf/sbcorridorehalf.mdl"
-		"24"		"models/SmallBridge/SBcorridorTdwsl/sbcorridortdwsl.mdl"
-		"25"		"models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl"
-		"26"		"models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl"
-	}
+		
+
+
+"1"		"models/SmallBridge/SBcorridorE1/sbcorridore1.mdl"
+		
+"2"		"models/SmallBridge/SBcorridorR/sbcorridorr.mdl"
+		
+"3"		"models/SmallBridge/SBcorridorT/sbcorridort.mdl"
+		
+"4"		"models/SmallBridge/SBcorridorX/sbcorridorx.mdl"
+
+"5"		"models/SmallBridge/SBcorridorE05/sbcorridore05.mdl"
+			
+"6"		"models/SmallBridge/SBcorridorE2/sbcorridore2.mdl"
+		
+"7"		"models/SmallBridge/SBcorridorE3/sbcorridore3.mdl"
+		
+"8"		"models/SmallBridge/SBcorridorE4/sbcorridore4.mdl"
+		
+"9"		"models/SmallBridge/SBcorridorEnd/sbcorridorend.mdl"
+		
+"10"		"models/SmallBridge/SBcorridorCurveS/sbcorridorcurves.mdl"
+
+"11"		"models/SmallBridge/SBcorridorEFlip/sbcorridoreflip.mdl"
+		
+"12"		"models/SmallBridge/SBcorridorSlantL/sbcorridorslantl.mdl"
+		
+"13"		"models/SmallBridge/SBcorridorSlantR/sbcorridorslantr.mdl"
+		
+"14"		"models/SmallBridge/SBcorridorSlanthalfL/sbcorridorslanthalfl.mdl"
+		
+"15"		"models/SmallBridge/SBcorridorSlanthalfR/sbcorridorslanthalfr.mdl"
+		
+"16"		"models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl"
+		
+"17"		"models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl"
+	
+"18"		"models/SmallBridge/SBcorridorEdh3/sbcorridoredh3.mdl"
+		
+"19"		"models/SmallBridge/SBcorridorEdh4/sbcorridoredh4.mdl"
+		
+"20"		"models/SmallBridge/SBtriangleE1/sbtrianglee1.mdl"
+		
+"21"		"models/SmallBridge/SBtriangleE2/sbtrianglee2.mdl"
+		
+"22"		"models/SmallBridge/SBtriangleE3/sbtrianglee3.mdl"
+		
+"23"		"models/SmallBridge/SBcorridorRtri/sbcorridorrtri.mdl"
+		
+"24"		"models/SmallBridge/SBcorridorTdl/sbcorridortdl.mdl"
+		
+"25"		"models/SmallBridge/SBcorridorTdldw/sbcorridortdldw.mdl"
+		
+"26"		"models/SmallBridge/SBcorridorTdwsl/sbcorridortdwsl.mdl"
+	
+"27"		"models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl"
+	
+"28"		"models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl"
+
+
+
+
+
+}
 }
