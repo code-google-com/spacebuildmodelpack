@@ -1,7 +1,0 @@
-"VertexLitGeneric"
-{
-	"$basetexture" "spacebuild/Jumper_5"
-	"$bumpmap" "spacebuild/Jumper_5normal"
-	"$surfaceprop" "metal"
-	"$model"     1
-}

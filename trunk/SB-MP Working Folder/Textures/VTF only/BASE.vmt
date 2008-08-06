@@ -1,9 +1,0 @@
-"VertexLitGeneric"
-{
-	"$basetexture" "spacebuild/base"
-	"$bumpmap"     "spacebuild/base_bump"
-	"$detail"      "spacebuild/base_diff"
-	"$envmap"      "spacebuild/base_spec"
-	"$surfaceprop" "metal"
-	"$model"     1
-}
