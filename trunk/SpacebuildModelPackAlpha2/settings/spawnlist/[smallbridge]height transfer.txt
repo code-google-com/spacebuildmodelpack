@@ -5,14 +5,33 @@
 		"version"		"2"
 		"name"		"[SmallBridge]Height Transfer"
 	}
-	"Entries"
+	
+
+
+
+"Entries"
 	{
-		"1"		"models/SmallBridge/SBcorridorRamp/sbcorridorramp.mdl"
-		"2"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
-		"3"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
-		"4"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
-		"5"		"models/SmallBridge/SBcorridorRamphalf/sbcorridorramphalf.mdl"
-		"6"		"models/SmallBridge/SBsrampZ/sbsrampz.mdl"
-		"7"		"models/SmallBridge/SBsrampZdw/sbsrampzdw.mdl"
+		
+
+
+"1"		"models/SmallBridge/SBcorridorRamp/sbcorridorramp.mdl"
+	
+"2"		"models/SmallBridge/SBcorridorRamphalf/sbcorridorramphalf.mdl"
+	
+"3"		"models/SmallBridge/SBsrampD/sbsrampd.mdl"
+		
+"4"		"models/SmallBridge/SBsrampM/sbsrampm.mdl"
+		
+"5"		"models/SmallBridge/SBsrampU/sbsrampu.mdl"
+				
+"6"		"models/SmallBridge/SBsrampZ/sbsrampz.mdl"
+		
+"7"		"models/SmallBridge/SBsrampZdw/sbsrampzdw.mdl"
+		
+"8"		"models/SmallBridge/SBCRamp1/sbcramp1.mdl"
+		
+"9"		"models/SmallBridge/SBCRamp2dwD/SBCRamp2dwD.mdl"	
+
+
 	}
 }

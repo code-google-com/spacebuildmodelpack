@@ -5,16 +5,45 @@
 		"version"		"2"
 		"name"		"[SmallBridge]Station Parts"
 	}
-	"Entries"
+	
+
+"Entries"
 	{
-		"1"		"models/SmallBridge/SBcommandBridge/sbcommandbridge.mdl"
-		"2"		"models/SmallBridge/SBcommandBridgeElev/sbcommandbridgeelev.mdl"
-		"3"		"models/SmallBridge/SBvisorbridge1/sbvisorbridge1.mdl"
-		"4"		"models/SmallBridge/SBcorridorSGC1/sbcorridorsgc1.mdl"
-		"5"		"models/SmallBridge/SBhangardhdw1/sbhangardhdw1.mdl"
-		"6"		"models/SmallBridge/SBocthub1/sbocthub1.mdl"
-		"8"		"models/SmallBridge/SBhangardhdw1UD/sbhangardhdw1ud.mdl"
-		"9"		"models/SmallBridge/SBhangardhdw1D/sbhangardhdw1d.mdl"
-		"10"		"models/SmallBridge/SBcorridorSGC2/sbcorridorsgc2.mdl"
+		
+
+"1"		"models/SmallBridge/SBcommandBridge/sbcommandbridge.mdl"
+
+"15"		"models/SmallBridge/SBcommandBridgedw/sbcommandbridgedw.mdl"
+		
+"2"		"models/SmallBridge/SBcommandBridgeElev/sbcommandbridgeelev.mdl"
+		
+"3"		"models/SmallBridge/SBvisorbridge1/sbvisorbridge1.mdl"
+	
+"11"		"models/SmallBridge/SBvisorcontrolTop/sbvisorcontroltop.mdl"
+		
+"4"		"models/SmallBridge/SBcorridorSGC1/sbcorridorsgc1.mdl"
+		
+"9"		"models/SmallBridge/SBcorridorSGC2/sbcorridorsgc2.mdl"
+
+"6"		"models/SmallBridge/SBocthub1/sbocthub1.mdl"
+	
+"5"		"models/SmallBridge/SBhangardhdw1/sbhangardhdw1.mdl"
+		
+"7"		"models/SmallBridge/SBhangardhdw1UD/sbhangardhdw1ud.mdl"
+		
+"8"		"models/SmallBridge/SBhangardhdw1D/sbhangardhdw1d.mdl"
+		
+"10"		"models/SmallBridge/SBhangardhdw2/sbhangardhdw2.mdl"
+		
+"12"		"models/SmallBridge/SBpodbay1/sbpodbay1.mdl"
+		
+"13"		"models/SmallBridge/SBspherebridge1/sbspherebridge1.mdl"
+		
+"14"		"models/SmallBridge/SBHUB/sbhub.mdl"
+		
+"16"		"models/SmallBridge/SBdock1/SBdock1.mdl"
+
+
+
 	}
 }

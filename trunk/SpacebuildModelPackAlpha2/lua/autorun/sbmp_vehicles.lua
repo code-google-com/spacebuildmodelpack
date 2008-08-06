@@ -379,3 +379,23 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_milcock6redux", V )
+
+
+
+local V = { 	
+				Name = "SmallBridge Drop Pod", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "SmallBridge Drop Pod",
+				Model = "models/SmallBridge/SBdroppod1/SBdroppod1.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPSitAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_SB_pod", V )

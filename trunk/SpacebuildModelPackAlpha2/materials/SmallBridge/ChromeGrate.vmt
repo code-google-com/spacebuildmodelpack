@@ -1,0 +1,18 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "SmallBridge/ChromeGrate"
+	"$surfaceprop" "metal"
+	"$model"     1
+
+	"Proxies"
+	{
+		"Sine"
+		{
+			"resultVar"	"$alpha"
+			"sineperiod"	2
+			"sinemin"	0.2
+			"sinemax"	0.8
+		}
+	}
+
+}

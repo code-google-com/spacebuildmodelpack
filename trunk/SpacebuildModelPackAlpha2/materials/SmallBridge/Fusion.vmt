@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "SmallBridge/Fusion2"
+	"$surfaceprop" "metal"
+	"$model"     1
+	"$selfillum" 1
+}

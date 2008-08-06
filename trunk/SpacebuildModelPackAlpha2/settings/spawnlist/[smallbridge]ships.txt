@@ -1,0 +1,23 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SmallBridge]Ships"
+	}
+	
+
+"Entries"
+	{
+		
+
+"1"		"models/SmallBridge/Ships/sbshuttlec1e1.mdl"
+	
+"2"		"models/SmallBridge/Ships/hysteria_galapagos.mdl"
+					
+"3"		"models/SmallBridge/Ships/wilkie1020.mdl"
+"4"		"models/SmallBridge/Ships/steakknife.mdl"
+
+
+}
+}
