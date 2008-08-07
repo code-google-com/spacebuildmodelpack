@@ -60,7 +60,7 @@
 	
 "23"		"models/SmallBridge/SBdropbay2S/sbdropbay2s.mdl"
 
-"24"		"models/SmallBridge/SBdropbay2S/sbdropbay3s.mdl"
+"24"		"models/SmallBridge/SBdropbay3S/sbdropbay3s.mdl"
 	
 "25"		"models/SmallBridge/SBdropbay4S/sbdropbay4s.mdl"
 		
