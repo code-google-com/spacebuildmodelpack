@@ -17,6 +17,7 @@
 					
 "3"		"models/SmallBridge/Ships/wilkie1020.mdl"
 "4"		"models/SmallBridge/Ships/steakknife.mdl"
+"5"		"models/SmallBridge/Ships/matthew0623_hydra.mdl"
 
 
 }

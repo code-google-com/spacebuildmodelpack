@@ -21,10 +21,10 @@ if CLIENT then //Make's sure this is running on the client, we don't want dedica
 	if file.Exists("../settings/spawnlist/[smallbridge]panels.txt") then
 		file.Delete( "../settings/spawnlist/[smallbridge]panels.txt" )
 	end
-	if file.Exists("../settings/spawnlist/[smallbridge]ship parts.txt") then
-		file.Delete( "../settings/spawnlist/[smallbridge]ship parts.txt" )
-	end
 	if file.Exists("../settings/spawnlist/[smallbridge]ships.txt") then
+		file.Delete( "../settings/spawnlist/[smallbridge]ships.txt" )
+	end
+	if file.Exists("../settings/spawnlist/[smallbridge]ship parts.txt") then
 		file.Delete( "../settings/spawnlist/[smallbridge]ship parts.txt" )
 	end
 	if file.Exists("../settings/spawnlist/[smallbridge]splitters.txt") then
@@ -34,8 +34,21 @@ if CLIENT then //Make's sure this is running on the client, we don't want dedica
 		file.Delete( "../settings/spawnlist/[smallbridge]station parts.txt" )
 	end
 	if file.Exists("../settings/spawnlist/[smallbridge]wings, walkways and other parts.txt") then
+		file.Delete( "../settings/spawnlist/[smallbridge]wings, walkways and other parts.txt" )
+	end
+
+
+	if file.Exists("../settings/spawnlist/[smallbridge]wings.txt") then
 		file.Delete( "../settings/spawnlist/[smallbridge]wings.txt" )
 	end
+	if file.Exists("../settings/spawnlist/[smallbridge]walkways.txt") then
+		file.Delete( "../settings/spawnlist/[smallbridge]walkways.txt" )
+	end
+	if file.Exists("../settings/spawnlist/[smallbridge]other parts.txt") then
+		file.Delete( "../settings/spawnlist/[smallbridge]other parts.txt" )
+	end
+
+
 	if file.Exists("../settings/spawnlist/[SBMP]Slyfo.txt") then
 		file.Delete( "../settings/spawnlist/[SBMP]Slyfo.txt" )
 	end
