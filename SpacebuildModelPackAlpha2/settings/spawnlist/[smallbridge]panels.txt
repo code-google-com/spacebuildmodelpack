@@ -24,22 +24,23 @@
 "5"		"models/SmallBridge/SBpanelSquareDoordw/sbpanelsquaredoordw.mdl"
 		
 "6"		"models/SmallBridge/SBpanelSolidgdw/sbpanelsolidgdw.mdl"
+	
+"7"		"models/SmallBridge/SBpanelDoor2dw/SBpanelDoor2dw.mdl"	
+"8"		"models/SmallBridge/SBpanelDH/sbpaneldh.mdl"
 		
-"7"		"models/SmallBridge/SBpanelDH/sbpaneldh.mdl"
+"9"		"models/SmallBridge/SBpanelDHDW/sbpaneldhdw.mdl"
 		
-"8"		"models/SmallBridge/SBpanelDHDW/sbpaneldhdw.mdl"
+"10"		"models/SmallBridge/SBpanelwideDoor/sbpanelwidedoor.mdl"
 		
-"9"		"models/SmallBridge/SBpanelwideDoor/sbpanelwidedoor.mdl"
+"11"		"models/SmallBridge/SBdoor/sbdoor.mdl"
 		
-"10"		"models/SmallBridge/SBdoor/sbdoor.mdl"
+"12"		"models/SmallBridge/SBdoorsquare/sbdoorsquare.mdl"
 		
-"11"		"models/SmallBridge/SBdoorsquare/sbdoorsquare.mdl"
+"13"		"models/SmallBridge/SBdoorwide/sbdoorwide.mdl"
 		
-"12"		"models/SmallBridge/SBdoorwide/sbdoorwide.mdl"
+"14"		"models/SmallBridge/SBpanelSquareDoordockin/sbpanelsquaredoordockin.mdl"
 		
-"13"		"models/SmallBridge/SBpanelSquareDoordockin/sbpanelsquaredoordockin.mdl"
-		
-"14"		"models/SmallBridge/SBpanelSquareDoordocko/sbpanelsquaredoordocko.mdl"
+"15"		"models/SmallBridge/SBpanelSquareDoordocko/sbpanelsquaredoordocko.mdl"
 	
 
 
