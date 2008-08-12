@@ -1,8 +1,8 @@
 // Output .MDL
-$modelname Slyfowalls/fencewalllong.mdl
+$modelname Slyfowalls/fencedoorsolid.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "fencewalllong_detail.smd"
+$body studio "fencedoorsolid_detail.smd"
 $texturegroup skinfamilies
 {
 	{ "grungewall"        }
@@ -16,22 +16,22 @@ $keyvalues
 {
  prop_data 
 { 
-"base" "Metal.Large"
+"base" "Stone.Large"
 } 
 }
 
 //Model properties
 $staticprop
-$surfaceprop "metal"
+$surfaceprop "concrete"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "fencewalllong_detail.smd" loop fps 15
+$sequence idle "fencedoorsolid_detail.smd" loop fps 15
 
 // Physics data
-$collisionmodel "fencewalllong_phys.smd" {
+$collisionmodel "fencedoorsolid_phys.smd" {
 	$concave
-	$mass WEIGHT
+	$mass 200.00
 	$inertia 1.00
 	$damping 0.00
 	$rotdamping 0.00

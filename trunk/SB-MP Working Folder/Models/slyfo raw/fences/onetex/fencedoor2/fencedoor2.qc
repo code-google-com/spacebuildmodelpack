@@ -1,14 +1,9 @@
 // Output .MDL
-$modelname Slyfowalls/fenceentrance.mdl
+$modelname Slyfowalls/fencedoor2.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "fenceentrance_detail.smd"
-$texturegroup skinfamilies
-{
-	{ "grungewall"        }
-	{ "grungewallblue"    }
-	{ "badconcrete"       }
-}
+$body studio "fencedoor2_detail.smd"
+
 // Directory of materials that the model uses
 $cdmaterials spacebuild
 
@@ -26,12 +21,12 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "fenceentrance_detail.smd" loop fps 15
+$sequence idle "fencedoor2_detail.smd" loop fps 15
 
 // Physics data
-$collisionmodel "fenceentrance_phys.smd" {
+$collisionmodel "fencedoor2_phys.smd" {
 	$concave
-	$mass WEIGHT
+	$mass 100.00
 	$inertia 1.00
 	$damping 0.00
 	$rotdamping 0.00
