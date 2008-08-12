@@ -1,0 +1,39 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SBMP]Slyfo - Walls"
+	}
+	
+
+
+"Entries"
+	{
+		
+
+
+"1"		"models/Slyfowalls/fencedoor1.mdl"
+"2"		"models/Slyfowalls/fencedoor2.mdl"
+"3"		"models/Slyfowalls/fencedoor3.mdl"
+"4"		"models/Slyfowalls/fencedoor4.mdl"
+"5"		"models/Slyfowalls/fencedoorsolid.mdl"
+"6"		"models/Slyfowalls/fencecellbroken.mdl"
+"7"		"models/Slyfowalls/fencecellnocorner.mdl"
+"8"		"models/Slyfowalls/fencecellnorm.mdl"
+"9"		"models/Slyfowalls/fencecornerlong.mdl"
+"10"		"models/Slyfowalls/fencecornershort.mdl"		
+"11"		"models/Slyfowalls/fenceentrance.mdl"
+"12"		"models/Slyfowalls/fencetriwall.mdl"
+"13"		"models/Slyfowalls/fenceUlong.mdl"
+"14"		"models/Slyfowalls/fenceUshort.mdl"
+"15"		"models/Slyfowalls/fenceUshortgunnest.mdl"
+"16"		"models/Slyfowalls/fencewalllong.mdl"
+"17"		"models/Slyfowalls/fencewallmed.mdl"
+"18"		"models/Slyfowalls/fencewallmedbroken.mdl"
+"19"		"models/Slyfowalls/fencewallshort.mdl"
+
+
+
+}
+}
