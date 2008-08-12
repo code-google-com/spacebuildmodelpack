@@ -52,6 +52,9 @@ if CLIENT then //Make's sure this is running on the client, we don't want dedica
 	if file.Exists("../settings/spawnlist/[SBMP]Slyfo.txt") then
 		file.Delete( "../settings/spawnlist/[SBMP]Slyfo.txt" )
 	end
+	if file.Exists("../settings/spawnlist/[SBMP]Slyfo - walls.txt") then
+		file.Delete( "../settings/spawnlist/[SBMP]Slyfo - walls.txt" )
+	end
 	if file.Exists("../settings/spawnlist/[SBMP] WALKWAYS.txt") then
 		file.Delete( "../settings/spawnlist/[SBMP] WALKWAYS.txt" )
 	end
