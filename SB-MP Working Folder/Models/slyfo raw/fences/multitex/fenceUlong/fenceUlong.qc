@@ -1,9 +1,14 @@
 // Output .MDL
-$modelname Slyfowalls/fencedoor3.mdl
+$modelname Slyfowalls/fenceUlong.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "fencedoor3_detail.smd"
-
+$body studio "fenceUlong_detail.smd"
+$texturegroup skinfamilies
+{
+	{ "grungewall"        }
+	{ "grungewallblue"    }
+	{ "badconcrete"       }
+}
 // Directory of materials that the model uses
 $cdmaterials spacebuild
 
@@ -11,22 +16,22 @@ $keyvalues
 {
  prop_data 
 { 
-"base" "Metal.Large"
+"base" "Stone.Large"
 } 
 }
 
 //Model properties
 $staticprop
-$surfaceprop "metal"
+$surfaceprop "concrete"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "fencedoor3_detail.smd" loop fps 15
+$sequence idle "fenceUlong_detail.smd" loop fps 15
 
 // Physics data
-$collisionmodel "fencedoor3_phys.smd" {
+$collisionmodel "fenceUlong_phys.smd" {
 	$concave
-	$mass WEIGHT
+	$mass 500.00
 	$inertia 1.00
 	$damping 0.00
 	$rotdamping 0.00
