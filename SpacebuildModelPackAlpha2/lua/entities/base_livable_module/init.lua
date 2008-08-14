@@ -9,6 +9,7 @@ include('shared.lua')
 
 function ENT:Initialize()
 	self.BaseClass.Initialize(self)
+	CAF.GetAddon("Resource Distribution").RegisterNonStorageDevice(self)
 	self.Active = 0
 	self.damaged = 0
 	self:CreateEnvironment(1, 1, 1, 0, 0, 0, 0, 0)
