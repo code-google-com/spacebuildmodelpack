@@ -263,8 +263,6 @@
 		
 "125"		"models/Slyfo/unbendable.mdl"
 
-"126"		"models/Slyfotest/fencedoor.mdl"
-"127"		"models/Slyfotest/fencegate.mdl"
 
 
 
