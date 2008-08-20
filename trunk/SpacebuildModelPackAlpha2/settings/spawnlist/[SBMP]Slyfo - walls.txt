@@ -32,6 +32,8 @@
 "17"		"models/Slyfowalls/fencewallmed.mdl"
 "18"		"models/Slyfowalls/fencewallmedbroken.mdl"
 "19"		"models/Slyfowalls/fencewallshort.mdl"
+"20"		"models/Slyfowalls/guardtower.mdl"
+"21"		"models/Slyfowalls/guardtowerwall.mdl"
 
 
 
