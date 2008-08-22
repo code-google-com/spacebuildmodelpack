@@ -1,3 +1,13 @@
 list.Set( "ButtonModels", "models/SmallBridge/SBconsole1low/sbconsole1low.mdl", {} )
 list.Set( "ButtonModels", "models/SmallBridge/SBconsole1s/sbconsole1s.mdl", {} )
 list.Set( "ButtonModels", "models/Slyfo/powercrystal.mdl", {} )
+
+list.Add( "OverrideMaterials", "SmallBridge/Bolt" )
+list.Add( "OverrideMaterials", "SmallBridge/Hazard" )
+list.Add( "OverrideMaterials", "SmallBridge/Floor2" )
+list.Add( "OverrideMaterials", "SmallBridge/ScrapLight1d" )
+list.Add( "OverrideMaterials", "SmallBridge/Chrome" )
+list.Add( "OverrideMaterials", "SmallBridge/ChromeFloor" )
+list.Add( "OverrideMaterials", "SmallBridge/LongLight" )
+list.Add( "OverrideMaterials", "SmallBridge/SpacePlating" )
+list.Add( "OverrideMaterials", "SmallBridge/FloorTile" )
