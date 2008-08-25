@@ -7,6 +7,11 @@ $texturegroup skinfamilies
 {
 	{ "grungewall"        }
 	{ "grungewallblue"    }
+	{ "grungewallpurple"  }
+	{ "grungewallorange"  }
+	{ "grungewallpurple"  }
+	{ "grungewallteal"    }
+	{ "badconcrete"       }
 }
 // Directory of materials that the model uses
 $cdmaterials spacebuild
