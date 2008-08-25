@@ -5,13 +5,13 @@ $hboxset "default"
 $body studio "doublehowitzer_detail.smd"
 $texturegroup skinfamilies
 {
-	{ "grungewall"        }
-	{ "grungewallblue"    }
-	{ "grungewallpurple"  }
-	{ "grungewallorange"  }
-	{ "grungewallpurple"  }
-	{ "grungewallteal"    }
-	{ "badconcrete"       }
+{ "grungewall"        }
+{ "grungewallblue"    }
+{ "grungewallpurple"  }
+{ "grungewallorange"  }
+{ "grungewallblack"   }
+{ "grungewallteal"    }
+{ "badconcrete"       }
 }
 // Directory of materials that the model uses
 $cdmaterials spacebuild
