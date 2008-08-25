@@ -1,13 +1,9 @@
 // Output .MDL
-$modelname Slyfowalls/missilepod.mdl
+$modelname Slyfo/SMLturretbase.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "missilepod_detail.smd"
-$texturegroup skinfamilies
-{
-	{ "grungewall"        }
-	{ "grungewallblue"    }
-}
+$body studio "SMLturretbase_detail.smd"
+
 // Directory of materials that the model uses
 $cdmaterials spacebuild
 
@@ -25,10 +21,10 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "missilepod_detail.smd" loop fps 15
+$sequence idle "SMLturretbase_detail.smd" loop fps 15
 
 // Physics data
-$collisionmodel "missilepod_phys.smd" {
+$collisionmodel "SMLturretbase_phys.smd" {
 	$concave
 	$mass 2500
 	$inertia 1.00

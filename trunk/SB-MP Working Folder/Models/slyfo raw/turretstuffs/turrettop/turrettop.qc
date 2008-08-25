@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Slyfo/turrettop.mdl
+$modelname Slyfowalls/turrettop.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "turrettop_detail.smd"
