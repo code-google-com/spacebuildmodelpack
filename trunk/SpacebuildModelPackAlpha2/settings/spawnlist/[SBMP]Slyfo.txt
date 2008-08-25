@@ -263,6 +263,14 @@
 		
 "125"		"models/Slyfo/unbendable.mdl"
 
+"126"		"models/Slyfo/SMLmissilepod.mdl"
+
+"127"		"models/Slyfo/SMLturretbase.mdl"
+
+"128"		"models/Slyfo/SMLturrettop.mdl"
+
+"129"		"models/Slyfo/wheelcycle.mdl"
+
 
 
 
