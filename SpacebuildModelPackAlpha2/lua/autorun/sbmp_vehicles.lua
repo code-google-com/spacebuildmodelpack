@@ -1,5 +1,5 @@
 AddCSLuaFile( "sbmp_vehicles.lua" )
-
+			  
 local Category = "Space Build Model Pack"
 
 local function HandleSBMPVehicleAnimation( vehicle, player )
@@ -399,3 +399,22 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_SB_pod", V )
+
+
+local V = { 	
+				Name = "Wheelcycle", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Uniwheel Cyclepod",
+				Model = "models/Slyfo/wheelcycle.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "wheelcycle", V )
