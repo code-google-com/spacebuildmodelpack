@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Slyfowalls/missilepod.mdl
+$modelname Slyfo/missilepod.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "missilepod_detail.smd"
