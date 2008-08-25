@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Slyfowalls/doublehowitzer.mdl
+$modelname Slyfo/doublehowitzer.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "doublehowitzer_detail.smd"
