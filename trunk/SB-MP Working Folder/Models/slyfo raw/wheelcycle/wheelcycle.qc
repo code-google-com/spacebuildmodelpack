@@ -1,5 +1,5 @@
 // Output .MDL
-$modelname Spacebuild/wheelcycle.mdl
+$modelname Slyfo/wheelcycle.mdl
 $hboxset "default"
 // Base or Reference .SMD
 $body studio "wheelcycle.SMD"
@@ -21,14 +21,17 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "wheelcycle_detail" loop fps 15
+$sequence idle "wheelcycle_detail" loop fps 1
 
  // This specifies the players viewpoint when you get in the car. 
  // The rotation MUST be correct or your view will rotate when you get in the car. 
- $attachment "vehicle_driver_eyes" "car.view" 0.00 0.00 30.55 rotate 0 0 0 
+ $attachment "vehicle_driver_eyes" "car.view" 0.00 0.00 98.74 rotate 0 0 0 
 
- // This specifes where you end up in relation to the car  when you get out.  
- $attachment "vehicle_driver_exit" "car.body" 0.00 -100.00 25.00 rotate 0 0 0
+ // This specifies where you end up in relation to the car  when you get out.  
+ $attachment "vehicle_driver_exit" "car.body" 0.00 -100.00 93.19 rotate 0 0 0
+
+ // Hyst: This specifies where the player will actually appear in the car.
+ $attachment "vehicle_feet_passenger0" "car.view" 0.00 0.00 68.19 rotate 0 -90 0
 
  $keyvalues { 
    vehicle_exit { 
