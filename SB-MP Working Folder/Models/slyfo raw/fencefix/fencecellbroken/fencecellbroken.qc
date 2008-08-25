@@ -1,8 +1,8 @@
 // Output .MDL
-$modelname Slyfowalls/turrettop.mdl
+$modelname Slyfowalls/fencecellbroken.mdl
 $hboxset "default"
 // Base or Reference .SMD
-$body studio "turrettop_detail.smd"
+$body studio "fencecellbroken_detail.smd"
 $texturegroup skinfamilies
 {
 	{ "grungewall"        }
@@ -30,12 +30,12 @@ $surfaceprop "metal"
 $scale 1.0
 
 // sequences: all sequences are in $cd
-$sequence idle "turrettop_detail.smd" loop fps 15
+$sequence idle "fencecellbroken_detail.smd" loop fps 15
 
 // Physics data
-$collisionmodel "turrettop_phys.smd" {
+$collisionmodel "fencecellbroken_phys.smd" {
 	$concave
-	$mass 2500
+	$mass WEIGHT
 	$inertia 1.00
 	$damping 0.00
 	$rotdamping 0.00
