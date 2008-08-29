@@ -1,5 +1,4 @@
 if not CAF or not CAF.GetAddon("Resource Distribution") then return end
-if not GAMEMODE.IsSpacebuildDerived then return end
 
 TOOL.Category			= "SBMP"
 TOOL.Name				= "#Resource Modules"
