@@ -95,7 +95,8 @@ function ENT:Damage()
 end
 
 function ENT:Repair()
-	self.health = self.maxhealth
+	self.BaseClass.Repair(self)
+	self.Entity:SetColor(255, 255, 255, 255)
 	self.damaged = 0
 end
 
