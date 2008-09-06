@@ -1,0 +1,17 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"	"2"
+		"name"		"[SBMP]Cherubim Entia - Station Models"
+	}
+	
+
+"Entries"
+	{
+		"1"		"models/ce_spacemodels/stations/stat.mdl"
+		"2"		"models/ce_spacemodels/stations/stat_lowered.mdl"
+		"3"		"models/ce_spacemodels/stations/stat_lowered_smallbridge_oneside.mdl"
+		"4"		"models/ce_spacemodels/stations/stat_lowered_smallbridge_twoside.mdl"
+	}
+}

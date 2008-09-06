@@ -1,0 +1,10 @@
+"vertexlitgeneric"
+{
+	"$basetexture" 		"ce_spacemodels/stations/blackplastic"
+	"$surfaceprop" 		"plastic"
+	"$envmaptint" 		"[0.2 0.2 0.2]"
+	"$bumpmap" 		"ce_spacemodels/stations/blackplastic_bump"
+	"$envmap" 		"env_cubemap"
+	"$envmapsaturation" 	"0.1"
+	"$model" 		"1"
+}

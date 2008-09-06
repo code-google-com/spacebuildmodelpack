@@ -1,0 +1,10 @@
+"vertexlitgeneric"
+{
+	"$basetexture" 		"ce_spacemodels/stations/metal_floor"
+	"$surfaceprop" 		"metal"
+	"$envmaptint" 		"[0.3 0.3 0.3]"
+	"$bumpmap" 		"ce_spacemodels/stations/metal_floor_bump"
+	"$envmap" 		"env_cubemap"
+	"$envmapsaturation" 	"0.2"
+	"$model" 		"1"
+}
