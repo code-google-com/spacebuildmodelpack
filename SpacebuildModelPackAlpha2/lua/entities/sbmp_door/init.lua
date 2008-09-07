@@ -47,7 +47,7 @@ function ENT:AddDoorPhysics()
 		ent:SetModel( model[2] )
 		ent:Spawn()
 		ent:SetAngles(self:GetAngles() + Angle( 0 , 90 , 0 ))
-		ent:SetPos(self:GetPos() - Vector( 0 , 27.9 , 0 ))
+		ent:SetPos(self:GetPos())
 
 		constraint.Weld( ent, self, 0, 0, 0, true )
 				
