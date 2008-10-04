@@ -96,11 +96,15 @@ function ENT:Initialize()
 	if WireAddon then
 		self.Outputs = Wire_CreateOutputs(self.Entity, self.OutputTable)
 		
-		for k,v in ipairs(self.Resources) do	
-			Wire_TriggerOutput(self.Entity, self.ResourceNames[k], self.MaxAmounts[k])
+		if RD_SupplyResource then
+			for k,v in ipairs(self.Resources) do	
+				Wire_TriggerOutput(self.Entity, self.ResourceNames[k], self.MaxAmounts[k])
+			end
 		end
 		
-		Wire_TriggerOutput(self.Entity, "Shield Structural Integrity",100)
+		if CDS then
+			Wire_TriggerOutput(self.Entity, "Shield Structural Integrity",100)
+		end
 	end
 	
 	self.Entity:StartMotionController()
@@ -114,7 +118,7 @@ function ENT:Think()
 		phys:Wake()
 	end
 	
-	if RD_ConsumeResource then
+	if RD_GetResourceAmount and RD_SupplyResource then
 		for k, res in ipairs(self.Resources) do
 			local diff = (self.MaxAmounts[k] - RD_GetResourceAmount(self.Entity, res))
 			
@@ -124,9 +128,9 @@ function ENT:Think()
 		end
 	end
 	
-	self:ProcessContraption()	
-	
 	self.Entity:NextThink(CurTime() + 1)
+	
+	return self:ProcessContraption()
 end
 
 function ENT:ProcessContraption()
@@ -199,7 +203,7 @@ function ENT:ProcessContraption()
 		RD_ConsumeResource(self.Entity, "coolant", cooling_cost)
 	end
 	
-	if WireAddon then
+	if WireAddon and RD_GetResourceAmount then
 		for k,v in ipairs(self.Resources) do
 			Wire_TriggerOutput(self.Entity, self.ResourceNames[k], RD_GetResourceAmount(self.Entity, v))
 		end
@@ -404,20 +408,21 @@ function ENT:EndAlarm()
 	
 	self.ShieldDamaged = false
 	
-	self:ProcessContraption()
+	return self:ProcessContraption()
 end
 
 function ENT:RestoreTimerTick()
 	if not (self and self.Entity and self.Entity:IsValid()) then return end
-	
-	self.ShieldRepairStatus = self.ShieldRepairStatus + 1
-	
-	if WireAddon then Wire_TriggerOutput(self.Entity, "Shield Structural Integrity", self.ShieldRepairStatus * self.ShieldRepairMulti) end
-	
-	if self.ShieldRepairStatus >= self.ShieldRepairTime then
-		self:EndAlarm()
-	else
-		timer.Simple(1, self.RestoreTimerTick,self)
+	if CDS then
+		self.ShieldRepairStatus = self.ShieldRepairStatus + 1
+		
+		if WireAddon then Wire_TriggerOutput(self.Entity, "Shield Structural Integrity", self.ShieldRepairStatus * self.ShieldRepairMulti) end
+		
+		if self.ShieldRepairStatus >= self.ShieldRepairTime then
+			self:EndAlarm()
+		else
+			timer.Simple(1, self.RestoreTimerTick,self)
+		end
 	end
 end
 
@@ -448,14 +453,10 @@ function ENT:CalcPos()
 end
 
 function ENT:CalcAng()
-	local pitch = self:CalcPitch()
-	local yaw   = self:CalcYaw()
-	local roll  = self:CalcRoll()
-
 	local ang = self:GetAngles()
-	ang:RotateAroundAxis(self:GetRight(),   pitch) // Rotate around the right. Thing about it.
-	ang:RotateAroundAxis(self:GetUp(),      yaw)   // Rotate around the up to turn the yaw
-	ang:RotateAroundAxis(self:GetForward(), roll)  // Rotate around the forward, this'll make you roll, or rather, it should. :S
+	ang:RotateAroundAxis(self:GetRight(),   self:CalcPitch()) // Rotate around the right. Thing about it.
+	ang:RotateAroundAxis(self:GetUp(),      self:CalcYaw())   // Rotate around the up to turn the yaw
+	ang:RotateAroundAxis(self:GetForward(), self:CalcRoll())  // Rotate around the forward, this'll make you roll, or rather, it should. :S
 	
 	return ang
 end
@@ -529,11 +530,10 @@ function ENT:OnTakeDamage(dmg)
 end
 
 function ENT.SBMP_JSUpdate_CC(pl,cmd,args)
-	if not pl.SBMP_JSEnts then
-		pl.SBMP_JSEnts = {}
-	end
+	pl.SBMP_JSEnts = pl.SBMP_JSEnts or {}
+	
 	for k,v in pairs(pl.SBMP_JSEnts) do
-		if v and ValidEntity(v) then
+		if v and v.IsValid and v:IsValid() then
 			v:Update(args)
 		else
 			table.remove(pl.SBMP_JSEnts,k)
