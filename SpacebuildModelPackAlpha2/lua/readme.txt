@@ -6,6 +6,14 @@ Don't be an ass and keep RD2 support pressent (you don't need to rewrite new stu
 
 You probably want to use uRD's API anyways, it's currently much better then RD3's and better then RD2's and will only get better as time goes on. (RD3 is a dead end in my opinion. And uRD will confirm it.)
 
+PEOPLE! START PREFIXING YOUR DAMN FILES CORRECTLY:
+
+cl_ (Client)
+sh_ (Shared)
+sv_ (Server)
+
+Helps keep stuff neat and readable, not to mention it'll enable AddLua support (it's like a merge of Include and AddCSLuaFile but it does it all in one call and it does loads/sends the file automaticall).
+
 ----------------------------
 -- NOTE FROM LUAPINEAPPLE --
 ----------------------------
