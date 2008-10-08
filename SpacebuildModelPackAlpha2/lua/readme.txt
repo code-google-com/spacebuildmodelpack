@@ -1,3 +1,16 @@
+----------------------------
+-- NOTE FROM LUAPINEAPPLE --
+----------------------------
+
+Don't be an ass and keep RD2 support pressent (you don't need to rewrite new stuff, just don't remove the old) until I can kick uRD out the door. Use a if-then-end to disable RD3 stuff in case of the lack of RD3.
+
+You probably want to use uRD's API anyways, it's currently much better then RD3's and better then RD2's and will only get better as time goes on. (RD3 is a dead end in my opinion. And uRD will confirm it.)
+
+----------------------------
+-- NOTE FROM LUAPINEAPPLE --
+----------------------------
+
+
 Updating to SB3/LS3/RD3, this will cause some things to not work with any of the older versions anymore.
 The config file will be replaced with a new system once a final bug in it is fixed.
 
