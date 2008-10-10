@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "LuaPineapple/FS2/beam_cannon/gold_beam_cannon_glow"
+	"$nolod" 1
+	"$translucent" 1
+}
