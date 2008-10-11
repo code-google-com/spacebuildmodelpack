@@ -435,10 +435,10 @@ local V = {
 								HandleAnimation = HandleSBMPVehicleAnimation,
 							}
 }
-list.Set( "Vehicles", "TORPEDOSHIP1", V )
+list.Set( "Vehicles", "SWORD", V )
 
 local V = {
-				Name = "TORPEDOSHIP1",
+				Name = "TorpedoShip1",
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
