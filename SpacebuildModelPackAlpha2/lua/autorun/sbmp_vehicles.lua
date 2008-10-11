@@ -435,4 +435,22 @@ local V = {
 								HandleAnimation = HandleSBMPVehicleAnimation,
 							}
 }
-list.Set( "Vehicles", "SWORD", V )
+list.Set( "Vehicles", "TORPEDOSHIP1", V )
+
+local V = {
+				Name = "TORPEDOSHIP1",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Torpedo hauler",
+				Model = "models/Slyfo/TORPEDOSHIP1.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "TORPEDOSHIP1", V )
