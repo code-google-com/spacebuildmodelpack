@@ -418,3 +418,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "wheelcycle", V )
+
+local V = { 	
+				Name = "SWORD", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Orbital Reconstruction/Demolition",
+				Model = "models/Slyfo/SWORD.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "SWORD", V )
