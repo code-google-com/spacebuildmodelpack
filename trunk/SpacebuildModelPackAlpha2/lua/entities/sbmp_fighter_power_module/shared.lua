@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_wire_entity"
+ENT.Base 			= "base_gmodentity"
 
 ENT.PrintName		= "All-In-One Fighter Module"
 ENT.Author			= "LuaPineapple"
