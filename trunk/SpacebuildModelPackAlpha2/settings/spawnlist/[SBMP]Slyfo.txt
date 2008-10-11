@@ -271,6 +271,14 @@
 
 "129"		"models/Slyfo/wheelcycle.mdl"
 
+"129"		"models/Slyfo/TORPEDO.mdl"
+
+"129"		"models/Slyfo/SWORDGATLEFT.mdl"
+
+"129"		"models/Slyfo/SWORDGATRIGHT.mdl"
+
+"129"		"models/Slyfo/SWORDGRENADE.mdl"
+
 
 
 
