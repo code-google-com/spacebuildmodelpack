@@ -2,7 +2,7 @@
 -- NOTE FROM LUAPINEAPPLE --
 ----------------------------
 
-Don't be an ass and keep RD2 support pressent (you don't need to rewrite new stuff, just don't remove the old) until I can kick uRD out the door. Use a if-then-end to disable RD3 stuff in case of the lack of RD3.
+Don't be an ass and keep RD2 support present (at least until I can kick uRD out the door). Use a if-then-end to disable RD3 stuff in case of the lack of RD3 (and likewise for RD2).
 
 You probably want to use uRD's API anyways, it's currently much better then RD3's and better then RD2's and will only get better as time goes on. (RD3 is a dead end in my opinion. And uRD will confirm it.)
 
@@ -12,11 +12,13 @@ cl_ (Client)
 sh_ (Shared)
 sv_ (Server)
 
-Helps keep stuff neat and readable, not to mention it'll enable AddLua support (it's like a merge of Include and AddCSLuaFile but it does it all in one call and it does loads/sends the file automaticall).
+Helps keep stuff neat and readable, not to mention it'll enable AddLua support (it's like a merge of Include and AddCSLuaFile but it does it all in one call and it does loads/sends the file automatically).
 
 ----------------------------
 -- NOTE FROM LUAPINEAPPLE --
 ----------------------------
+
+
 
 
 Updating to SB3/LS3/RD3, this will cause some things to not work with any of the older versions anymore.
