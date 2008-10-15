@@ -16,7 +16,7 @@ if PLANETFALL_DATA_SYSTEM then
 	elseif PLANETFALL_DATA_SYSTEM < InternalVersion then
 		Msg("A less recent instance of the Planetfall Data Record System has been detected, overriding instance.\n")
 	elseif DEV_MODE then
-		return Msg("The same instance of the Planetfall Trace Bullet Library has been detected, overriding instance.\n")
+		return Msg("The same instance of the Planetfall Data Record System has been detected, overriding instance.\n")
 	else
 		return Msg("The same instance of the Planetfall Data Record System has been detected, aborting initialization.\n")
 	end

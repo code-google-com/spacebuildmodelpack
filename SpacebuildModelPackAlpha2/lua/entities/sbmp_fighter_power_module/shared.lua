@@ -6,6 +6,7 @@ ENT.Author			= "LuaPineapple"
 ENT.Contact			= "evilpineapple@cox.net"
 ENT.Purpose			= "Provide a single module to power an entire fighter craft."
 ENT.Instructions	= "Spawn, wire, use."
+ENT.Category		= "Spacebuild Enhancement Project"
 
-ENT.Spawnable			= true
-ENT.AdminSpawnable		= true
+ENT.Spawnable		= true
+ENT.AdminSpawnable	= true
