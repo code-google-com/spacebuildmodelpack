@@ -7,13 +7,16 @@
 	Add fast transmit network option (using usermessages)
 --]]
 
-local InternalVersion = 1.0
+local DEV_MODE = true
+local InternalVersion = 1.1
 
 if PLANETFALL_DATA_SYSTEM then
 	if PLANETFALL_DATA_SYSTEM > InternalVersion then
 		return Msg("A more recent instance of the Planetfall Data Record System has been detected, aborting initialization.\n")
 	elseif PLANETFALL_DATA_SYSTEM < InternalVersion then
 		Msg("A less recent instance of the Planetfall Data Record System has been detected, overriding instance.\n")
+	elseif DEV_MODE then
+		return Msg("The same instance of the Planetfall Trace Bullet Library has been detected, overriding instance.\n")
 	else
 		return Msg("The same instance of the Planetfall Data Record System has been detected, aborting initialization.\n")
 	end
