@@ -3,6 +3,7 @@
 	by Olivier 'LuaPineapple' Hamel
 --]]
 
+local DEV_MODE = true
 local InternalVersion = 1.0
 
 if USERMESSAGE_EXTENSIONS then
@@ -10,6 +11,8 @@ if USERMESSAGE_EXTENSIONS then
 		return Msg("A more recent instance of the Planetfall Usermessage Extensions Module has been detected, aborting initialization.\n")
 	elseif USERMESSAGE_EXTENSIONS < InternalVersion then
 		Msg("A less recent instance of the Planetfall Usermessage Extensions Module has been detected, overriding instance.\n")
+	elseif DEV_MODE then
+		Msg("The same instance of the Planetfall Usermessage Extensions Module has been detected, overriding instance.\n")
 	else
 		return Msg("The same instance of the Planetfall Usermessage Extensions Module has been detected, aborting initialization.\n")
 	end
