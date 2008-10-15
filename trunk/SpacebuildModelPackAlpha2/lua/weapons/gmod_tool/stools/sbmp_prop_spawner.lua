@@ -1,12 +1,13 @@
-TOOL.Category = 'Construction' 
+TOOL.Category = 'SBMP' 
 TOOL.Name = '#SBMP Prop Spawner'
 TOOL.Command = nil
 TOOL.ConfigName = ''
 
-
-language.Add( "Tool_sbmp_prop_spawner_name" , "SBMP Prop Spawner Tool" )
-language.Add( "Tool_sbmp_prop_spawner_desc" , "Easily find and spawn SBMP props." )
-language.Add( "Tool_sbmp_prop_spawner_0", "Left click to spawn the selected prop." )
+if CLIENT then
+	language.Add( "Tool_sbmp_prop_spawner_name" , "SBMP Prop Spawner Tool" )
+	language.Add( "Tool_sbmp_prop_spawner_desc" , "Easily find and spawn SBMP props." )
+	language.Add( "Tool_sbmp_prop_spawner_0", "Left click to spawn the selected prop." )
+end
 
 TOOL.ClientConVar[ "SkinNumber" ]       = "1" 
 TOOL.ClientConVar[ "glass" ]            = "1"

@@ -52,7 +52,7 @@ function TraceBulletLib.TickDriver()
 	local CTime = CurTime()
 	local FTime = FrameTime()
 	
-	for k, v in pairs(ShotsList) do
+	for k, v in pairs(TraceBulletLib.ShotsList) do
 		v:TickUpdate(CTime, k, FTime)
 	end
 end
@@ -63,7 +63,7 @@ function TraceBulletLib.ThinkDriver()
 	local CTime = CurTime()
 	local FTime = FrameTime()
 	
-	for k, v in pairs(ShotsList) do
+	for k, v in pairs(TraceBulletLib.ShotsList) do
 		v:ThinkUpdate(CTime, k, FTime)
 	end
 end
