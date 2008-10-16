@@ -8,7 +8,7 @@
 --]]
 
 local DEV_MODE = true
-local InternalVersion = 1.1
+local InternalVersion = 1.2
 
 if PLANETFALL_DATA_SYSTEM then
 	if PLANETFALL_DATA_SYSTEM > InternalVersion then
@@ -61,40 +61,41 @@ if entity_meta then
 	
 	-- NOTE: There will be a clientside cache system so you don't need to constantly rebuild the table, I will add a similar cache system serverside that only updates relevant nodes. Maybe; it's implamentation will not be trivial.
 	
-	function entity_meta:SetDataField(key, value, NETWORK_VAR_TYPE, INTERNAL_TBL_LEVEL)
+	function entity_meta:SetDataField(record, key, value, NETWORK_VAR_TYPE, INTERNAL_TBL_LEVEL)
 		if CLIENT and NETWORK_VAR_TYPE then return Error("Client cannot set managed networked data!\n") end
 		
 		self.CentralizedDataRecord = self.CentralizedDataRecord or {}
+		self.CentralizedDataRecord[record] = self.CentralizedDataRecord[record] or {}
 		
-		self.CentralizedDataRecord[key] = value
+		self.CentralizedDataRecord[record][key] = value
 		
 		if NW_VAR_TYPE_ANGLE == NETWORK_VAR_TYPE then
-			key = "NW_PF_DATA_ANGLE_"   .. key
+			key = "NW_PF_DATA_ANGLE_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedAngle(key, value)
 		elseif NW_VAR_TYPE_BOOLEAN == NETWORK_VAR_TYPE then
-			key = "NW_PF_DATA_BOOLEAN_"   .. key
+			key = "NW_PF_DATA_BOOLEAN_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedBool(key, value)
 		elseif NW_VAR_TYPE_ENTITY == NETWORK_VAR_TYPE then
-			key = "NW_PF_DATA_ENTITY_"   .. key
+			key = "NW_PF_DATA_ENTITY_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedEntity(key, value)
 		elseif NW_VAR_TYPE_NUMBER == NETWORK_VAR_TYPE then -- Might want to add some discriminator paramiter so we can have both NWInt and NWFloat
-			key = "NW_PF_DATA_NUMBER_"   .. key
+			key = "NW_PF_DATA_NUMBER_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedNumber(key, value)
 		elseif NW_VAR_TYPE_STRING == NETWORK_VAR_TYPE then
-			key = "NW_PF_DATA_String_"   .. key
+			key = "NW_PF_DATA_String_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedString(key, value)
 		elseif NW_VAR_TYPE_VECTOR == NETWORK_VAR_TYPE then
-			key = "NW_PF_DATA_VECTOR_"   .. key
+			key = "NW_PF_DATA_VECTOR_"   .. record .. "_" .. key
 			
 			self.CentralizedDataRecord[key] = value
 			return self:SetNetworkedVector(key, value)
@@ -103,30 +104,31 @@ if entity_meta then
 		end
 	end
 	
-	function entity_meta:GetDataField(key, NETWORK_VAR_TYPE, INTERNAL_TBL_LEVEL)
+	function entity_meta:GetDataField(record, key, NETWORK_VAR_TYPE, INTERNAL_TBL_LEVEL)
 		self.CentralizedDataRecord = self.CentralizedDataRecord or {}
+		self.CentralizedDataRecord[record] = self.CentralizedDataRecord[record] or {}
 		
 		-- Only do this crap on the client since we already have it cached on the server
 		if NETWORK_VAR_TYPE and CLIENT then
 			if NW_VAR_TYPE_ANGLE == NETWORK_VAR_TYPE then
-				return self:GetNetworkedAngle("NW_PF_DATA_ANGLE_"    .. key, value)
+				return self:GetNetworkedAngle("NW_PF_DATA_ANGLE_"    .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_BOOLEAN == NETWORK_VAR_TYPE then
-				return self:GetNetworkedBool(  "NW_PF_DATA_BOOLEAN_" .. key, value)
+				return self:GetNetworkedBool(  "NW_PF_DATA_BOOLEAN_" .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_ENTITY ==  NETWORK_VAR_TYPE then
-				return self:GetNetworkedEntity("NW_PF_DATA_ENTITY_"  .. key, value)
+				return self:GetNetworkedEntity("NW_PF_DATA_ENTITY_"  .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_NUMBER ==  NETWORK_VAR_TYPE then -- FIX THIS, CURRENTLY THERE IS NO GETNETWORKEDNUMBER!
-				return self:GetNetworkedFloat("NW_PF_DATA_NUMBER_"   .. key, value)
+				return self:GetNetworkedFloat("NW_PF_DATA_NUMBER_"   .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_STRING ==  NETWORK_VAR_TYPE then
-				return self:GetNetworkedString("NW_PF_DATA_String_"  .. key, value)
+				return self:GetNetworkedString("NW_PF_DATA_String_"  .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_VECTOR ==  NETWORK_VAR_TYPE then
-				return self:GetNetworkedVector("NW_PF_DATA_VECTOR_"  .. key, value)
+				return self:GetNetworkedVector("NW_PF_DATA_VECTOR_"  .. record .. "_" .. key, value)
 			elseif NW_VAR_TYPE_TABLE ==   NETWORK_VAR_TYPE then -- CURRENTLY DISABLED AND NON WORKING, WON'T BE FIXED UNTIL I (OR SOMEONE ELSE) HAVE A REAL NEED FOR THIS!
 				return Error("Networking tables is currently incomplete and cannot be used.\n")
 			end
 		else -- Not networked
-			return self.CentralizedDataRecord[key]
+			return self.CentralizedDataRecord[record][key]
 		end
 	end
 else
-	ErrorNoHalt("Unable to obtain the entity userdata metatable!\n*The Planetfall weapon base will not function!*\n--|| YOU MUST REPORT THIS TO OLIVIER 'LUAPINEAPPLE' HAMEL RIGHT AWAY! ||--\n--|| SKYPE USERNAME: LuaPineapple ||--\n--|| STEAM USERNAME: Evil_Pineapple. ||--\n--|| EMAIL: evil_pineapple.cox.net ||--\n")
+	ErrorNoHalt("Unable to obtain the entity userdata metatable!\n*The Planetfall Data Record System will not function!*\n--|| YOU MUST REPORT THIS TO OLIVIER 'LUAPINEAPPLE' HAMEL RIGHT AWAY! ||--\n--|| SKYPE USERNAME: LuaPineapple ||--\n--|| STEAM USERNAME: Evil_Pineapple. ||--\n--|| EMAIL: evil_pineapple.cox.net ||--\n")
 end

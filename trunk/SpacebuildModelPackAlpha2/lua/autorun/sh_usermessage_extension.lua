@@ -1,3 +1,4 @@
+
 --[[
 	Planetfall Usermessage Extensions Module
 	by Olivier 'LuaPineapple' Hamel
@@ -144,7 +145,7 @@ if SERVER then
 			umsg.Char(TypeTable)
 			
 			for k, v in pairs(data) do
-				umsg_send_kv(k, v, use_string_pooling)
+				umsg.SendTableKV(k, v, use_string_pooling)
 			end
 			
 			return umsg.Char(TypeNil) -- Marks the end of the list
@@ -167,7 +168,7 @@ if SERVER then
 		return -1
 	end
 	
-	local function umsg_send_kv(k, v, use_string_pooling)
+	function umsg.SendTableKV(k, v, use_string_pooling)
 		local data_type_k = type(k)
 		local data_type_v = type(v)
 		
