@@ -12,8 +12,8 @@ ENT.Purpose         = "Insta-ban justifier."
 ENT.Instructions    = "There's a manual you know."
 ENT.Category        = "Spacebuild Enhancement Project" -- Who changed the title?
 
-ENT.Spawnable		= true
-ENT.AdminSpawnable	= true
+ENT.Spawnable		= false
+ENT.AdminSpawnable	= false
 -- Unimplamented, you can use CallOnClient if you so wish
 --ENT.IsWeaponShared  = false -- Make this true if you want access to the functionality clientside as well (will create some more network vars so don't use this unless you have too)
 ENT.IsToggleable    = true -- Can the weapon be stopped after it starts firing or will it only stop when it runs out of ammo or has to cool down?
