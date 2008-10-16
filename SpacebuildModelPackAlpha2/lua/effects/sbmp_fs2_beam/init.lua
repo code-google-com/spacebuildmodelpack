@@ -140,8 +140,13 @@ function EFFECT:RndPos() -- Fuck it mahalis, you make everything look easy
 end
 
 function EFFECT:Think()
-	if not (self.Ent and self.Ent:IsValid() and self.Ent.Firing) then
-		return self.Emitter:Finish()
+	if not (self and self.Ent and self.Ent:IsValid() and self.Ent.Firing) then
+		if self.Emitter then
+			print("die on think.")
+			self.Emitter:Finish()
+		end
+		
+		return 
 	end
 	
 	self.CTime = CurTime()

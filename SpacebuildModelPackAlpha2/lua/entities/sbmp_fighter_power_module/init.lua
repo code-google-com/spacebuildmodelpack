@@ -43,9 +43,9 @@ ENT.RechargeRates = {25, 25, 25, 25, 25, 25, 25}
 
 ENT.TimeTo		  = 1
 ENT.MaxAng		  = 100000000
-ENT.MaxAngDamp	  = 100000000
+ENT.MaxAngDamp	  = 45
 ENT.MaxSpeed	  = 1000000
-ENT.MaxSpeedDamp  = 10000
+ENT.MaxSpeedDamp  = 45
 ENT.TeleDist	  = 0
 
 ENT.MaxTurnRate	  = 45 / ENT.HALF_MAX_JS_VAL // the maximum change in ang per frame
