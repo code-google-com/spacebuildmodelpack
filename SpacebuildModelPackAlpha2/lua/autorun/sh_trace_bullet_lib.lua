@@ -9,7 +9,7 @@
 --]]
 
 local DEV_MODE = true
-local InternalVersion = 1.8
+local InternalVersion = 1.85
 
 if PLANETFALL_TRACE_BULLET_LIBRARY then
 	if PLANETFALL_TRACE_BULLET_LIBRARY > InternalVersion then
@@ -58,9 +58,9 @@ function TraceShotObj:New(owner, origin, dir, speed, duration, damage, force, at
 	
 	obj.Speed         = speed
 	obj.Velocity      = dir * speed -- If you change one be sure to update this!!
+	obj.ProjectedEndV = origin + (obj.Velocity * duration) -- and this too
 	
 	obj.Duration      = duration
-	obj.DieTimestamp  = duration + CurTime()
 	
 	obj.Damage        = damage
 	obj.ImpactForce   = force
@@ -70,101 +70,125 @@ function TraceShotObj:New(owner, origin, dir, speed, duration, damage, force, at
 	obj.RenderFX_Name = render_effect_name
 	obj.ImpactFX_Name = impact_effect_name
 	
-	obj.TraceTable    = {}
+	obj.TraceTable        = {}
 	obj.TraceTable.filter = trace_filter
 	obj.TraceTable.mask   = trace_mask or MASK_SHOT
 	
+	obj.StartTimestamp  = CurTime()
+	obj.DieTimestamp    = duration + obj.StartTimestamp
+	-- print("Start at: ", obj.StartTimestamp, "; Die at: ", obj.DieTimestamp)
 	obj.OnImpactCallback = impact_callback
 	obj.OnDieCallback    = die_callback
 	
 	return obj, table.insert(TraceBulletLib.ShotsList, obj)
 end
 
+local UpdateRate = .2
+
 local GenericBulletTable = {}
 GenericBulletTable.Num    = 1
 GenericBulletTable.Tracer = 0
 
-function TraceShotObj:TickUpdate(CTime, index, frametime)
-	self.TraceTable.start  = self.Position
-	self.TraceTable.endpos = self.Position + (self.Velocity * frametime)
+function TraceShotObj:ThinkUpdate(CTime, index, updatetime)
+	self.UpdateTimestamp = self.UpdateTimestamp or 0
 	
-	local tr = util.TraceLine(self.TraceTable)
-	
-	self.Position = tr.HitPos -- Update this right away so we have the proper attributes when we get passed to the callbacks
-	
-	if tr.Hit then
-		if SERVER then
-			local class = tr.Entity:GetClass()
-			
-			if self.BulletType ~= "" then
-				if self.Owner and self.Owner.IsValid and self.Owner:IsValid() then
-					tr.Entity:TakeDamage(self.Damage, self.Owner, self.Attacker)
-				else
-					tr.Entity:TakeDamage(self.Damage, self.Owner)
-				end
-			else--(class ~= "prop_physics") and 
-				if (class ~= "prop_physics_multiplayer") and (class ~= "player") and (not string.find(class, "npc_")) then
+	local OldPos = self.Position
+	local percent = math.Clamp((1 - (self.StartTimestamp - CTime)) / self.Duration, 0, 1)
+	--print("Percent: ", percent)
+	if self.UpdateTimestamp < CTime then
+		self.TraceTable.start  = self.Position
+		self.TraceTable.endpos = LerpVector(percent, self.Origin, self.ProjectedEndV)
+		
+		local tr = util.TraceLine(self.TraceTable)
+		
+		self.Position = tr.HitPos -- Update this right away so we have the proper attributes when we get passed to the callbacks
+		
+		if tr.Hit then
+			if SERVER then
+				local class = tr.Entity:GetClass()
+				
+				if self.BulletType ~= "" then
 					if self.Owner and self.Owner.IsValid and self.Owner:IsValid() then
 						tr.Entity:TakeDamage(self.Damage, self.Owner, self.Attacker)
 					else
 						tr.Entity:TakeDamage(self.Damage, self.Owner)
 					end
-				else
-					GenericBulletTable.Src    = self.Position
-					GenericBulletTable.Dir    = self.Direction
-					
-					GenericBulletTable.Force  = self.ImpactForce or 0
-					GenericBulletTable.Damage = self.Damage or 0
-					
-					if self.Owner and self.Owner.IsValid and self.Owner:IsValid() then
-						self.Owner:FireBullets(GenericBulletTable)
+				else--(class ~= "prop_physics") and 
+					if (class ~= "prop_physics_multiplayer") and (class ~= "player") and (not string.find(class, "npc_")) then
+						if self.Owner and self.Owner.IsValid and self.Owner:IsValid() then
+							tr.Entity:TakeDamage(self.Damage, self.Owner, self.Attacker)
+						else
+							tr.Entity:TakeDamage(self.Damage, self.Owner)
+						end
 					else
-						tr.Entity:FireBullets(GenericBulletTable)
+						GenericBulletTable.Src    = self.Position
+						GenericBulletTable.Dir    = self.Direction
+						
+						GenericBulletTable.Force  = self.ImpactForce or 0
+						GenericBulletTable.Damage = self.Damage or 0
+						
+						if self.Owner and self.Owner.IsValid and self.Owner:IsValid() then
+							self.Owner:FireBullets(GenericBulletTable)
+						else
+							tr.Entity:FireBullets(GenericBulletTable)
+						end
 					end
 				end
+			else -- Don't bother the server with this
+				if self.ImpactFX_Name then
+					local fx = EffectData()
+					
+					fx:SetOrigin(tr.HitPos)
+					fx:SetNormal(tr.Normal)
+					
+					fx:SetEntity(tr.Entity)
+					
+					util.Effect(self.ImpactFX_Name, fx, true, true)
+				end
 			end
-		else -- Don't bother the server with this
-			if self.ImpactFX_Name then
-				local fx = EffectData()
-				
-				fx:SetOrigin(tr.HitPos)
-				fx:SetNormal(tr.Normal)
-				
-				fx:SetEntity(tr.Entity)
-				
-				util.Effect(self.ImpactFX_Name, fx, true, true)
+			
+			if self.OnImpactCallback then
+				local ok, err = pcall(self.OnImpactCallback, self) -- This is the same as self.OnDieCallback(self)
+				if not ok then ErrorNoHalt(err, "\n") end
 			end
+			--print("die by hit")
+			TraceBulletLib.ShotsList[index] = nil
 		end
 		
-		if self.OnImpactCallback then
-			self:OnImpactCallback(tr) -- This is the same as self.OnImpactCallback(self, tr)
-		end
 		
-		ShotsList[index] = nil
+		self.UpdateTimestamp = updatetime
+	end
+	---[[
+	if false then
+		local fx_debugger = EffectData()
+		fx_debugger:SetStart(OldPos)
+		fx_debugger:SetOrigin(self.Position)
+		util.Effect("sbmp_trace_debugger", fx_debugger, true, true)
+	end
+	--]]
+	
+	if percent == 1 then
+		TraceBulletLib.ShotsList[index] = nil
+		--print("die by time")
+		if self.OnDieCallback then
+			local ok, err = pcall(self.OnDieCallback, self) -- This is the same as self.OnDieCallback(self)
+			if not ok then ErrorNoHalt(err, "\n") end
+		end
 	end
 	
-	if self.DieTimestamp < CTime then
-		ShotsList[index] = nil
-		
-		if self.OnDieCallback then
-			self:OnDieCallback() -- This is the same as self.OnDieCallback(self)
+	if CLIENT then
+		if self.RenderFX_Name then
+			local fx = EffectData()
+			
+			fx:SetOrigin(self.Position)
+			fx:SetStart(self.Position + (self.Velocity * frametime))
+			
+			fx:SetMagnitude(index)
+			
+			util.Effect(self.RenderFX_Name, fx, true, true)
 		end
 	end
 end
-
-function TraceShotObj:ThinkUpdate(CTime, index, frametime)
-	if self.RenderFX_Name then
-		local fx = EffectData()
-		
-		fx:SetOrigin(self.Position)
-		fx:SetStart(self.Position + (self.Velocity * frametime))
-		
-		fx:SetMagnitude(index)
-		
-		util.Effect(self.RenderFX_Name, fx, true, true)
-	end
-end
-
 
 function TraceBulletLib.FireShot(owner, origin, dir, speed, duration, damage, force, attacker, render_effect_name, impact_effect_name, trace_filter, impact_callback, die_callback, trace_mask)
 	return TraceShotObj:New(owner, origin, dir, speed, duration, damage, force, attacker, render_effect_name, impact_effect_name, trace_filter, impact_callback, die_callback, trace_mask)
@@ -178,28 +202,13 @@ function TraceBulletLib.CalcSpreadVecScalar(dir, spread)
 	return (dir + (VectorRand():Normalize() * spread))
 end
 
-function TraceBulletLib.TickDriver()
-	local CTime = CurTime()
-	local FTime = FrameTime()
-	
-	for k, v in pairs(TraceBulletLib.ShotsList) do
-		v:TickUpdate(CTime, k, FTime)
-	end
-end
-
 function TraceBulletLib.ThinkDriver()
-	if SERVER then return end -- This shouldn't be in use for the server
-	
 	local CTime = CurTime()
-	local FTime = FrameTime()
+	local updatetime = CTime + UpdateRate
 	
 	for k, v in pairs(TraceBulletLib.ShotsList) do
-		v:ThinkUpdate(CTime, k, FTime)
+		v:ThinkUpdate(CTime, k, updatetime)
 	end
 end
 
-hook.Add("Tick", "TraceBulletLib.TickDriver", TraceBulletLib.TickDriver)
-
-if CLIENT then
-	hook.Add("Think", "TraceBulletLib.ThinkDriver", TraceBulletLib.ThinkDriver)
-end
+hook.Add("Tick", "TraceBulletLib.ThinkDriver", TraceBulletLib.ThinkDriver)

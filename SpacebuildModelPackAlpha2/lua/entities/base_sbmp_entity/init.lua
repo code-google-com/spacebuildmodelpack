@@ -4,6 +4,9 @@ include("shared.lua")
 
 local RD_Version_Determined = false -- Because the first base_sbmp_entity derivative entity will most likely spawn AFTER RD2 is loaded into memory
 
+SBMP = SBMP or {}
+SBMP.EntityPooledFuncRecord = SBMP.EntityPooledFuncRecord or {}
+
 function ENT:Initialize()
 	self.Entity:SetModel(self.Model)
 	self.Entity:PhysicsInit(SOLID_VPHYSICS)
@@ -108,13 +111,25 @@ end
 
 function ENT:CallOnClient(function_key, data, use_string_pooling)
 	if not (umsg.Generic and function_key and (type(function_key) == "string") and self and self.IsValid and self:IsValid()) then return end
+	--print("call on client")
+	--print("func key: ", function_key)
+	--print("data: ", data)
+	
+	--umsg.PoolString(function_key)
+	
+	--if type(data) == "table" then
+	--	PrintTable(data)
+	--end
+	
+	--print("use string pooling: ", use_string_pooling)
 	
 	local RF = RecipientFilter()
 	RF:AddAllPlayers()
 	
-	umsg.Start("Base_SBMP_Entity_CallOnClient", RF)
+	umsg.Start(self.SBMPCallOnClientUMsgHookName, RF)
 		umsg.Entity(self.Entity)
-		umsg.PoolString(function_key)
+		umsg.String(function_key)
 		umsg.Generic(data, use_string_pooling)
 	umsg.End()
 end
+usermessage.Hook(ENT.SBMPCallOnClientUMsgHookName)

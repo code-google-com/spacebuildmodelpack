@@ -12,6 +12,8 @@ ENT.Purpose         = "Insta-ban justifier."
 ENT.Instructions    = "There's a manual you know."
 ENT.Category        = "Spacebuild Enhancement Project" -- Who changed the title?
 
+ENT.IsSBMPWeapon    = true -- DO, NOT, CHANGE, THIS!
+
 ENT.Spawnable		= false
 ENT.AdminSpawnable	= false
 -- Unimplamented, you can use CallOnClient if you so wish

@@ -24,4 +24,43 @@ ENT.ResList["energy"].Capacity      = 0
 ENT.ResList["energy"].DefaultAmount = 0
 --]]
 
-ENT.SBMPCallOnClientUMsgHookName = "Base_SBMP_Entity_CallOnClient" -- Don't touch this
+ENT.SBMPCallOnClientUMsgHookName = "Base_SBMP_Entity_CallOnClient" -- Don't touch this you fool!
+
+SBMP = SBMP or {}
+SBMP.RegisteredServersideCallOnClientHook = SBMP.RegisteredServersideCallOnClientHook or false
+
+function SBMP.BaseEntityCallOnClientUMsgHook(msg)
+	if not msg.ReadGeneric then return end
+	--print("msg: ", msg)
+	local ent        = msg:ReadEntity()
+	local func_key   = msg:ReadString()
+	local paramiters = msg:ReadGeneric()
+	--print("call on client client")
+	--print("entity: ", ent)
+	--print("function key: '", func_key, "'")
+	--print("paramiters: ", paramiters)
+	--if type(paramiters) == "table" then
+	--	PrintTable(paramiters)
+	--end
+	local ok, err
+	
+	if ent[func_key] and type(ent[func_key]) == "function" then
+		ok, err = pcall(ent[func_key], ent, paramiters)
+		
+		if not ok then
+			print("CallOnClient SBMP base entity error:")
+			ErrorNoHalt(err, "\n")
+			print("Function key: ", func_key, "; Type: ", type(ent[func_key]))
+		end
+	else
+		print(type(ent[func_key]))
+	end
+end
+
+if CLIENT or (SERVER and (not SBMP.RegisteredServersideCallOnClientHook)) then
+	if SERVER then
+		SBMP.RegisteredServersideCallOnClientHook = true
+	end
+	print("client", CLIENT)
+	usermessage.Hook(ENT.SBMPCallOnClientUMsgHookName, SBMP.BaseEntityCallOnClientUMsgHook)
+end
