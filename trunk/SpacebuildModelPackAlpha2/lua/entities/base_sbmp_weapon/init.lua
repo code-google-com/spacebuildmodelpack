@@ -124,6 +124,31 @@ function ENT:DamageEntity(ent, amount)
 		end
 	end
 	
+	if ent:IsVehicle() then
+		local ply = ent:GetDriver()
+		
+		if ply and ply:IsValid() then
+			ply:Kill() -- Hey, if we're talking about weapons fired from spaceships I think a human has no chance
+			
+			local rag = ply:GetRagdollEntity()
+			
+			if rag and rag:IsValid() and self.OnKillEnt then
+				self:OnKillEnt(rag, amount, true)
+			end
+		end
+	elseif ent:IsPlayer() then
+		ent:Kill()
+		
+		local rag = ent:GetRagdollEntity()
+		
+		if rag and rag:IsValid() and self.OnKillEnt then
+			return self:OnKillEnt(rag, amount, true)
+		end
+	elseif ent:IsNPC() then
+		ent:Kill()
+		return self:OnKillEnt(ent, amount, true)
+	end
+	
 	if health <= amount then
 		if (health == 0) and (sbmp_health ~= -1) then -- A prop/vehicle
 			if (sbmp_health <= amount) then
@@ -138,14 +163,12 @@ function ENT:DamageEntity(ent, amount)
 			return self:OnKillEnt(ent, amount)
 		end
 	else
-		if (ent:IsPlayer() or ent:IsNPC()) then
-			return self:OnKillEnt(ent, damage) -- Hey, if we're talking about weapons fired from spaceships I think a human has no chance
-		end
-		
 		ent:TakeDamage(amount, self:GetOwner(), self.Entity) -- Do fizzics damage
+		
+		return self:OnKillEnt(ent, amount)
 	end
 end
 
-function ENT:OnKillEnt(ent, damage)
+function ENT:OnKillEnt(ent, damage, was_player_or_npc)
 	return SafeRemoveEntity(ent) -- ???
 end
