@@ -1,5 +1,6 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("entities/sbmp_beam_cannon/sh_configs.lua")
 include('shared.lua')
 
 local COOL_DOWN_TIME = 50
@@ -69,7 +70,7 @@ function ENT:OnKillEnt(ent)
 	
 	constraint.RemoveAll(ent)
 	
-	ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+	ent:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
 	
 	local phys = ent:GetPhysicsObject()
 	
@@ -95,6 +96,6 @@ function ENT:FireCannon()
 	local damage = (tr.Entity:IsPlayer() or tr.Entity:IsNPC()) and 9001 or self.Configs[self.ConfigurationIndex].Damage
 	
 	self.HackHitPos = tr.HitPos
-	--print("Damage: ", damage)
+	print("Damage: ", damage)
 	self:DamageEntity(tr.Entity, damage)
 end

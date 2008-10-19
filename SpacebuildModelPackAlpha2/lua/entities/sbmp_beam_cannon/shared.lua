@@ -1,5 +1,4 @@
 -- THIS IS A HACKZED WEAPON! DO NOT USE IT FOR LEARNING!!!
-
 include("entities/sbmp_beam_cannon/sh_configs.lua")
 
 ENT.Type 			= "anim"
