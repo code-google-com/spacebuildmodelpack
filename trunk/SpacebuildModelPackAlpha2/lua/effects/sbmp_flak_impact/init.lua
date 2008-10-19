@@ -10,11 +10,6 @@ function EFFECT:Init(data)
 	local pos = data:GetStart()
 	local ent = data:GetEntity()
 	
-	if data:GetMagnitude() ~= 3 then
-		print(ent)
-		print("Client Pos: ", pos)
-	end
-	
 	--local emttr = ParticleEmitter(pos)
 	
 	local particle = GlobalEmitter:Add(MaterialSprite, pos)
@@ -29,7 +24,7 @@ function EFFECT:Init(data)
 		particle:SetEndSize(CoreParticleSize)
 		
 		particle:SetRollDelta(0)
-		particle:SetRoll(math.random(-1, 1))
+		particle:SetRoll(math.random(-10, 10))
 	end
 	
 	for i = 1, 25 do

@@ -8,7 +8,7 @@
 --]]
 
 local DEV_MODE = true
-local InternalVersion = 1.2
+local InternalVersion = 1.3
 
 if PLANETFALL_DATA_SYSTEM then
 	if PLANETFALL_DATA_SYSTEM > InternalVersion then
@@ -24,9 +24,11 @@ else
 	Msg("No instance of the Planetfall Data Record System has been detected, initializing.\n")
 end
 
-_G["PLANETFALL_DATA_SYSTEM"] = InternalVersion -- Explicit to reinforce the point
+if SERVER then
+	AddCSLuaFile("sh_centralized_data_management.lua")
+end
 
-if SERVER then AddCSLuaFile("sh_centralized_data_management.lua") end
+_G["PLANETFALL_DATA_SYSTEM"] = InternalVersion -- Explicit to reinforce the point
 
 NW_VAR_TYPE_ANGLE   = 1
 NW_VAR_TYPE_BOOLEAN = 2

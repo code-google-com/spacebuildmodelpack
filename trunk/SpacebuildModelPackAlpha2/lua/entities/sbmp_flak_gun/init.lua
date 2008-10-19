@@ -2,7 +2,6 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include('shared.lua')
 
-
 function ENT:SpawnFunction(ply, tr)
 	if not tr.Hit then return end
 	
@@ -43,12 +42,37 @@ function ENT:OnFireShot()
 	self:FireFlackShot(self.FlackData)
 end
 
-function ENT:OnKillEnt(ent, amount, was_player_or_npc)
+function ENT:OnKillEnt(ent, damage, reported_position, was_player_or_npc)
+	local dir = ((ent:GetPos() + ent:OBBCenter()) - reported_position):Normalize()
+	
 	if was_player_or_npc then
 		local fx = EffectData()
 		fx:SetOrigin(ent:GetPos() + ent:OBBCenter())
-		util.Effect("sbmp_flak_gibbify", fx, true, true)
+		fx:SetStart(ent:GetVelocity() * 2)
+		fx:SetNormal(dir * 3)
+		
+		if ent and ent:IsValid() then
+			ent:Remove()
+		end
+		
+		return util.Effect("sbmp_flak_gibbify", fx, true, true)
 	end
 	
-	SafeRemoveEntity(ent)
+	local diefx = EffectData()
+	diefx:SetMagnitude(7)
+	diefx:SetEntity(ent)
+	util.Effect("sbmp_die_generic", diefx, true, true)
+	
+	constraint.RemoveAll(ent)
+	
+	ent:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS) 
+	
+	local phys = ent:GetPhysicsObject()
+	
+	if phys and phys.IsValid and phys:IsValid() then
+		phys:EnableMotion(true)
+		phys:ApplyForceOffset(dir * phys:GetMass() * damage * 5, reported_position)
+	end
+	
+	return SafeRemoveEntityDelayed(ent, 7)
 end

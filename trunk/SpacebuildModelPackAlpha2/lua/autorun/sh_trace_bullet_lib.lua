@@ -9,7 +9,7 @@
 --]]
 
 local DEV_MODE = true
-local InternalVersion = 1.85
+local InternalVersion = 1.86
 
 if PLANETFALL_TRACE_BULLET_LIBRARY then
 	if PLANETFALL_TRACE_BULLET_LIBRARY > InternalVersion then
@@ -35,6 +35,10 @@ if PLANETFALL_TRACE_BULLET_LIBRARY then
 	end
 else
 	Msg("No instance of the Planetfall Trace Bullet Library has been detected, initializing.\n")
+end
+
+if SERVER then
+	AddCSLuaFile("sh_trace_bullet_lib.lua")
 end
 
 _G["PLANETFALL_TRACE_BULLET_LIBRARY"] = InternalVersion -- Explicit to reinforce the point

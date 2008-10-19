@@ -6,7 +6,7 @@
 
 local DEV_MODE = true
 local SPAM = false
-local InternalVersion = 1.82
+local InternalVersion = 1.84
 
 if USERMESSAGE_EXTENSIONS then
 	if USERMESSAGE_EXTENSIONS > InternalVersion then
@@ -50,6 +50,10 @@ else
 	end
 	
 	Msg("No instance of the Planetfall Usermessage Extensions Module has been detected, initializing.\n")
+end
+
+if SERVER then
+	AddCSLuaFile("sh_usermessage_extension.lua")
 end
 
 _G["USERMESSAGE_EXTENSIONS"] = InternalVersion -- Explicit to reinforce the point
