@@ -123,13 +123,10 @@ function ENT:CallOnClient(function_key, data, use_string_pooling)
 	
 	--print("use string pooling: ", use_string_pooling)
 	
-	local RF = RecipientFilter()
-	RF:AddAllPlayers()
-	
-	umsg.Start(self.SBMPCallOnClientUMsgHookName, RF)
+	umsg.Start(self.SBMPCallOnClientUMsgHookName)
 		umsg.Entity(self.Entity)
 		umsg.String(function_key)
 		umsg.Generic(data, use_string_pooling)
 	umsg.End()
 end
-usermessage.Hook(ENT.SBMPCallOnClientUMsgHookName)
+

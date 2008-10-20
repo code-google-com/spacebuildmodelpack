@@ -151,7 +151,7 @@ function ENT:DamageEntity(ent, amount, reported_position)
 			return self:OnKillEnt(rag, amount, reported_position, true)
 		end
 	elseif ent:IsNPC() then
-		ent:Kill()
+		ent:SetHealth(0)
 		return self:OnKillEnt(ent, amount, reported_position, true)
 	end
 	

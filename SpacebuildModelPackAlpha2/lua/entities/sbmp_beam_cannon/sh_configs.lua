@@ -65,7 +65,7 @@ end
 --]]
 
 ENT.Configs[2] = {} -- Green slasher beam
-ENT.Configs[2].Damage       = 50
+ENT.Configs[2].Damage       = 200
 ENT.Configs[2].Cooldown     = 15
 ENT.Configs[2].SlashCone    = 250
 ENT.Configs[2].GlowSize     = 64
@@ -119,7 +119,7 @@ end
 
 
 ENT.Configs[3] = {} -- Gold slasher beam
-ENT.Configs[3].Damage       = 50
+ENT.Configs[3].Damage       = 200
 ENT.Configs[3].Cooldown     = 15
 ENT.Configs[3].SlashCone    = 250
 ENT.Configs[3].GlowSize     = 64
@@ -173,7 +173,7 @@ end
 
 
 ENT.Configs[4] = {} -- Green beam cannon
-ENT.Configs[4].Damage       = 100
+ENT.Configs[4].Damage       = 500
 ENT.Configs[4].Cooldown     = 25
 ENT.Configs[4].SlashCone    = 100
 ENT.Configs[4].GlowSize     = 128
@@ -227,7 +227,7 @@ end
 
 
 ENT.Configs[5] = {} -- Gold beam cannon
-ENT.Configs[5].Damage       = 100
+ENT.Configs[5].Damage       = 500
 ENT.Configs[5].Cooldown     = 25
 ENT.Configs[5].SlashCone    = 100
 ENT.Configs[5].GlowSize     = 128
