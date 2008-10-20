@@ -15,7 +15,7 @@ ENT.Spawnable		= false
 ENT.AdminSpawnable	= false
 
 ENT.Model           = "models/Spacebuild/emount4_fighter.mdl" -- This is your entities's model
-ENT.MassOverride    = 2500 -- This will override your entities's mass
+--ENT.MassOverride    = 2500 -- This will override your entities's mass
 
 ENT.ResList = {}
 -- Example Entry
@@ -23,6 +23,9 @@ ENT.ResList = {}
 ENT.ResList["energy"].Capacity      = 0
 ENT.ResList["energy"].DefaultAmount = 0
 --]]
+
+ENT.WireInputsList  = {}
+ENT.WireOutputsList = {}
 
 ENT.SBMPCallOnClientUMsgHookName = "Base_SBMP_Entity_CallOnClient" -- Don't touch this you fool!
 

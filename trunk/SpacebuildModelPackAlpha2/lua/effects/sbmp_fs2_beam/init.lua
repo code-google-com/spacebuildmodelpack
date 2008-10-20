@@ -13,6 +13,12 @@ local POWERING_DOWN   = 4
 
 local Colour_White = Color(255, 255, 255, 255)
 
+local HitGlow = Material("sprites/light_glow02")
+HitGlow:SetMaterialInt("$spriterendermode", 9)
+HitGlow:SetMaterialInt("$illumfactor", 8)
+HitGlow:SetMaterialInt("$ignorez", 1)
+
+
 local HackzReloadFastFX = EFFECT
 
 function EFFECT:Init(data)
@@ -55,16 +61,16 @@ function EFFECT:Init(data)
 	
 	self.Settings.Forward  = self.Ent:GetForward() * -1
 	self.SphereFrontOffset = self.Settings.Forward - self.Settings.StartPos
+	
+	self.HitGlowColour = Color(self.Ent.Configs[self.Ent.ConfigurationIndex].DLight.R,
+							   self.Ent.Configs[self.Ent.ConfigurationIndex].DLight.G,
+							   self.Ent.Configs[self.Ent.ConfigurationIndex].DLight.B)
 end
 
 function EFFECT:OnInitFire(stall)
 	self.State = CHARGING_CANNON
 	
-	if self.Ent.ConfigurationIndex < 4 then
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnInitFire.Sound, 500, 100 + math.random(-15, 15))
-	else
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnInitFire.Sound, 500, 100 + math.random(-15, 15))
-	end
+	self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnInitFire.Sound, 500, 100)
 	
 	self.TimeTillNextStage = self.TimeOffset + self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnInitFire.ProgressionDelay
 	self.TillNextStageTimestamp = self.TimeTillNextStage + CurTime()
@@ -77,11 +83,7 @@ function EFFECT:OnFire()
 	
 	self.State = START_FIRE
 	
-	if self.Ent.ConfigurationIndex < 4 then
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFire.Sound, 500, 100 + math.random(-15, 15))
-	else
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFire.Sound, 500, 100 + math.random(-15, 15))
-	end
+	self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFire.Sound, 500, 100)
 	
 	self.TimeTillNextStage = self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFire.ProgressionDelay
 	self.TillNextStageTimestamp = self.TimeTillNextStage + CurTime()
@@ -94,11 +96,7 @@ function EFFECT:OnFireLoop()
 	
 	self.State = LOOP_FIRE
 	
-	if self.Ent.ConfigurationIndex < 4 then
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireLoop.Sound, 500, 100 + math.random(-15, 15))
-	else
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireLoop.Sound, 500, 100 + math.random(-15, 15))
-	end
+	self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireLoop.Sound, 500, 100)
 	
 	self.TimeTillNextStage = self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireLoop.ProgressionDelay
 	self.TillNextStageTimestamp = self.TimeTillNextStage + CurTime()
@@ -112,11 +110,7 @@ function EFFECT:OnFireEnd()
 	self.FiringBeam = false
 	self.State = POWERING_DOWN
 	
-	if self.Ent.ConfigurationIndex < 4 then
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireEnd.Sound, 500, 100 + math.random(-15, 15))
-	else
-		self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireEnd.Sound, 500, 100 + math.random(-15, 15))
-	end
+	self.Ent:EmitSound(self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireEnd.Sound, 500, 100)
 	
 	self.TimeTillNextStage = (self.Ent.ConfigurationIndex == 1) and .5 or self.Ent.Configs[self.Ent.ConfigurationIndex].EventData.OnFireEnd.ProgressionDelay
 	self.TillNextStageTimestamp = self.TimeTillNextStage + CurTime()
@@ -238,6 +232,31 @@ function EFFECT:Render()
 		self.FiringBeam = true
 	end
 	
+	---[[
+	if self.FiringBeam then
+		local BeamFluxed  = self.BeamWidth + (self.BeamWidth * math.cos(self.CTimeShift + UnPredictedCurTime())) * .35 -- ???
+		local BeamFluxed2 = BeamFluxed * .7 -- ???
+		local BeamFluxed3 = BeamFluxed * .4 -- ???
+		local BeamFluxed4 = BeamFluxed * .2 -- ???
+		---[[
+		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Haze)
+		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed, self.TextureCoord, self.TextureCoord + (self.BeamLength / 512), Colour_White)
+		
+		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Glow)
+		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed2, self.TextureCoord, self.TextureCoord + (self.BeamLength / 512), Colour_White)
+		
+		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Core)
+		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed3, self.TextureCoord, self.TextureCoord + self.BeamLength / 100, Colour_White)
+		
+		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Beam)
+		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed4, self.TextureCoord, self.TextureCoord + self.BeamLength / 100, Colour_White)
+		--]]
+		
+		render.SetMaterial(HitGlow)
+		render.DrawSprite(self.Settings.EndPos, BeamFluxed * 10, BeamFluxed * 10, self.HitGlowColour)
+	end
+	--]]
+	
 	--print("Raw: ", self.RenderGlowFrame + 1)
 	--print("Modulused: ", self.RenderGlowFrame + 1 % self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow.Count)	
 	self.RenderGlowFrame = math.floor((self.RenderGlowFrame + 1) % self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow.Count)
@@ -247,27 +266,5 @@ function EFFECT:Render()
 	---[[
 	render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow[self.RenderGlowFrame])
 	render.DrawSprite(self.Settings.StartPos, self.RenderGlowSize, self.RenderGlowSize, Colour_White)
-	--]]
-	
-	---[[
-	if self.FiringBeam then
-		local BeamFluxed  = self.BeamWidth + (self.BeamWidth * math.cos(self.CTimeShift + self.TextureCoord)) * .33 -- ???
-		local BeamFluxed2 = self.BeamWidth + (self.BeamWidth * math.sin(self.CTimeShift + FrameTime())) * .33 -- ???
-		local BeamFluxed3 = self.BeamWidth + (self.BeamWidth * math.cos(self.CTimeShift + SysTime())) * .33 -- ???
-		local BeamFluxed4 = self.BeamWidth + (self.BeamWidth * math.sin(self.CTimeShift + UnPredictedCurTime())) * .33 -- ???
-		---[[
-		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Haze)
-		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed + 0, self.TextureCoord, self.TextureCoord + (self.BeamLength / 512), Colour_White)
-		
-		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Glow)
-		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed2 + 0, self.TextureCoord, self.TextureCoord + (self.BeamLength / 512), Colour_White)
-		
-		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Core)
-		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed3 + 0, self.TextureCoord, self.TextureCoord + self.BeamLength / 100, Colour_White)
-		
-		render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Beam.Beam)
-		render.DrawBeam(self.Settings.StartPos, self.Settings.EndPos, BeamFluxed4, self.TextureCoord, self.TextureCoord + self.BeamLength / 100, Colour_White)
-		--]]
-	end
 	--]]
 end

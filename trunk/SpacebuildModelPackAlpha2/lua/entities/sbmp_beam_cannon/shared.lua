@@ -29,7 +29,7 @@ ENT.ResList.energy.CostPerShot = ??
 
 function ENT:OnStartFiring(timing_offset) -- To allow compensation for network latency
 	if self.ConfigurationIndex == -1 then return Error("No configuration given.\n") end -- WTF?
-	print("firing")
+	--print("firing")
 	if SERVER then
 		-- Do an inital range check so we can make the slash scale nicely
 		-- Not so elegant
@@ -49,7 +49,7 @@ function ENT:OnStartFiring(timing_offset) -- To allow compensation for network l
 		--print("GetNWInt, Firing: ", self:GetNWInt("Firing"))
 		self:SetNWVector("SlashStart", self.SlashStart) -- Use the NW stuff because the system/entity might have shifted by the time we get the "OMGZ! W3 h@v3 FI@HD!" message
 		self:SetNWVector("SlashEnd",   self.SlashEnd)
-		print("moving to on init fire")
+		--print("moving to on init fire")
 		return self:OnInitFire()
 	else
 		return self:OnInitFire(timing_offset)
@@ -130,7 +130,7 @@ if CLIENT then
 		if firing_timestamp == 0 then return end
 		
 		if firing_timestamp ~= self.FireTimestamp then
-			print("Timestamp differential, received ", firing_timestamp, " at ", CurTime())
+			--print("Timestamp differential, received ", firing_timestamp, " at ", CurTime())
 			self.FireTimestamp = firing_timestamp
 			self.Firing = true
 			

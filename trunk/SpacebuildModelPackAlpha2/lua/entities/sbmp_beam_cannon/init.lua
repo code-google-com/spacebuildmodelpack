@@ -3,9 +3,6 @@ AddCSLuaFile("shared.lua")
 AddCSLuaFile("entities/sbmp_beam_cannon/sh_configs.lua")
 include('shared.lua')
 
-local COOL_DOWN_TIME = 50
-local USE_ENERGY = false
-
 function ENT:SpawnFunction(ply, tr)
 	if not tr.Hit then return end
 	

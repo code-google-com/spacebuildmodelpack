@@ -16,8 +16,19 @@ function ENT:Initialize()
 	local Phys = self.Entity:GetPhysicsObject()
 	
 	if Phys:IsValid() then
-		Phys:SetMass(self.MassOverride) // a bit heavier please
+		if self.MassOverride then
+			Phys:SetMass(self.MassOverride) // a bit heavier please
+		end
+		
 		Phys:Wake()
+	end
+	
+	if Wire_CreateInputs then
+		self.Inputs = Wire_CreateInputs(self.Entity, self.WireInputsList)
+	end
+	
+	if Wire_CreateOutputs then
+		self.Outputs = Wire_CreateOutputs(self.Entity, self.WireOutputsList)
 	end
 	
 	self:InitResources()
@@ -32,6 +43,8 @@ function ENT:Initialize()
 end
 
 function ENT:InitResources()
+	if self.NotUseRes then return end
+	
 	if not RD_Version_Determined then
 		self:DetermineRDVersion()
 	end

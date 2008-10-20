@@ -43,9 +43,9 @@ ENT.RechargeRates = {25, 25, 25, 25, 25, 25, 25}
 
 ENT.TimeTo		  = 1
 ENT.MaxAng		  = 100000000
-ENT.MaxAngDamp	  = 45
+ENT.MaxAngDamp	  = 99999
 ENT.MaxSpeed	  = 1000000
-ENT.MaxSpeedDamp  = 45
+ENT.MaxSpeedDamp  = 99999
 ENT.TeleDist	  = 0
 
 ENT.MaxTurnRate	  = 45 / ENT.HALF_MAX_JS_VAL // the maximum change in ang per frame
@@ -79,7 +79,7 @@ function ENT:Initialize()
 	
 	self.NavInputs = {0, 0, 0, 0, 0} //pitch, yaw, roll, speed, yaw->roll
 	
-	if RD_AddResource then
+	if false and RD_AddResource then
 		for k, res in pairs(self.Resources) do
 			RD_AddResource(self.Entity, res, self.MaxAmounts[k])
 			RD_SupplyResource(self.Entity, res, self.MaxAmounts[k])
@@ -96,7 +96,7 @@ function ENT:Initialize()
 	if WireAddon then
 		self.Outputs = Wire_CreateOutputs(self.Entity, self.OutputTable)
 		
-		if RD_SupplyResource then
+		if false and RD_SupplyResource then
 			for k,v in ipairs(self.Resources) do	
 				Wire_TriggerOutput(self.Entity, self.ResourceNames[k], self.MaxAmounts[k])
 			end
@@ -118,7 +118,7 @@ function ENT:Think()
 		phys:Wake()
 	end
 	
-	if RD_GetResourceAmount and RD_SupplyResource then
+	if false and RD_GetResourceAmount and RD_SupplyResource then
 		for k, res in ipairs(self.Resources) do
 			local diff = (self.MaxAmounts[k] - RD_GetResourceAmount(self.Entity, res))
 			
@@ -143,7 +143,7 @@ function ENT:ProcessContraption()
 	local energy_cost = 0
 	local cooling_cost = 0
 	
-	if RD_GetResourceAmount then
+	if false and RD_GetResourceAmount then
 		energy = RD_GetResourceAmount(self.Entity,"energy")
 		coolant = RD_GetResourceAmount(self.Entity,"coolant")
 	end
@@ -203,7 +203,7 @@ function ENT:ProcessContraption()
 		RD_ConsumeResource(self.Entity, "coolant", cooling_cost)
 	end
 	
-	if WireAddon and RD_GetResourceAmount then
+	if WireAddon and false and RD_GetResourceAmount then
 		for k,v in ipairs(self.Resources) do
 			Wire_TriggerOutput(self.Entity, self.ResourceNames[k], RD_GetResourceAmount(self.Entity, v))
 		end
