@@ -61,6 +61,6 @@ if CLIENT or (SERVER and (not SBMP.RegisteredServersideCallOnClientHook)) then
 	if SERVER then
 		SBMP.RegisteredServersideCallOnClientHook = true
 	end
-	print("client", CLIENT)
+	
 	usermessage.Hook(ENT.SBMPCallOnClientUMsgHookName, SBMP.BaseEntityCallOnClientUMsgHook)
 end
