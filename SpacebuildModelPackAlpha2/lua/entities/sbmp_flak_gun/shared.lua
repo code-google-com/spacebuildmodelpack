@@ -11,6 +11,8 @@ ENT.Category		= "Spacebuild Enhancement Project"
 ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 
+ENT.WireInputsList = {"Fire"}
+
 ENT.Model = "models/Slyfo/SWORDGRENADE.mdl"
 ENT.MassOverride = 1250
 

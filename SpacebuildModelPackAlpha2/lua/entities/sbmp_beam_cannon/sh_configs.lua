@@ -75,15 +75,15 @@ ENT.Configs[2].EventData = {}
 
 ENT.Configs[2].EventData.OnInitFire = {}
 ENT.Configs[2].EventData.OnInitFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_up_1_5.wav")
-ENT.Configs[2].EventData.OnInitFire.ProgressionDelay = 3
+ENT.Configs[2].EventData.OnInitFire.ProgressionDelay = 2.2
 
 ENT.Configs[2].EventData.OnFire = {}
 ENT.Configs[2].EventData.OnFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_LTerSlash.wav")
-ENT.Configs[2].EventData.OnFire.ProgressionDelay = 2
+ENT.Configs[2].EventData.OnFire.ProgressionDelay = 1.925
 
 ENT.Configs[2].EventData.OnFireLoop = {}
 ENT.Configs[2].EventData.OnFireLoop.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_LTerSlash.wav")
-ENT.Configs[2].EventData.OnFireLoop.ProgressionDelay = 2
+ENT.Configs[2].EventData.OnFireLoop.ProgressionDelay = 1.9
 
 ENT.Configs[2].EventData.OnFireEnd = {}
 ENT.Configs[2].EventData.OnFireEnd.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_dwn_2.wav")
@@ -129,15 +129,15 @@ ENT.Configs[3].EventData = {}
 
 ENT.Configs[3].EventData.OnInitFire = {}
 ENT.Configs[3].EventData.OnInitFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_up_1_5.wav")
-ENT.Configs[3].EventData.OnInitFire.ProgressionDelay = 3
+ENT.Configs[3].EventData.OnInitFire.ProgressionDelay = 2.2
 
 ENT.Configs[3].EventData.OnFire = {}
 ENT.Configs[3].EventData.OnFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_TerSlash.wav")
-ENT.Configs[3].EventData.OnFire.ProgressionDelay = 2
+ENT.Configs[3].EventData.OnFire.ProgressionDelay = 1.9
 
 ENT.Configs[3].EventData.OnFireLoop = {}
 ENT.Configs[3].EventData.OnFireLoop.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_TerSlash.wav")
-ENT.Configs[3].EventData.OnFireLoop.ProgressionDelay = 2
+ENT.Configs[3].EventData.OnFireLoop.ProgressionDelay = 1.9
 
 ENT.Configs[3].EventData.OnFireEnd = {}
 ENT.Configs[3].EventData.OnFireEnd.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_dwn_2.wav")
@@ -183,15 +183,15 @@ ENT.Configs[4].EventData = {}
 
 ENT.Configs[4].EventData.OnInitFire = {}
 ENT.Configs[4].EventData.OnInitFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_up_5.wav")
-ENT.Configs[4].EventData.OnInitFire.ProgressionDelay = 5
+ENT.Configs[4].EventData.OnInitFire.ProgressionDelay = 5.1
 
 ENT.Configs[4].EventData.OnFire = {}
 ENT.Configs[4].EventData.OnFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_BGreen.wav")
-ENT.Configs[4].EventData.OnFire.ProgressionDelay = 2
+ENT.Configs[4].EventData.OnFire.ProgressionDelay = 1.95
 
 ENT.Configs[4].EventData.OnFireLoop = {}
 ENT.Configs[4].EventData.OnFireLoop.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_BGreen.wav")
-ENT.Configs[4].EventData.OnFireLoop.ProgressionDelay = 2
+ENT.Configs[4].EventData.OnFireLoop.ProgressionDelay = 1.9
 
 ENT.Configs[4].EventData.OnFireEnd = {}
 ENT.Configs[4].EventData.OnFireEnd.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_dwn_1.wav")
@@ -218,7 +218,7 @@ if CLIENT then
 	
 	ENT.Configs[4].DLight = {}
 	ENT.Configs[4].DLight.Brightness = 4
-	ENT.Configs[4].DLight.Size = 768
+	ENT.Configs[4].DLight.Size = 512
 	ENT.Configs[4].DLight.Decay = ENT.Configs[4].DLight.Size * (.1 * ENT.Configs[4].EventData.OnFireEnd.ProgressionDelay)
 	ENT.Configs[4].DLight.R = 0
 	ENT.Configs[4].DLight.G = 255
@@ -237,15 +237,15 @@ ENT.Configs[5].EventData = {}
 
 ENT.Configs[5].EventData.OnInitFire = {}
 ENT.Configs[5].EventData.OnInitFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_up_5.wav")
-ENT.Configs[5].EventData.OnInitFire.ProgressionDelay = 5
+ENT.Configs[5].EventData.OnInitFire.ProgressionDelay = 5.1
 
 ENT.Configs[5].EventData.OnFire = {}
 ENT.Configs[5].EventData.OnFire.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_BFGreen.wav")
-ENT.Configs[5].EventData.OnFire.ProgressionDelay = 2
+ENT.Configs[5].EventData.OnFire.ProgressionDelay = 1.95
 
 ENT.Configs[5].EventData.OnFireLoop = {}
 ENT.Configs[5].EventData.OnFireLoop.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_BFGreen.wav")
-ENT.Configs[5].EventData.OnFireLoop.ProgressionDelay = 2
+ENT.Configs[5].EventData.OnFireLoop.ProgressionDelay = 1.9
 
 ENT.Configs[5].EventData.OnFireEnd = {}
 ENT.Configs[5].EventData.OnFireEnd.Sound = Sound("LuaPineapple/SBMP/beam_cannon/BT_dwn_1.wav")
@@ -272,7 +272,7 @@ if CLIENT then
 	
 	ENT.Configs[5].DLight = {}
 	ENT.Configs[5].DLight.Brightness = 4
-	ENT.Configs[5].DLight.Size = 768
+	ENT.Configs[5].DLight.Size = 512
 	ENT.Configs[5].DLight.Decay = ENT.Configs[5].DLight.Size * (.1 * ENT.Configs[5].EventData.OnFireEnd.ProgressionDelay)
 	ENT.Configs[5].DLight.R = 255
 	ENT.Configs[5].DLight.G = 225
