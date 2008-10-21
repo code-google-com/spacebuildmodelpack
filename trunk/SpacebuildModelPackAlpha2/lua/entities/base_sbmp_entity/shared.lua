@@ -32,6 +32,14 @@ ENT.SBMPCallOnClientUMsgHookName = "Base_SBMP_Entity_CallOnClient" -- Don't touc
 SBMP = SBMP or {}
 SBMP.RegisteredServersideCallOnClientHook = SBMP.RegisteredServersideCallOnClientHook or false
 
+function ENT:Think()
+	if self.OnBaseThink then
+		self:OnBaseThink()
+	elseif self.OnThink then
+		self:OnThink()
+	end
+end
+
 function SBMP.BaseEntityCallOnClientUMsgHook(msg)
 	if not msg.ReadGeneric then return end
 	--print("msg: ", msg)
