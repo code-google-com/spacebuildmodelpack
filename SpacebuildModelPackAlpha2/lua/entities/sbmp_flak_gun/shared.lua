@@ -20,7 +20,7 @@ ENT.IsToggleable = true
 ENT.IsAutomatic  = true
 
 ENT.FiringRate    = 5
-ENT.ReloadRate    = 3
+ENT.ReloadRate    = .75
 ENT.CooldownDelay = 0
 
 ENT.MaxFlackSpread = 768
@@ -71,8 +71,6 @@ function ENT.FlackCallback(flack_shot, tr)
 	--PrintTable(flack_shot)
 	--print(flack_shot.Owner)
 	--print(flack_shot.TraceTable.filter)
-	local attacker  = (flack_shot.Owner and flack_shot.Owner.IsValid and flack_shot.Owner:IsValid()) and flack_shot.Owner or GetWorldEntity()
-	local inflicter = ((flack_shot.TraceTable.filter and flack_shot.TraceTable.filter.IsValid) and flack_shot.TraceTable.filter:IsValid()) and flack_shot.TraceTable.filter or attacker
 	--print("Server Pos: ", flack_shot.Position)
 	--print("Flack update count: ", flack_shot.UpdateCount)
 	
@@ -81,7 +79,10 @@ function ENT.FlackCallback(flack_shot, tr)
 		fx_fire:SetStart(flack_shot.Position)
 		fx_fire:SetMagnitude(3)
 		util.Effect("sbmp_flak_impact", fx_fire, true, true)
+	else
+		local attacker  = (flack_shot.Owner and flack_shot.Owner.IsValid and flack_shot.Owner:IsValid()) and flack_shot.Owner or GetWorldEntity()
+		local inflicter = ((flack_shot.TraceTable.filter and flack_shot.TraceTable.filter.IsValid) and flack_shot.TraceTable.filter:IsValid()) and flack_shot.TraceTable.filter or attacker
+		
+		util.BlastDamage(inflicter, attacker, flack_shot.Position, FlakRadius, FlakDamage)
 	end
-	
-	util.BlastDamage(inflicter, attacker, flack_shot.Position, FlakRadius, FlakDamage)
 end

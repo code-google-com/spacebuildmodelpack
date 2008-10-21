@@ -17,29 +17,35 @@ end
 
 
 function ENT:OnInit()
-	self.FlackAmmo = self.MaxAmmo
+	self.FlakAmmo = self.MaxAmmo
 	self.FlackData = {}
 	self.ReloadTimestamp = 0
 end
 
 function ENT:OnThink()
-	if not self.Firing then
+	if (not self.Firing) or (self.FlakAmmo == 0) then
 		local CTime = CurTime()
 		
 		if self.ReloadTimestamp < CTime then
-			self.FlackAmmo = math.Clamp(self.FlackAmmo, 0, self.MaxAmmo)
-			self.ReloadTimestamp = CTime + selfReloadRate
+			print("reloading, ammo: ", self.FlakAmmo)
+			self.FlakAmmo = math.Clamp(self.FlakAmmo + 1, 0, self.MaxAmmo)
+			self.ReloadTimestamp = CTime + self.ReloadRate
 		end
 	end
 end
 
 function ENT:OnFireShot()
-	self.FlackData.StartPos = self:GetPos() + self:GetForward() * 95 + self:GetUp() * -14
-	
-	self.FlackData.Dir   = (self:GetForward() * 1337 + self:GetRight() * math.random(self.MinFlackSpread, self.MaxFlackSpread) + self:GetUp() * math.random(self.MinFlackSpread, self.MaxFlackSpread)):Normalize()
-	self.FlackData.Speed = math.random(self.MinFlackSpeed, self.MaxFlackSpeed)
-	
-	self:FireFlackShot(self.FlackData)
+	print(self.FlakAmmo)
+	if self.FlakAmmo > 0 then
+		self.FlakAmmo = self.FlakAmmo - 1
+		
+		self.FlackData.StartPos = self:GetPos() + self:GetForward() * 95 + self:GetUp() * -14
+		
+		self.FlackData.Dir   = (self:GetForward() * 1337 + ((self:GetRight() * math.random() + self:GetUp() * math.random()):Normalize() * math.random(self.MinFlackSpread, self.MaxFlackSpread))):Normalize()
+		self.FlackData.Speed = math.random(self.MinFlackSpeed, self.MaxFlackSpeed)
+		
+		self:FireFlackShot(self.FlackData)
+	end
 end
 
 function ENT:OnKillEnt(ent, damage, reported_position, was_player_or_npc)
