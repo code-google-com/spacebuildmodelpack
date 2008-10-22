@@ -454,3 +454,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "TORPEDOSHIP1", V )
+
+local V = {
+				Name = "Forklift",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Forklift",
+				Model = "models/Slyfo/forklift.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_forklift", V )
