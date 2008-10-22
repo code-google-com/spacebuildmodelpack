@@ -279,6 +279,16 @@
 
 "129"		"models/Slyfo/SWORDGRENADE.mdl"
 
+"130"		"models/Slyfo/boxpallet.mdl"
+
+"131"		"models/Slyfo/flatpallet.mdl"
+
+"132"		"models/Slyfo/torpedo2.mdl"
+
+"133"		"models/Slyfo/warhead.mdl"
+
+"134"		"models/Slyfo/Goldfish.mdl"
+
 
 
 
