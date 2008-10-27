@@ -1,38 +1,29 @@
-local MaterialSprite = "LuaPineapple/FS2/flak/explode_core_anim"
+local MaterialSprite = {}
+
+for i = 0, 17 do
+	MaterialSprite[i] = Material("LuaPineapple/FS2/flak/explode_core_anim_" .. i)
+end
+
 local ExplodeSound   = Sound("LuaPineapple/SBMP/beam_cannon/flack_explode.wav")
 
 local CoreParticleSize  = 45
 local CoreFlashAlpha    = 255
-local CoreFlashDuration = 1
-local GlobalEmitter = ParticleEmitter(Vector(0, 0, 0)) -- Seems to work fine, even in different PVSs. *shrugs*
+local CoreFlashDuration = .75
+
+SBMPGlobalEmitter = SBMPGlobalEmitter or ParticleEmitter(Vector(0, 0, 0)) -- Seems to work fine, even in different PVSs. *shrugs*
 
 function EFFECT:Init(data)
-	local pos = data:GetStart()
+	self.Pos = data:GetStart()
 	local ent = data:GetEntity()
 	
 	--local emttr = ParticleEmitter(pos)
 	
-	local particle = GlobalEmitter:Add(MaterialSprite, pos)
-	
-	if particle then
-		particle:SetDieTime(CoreFlashDuration)
-		
-		particle:SetStartAlpha(CoreFlashAlpha)
-		particle:SetEndAlpha(50)
-		
-		particle:SetStartSize(CoreParticleSize)
-		particle:SetEndSize(CoreParticleSize)
-		
-		particle:SetRollDelta(0)
-		particle:SetRoll(math.random(-10, 10))
-	end
-	
-	for i = 1, 25 do
-		local particle = GlobalEmitter:Add("effects/fire_cloud2", pos)
+	for i = 1, 5 do
+		local particle = SBMPGlobalEmitter:Add("effects/fire_cloud2", self.Pos)
 		
 		if particle then
 			particle:SetVelocity(VectorRand():Normalize() * 128)
-			particle:SetDieTime(.5)
+			particle:SetDieTime(.33)
 			
 			particle:SetStartAlpha(175)
 			particle:SetEndAlpha(0)
@@ -50,7 +41,7 @@ function EFFECT:Init(data)
 	end
 	
 	local DLight      = DynamicLight(0)
-	DLight.Pos        = pos
+	DLight.Pos        = self.Pos
 	DLight.R          = 255
 	DLight.G          = 200
 	DLight.B          = 0
@@ -61,11 +52,25 @@ function EFFECT:Init(data)
 	
 	--emttr:Finish()
 	
-	WorldSound(ExplodeSound, pos, 500, 100)
+	self.Timestamp = CurTime() + CoreFlashDuration
+	
+	WorldSound(ExplodeSound, self.Pos, 500, 100)
+	
+	self.RndAng = math.random(0, 359)
+	self.RndDir = VectorRand()
 end
 
 function EFFECT:Think()
+	return (self.Timestamp > CurTime())
 end
 
+local size = 64
+
 function EFFECT:Render()
+	local idx = math.Round(Lerp((self.Timestamp - CurTime()) / CoreFlashDuration, 0, 17))
+	--print(idx)
+	render.SetMaterial(MaterialSprite[idx])
+	self.RndDir = self.Pos - EyePos()
+	render.DrawQuadEasy(self.Pos, self.RndDir, size, size, color_white, self.RndAng)
+	render.DrawQuadEasy(self.Pos, self.RndDir * -1, size, size, color_white, self.RndAng)
 end

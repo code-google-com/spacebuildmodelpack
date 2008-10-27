@@ -9,7 +9,7 @@
 --]]
 
 local DEV_MODE = true
-local InternalVersion = 1.86
+local InternalVersion = 1.89
 
 if PLANETFALL_TRACE_BULLET_LIBRARY then
 	if PLANETFALL_TRACE_BULLET_LIBRARY > InternalVersion then
@@ -17,19 +17,11 @@ if PLANETFALL_TRACE_BULLET_LIBRARY then
 	elseif PLANETFALL_TRACE_BULLET_LIBRARY < InternalVersion then
 		Msg("A less recent instance of the Planetfall Trace Bullet Library has been detected, overriding instance.\n")
 		
-		hook.Remove("Tick", "TraceBulletLib.TickDriver")
-		
-		if CLIENT then
-			hook.Remove("Think", "TraceBulletLib.ThinkDriver")
-		end
+		hook.Remove("Think", "TraceBulletLib.ThinkDriver")
 	elseif DEV_MODE then
 		Msg("The same instance of the Planetfall Trace Bullet Library has been detected, overriding instance.\n")
 		
-		hook.Remove("Tick", "TraceBulletLib.TickDriver")
-		
-		if CLIENT then
-			hook.Remove("Think", "TraceBulletLib.ThinkDriver")
-		end
+		hook.Remove("Think", "TraceBulletLib.ThinkDriver")
 	else
 		return Msg("The same instance of the Planetfall Trace Bullet Library has been detected, aborting initialization.\n")
 	end
@@ -162,35 +154,32 @@ function TraceShotObj:ThinkUpdate(CTime, index, updatetime)
 		
 		self.UpdateTimestamp = updatetime
 	end
-	---[[
-	if false then
-		local fx_debugger = EffectData()
-		fx_debugger:SetStart(OldPos)
-		fx_debugger:SetOrigin(self.Position)
-		util.Effect("sbmp_trace_debugger", fx_debugger, true, true)
-	end
+	
+	--[[
+	local fx_debugger = EffectData()
+	fx_debugger:SetStart(OldPos)
+	fx_debugger:SetOrigin(self.Position)
+	util.Effect("sbmp_trace_debugger", fx_debugger, true, true)
 	--]]
 	
+	if CLIENT and self.RenderFX_Name then
+		local fx = EffectData()
+		
+		fx:SetMagnitude(index)
+		fx:SetOrigin(OldPos)
+		
+		util.Effect(self.RenderFX_Name, fx, true, true)
+	end
+	
 	if percent == 1 then
-		TraceBulletLib.ShotsList[index] = nil
 		--print("die by time")
 		if self.OnDieCallback then
 			local ok, err = pcall(self.OnDieCallback, self) -- This is the same as self.OnDieCallback(self)
+			
 			if not ok then ErrorNoHalt(err, "\n") end
 		end
-	end
-	
-	if CLIENT then
-		if self.RenderFX_Name then
-			local fx = EffectData()
-			
-			fx:SetOrigin(self.Position)
-			fx:SetStart(self.Position + (self.Velocity * frametime))
-			
-			fx:SetMagnitude(index)
-			
-			util.Effect(self.RenderFX_Name, fx, true, true)
-		end
+		
+		TraceBulletLib.ShotsList[index] = nil
 	end
 end
 
@@ -208,11 +197,11 @@ end
 
 function TraceBulletLib.ThinkDriver()
 	local CTime = CurTime()
-	local updatetime = CTime + UpdateRate
+	local updatetime = CTime + .1--UpdateRate
 	
 	for k, v in pairs(TraceBulletLib.ShotsList) do
 		v:ThinkUpdate(CTime, k, updatetime)
 	end
 end
 
-hook.Add("Tick", "TraceBulletLib.ThinkDriver", TraceBulletLib.ThinkDriver)
+hook.Add("Think", "TraceBulletLib.ThinkDriver", TraceBulletLib.ThinkDriver)

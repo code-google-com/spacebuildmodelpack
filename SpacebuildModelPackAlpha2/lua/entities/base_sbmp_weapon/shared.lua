@@ -25,6 +25,7 @@ ENT.IsToggleable    = true -- Can the weapon be stopped after it starts firing o
 
 ENT.IsAutomatic          = true  -- Like an automatic firearm, keeps firing by itself until it can't, if you use this override OnToggleFiring as well as OnStartFiring and OnEndFiring
 ENT.IsCoherentBeamWeapon = false -- (THIS DOESN'T MEAN YOU HAVE TO FIRE BEAM SHOTS!) Use this if you have more then four rounds per second, it will override FiringRate and IsAutomatic
+-- mostly used for weapons which discharge some kind of prolonged pulse and not distinct rounds although that is not nessesary
 
 ENT.FiringRate    = 2 -- Rounds per second, if this is more then five then you should maybe make this a coherent beam weapon (it'll fire every frame)
 ENT.CooldownDelay = 3 -- Number of seconds you have to wait after being done firing before you can start firing again

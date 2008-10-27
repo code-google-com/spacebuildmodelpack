@@ -24,9 +24,6 @@ ENT.ResList["energy"].Capacity      = 0
 ENT.ResList["energy"].DefaultAmount = 0
 --]]
 
-ENT.WireInputsList  = {}
-ENT.WireOutputsList = {}
-
 ENT.SBMPCallOnClientUMsgHookName = "Base_SBMP_Entity_CallOnClient" -- Don't touch this you fool!
 
 SBMP = SBMP or {}
@@ -41,18 +38,35 @@ function ENT:Think()
 end
 
 function SBMP.BaseEntityCallOnClientUMsgHook(msg)
-	if not msg.ReadGeneric then return end
+	msg = msg.Message -- wtfz?
+	
+	--[[
+		PrintTable(msg) gives:
+		
+		Stored:
+			Read	=	0
+			Message	=	bf_read: 3AC23CA8
+	--]]
+	
+	if not msg.ReadGeneric then return ErrorNoHalt("No usmg:ReadGeneric!") end
 	--print("msg: ", msg)
+	--print(type(msg))
+	--PrintTable(msg)
 	local ent        = msg:ReadEntity()
 	local func_key   = msg:ReadString()
 	local paramiters = msg:ReadGeneric()
-	--print("call on client client")
-	--print("entity: ", ent)
-	--print("function key: '", func_key, "'")
-	--print("paramiters: ", paramiters)
-	--if type(paramiters) == "table" then
-	--	PrintTable(paramiters)
-	--end
+	
+	--[[
+	print("call on client client")
+	print("entity: ", ent)
+	print("function key: '", func_key, "'")
+	print("paramiters: ", paramiters)
+	
+	if type(paramiters) == "table" then
+		PrintTable(paramiters)
+	end
+	--]]
+	
 	local ok, err
 	
 	if ent[func_key] and type(ent[func_key]) == "function" then

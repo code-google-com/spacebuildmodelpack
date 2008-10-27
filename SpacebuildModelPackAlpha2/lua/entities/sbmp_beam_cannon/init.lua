@@ -36,7 +36,7 @@ end
 
 function ENT:OnKillEnt(ent)
 	if not (ent and ent.IsValid and ent:IsValid()) then return end
-	print("killing ", ent)
+	
 	local rag
 	
 	if ent:IsVehicle() then

@@ -13,6 +13,29 @@ function ENT:OnBaseInit()
 	end
 end
 
+local DefIn  = {"Fire"}
+local DefOut = {"Firing"}
+
+function ENT:CreateWireIO()
+	if Wire_CreateInputs then
+		local i_tbl = self:GetWireInputs() or DefIn
+		
+		self.Inputs = Wire_CreateInputs(self.Entity, i_tbl)
+	end
+	
+	if Wire_CreateOutputs then
+		local o_tbl = self:GetWireOutputs() or DefOut
+		
+		self.Outputs = Wire_CreateOutputs(self.Entity, o_tbl)
+	end
+end
+
+function ENT:GetWireInputs() -- OVERRIDE THIS IF YOU WISH BUT MAKE SURE YOU INCLUDE A 'Fire' INPUT! YOU MUST INCLUDE IT!!!!
+end
+
+function ENT:GetWireOutputs() -- OVERRIDE THIS IF YOU WISH BUT MAKE SURE YOU INCLUDE A 'Firing' OUTPUT! YOU MUST INCLUDE IT!!!!
+end
+
 function ENT:OnBaseUse()
 	if self.OnUse then
 		return self:OnUse()
@@ -73,6 +96,10 @@ function ENT:StartFiring()
 	if self.Firing then return end
 	if self.CooldownTimestamp > CurTime() then return print("cooling down: ", self.CooldownTimestamp - CurTime()) end
 	
+	if Wire_TriggerOutput then
+		Wire_TriggerOutput(self.Entity, "Firing", 1)
+	end
+	
 	self.Firing = true
 	
 	if self.OnStartFiring then
@@ -84,6 +111,10 @@ end
 
 function ENT:StopFiring()
 	if not self.Firing then return end
+	
+	if Wire_TriggerOutput then
+		Wire_TriggerOutput(self.Entity, "Firing", 0)
+	end
 	
 	local CTime = CurTime()
 	
@@ -114,13 +145,13 @@ function ENT:DamageEntity(ent, amount, reported_position)
 	local sbmp_health = ent:GetDataField("SBMP", "Health")
 	
 	if not sbmp_health then
-		print("Init SBMP health")
+		--print("Init SBMP health")
 		if health == 0 then
 			sbmp_health = ent:GetPhysicsObject():GetMass() * ent:BoundingRadius() * .01
-			print("setup prop ", ent, " with health ", sbmp_health)
+			--print("setup prop ", ent, " with health ", sbmp_health)
 			ent:SetDataField("SBMP", "Health", sbmp_health)
 		else
-			print("Nvm, ", ent, " isn't a prop")
+			--print("Nvm, ", ent, " isn't a prop")
 			sbmp_health = -1
 			ent:SetDataField("SBMP", "Health", -1)
 		end
@@ -159,7 +190,7 @@ function ENT:DamageEntity(ent, amount, reported_position)
 				return self:OnKillEnt(ent, amount, reported_position)
 			else
 				sbmp_health = sbmp_health - amount
-				print("health now: ", sbmp_health)
+				--print("health now: ", sbmp_health)
 				ent:SetDataField("SBMP", "Health", sbmp_health)
 				ent:TakeDamage(amount, self:GetOwner(), self.Entity) -- Do fizzics damage
 			end

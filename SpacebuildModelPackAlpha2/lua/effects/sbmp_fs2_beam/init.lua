@@ -136,7 +136,7 @@ end
 function EFFECT:Think()
 	if not (self and self.Ent and self.Ent:IsValid() and self.Ent.Firing) then
 		if self.Emitter then
-			print("die on think.")
+			--print("die on think.")
 			self.Emitter:Finish()
 		end
 		
