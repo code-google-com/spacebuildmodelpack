@@ -77,9 +77,10 @@ function ENT:Initialize()
 	self.Entity:SetMoveType(MOVETYPE_VPHYSICS)
 	self.Entity:SetSolid(SOLID_VPHYSICS)
 	
-	self.NavInputs = {0, 0, 0, 0, 0} //pitch, yaw, roll, speed, yaw->roll
+	self.NavInputs     = {0, 0, 0, 0, 0} //pitch, yaw, roll, speed, yaw->roll
+	self.NavInputsReal = {0, 0, 0, 0, 0} -- The actual input
 	
-	if false and RD_AddResource then
+	if RD_AddResource then
 		for k, res in pairs(self.Resources) do
 			RD_AddResource(self.Entity, res, self.MaxAmounts[k])
 			RD_SupplyResource(self.Entity, res, self.MaxAmounts[k])
@@ -96,7 +97,7 @@ function ENT:Initialize()
 	if WireAddon then
 		self.Outputs = Wire_CreateOutputs(self.Entity, self.OutputTable)
 		
-		if false and RD_SupplyResource then
+		if RD_SupplyResource then
 			for k,v in ipairs(self.Resources) do	
 				Wire_TriggerOutput(self.Entity, self.ResourceNames[k], self.MaxAmounts[k])
 			end
@@ -118,7 +119,7 @@ function ENT:Think()
 		phys:Wake()
 	end
 	
-	if false and RD_GetResourceAmount and RD_SupplyResource then
+	if RD_GetResourceAmount and RD_SupplyResource then
 		for k, res in ipairs(self.Resources) do
 			local diff = (self.MaxAmounts[k] - RD_GetResourceAmount(self.Entity, res))
 			
@@ -128,9 +129,11 @@ function ENT:Think()
 		end
 	end
 	
-	self.Entity:NextThink(CurTime() + 1)
+	self:ProcessContraption()
 	
-	return self:ProcessContraption()
+	self:LerpJSInputs()
+	
+	return self.Entity:NextThink(CurTime() + 1)
 end
 
 function ENT:ProcessContraption()
@@ -143,7 +146,7 @@ function ENT:ProcessContraption()
 	local energy_cost = 0
 	local cooling_cost = 0
 	
-	if false and RD_GetResourceAmount then
+	if RD_GetResourceAmount then
 		energy = RD_GetResourceAmount(self.Entity,"energy")
 		coolant = RD_GetResourceAmount(self.Entity,"coolant")
 	end
@@ -498,7 +501,18 @@ end
 function ENT:Update(args)
 	local idx = tonumber(args[1])
 	local val = tonumber(args[2])
-	
+	--[[
+	if (idx < 4) then
+		self.NavInputsReal[idx] = val - self.HALF_MAX_JS_VAL //make it 0 centered
+	elseif idx == 4 then
+		self.NavInputsReal[idx] = val - self.MAX_JS_VAL //make it 0 based,
+	elseif idx == 5 then
+		self.NavInputsReal[idx] = val //let it as it is
+	elseif idx == 7 then
+		self.NavInputsReal[5] = (val == 1) //ITS A BOOLEAN VALUE! RUN!!
+	end
+	--]]
+	---[[
 	if (idx < 4) then
 		self.NavInputs[idx] = val - self.HALF_MAX_JS_VAL //make it 0 centered
 	elseif idx == 4 then
@@ -508,8 +522,15 @@ function ENT:Update(args)
 	elseif idx == 7 then
 		self.NavInputs[5] = (val == 1) //ITS A BOOLEAN VALUE! RUN!!
 	end
+	--]]
 	
 	if WireAddon then Wire_TriggerOutput(self.Entity, self.JSOutputs[idx] or "Button 10", val or 0) end
+end
+
+local LerpTime = 2
+
+function ENT:LerpJSInputs()
+	
 end
 
 function ENT:PostEntityPaste(ply, ent, CreatedEntities)

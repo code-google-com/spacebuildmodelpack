@@ -37,7 +37,7 @@ ENT.FlakDuration = 1.75
 
 --print(ENT.FlakRadius)
 
-ENT.ImpactEffect = nil -- "sbmp_flak_impact"
+ENT.ImpactEffect = nil--"sbmp_flak_impact"
 ENT.TravelEffect = "sbmp_flak_travel"
 
 function ENT:FireFlackShot(data)

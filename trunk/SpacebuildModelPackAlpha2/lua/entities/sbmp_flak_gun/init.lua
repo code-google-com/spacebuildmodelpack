@@ -16,35 +16,52 @@ function ENT:SpawnFunction(ply, tr)
 end
 
 
-function ENT:OnInit()
+function ENT:OnInit() -- Done after WireIO stuff
 	self.FlakAmmo = self.MaxAmmo
-	self.FlackData = {}
+	self.FlakData = {}
 	self.ReloadTimestamp = 0
+	
+	if Wire_TriggerOutput then
+		Wire_TriggerOutput(self.Entity, "Rounds", self.FlakAmmo)
+	end
+end
+
+local OutputTbl = {"Firing", "Rounds"}
+
+function ENT:GetWireOutputs()
+	return OutputTbl
 end
 
 function ENT:OnThink()
 	if (not self.Firing) or (self.FlakAmmo == 0) then
 		local CTime = CurTime()
 		
-		if self.ReloadTimestamp < CTime then
-			print("reloading, ammo: ", self.FlakAmmo)
+		if (self.ReloadTimestamp < CTime) and (self.FlakAmmo < self.MaxAmmo) then
 			self.FlakAmmo = math.Clamp(self.FlakAmmo + 1, 0, self.MaxAmmo)
+			--print("reloading, ammo: ", self.FlakAmmo)
+			if Wire_TriggerOutput then
+				Wire_TriggerOutput(self.Entity, "Rounds", self.FlakAmmo)
+			end
+			
 			self.ReloadTimestamp = CTime + self.ReloadRate
 		end
 	end
 end
 
 function ENT:OnFireShot()
-	print(self.FlakAmmo)
 	if self.FlakAmmo > 0 then
 		self.FlakAmmo = self.FlakAmmo - 1
 		
-		self.FlackData.StartPos = self:GetPos() + self:GetForward() * 95 + self:GetUp() * -14
+		if Wire_TriggerOutput then
+			Wire_TriggerOutput(self.Entity, "Rounds", self.FlakAmmo)
+		end
 		
-		self.FlackData.Dir   = (self:GetForward() * 1337 + ((self:GetRight() * math.random() + self:GetUp() * math.random()):Normalize() * math.random(self.MinFlackSpread, self.MaxFlackSpread))):Normalize()
-		self.FlackData.Speed = math.random(self.MinFlackSpeed, self.MaxFlackSpeed)
+		self.FlakData.StartPos = self:GetPos() + self:GetForward() * 95 + self:GetUp() * -14
 		
-		self:FireFlackShot(self.FlackData)
+		self.FlakData.Dir   = (self:GetForward() * 1337 + ((self:GetRight() * math.random() + self:GetUp() * math.random()):Normalize() * math.random(self.MinFlackSpread, self.MaxFlackSpread))):Normalize()
+		self.FlakData.Speed = math.random(self.MinFlackSpeed, self.MaxFlackSpeed)
+		
+		self:FireFlackShot(self.FlakData)
 	end
 end
 

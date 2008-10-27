@@ -23,13 +23,7 @@ function ENT:Initialize()
 		Phys:Wake()
 	end
 	
-	if Wire_CreateInputs then
-		self.Inputs = Wire_CreateInputs(self.Entity, self.WireInputsList)
-	end
-	
-	if Wire_CreateOutputs then
-		self.Outputs = Wire_CreateOutputs(self.Entity, self.WireOutputsList)
-	end
+	self:CreateWireIO()
 	
 	self:InitResources()
 	
@@ -42,6 +36,10 @@ function ENT:Initialize()
 	end
 end
 
+function ENT:WireCreateIO()
+	-- Stud
+end
+
 function ENT:InitResources()
 	if self.NotUseRes then return end
 	
@@ -50,7 +48,7 @@ function ENT:InitResources()
 	end
 	
 	self.UseRD = RD_Version_Determined
-	
+	--print("RD version: ", RD_Version_Determined)
 	local has_res = false
 	
 	if RD_Version_Determined == 3 then
@@ -69,10 +67,8 @@ end
 function ENT:DetermineRDVersion()
 	if Dev_Unlink_All then -- RD2 is present and it is so much cooler then RD3 (if it even dared show it's face at RD2's party) that we'll use it instead
 		RD_Version_Determined = 2
-	else
-		if CAF and CAF.GetAddon("Resource Distribution") then -- Oh well...
-			RD_Version_Determined = 3
-		end
+	elseif CAF and CAF.GetAddon("Resource Distribution") then -- Oh well...
+		RD_Version_Determined = 3
 	end
 end
 
@@ -123,12 +119,12 @@ end
 -- On the server side that is, it'll check on the client but you'll have wasted a whole data transmission.
 
 function ENT:CallOnClient(function_key, data, use_string_pooling)
-	if not (umsg.Generic and function_key and (type(function_key) == "string") and self and self.IsValid and self:IsValid()) then return end
+	if not (umsg.Generic and (type(function_key) == "string") and self and self.IsValid and self:IsValid()) then return end
 	--print("call on client")
 	--print("func key: ", function_key)
 	--print("data: ", data)
 	
-	--umsg.PoolString(function_key)
+	umsg.PoolString(function_key)
 	
 	--if type(data) == "table" then
 	--	PrintTable(data)

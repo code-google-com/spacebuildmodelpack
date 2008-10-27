@@ -6,7 +6,7 @@ function SBMP.WeaponExplosionDamageHandler(victim, inflicter, attacker, amount, 
 		
 		if inflicter.IsSBMPWeapon then
 			local ok, err = pcall(inflicter.DamageEntity, inflicter, victim, amount, dmginfo:GetReportedPosition())
-			print(inflicter, " hurt ", victim, " with damage ", amount)
+			--print(inflicter, " hurt ", victim, " with damage ", amount)
 			if not ok then ErrorNoHalt(err, "\n") end
 		end
 	end

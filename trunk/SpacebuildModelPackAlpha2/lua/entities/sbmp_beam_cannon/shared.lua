@@ -19,6 +19,8 @@ ENT.MassOverride = 750
 ENT.IsCoherentBeamWeapon = true
 ENT.IsToggleable = false
 
+ENT.UsesAmmoRounds = false
+
 ENT.ResList = {}
 --[[
 ENT.ResList.energy = {}
