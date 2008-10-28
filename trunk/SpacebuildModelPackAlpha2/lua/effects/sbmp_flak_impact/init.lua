@@ -57,7 +57,6 @@ function EFFECT:Init(data)
 	WorldSound(ExplodeSound, self.Pos, 500, 100)
 	
 	self.RndAng = math.random(0, 359)
-	self.RndDir = VectorRand()
 end
 
 function EFFECT:Think()
@@ -67,10 +66,12 @@ end
 local size = 64
 
 function EFFECT:Render()
-	local idx = math.Round(Lerp((self.Timestamp - CurTime()) / CoreFlashDuration, 0, 17))
+	local idx = math.Round(Lerp(1 - ((self.Timestamp - CurTime()) / CoreFlashDuration), 0, 17))
+	local EyeDir = self.Pos - EyePos()
+	
 	--print(idx)
 	render.SetMaterial(MaterialSprite[idx])
-	self.RndDir = self.Pos - EyePos()
-	render.DrawQuadEasy(self.Pos, self.RndDir, size, size, color_white, self.RndAng)
-	render.DrawQuadEasy(self.Pos, self.RndDir * -1, size, size, color_white, self.RndAng)
+	
+	render.DrawQuadEasy(self.Pos, EyeDir,      size, size, color_white, self.RndAng)
+	render.DrawQuadEasy(self.Pos, EyeDir * -1, size, size, color_white, self.RndAng)
 end

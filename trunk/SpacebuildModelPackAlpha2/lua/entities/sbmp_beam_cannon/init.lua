@@ -20,7 +20,7 @@ function ENT:OnInit()
 	self:SetNWInt("ConfigIdx", -1)
 	
 	self.TraceSettings = {}
-	self.TraceSettings.mask   = MASK_SHOT
+	self.TraceSettings.mask   = MASK_PLAYERSOLID
 	self.TraceSettings.filter = self.Entity
 end
 
@@ -48,7 +48,7 @@ function ENT:OnKillEnt(ent)
 			local ragb = ply:GetRagdollEntity()
 			
 			if ragb and ragb:IsValid() then
-				rag = ragb
+				self:OnKillEnt(ragb)
 			end
 		end
 	elseif ent:IsPlayer() then
@@ -67,13 +67,13 @@ function ENT:OnKillEnt(ent)
 	
 	constraint.RemoveAll(ent)
 	
-	ent:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
+	ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 	
 	local phys = ent:GetPhysicsObject()
 	
 	if phys and phys.IsValid and phys:IsValid() then
 		phys:EnableMotion(true)
-		phys:ApplyForceOffset(self:GetForward() * -phys:GetMass() * self.Configs[self.ConfigurationIndex].Damage * 25, self.HackHitPos)
+		phys:ApplyForceOffset(self:GetForward() * -phys:GetMass() * self.Configs[self.ConfigurationIndex].Damage, self.HackHitPos)
 	end
 	
 	local fx = EffectData()
@@ -93,6 +93,6 @@ function ENT:FireCannon()
 	local damage = (tr.Entity:IsPlayer() or tr.Entity:IsNPC()) and 9001 or self.Configs[self.ConfigurationIndex].Damage
 	
 	self.HackHitPos = tr.HitPos
-	print("Damage: ", damage)
+	--print("Damage: ", damage)
 	self:DamageEntity(tr.Entity, damage)
 end
