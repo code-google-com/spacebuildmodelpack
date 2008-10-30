@@ -3,7 +3,7 @@ TOOL.Name       = "Beam Cannon"
 TOOL.Command    = nil
 TOOL.ConfigName = ""
 
-TOOL.ClientConVar["config"] = 1
+TOOL.ClientConVar["config"] = 2
 
 cleanup.Register("sbmp_beam_cannon")
 

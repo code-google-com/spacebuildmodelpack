@@ -430,6 +430,8 @@ function ENT:RestoreTimerTick()
 end
 
 function ENT:PhysicsSimulate(phys, deltatime)
+	if self.Entity:IsPlayerHolding() then return SIM_NOTHING end
+	
 	phys:Wake()
 	phys:EnableGravity(false)
 
