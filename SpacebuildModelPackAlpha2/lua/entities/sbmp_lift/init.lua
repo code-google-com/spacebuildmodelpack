@@ -221,7 +221,7 @@ function ENT:OnRemove()
 end
 
 function ENT:SetupControlPoints(TopCntrlPnt, BottomCntrlPnt)
-	if (not (self and self:IsValid())) or self.HasEmitters then return end
+	if (not (self and self:IsValid())) or self.HasEmitters then return print("invalid or have emitters.") end
 	
 	self.HasEmitters = true
 	
@@ -266,8 +266,8 @@ end
 function ENT:PreEntityCopy() -- build the DupeInfo table and save it as an entity mod
 	local SBMPLift = {}
 	
-	SBMPLift.TopCntrlPnt    = self.Entity:GetNWEntity("TopCntrlPnt"):EntIndex()
-	SBMPLift.BottomCntrlPnt = self.Entity:GetNWEntity("BottomCntrlPnt"):EntIndex()
+	SBMPLift.TopCntrlPnt    = self.TopCntrlPnt:EntIndex()
+	SBMPLift.BottomCntrlPnt = self.BottomCntrlPnt:EntIndex()
 	
 	return duplicator.StoreEntityModifier(self.Entity, "SBMPLift", SBMPLift)
 end
