@@ -34,14 +34,13 @@ function ENT:Initialize()
 		Phys:SetMass(90001)
 	end
 	
-	self.StartTimestamp = 0
-	self.StopTimestamp  = 0
+	self.StopTimestamp  = self.StopTimestamp or 0
 	
-	self.Speed     = 5
-	self.Perc      = 1
+	self.Speed = self.Speed or 5
+	self.Perc  = self.Perc  or 1
 	
-	self.State     = STATE_IDLE
-	self.PrevState = STATE_GOING_DOWN
+	self.State     = self.State     or STATE_IDLE
+	self.PrevState = self.PrevState or STATE_GOING_DOWN
 	
 	self.AutoTrigger = true
 	
@@ -269,6 +268,12 @@ function ENT:PreEntityCopy() -- build the DupeInfo table and save it as an entit
 	SBMPLift.TopCntrlPnt    = self.TopCntrlPnt:EntIndex()
 	SBMPLift.BottomCntrlPnt = self.BottomCntrlPnt:EntIndex()
 	
+	SBMPLift.State     = self.State
+	SBMPLift.PrevState = self.PrevState
+	
+	SBMPLift.Speed = self.Speed 
+	SBMPLift.Perc  = self.Perc
+	
 	return duplicator.StoreEntityModifier(self.Entity, "SBMPLift", SBMPLift)
 end
 
@@ -304,6 +309,14 @@ function ENT:PostEntityPaste(Player, Ent, CreatedEntities)
 			end
 			
 			self:SetupControlPoints(TopCntrlPnt, BottomCntrlPnt)
+			
+			self.State     = Ent.EntityMods.SBMPLift.State
+			self.PrevState = Ent.EntityMods.SBMPLift.PrevState
+			
+			self.Speed = Ent.EntityMods.SBMPLift.Speed
+			self.Perc  = Ent.EntityMods.SBMPLift.Perc
+			
+			self.StopTimestamp = CurTime() + (self.Speed * (1 - self.Perc))
 		end
 	end
 end
