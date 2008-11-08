@@ -15,61 +15,6 @@ language.Add( "Tool_sbmp_prop_spawner_name" , "SBMP Prop Spawner Tool" )
 language.Add( "Tool_sbmp_prop_spawner_desc" , "Easily find and spawn SBMP props." )
 language.Add( "Tool_sbmp_prop_spawner_0", "Left click to spawn the selected prop." )
 
-local function DrawIcons()
-	for l, n in pairs(SBMP_Models.ALLMODELS) do
-		for k, v in pairs(n) do
-			if (v[1] != "blank") then
-				if (((l == 3) || (l == 4)) && (v[2] == 1))then
-					if (k % 4) == 1 then
-						v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
-					else
-						v[3]:SetImage( "SmallBridge/Spawnicons/SBelevator_"..tostring((k - 1) % 4) )
-						v[3].DoClick = 	function()
-											if v[2] > 0 then
-												ValA = 0
-												ValB = 1
-											else
-												ValA = 1
-												ValB = 0
-											end
-											RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/"..v[1].."/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
-											Msg("Spawned 1 "..v[1]..".\n")
-										end
-					end
-				elseif l == 14 then
-					v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
-					v[3].DoClick = 	function()
-										if v[2] > 0 then
-											ValA = 0
-											ValB = 1
-										else
-											ValA = 1
-											ValB = 0
-										end
-										RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/Ships/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
-										Msg("Spawned 1 "..v[1]..".\n")
-									end
-				else
-					v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
-					v[3].DoClick = 	function()
-										if v[2] > 0 then
-											ValA = 0
-											ValB = 1
-										else
-											ValA = 1
-											ValB = 0
-										end
-										RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/"..v[1].."/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
-										Msg("Spawned 1 "..v[1]..".\n")
-									end
-				end
-			end
-		end
-	end
-	
-	SBMPBanner:SetImage( "SmallBridge/Spawnicons/banner_"..SkinValue )
-end
-
 SBMP_Models.CorridorsSWmodels = {}
 	SBMP_Models.CorridorsSWmodels[1]  = {"SBcorridorE1" , 1 , vgui.Create( "DImageButton" ) }
 	SBMP_Models.CorridorsSWmodels[2]  = {"SBcorridorR" , 1 , vgui.Create( "DImageButton" ) }
@@ -410,6 +355,61 @@ local function SetSkinValue()
 		NotGlassNum = 1
 	end
 	SkinGlassValue = (SkinValue + ((SkinValue - 1) * NotGlassNum) + (SkinValue * GlassNum) - 1)
+end
+
+local function DrawIcons()
+	for l, n in pairs(SBMP_Models.ALLMODELS) do
+		for k, v in pairs(n) do
+			if (v[1] != "blank") then
+				if (((l == 3) || (l == 4)) && (v[2] == 1))then
+					if (k % 4) == 1 then
+						v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
+					else
+						v[3]:SetImage( "SmallBridge/Spawnicons/SBelevator_"..tostring((k - 1) % 4) )
+						v[3].DoClick = 	function()
+											if v[2] > 0 then
+												ValA = 0
+												ValB = 1
+											else
+												ValA = 1
+												ValB = 0
+											end
+											RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/"..v[1].."/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
+											Msg("Spawned 1 "..v[1]..".\n")
+										end
+					end
+				elseif l == 14 then
+					v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
+					v[3].DoClick = 	function()
+										if v[2] > 0 then
+											ValA = 0
+											ValB = 1
+										else
+											ValA = 1
+											ValB = 0
+										end
+										RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/Ships/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
+										Msg("Spawned 1 "..v[1]..".\n")
+									end
+				else
+					v[3]:SetImage( "SmallBridge/Spawnicons/"..v[1].."_"..SkinValue )
+					v[3].DoClick = 	function()
+										if v[2] > 0 then
+											ValA = 0
+											ValB = 1
+										else
+											ValA = 1
+											ValB = 0
+										end
+										RunConsoleCommand( "SpawnSBEPProp" , "models/SmallBridge/"..v[1].."/"..v[1]..".mdl" , ((ValB * SkinGlassValue) + (ValA * SkinValueNum)) , GetConVarNumber("sbmp_prop_spawner_Habitable_Module"))
+										Msg("Spawned 1 "..v[1]..".\n")
+									end
+				end
+			end
+		end
+	end
+	
+	SBMPBanner:SetImage( "SmallBridge/Spawnicons/banner_"..SkinValue )
 end
 
 SetSkinValue()
