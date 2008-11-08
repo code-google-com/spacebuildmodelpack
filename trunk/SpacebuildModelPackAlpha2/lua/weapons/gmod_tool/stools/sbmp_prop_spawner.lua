@@ -341,6 +341,8 @@ SBMP_Models.CCSpawnlistTable = {}
 	SBMP_Models.CCSpawnlistTable[13] = { vgui.Create( "DPanel" ) , vgui.Create("DCollapsibleCategory" ) , "Other Parts"                     , #SBMP_Models.OtherPartsmodels    }
 	SBMP_Models.CCSpawnlistTable[14] = { vgui.Create( "DPanel" ) , vgui.Create("DCollapsibleCategory" ) , "Ships and Shuttles"              , #SBMP_Models.Shipsmodels         }
 
+local SBMPBanner
+
 local function SetSkinValue()
 	SkinValue = GetConVarNumber( "sbmp_prop_spawner_SkinNumber" )
 	if !(SkinValue > 0 && SkinValue < 5) then 
@@ -567,7 +569,7 @@ SBMPFrameCloseButton.DoClick = 	function()
 									SBMPFrame:SetVisible( false )
 								end
 
-local SBMPBanner = vgui.Create("DImage", SmallBridgeOptionsPanel )  
+SBMPBanner = vgui.Create("DImage", SmallBridgeOptionsPanel )  
 SBMPBanner:SetImage( "SmallBridge/Spawnicons/banner_"..SkinValue )
 SBMPBanner:SetPos( 5,280 )
 SBMPBanner:SetSize( 90,322 )
