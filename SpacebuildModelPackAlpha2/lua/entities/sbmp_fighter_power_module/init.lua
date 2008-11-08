@@ -1,3 +1,4 @@
+--[[
 resource.AddFile("models/Spacebuild/emount4_fighter.mdl")
 resource.AddFile("models/Spacebuild/emount4_fighter.dx80.vtx")
 resource.AddFile("models/Spacebuild/emount4_fighter.dx90.vtx")
@@ -14,7 +15,7 @@ resource.AddFile("materials/spacebuild/metalmap.vmt")
 resource.AddFile("materials/spacebuild/metalmap.vtf")
 resource.AddFile("materials/spacebuild/hull.vmt")
 resource.AddFile("materials/spacebuild/hull.vtf")
-
+--]]
 // From Spacetech's BH Cache, and his dubiously implemented shield
 // And from my old joystick module, from which this evolved
 
@@ -552,7 +553,7 @@ function ENT:OnTakeDamage(dmg)
 	end
 end
 
-function ENT.SBMP_JSUpdate_CC(pl,cmd,args)
+function ENT.Update_CCmd(pl,cmd,args)
 	pl.SBMP_JSEnts = pl.SBMP_JSEnts or {}
 	
 	for k,v in pairs(pl.SBMP_JSEnts) do
@@ -563,4 +564,4 @@ function ENT.SBMP_JSUpdate_CC(pl,cmd,args)
 		end
 	end
 end
-concommand.Add("sbmp_update_fighter_data", ENT.SBMP_JSUpdate_CC)
+concommand.Add("~sbmp_update_fighter_data", ENT.Update_CCmd)
