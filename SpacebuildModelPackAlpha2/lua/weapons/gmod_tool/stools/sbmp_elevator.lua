@@ -25,6 +25,7 @@ cleanup.Register("sbmp_lifts")
 local EmptyTable = {}
 
 local MDLs = {}
+MDLs["models/SmallBridge/SBpanelelev0s/SBpanelelev0s.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBpanelelev1s/sbpanelelev1s.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl"]   = EmptyTable
@@ -57,11 +58,14 @@ MDLs["models/SmallBridge/SBdoorwide/sbdoorwide.mdl"]     = EmptyTable
 MDLs["models/SmallBridge/SBdoorsquare/sbdoorsquare.mdl"] = EmptyTable
 
 MDLs["models/SmallBridge/SBwalkwayE2/sbwalkwaye2.mdl"] = EmptyTable
-MDLs["models/SmallBridge/SBwalkwayE2/sbwalkwaye2.mdl"] = EmptyTable
 MDLs["models/SmallBridge/SBwalkwayX/sbwalkwayx.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBwalkwayT/sbwalkwayt.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBwalkwayE/sbwalkwaye.mdl"]   = EmptyTable
 MDLs["models/SmallBridge/SBwalkwayR/sbwalkwayr.mdl"]   = EmptyTable
+
+MDLs["models/SmallBridge/SBlanddockramp1/SBlanddockramp1.mdl"]   = EmptyTable
+MDLs["models/SmallBridge/SBlanddockramp1dw/SBlanddockramp1dw.mdl"]   = EmptyTable
+MDLs["models/SmallBridge/SBlanddockramp1dwdh/SBlanddockramp1dwdh.mdl"]   = EmptyTable
 
 
 function TOOL:LeftClick(trace)
