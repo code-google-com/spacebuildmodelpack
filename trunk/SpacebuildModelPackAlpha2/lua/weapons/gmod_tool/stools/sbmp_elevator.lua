@@ -69,6 +69,9 @@ MDLs["models/SmallBridge/SBlanddockramp1dwdh/SBlanddockramp1dwdh.mdl"]   = Empty
 
 MDLs["models/SmallBridge/SBbridgeO1cover/SBbridgeO1cover.mdl"]   = EmptyTable
 
+MDLs["models/SmallBridge/SBEdoorsN/SBEdoorsN.mdl"]   = EmptyTable
+MDLs["models/SmallBridge/SBEdoorsN2/SBEdoorsN2.mdl"]   = EmptyTable
+
 
 function TOOL:LeftClick(trace)
 	if (not trace.HitPos) or trace.Entity:IsPlayer() then return false end
