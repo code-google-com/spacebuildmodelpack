@@ -80,11 +80,9 @@ function TOOL:Think()
 end
 
 function TOOL.BuildCPanel(panel)
-	panel:AddControl("Header", {Text = "Lift", Description = })
-	
 	panel:AddControl("PropSelect", {Label = "Lift Model:",
 									ConVar = "sbmp_elevator_model",
 									Category = "SBMP Elevators",
-									Models = list.Get("SBMP_ElevatorMdls")) -- GetForEdit is faster and we're not changing anything, but we're only doing this once and it's better to be on the safe side
+									Models = list.Get("SBMP_ElevatorMdls")})
 end
 
