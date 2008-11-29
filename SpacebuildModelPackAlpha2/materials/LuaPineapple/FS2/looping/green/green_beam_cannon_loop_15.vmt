@@ -1,5 +1,5 @@
 "UnlitGeneric"
 {
-	"$basetexture" "LuaPineapple/FS2/looping/green/green_beam_cannon_loop_15_00_00"
+	"$basetexture" "LuaPineapple/FS2/looping/green/green_beam_cannon_loop_15"
 	"$translucent" 1
 }
