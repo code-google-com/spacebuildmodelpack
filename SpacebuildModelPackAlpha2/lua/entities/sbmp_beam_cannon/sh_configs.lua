@@ -100,10 +100,8 @@ if CLIENT then
 	
 	ENT.Configs[2].Materials.Glow = {}
 	
-	for i = 0, 5 do
-		for j = 0, 9 do
-			ENT.Configs[2].Materials.Glow[(i * 10) + j] = Material("LuaPineapple/FS2/looping/green/green_beam_cannon_loop_" .. i .. j .. "_00_00")
-		end
+	for i = 0, 59 do
+		ENT.Configs[2].Materials.Glow[i] = Material("LuaPineapple/FS2/looping/green/green_beam_cannon_loop_" .. i)
 	end
 	
 	ENT.Configs[2].Materials.Glow.Count = #ENT.Configs[2].Materials.Glow
@@ -154,10 +152,8 @@ if CLIENT then
 	
 	ENT.Configs[3].Materials.Glow = {}
 	
-	for i = 0, 5 do
-		for j = 0, 9 do
-			ENT.Configs[3].Materials.Glow[(i * 10) + j] = Material("LuaPineapple/FS2/looping/gold/gold_beam_cannon_loop_" .. i .. j .. "_00_00")
-		end
+	for i = 0, 59 do
+		ENT.Configs[3].Materials.Glow[i] = Material("LuaPineapple/FS2/looping/gold/gold_beam_cannon_loop_" .. i)
 	end
 	
 	ENT.Configs[3].Materials.Glow.Count = #ENT.Configs[3].Materials.Glow
@@ -206,14 +202,14 @@ if CLIENT then
 	ENT.Configs[4].Materials.Beam.Glow = Material("LuaPineapple/FS2/beam_cannon/green_beam_cannon_glow")
 	ENT.Configs[4].Materials.Beam.Haze = Material("LuaPineapple/FS2/beam_cannon/green_beam_cannon_haze")
 	
+	ENT.Configs[4].Materials.Glow = ENT.Configs[2].Materials.Glow
+	--[[
 	ENT.Configs[4].Materials.Glow = {}
 	
-	for i = 0, 5 do
-		for j = 0, 9 do
-			ENT.Configs[4].Materials.Glow[(i * 10) + j] = Material("LuaPineapple/FS2/looping/green/green_beam_cannon_loop_" .. i .. j .. "_00_00")
-		end
+	for i = 0, 59 do
+		ENT.Configs[4].Materials.Glow[i] = Material("LuaPineapple/FS2/looping/green/green_beam_cannon_loop_" .. i)
 	end
-	
+	--]]
 	ENT.Configs[4].Materials.Glow.Count = #ENT.Configs[4].Materials.Glow
 	
 	ENT.Configs[4].DLight = {}
@@ -260,14 +256,14 @@ if CLIENT then
 	ENT.Configs[5].Materials.Beam.Glow = Material("LuaPineapple/FS2/beam_cannon/gold_beam_cannon_glow")
 	ENT.Configs[5].Materials.Beam.Haze = Material("LuaPineapple/FS2/beam_cannon/gold_beam_cannon_haze")
 	
+	ENT.Configs[5].Materials.Glow = ENT.Configs[3].Materials.Glow
+	--[[
 	ENT.Configs[5].Materials.Glow = {}
 	
-	for i = 0, 5 do
-		for j = 0, 9 do
-			ENT.Configs[5].Materials.Glow[(i * 10) + j] = Material("LuaPineapple/FS2/looping/gold/gold_beam_cannon_loop_" .. i .. j .. "_00_00")
-		end
+	for i = 0, 59 do
+		ENT.Configs[5].Materials.Glow[i] = Material("LuaPineapple/FS2/looping/gold/gold_beam_cannon_loop_" .. i)
 	end
-	
+	--]]
 	ENT.Configs[5].Materials.Glow.Count = #ENT.Configs[5].Materials.Glow
 	
 	ENT.Configs[5].DLight = {}
