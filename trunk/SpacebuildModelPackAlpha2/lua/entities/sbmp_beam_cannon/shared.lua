@@ -185,7 +185,7 @@ function ENT:GetFiringData()
 		EndPos = tr_data.HitPos
 	end
 	
-	---[[
+	--[[
 	local fx_debugger = EffectData()
 	fx_debugger:SetStart(StartPos)
 	fx_debugger:SetOrigin(EndPos)

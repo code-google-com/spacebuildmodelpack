@@ -18,7 +18,6 @@ HitGlow:SetMaterialInt("$spriterendermode", 9)
 HitGlow:SetMaterialInt("$illumfactor", 8)
 HitGlow:SetMaterialInt("$ignorez", 1)
 
-
 local HackzReloadFastFX = EFFECT
 
 function EFFECT:Init(data)
@@ -259,12 +258,20 @@ function EFFECT:Render()
 	
 	--print("Raw: ", self.RenderGlowFrame + 1)
 	--print("Modulused: ", self.RenderGlowFrame + 1 % self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow.Count)	
-	self.RenderGlowFrame = math.floor((self.RenderGlowFrame + 1) % self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow.Count)
+	self.RenderGlowFrame = math.Round((self.RenderGlowFrame + 1) % self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow.Count)
 	
 	Colour_White.a = self.RenderAlpha
+	
+	--self.RenderGlowFrame = 58
 	--print("Frame Glow: ", self.RenderGlowFrame)
+	local glow = self.RenderGlowSize
+	
+	if (self.Ent.ConfigurationIndex == 2) or (self.Ent.ConfigurationIndex == 4) then
+		glow = glow * 3
+	end
+	
 	---[[
 	render.SetMaterial(self.Ent.Configs[self.Ent.ConfigurationIndex].Materials.Glow[self.RenderGlowFrame])
-	render.DrawSprite(self.Settings.StartPos, self.RenderGlowSize, self.RenderGlowSize, Colour_White)
+	render.DrawSprite(self.Settings.StartPos, glow, glow, Colour_White)
 	--]]
 end
