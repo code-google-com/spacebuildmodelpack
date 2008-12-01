@@ -47,3 +47,8 @@ list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBbridgeO1cover/SBbridgeO1cover
 
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBEdoorsN/SBEdoorsN.mdl",   EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBEdoorsN2/SBEdoorsN2.mdl", EmptyTable)
+
+list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelSolidg/SBpanelSolidg.mdl", EmptyTable)
+list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelSolidgdw/SBpanelSolidgdw.mdl", EmptyTable)
+list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelDHDW/SBpanelDHDW.mdl", EmptyTable)
+list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelDH/SBpanelDH.mdl", EmptyTable)
