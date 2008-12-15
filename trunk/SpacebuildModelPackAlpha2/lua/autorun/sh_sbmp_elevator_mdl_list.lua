@@ -52,3 +52,7 @@ list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelSolidg/SBpanelSolidg.mdl
 list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelSolidgdw/SBpanelSolidgdw.mdl", EmptyTable)
 list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelDHDW/SBpanelDHDW.mdl", EmptyTable)
 list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelDH/SBpanelDH.mdl", EmptyTable)
+
+list.Set("SBMP_ElevatorMdls","models/Slyfo/doublehatch_hatch.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfo/topless_top.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfo/foldcargohatch.mdl", EmptyTable)
