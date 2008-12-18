@@ -4,7 +4,7 @@ ENT.PrintName		= "Medium Torpedo"
 ENT.Author			= "Paradukes + SlyFo"
 ENT.Category		= "SBEP-Weapons"
 
-ENT.Spawnable		= false
+ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
