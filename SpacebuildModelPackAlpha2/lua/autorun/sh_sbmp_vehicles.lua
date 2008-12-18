@@ -562,3 +562,20 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_clunker", V )
+
+local V = {
+				Name = "Assault Pod",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "They'll never know what hit them.",
+				Model = "models/Slyfo/assault_pod.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
