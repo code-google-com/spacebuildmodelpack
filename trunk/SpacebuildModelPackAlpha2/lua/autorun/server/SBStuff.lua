@@ -1,3 +1,4 @@
+-- This function basically deals with stuff that happens when a player hops out of a vehicle
 function SetExPoint(player, vehicle)
 	if vehicle.ExitPoint && vehicle.ExitPoint:IsValid() then
 		local EPP = vehicle.ExitPoint:GetPos()
@@ -7,6 +8,11 @@ function SetExPoint(player, vehicle)
 			player:SetPos(vehicle.ExitPoint:GetPos() + vehicle.ExitPoint:GetUp() * 10)
 			vehicle.ExitPoint.CDown = CurTime() + 0.5
 		end
+	end
+	
+	if player.CamCon then
+		player.CamCon = false
+		player:SetViewEntity()
 	end
 end
 
