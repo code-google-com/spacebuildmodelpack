@@ -27,11 +27,11 @@ function ENT:Initialize()
 
 
 	self.Speed = 0
-	self.TSpeed = 150
+	self.TSpeed = 50
 	self.Active = false
 	self.Skewed = true
 	
-	self.HPC			= 1
+	self.HPC			= 0
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
@@ -56,7 +56,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent2:SetModel( "models/Slyfo/clunker.mdl" ) 
+	ent2:SetModel( "models/Slyfo/assault_pod.mdl" ) 
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
@@ -87,7 +87,7 @@ function ENT:Think()
 				if !self.CamC || !self.CamC:IsValid() then
 					self.CamC = ents.Create( "prop_physics" )
 					self.CamC:SetModel( "models/props_junk/PopCan01a.mdl" )
-					self.CamC:SetPos( self.Pod:GetPos() + self.Pod:GetUp() * 55 + self.Pod:GetForward() * 30 ) 
+					self.CamC:SetPos( self.Pod:GetPos() + self.Pod:GetRight() * 10 ) 
 					self.CamC:SetAngles( self.Pod:GetAngles() )
 					self.CamC:Spawn()
 					--self.CamC:Initialize()
@@ -104,7 +104,7 @@ function ENT:Think()
 					
 					self.RockTrail = ents.Create("env_rockettrail")
 					self.RockTrail:SetAngles( self.Pod:GetAngles()  )
-					self.RockTrail:SetPos( self.Pod:GetPos() + self.Pod:GetUp() * 55 + self.Pod:GetForward() * - 105 )
+					self.RockTrail:SetPos( self.Pod:GetPos() + self.Pod:GetRight() * -105 )
 					self.RockTrail:SetParent(self.Pod)
 					self.RockTrail:Spawn()
 					self.RockTrail:Activate()
@@ -115,7 +115,7 @@ function ENT:Think()
 					self.ShakeIt:SetKeyValue("radius", "500" )
 					self.ShakeIt:SetKeyValue("duration", "5" )
 					self.ShakeIt:SetKeyValue("frequency", "255" )
-					self.ShakeIt:SetPos( self.Pod:GetPos() + self.Pod:GetUp() * 55 )
+					self.ShakeIt:SetPos( self.Pod:GetPos() )
 					self.ShakeIt:Fire("StartShake", "", 0);
 					self.ShakeIt:SetParent(self.Pod)
 					self.ShakeIt:Spawn()
@@ -135,8 +135,8 @@ function ENT:Think()
 				self.Roll = 0
 			end
 			
-			self.Yaw = self.CPL.SBEPYaw * -0.01
-			self.Pitch = self.CPL.SBEPPitch * 0.01
+			self.Yaw = self.CPL.SBEPYaw * -0.02
+			self.Pitch = self.CPL.SBEPPitch * 0.02
 	
 			if (self.CPL:KeyDown( IN_ATTACK )) then
 				for i = 1, self.HPC do
@@ -162,47 +162,66 @@ function ENT:Think()
 			self.Roll = 0
 			self.Pitch = 0
 		end
+	
+		if (self.Active && !self.Impact) then
+					
+			local physi = self.Pod:GetPhysicsObject()
+			physi:SetVelocity( ( physi:GetVelocity() * 0.75 ) + ( self.Pod:GetRight() * 6000 ) )
+			physi:AddAngleVelocity((physi:GetAngleVelocity() * -0.9) + Angle(self.Roll,self.Pitch,self.Yaw))
+			physi:EnableGravity(false)
+			
+			local trace = {}
+			trace.start = self.Pod:GetPos() + self.Pod:GetRight() * 80
+			trace.endpos = self.Pod:GetPos() + self.Pod:GetRight() * 120
+			trace.filter = self.Pod
+			local tr = util.TraceLine( trace )
+			if tr.HitNonWorld && tr.Entity && tr.Entity:IsValid() then
+				self.Impact = true
+				self.Active = false
+				self.Pod:SetPos(tr.HitPos)
+				if self.CPL && self.CPL:IsValid() then
+					self.CPL:ExitVehicle()
+					self.CPL:SetPos( self.Pod:GetPos() + self.Pod:GetRight() * 200 )
+					local Vel = self.Pod:GetPhysicsObject():GetVelocity() * 0.05
+					self.CPL:SetVelocity( Vel )
+				end
+				self.Pod:Fire("kill", "", 20)
+				self.RockTrail:Remove()
+				local Weld = constraint.Weld(self.Pod, tr.Entity, 0, 0, 0, true)
+				local effectdata = EffectData()
+				effectdata:SetOrigin( self.Pod:GetPos() )
+				effectdata:SetStart( self.Pod:GetPos() )
+				effectdata:SetAngle( self.Pod:GetAngles() )
+				effectdata:SetNormal( self.Pod:GetForward() )
+				util.Effect( "ShellDrill", effectdata )
+			elseif tr.HitWorld then
+				local effectdata = EffectData()
+				effectdata:SetOrigin( self.Pod:GetPos() )
+				effectdata:SetStart( self.Pod:GetPos() )
+				effectdata:SetAngle( self.Pod:GetAngles() )
+				effectdata:SetNormal( self.Pod:GetForward() )
+				util.Effect( "ShellDrill", effectdata )
+				local Vel = self.Pod:GetPhysicsObject():GetVelocity()
+				if self.CPL && self.CPL:IsValid() then
+					self.CPL:ExitVehicle()
+					self.CPL:SetVelocity( Vel )
+				end
+				self.Pod:Remove()
+			end
+		else
+			--self.Speed = 0
+			self.Yaw = 0
+			self.Roll = 0
+			self.Pitch = 0
+			--local physi = self.Pod:GetPhysicsObject()
+			--physi:EnableGravity(true)
+		end	
+	
 	else
 		self.Entity:Remove()
 	end
 	
-	if (self.Active && !self.Impact) then
-				
-		local physi = self.Pod:GetPhysicsObject()
-		physi:SetVelocity( ( physi:GetVelocity() * 0.75 ) + ( self.Pod:GetRight() * 6000 ) )
-		physi:AddAngleVelocity((physi:GetAngleVelocity() * -0.9) + Angle(self.Roll,self.Pitch,self.Yaw))
-		physi:EnableGravity(false)
-		
-		local trace = {}
-		trace.start = self.Pod:GetPos() + self.Pod:GetUp() * 55 + self.Pod:GetRight() * 80
-		trace.endpos = self.Pod:GetPos() + self.Pod:GetUp() * 55 + self.Pod:GetRight() * 120
-		trace.filter = self.Pod
-		local tr = util.TraceLine( trace )
-		if tr.HitNonWorld && tr.Entity && tr.Entity:IsValid() then
-			self.Impact = true
-			self.Active = false
-			self.Pod:SetPos(self.Pod:GetPos() + self.Pod:GetRight() * 500)
-			self.CPL:ExitVehicle()
-			self.CPL:SetPos(self.Pod:GetPos() + self.Pod:GetUp() * 55 + self.Pod:GetRight() * 100)
-			local Vel = self.Pod:GetPhysicsObject():GetVelocity()
-			self.CPL:SetVelocity( Vel )
-			
-			self.Pod:Fire("kill", "", 20)
-			self.RockTrail:Remove()
-			local Weld = constraint.Weld(self.Pod, tr.Entity, 0, 0, 0, true)
-		elseif tr.HitWorld then
-			local Vel = self.Pod:GetPhysicsObject():GetVelocity()
-			self.Pod:Remove()
-			self.CPL:SetVelocity( Vel )
-		end
-	else
-		--self.Speed = 0
-		self.Yaw = 0
-		self.Roll = 0
-		self.Pitch = 0
-		--local physi = self.Pod:GetPhysicsObject()
-		--physi:EnableGravity(true)
-	end
+	
 
 	self.Entity:NextThink( CurTime() + 0.01 ) 
 	return true
@@ -221,7 +240,7 @@ function ENT:Touch( ent )
 end
 
 function ENT:OnRemove()
-	if self.Pod:IsValid() then
+	if self.Pod && self.Pod:IsValid() then
 		self.Pod:Remove()
 	end
 end

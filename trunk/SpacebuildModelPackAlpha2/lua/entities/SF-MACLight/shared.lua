@@ -4,7 +4,7 @@ ENT.PrintName		= "SB Light MAC"
 ENT.Author			= "Paradukes"
 ENT.Category		= "SBEP-Weapons"
 
-ENT.Spawnable		= true
+ENT.Spawnable		= false
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
