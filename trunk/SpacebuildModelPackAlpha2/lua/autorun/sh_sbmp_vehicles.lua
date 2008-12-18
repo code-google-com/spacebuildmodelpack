@@ -579,3 +579,22 @@ local V = {
 								HandleAnimation = HandleSBMPVehicleAnimation,
 							}
 }
+list.Set( "Vehicles", "sbmp_assault_pod", V )
+
+local V = {
+				Name = "Rover1 Chassis",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = " ",
+				Model = "models/Slyfo/rover1_chassis.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_rover1_chassis", V )
