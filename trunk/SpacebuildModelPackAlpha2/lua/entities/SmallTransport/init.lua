@@ -2,12 +2,12 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
-util.PrecacheSound( "SB/SteamEngine.wav" )
+--util.PrecacheSound( "SB/SteamEngine.wav" )
 
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
-	self.Entity:SetName("SWORD")
+	self.Entity:SetName("SmallTransport")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -30,7 +30,7 @@ function ENT:Initialize()
 	self.Active = false
 	self.Skewed = true
 	
-	self.HPC			= 5
+	self.HPC			= 0
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
@@ -61,7 +61,7 @@ function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
 	
-	local ent = ents.Create( "SWORD" )
+	local ent = ents.Create( "Clunker" )
 	ent:SetPos( Vector( 100000,100000,100000 ) )
 	ent:Spawn()
 	ent:Initialize()
@@ -71,7 +71,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent2:SetModel( "models/Slyfo/sword.mdl" ) 
+	ent2:SetModel( "models/Slyfo/transportsmall.mdl" ) 
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)

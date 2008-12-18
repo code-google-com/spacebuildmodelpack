@@ -9,5 +9,5 @@ ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
 ENT.HPType			= "Large"
-ENT.APPos			= Vector(80,0,-83)
+ENT.APPos			= Vector(-40,0,-83)
 ENT.FTime			= 0
