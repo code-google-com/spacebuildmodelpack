@@ -21,3 +21,19 @@ ENT.Launchy			= false
 ENT.Pitch			= 0
 ENT.Yaw				= 0
 ENT.Roll			= 0
+
+function ENT:SetActive( val )
+	self.Entity:SetNetworkedBool("Active",val,true)
+end
+
+function ENT:GetActive()
+	return self.Entity:GetNetworkedBool("Active")
+end
+
+function ENT:SetPod( val )
+	self.Entity:SetNetworkedEntity("ClPod",val,true)
+end
+
+function ENT:GetPod()
+	return self.Entity:GetNetworkedEntity("ClPod")
+end

@@ -70,6 +70,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	--ent:SetPod( ent2 )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
@@ -101,27 +102,17 @@ function ENT:Think()
 			if (self.CPL:KeyDown( IN_JUMP )) then
 				if !self.Active then
 					self.Active = true
+					--self.Entity:SetActive( true )
 					
 					self.RockTrail = ents.Create("env_rockettrail")
 					self.RockTrail:SetAngles( self.Pod:GetAngles()  )
-					self.RockTrail:SetPos( self.Pod:GetPos() + self.Pod:GetRight() * -105 )
+					self.RockTrail:SetPos( self.Pod:GetPos() + self.Pod:GetRight() * -100 )
 					self.RockTrail:SetParent(self.Pod)
 					self.RockTrail:Spawn()
 					self.RockTrail:Activate()
-					
-					self.ShakeIt = ents.Create( "env_shake" )
-					self.ShakeIt:SetName("Shaker")
-					self.ShakeIt:SetKeyValue("amplitude", "8" )
-					self.ShakeIt:SetKeyValue("radius", "500" )
-					self.ShakeIt:SetKeyValue("duration", "5" )
-					self.ShakeIt:SetKeyValue("frequency", "255" )
-					self.ShakeIt:SetPos( self.Pod:GetPos() )
-					self.ShakeIt:Fire("StartShake", "", 0);
-					self.ShakeIt:SetParent(self.Pod)
-					self.ShakeIt:Spawn()
-					self.ShakeIt:Activate()
-					
+										
 					self.Pod:GetPhysicsObject():Wake()
+					self.Pod:GetPhysicsObject():EnableMotion( true )
 					constraint.RemoveConstraints( self.Pod, "Weld" )
 					self.Pod:SetParent()
 				end
