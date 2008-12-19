@@ -74,7 +74,7 @@ function ENT:Think()
 		Torp:Initialize()
 		Torp:Activate()
 		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
-		Torp:SetParent( self.Entity )
+		--Torp:SetParent( self.Entity )
 		self.Torp = Torp
 		
 		self.Loading = false
@@ -96,7 +96,7 @@ function ENT:Touch( ent )
 		ent:SetAngles( self.Entity:GetAngles() )
 		constraint.RemoveConstraints( self.Torp, "Weld" )
 		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
-		--ent:SetParent( self.Entity )
+		ent:SetParent( self.Entity )
 				
 		self.Loading = false
 	end
