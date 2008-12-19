@@ -96,7 +96,7 @@ function ENT:Touch( ent )
 		ent:SetAngles( self.Entity:GetAngles() )
 		constraint.RemoveConstraints( self.Torp, "Weld" )
 		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
-		ent:SetParent( self.Entity )
+		--ent:SetParent( self.Entity )
 				
 		self.Loading = false
 	end

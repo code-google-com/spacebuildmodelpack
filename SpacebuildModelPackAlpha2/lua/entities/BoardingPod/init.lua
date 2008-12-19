@@ -20,7 +20,7 @@ function ENT:Initialize()
 		phys:EnableGravity(false)
 		phys:EnableDrag(false)
 		phys:EnableCollisions(false)
-		phys:SetMass(20)
+		--phys:SetMass(20)
 	end
 	self.Entity:StartMotionController()
 	self.PhysObj = self.Entity:GetPhysicsObject()
@@ -60,7 +60,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
-	ent2.HasHardpoints = true
+	--ent2.HasHardpoints = true
 	ent2:Spawn()
 	ent2:Activate()
 	local TB = ent2:GetTable()
@@ -120,11 +120,11 @@ function ENT:Think()
 					self.ShakeIt:SetParent(self.Pod)
 					self.ShakeIt:Spawn()
 					self.ShakeIt:Activate()
+					
+					self.Pod:GetPhysicsObject():Wake()
+					constraint.RemoveConstraints( self.Pod, "Weld" )
+					self.Pod:SetParent()
 				end
-			end
-			
-			if self.Active then
-				self.CPL:ViewPunch( Angle(10,10,0) )
 			end
 	
 			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
