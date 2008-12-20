@@ -10,7 +10,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Force" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Force", "Homing" } )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -64,6 +64,13 @@ function ENT:TriggerInput(iname, value)
 	elseif (iname == "Force") then
 		if (value > 0) then
 			self.LForce = value
+		end
+	
+	elseif (iname == "Homing") then
+		if (value > 0) then
+			self.Homer = true
+		else
+			self.Homer = false
 		end
 		
 	end
@@ -135,6 +142,7 @@ function ENT:FFire( CCD )
 	self.MCDown = CurTime() + 0.4
 	self.Entity:EmitSound("Buttons.snd24")
 	NewShell:GetPhysicsObject():EnableGravity(false)
+	if self.Homing then NewShell.Homing = true end
 	
 	timer.Simple(5,function() NewShell:Arm() 
 	end)	

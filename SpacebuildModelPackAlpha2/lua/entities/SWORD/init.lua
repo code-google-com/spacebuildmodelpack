@@ -134,7 +134,7 @@ function ENT:Think()
 					if self.MCC then
 						self.MCC = false
 					else
-						--self.MCC = true
+						self.MCC = true
 					end
 				end
 				self.MTog = true
@@ -162,7 +162,11 @@ function ENT:Think()
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
-						self.HP[i]["Ent"].Entity:HPFire()
+						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+							self.HP[i]["Ent"].Cont:HPFire()
+						else
+							self.HP[i]["Ent"].Entity:HPFire()
+						end
 					end
 				end
 			end
@@ -171,7 +175,11 @@ function ENT:Think()
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
-						self.HP[i]["Ent"].Entity:HPFire()
+						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+							self.HP[i]["Ent"].Cont:HPFire()
+						else
+							self.HP[i]["Ent"].Entity:HPFire()
+						end
 					end
 				end
 			end
@@ -186,7 +194,7 @@ function ENT:Think()
 				
 				AAng.r = VAng.r
 				AAng.p = PAng.p - VAng.p
-				AAng.z = PAng.y - VAng.y
+				AAng.y = PAng.y - VAng.y
 				
 				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(AAng.y) .. ", " .. math.Round(AAng.r) ) 
 				

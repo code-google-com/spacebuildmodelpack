@@ -68,7 +68,7 @@ function SBHud()
 		for n = 1, HPC do
 			local c = 0
 			local info = LocalPlayer():GetInfo( "SBHP_"..n )
-			if info == "0.00" || info == "0" || info == 0 then
+			if info == "0.00" || info == "0" || info == 0 || info == "0.0" then
 				c = 100
 			else
 				c = 240
@@ -77,7 +77,7 @@ function SBHud()
 			draw.WordBox( 10, 40, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
 			
 			info = LocalPlayer():GetInfo( "SBHP_"..n.."a" )
-			if info == "0.00" || info == "0" then
+			if info == "0.00" || info == "0" || info == 0 || info == "0.0" then
 				c = 100
 			else
 				c = 240

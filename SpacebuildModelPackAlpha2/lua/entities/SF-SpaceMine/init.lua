@@ -71,7 +71,7 @@ end
 
 function ENT:Think()
 	local phy = self.Entity:GetPhysicsObject()
-	if self.Armed then
+	if self.Armed && self.Homer then
 		if self.Target && self.Target:IsValid() then
 			--if self.Target && self.Target:IsValid() then
 				local IMass = self.Target:GetPhysicsObject():GetMass()
@@ -125,6 +125,7 @@ end
 
 function ENT:Use( activator, caller )
 	self.Entity:Arm()
+	self.Homer = true
 end
 
 function ENT:Arm()
