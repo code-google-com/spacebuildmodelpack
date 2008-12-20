@@ -21,6 +21,8 @@ ENT.Launchy			= false
 ENT.Pitch			= 0
 ENT.Yaw				= 0
 ENT.Roll			= 0
+ENT.HPType			= "Medium"
+ENT.APPos			= Vector(0,0,-46)
 
 function ENT:SetActive( val )
 	self.Entity:SetNetworkedBool("Active",val,true)

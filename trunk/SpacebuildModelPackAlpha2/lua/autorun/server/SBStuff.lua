@@ -39,8 +39,8 @@ function HPLink( cont, pod, weap )
 				end
 				weap:SetAngles( pod:GetAngles() )
 				weap:GetPhysicsObject():EnableCollisions(false)
-				weap.HPWeld = constraint.Weld(pod, weap, 0, 0, 0, true)
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)
+				weap.HPWeld = constraint.Weld(pod, weap, 0, 0, 0, true)
 				weap:SetParent( pod )
 				cont.HP[i]["Ent"] = weap
 				weap.Pod = pod
