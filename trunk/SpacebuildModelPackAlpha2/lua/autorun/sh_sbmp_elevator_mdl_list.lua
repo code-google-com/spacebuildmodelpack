@@ -56,3 +56,4 @@ list.Add("SBMP_ElevatorMdls","models/SmallBridge/SBpanelDH/SBpanelDH.mdl", Empty
 list.Set("SBMP_ElevatorMdls","models/Slyfo/doublehatch_hatch.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/topless_top.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/foldcargohatch.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfo/side_pod_hatch.mdl", EmptyTable)
