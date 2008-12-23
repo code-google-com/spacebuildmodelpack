@@ -134,7 +134,7 @@ function ENT:Think()
 					if self.MCC then
 						self.MCC = false
 					else
-						self.MCC = true
+						--self.MCC = true
 					end
 				end
 				self.MTog = true
@@ -185,23 +185,19 @@ function ENT:Think()
 			end
 			
 			if self.MCC then
-				local PAng = self.CPL:EyeAngles()
-				local VAng = self.Pod:GetAngles()
-				local AAng = Angle(0,0,0)
+				local PRel = self.CPL:GetPos() + self.CPL:GetAimVector() * 1000
+				local DPos = self.Pod:WorldToLocal(PRel)
+				local Ang = DPos:Angle()
+				local Pitch = Ang.p
+				local Yaw = Ang.y
 				
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(PAng.y) .. ", " .. math.Round(PAng.r) )
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(VAng.y) .. ", " .. math.Round(VAng.r) )
+				if (Pitch > 180) then Pitch = Pitch - 360 end
+				if (Yaw > 180) then Yaw = Yaw - 360 end
+								
+				--CYaw = (AAng.y * math.cos(math.rad(AAng.r))) - (AAng.p * math.sin(math.rad(AAng.r)))
+				--CPitch = (AAng.y * math.sin(math.rad(AAng.r))) - (AAng.p * math.cos(math.rad(AAng.r)))
 				
-				AAng.r = VAng.r
-				AAng.p = PAng.p - VAng.p
-				AAng.y = PAng.y - VAng.y
-				
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(AAng.y) .. ", " .. math.Round(AAng.r) ) 
-				
-				CYaw = (AAng.y * math.cos(math.rad(AAng.r))) - (AAng.p * math.sin(math.rad(AAng.r)))
-				CPitch = (AAng.y * math.sin(math.rad(AAng.r))) - (AAng.p * math.cos(math.rad(AAng.r)))
-				
-				self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(CYaw) .. ", " .. math.Round(CPitch) ) 
+				self.CPL:PrintMessage( HUD_PRINTCENTER, "Bearing: " .. math.Round(Yaw) .. ", Elevation: " .. math.Round(Pitch) ) 
 				self.CPL:CrosshairEnable()
 			end
 			
