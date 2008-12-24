@@ -26,7 +26,7 @@ function ENT:Initialize()
 
 
 	self.Speed = 0
-	self.TSpeed = 150
+	self.TSpeed = 90
 	self.Active = false
 	self.Skewed = true
 	
@@ -128,13 +128,16 @@ function ENT:Think()
 			elseif (self.CPL:KeyDown( IN_WALK )) then
 				self.Speed = math.Clamp(self.Speed - 10, -40, 2000)
 			end
-	
+			--self.TSpeed = math.Clamp(self.Speed / 10, 20, 200)
+			
 			if (self.CPL:KeyDown( IN_RELOAD )) then
 				if !self.MTog then
 					if self.MCC then
 						self.MCC = false
+						self.CPL:PrintMessage( HUD_PRINTCENTER, "Mouse Control Disabled" )
 					else
-						--self.MCC = true
+						self.MCC = true
+						self.CPL:PrintMessage( HUD_PRINTCENTER, "Mouse Control Enabled" )
 					end
 				end
 				self.MTog = true
@@ -185,26 +188,27 @@ function ENT:Think()
 			end
 			
 			if self.MCC then
-				local PRel = self.CPL:GetPos() + self.CPL:GetAimVector() * 1000
-				local DPos = self.Pod:WorldToLocal(PRel)
-				local Ang = DPos:Angle()
-				local Pitch = Ang.p
-				local Yaw = Ang.y
+				local PRel = self.Pod:GetPos() + self.CPL:GetAimVector() * 100
 				
-				if (Pitch > 180) then Pitch = Pitch - 360 end
-				if (Yaw > 180) then Yaw = Yaw - 360 end
-								
+				--Believe it or not, the following code came from a set of tank treads. Who'd have thunk it?
+				local FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * 500 )
+				local BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * -500 )
+				self.Pitch = (FDist - BDist) * 0.5
+				FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * 500 )
+				BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * -500 )
+				self.Yaw = (BDist - FDist) * 0.5
+						
 				--CYaw = (AAng.y * math.cos(math.rad(AAng.r))) - (AAng.p * math.sin(math.rad(AAng.r)))
 				--CPitch = (AAng.y * math.sin(math.rad(AAng.r))) - (AAng.p * math.cos(math.rad(AAng.r)))
 				
-				self.CPL:PrintMessage( HUD_PRINTCENTER, "Bearing: " .. math.Round(Yaw) .. ", Elevation: " .. math.Round(Pitch) ) 
+				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Bearing: " .. math.Round(Yaw) .. ", Elevation: " .. math.Round(Pitch) ) 
 				self.CPL:CrosshairEnable()
 			end
 			
 			if (self.Launchy) then
 				local physi = self.Pod:GetPhysicsObject()
 				physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed)) )
-				physi:AddAngleVelocity((physi:GetAngleVelocity() * -1) + Angle(self.Roll,self.Pitch,self.Yaw))
+				physi:AddAngleVelocity((physi:GetAngleVelocity() * -0.75) + Angle(self.Roll,self.Pitch,self.Yaw))
 				physi:EnableGravity(false)
 			else
 				self.Speed = 0
