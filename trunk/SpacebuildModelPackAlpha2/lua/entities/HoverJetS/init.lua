@@ -101,7 +101,7 @@ function ENT:Think()
 			end
 			
 			local trace = {}
-			trace.start = self.Entity:GetPos()
+			trace.start = self.Entity:GetPos() + self.Entity:GetUp() * 20
 			trace.endpos = self.Entity:GetPos() + (self.Entity:GetUp() * -600)
 			trace.filter = self.Entity
 			local tr = util.TraceLine( trace )
