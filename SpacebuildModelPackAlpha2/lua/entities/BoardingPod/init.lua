@@ -257,7 +257,6 @@ function ENT:SetActive()
 	self.RockTrail:SetParent(self.Pod)
 	self.RockTrail:Spawn()
 	self.RockTrail:Activate()
-	PrintTable( self.RockTrail:GetTable() )
 			
 	self.Pod:GetPhysicsObject():Wake()
 	self.Pod:GetPhysicsObject():EnableMotion( true )
