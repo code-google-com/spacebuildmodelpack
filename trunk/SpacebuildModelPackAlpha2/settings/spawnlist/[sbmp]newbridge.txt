@@ -1,0 +1,31 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SBMP]NewBridge"
+	}
+	
+"Entries"
+	{
+		
+
+"1"		"models/NewBridge/nbbridge1.mdl"
+		
+"2"		"models/NewBridge/nbengine1.mdl"
+		
+"3"		"models/NewBridge/nbstraighte05.mdl"
+		
+"4"		"models/NewBridge/nbstraighte1.mdl"
+		
+"5"		"models/NewBridge/nbstraighte2.mdl"
+		
+"6"		"models/NewBridge/nbstraightr.mdl"
+		
+"7"		"models/NewBridge/nbstraightt.mdl"
+		
+"8"		"models/NewBridge/nbstraightx.mdl"
+	
+
+}
+}
