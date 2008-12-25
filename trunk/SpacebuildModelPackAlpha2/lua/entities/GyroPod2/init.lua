@@ -139,8 +139,17 @@ function ENT:Think()
 			end
 			
 			if self.MCC then
-				self.Pitch = self.CPL.SBEPPitch * self.TSpeed
-				self.Yaw = self.CPL.SBEPYaw * -self.TSpeed
+				local PRel = self.Pod:GetPos() + self.CPL:GetAimVector() * 100
+				
+				--Believe it or not, the following code came from a set of tank treads. Who'd have thunk it?
+				local FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * 500 )
+				local BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * -500 )
+				self.Pitch = (FDist - BDist) * 0.5
+				FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * 500 )
+				BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * -500 )
+				self.Yaw = (BDist - FDist) * 0.5
+
+				self.CPL:CrosshairEnable()
 			end
 			
 			if (self.Launchy) then
@@ -148,7 +157,13 @@ function ENT:Think()
 					if (c:IsValid()) then
 						local physi = c:GetPhysicsObject()
 						physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Entity:GetForward() * self.Speed) + (self.Entity:GetUp() * self.VSpeed)) )
-						physi:AddAngleVelocity((physi:GetAngleVelocity() * -1) + Angle(self.Roll,self.Pitch,self.Yaw))
+						physi:AddAngleVelocity(physi:GetAngleVelocity() * -0.5)
+						physi:ApplyForceOffset( self.Entity:GetForward() * (self.Pitch * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * (-self.Pitch * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * -5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * (self.Yaw * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * (-self.Yaw * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
+						physi:ApplyForceOffset( self.Entity:GetUp() * (-self.Roll * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetUp() * (self.Roll * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
 						physi:EnableGravity(false)
 					end
 				end
