@@ -31,6 +31,7 @@ function ENT:Initialize()
 	self.ZVelocity = 5
 	self.HSpeed = 3
 	self.Hovering = false
+	self.Turbo = 1
 
 end
 
@@ -80,36 +81,47 @@ function ENT:Think()
 			
 			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
 				if self.Side == "Left" then
-					SSpeed = 400
 					HOffset = 10
 				elseif self.Side == "Right" then
-					SSpeed = -400
 					HOffset = -10
 				end
+				SSpeed = 100
 			elseif (self.CPL:KeyDown( IN_MOVELEFT )) then
 				if self.Side == "Left" then
-					SSpeed = -400
 					HOffset = -10
 				elseif self.Side == "Right" then
-					SSpeed = 400
 					HOffset = 10
 				end
+				SSpeed = -100
 			end
 			
 			if (self.CPL:KeyDown( IN_JUMP )) then
 				HOffset = 200
 			end
 			
+			if (self.CPL:KeyDown( IN_WALK )) then
+				--self.Turbo = 0.5
+			else
+				--self.Turbo = 1
+			end
+			
+			if (self.CPL:KeyDown( IN_SPEED )) then
+				--self.Turbo = 3
+			else
+				--self.Turbo = 1
+			end
+			
 			local trace = {}
 			trace.start = self.Entity:GetPos() + self.Entity:GetUp() * 20
-			trace.endpos = self.Entity:GetPos() + (self.Entity:GetUp() * -600)
+			trace.endpos = self.Entity:GetPos() + (self.Entity:GetUp() * -400)
 			trace.filter = self.Entity
+			trace.mask = -1
 			local tr = util.TraceLine( trace )
 			if tr.Hit then
 				local HVPos = tr.HitPos + (tr.HitNormal * 100)
-				if HVPos.z > tr.HitPos.z + 70 then
+				if HVPos.z > tr.HitPos.z + 50 then --This controls the maximum incline the jets will function on.
 					self.Hovering = true
-					self.TargetZ = tr.HitPos.z + 200 + HOffset
+					self.TargetZ = tr.HitPos.z + 50 + HOffset
 					
 					FSpeed = FSpeed * self.Entity:GetPhysicsObject():GetMass()
 					SSpeed = SSpeed * self.Entity:GetPhysicsObject():GetMass()
@@ -117,7 +129,7 @@ function ENT:Think()
 					local physi = self.Pod:GetPhysicsObject()
 					
 					physi:ApplyForceCenter( self.Pod:GetRight() * (FSpeed) )
-					physi:ApplyForceCenter( self.Pod:GetForward() * (SSpeed) )
+					self.Pod:GetPhysicsObject():ApplyForceOffset( self.Entity:GetRight() * SSpeed, self.Pod:GetPos() + self.Entity:GetForward() * 300 )
 					physi:SetVelocity( physi:GetVelocity() * 0.75 )
 					physi:AddAngleVelocity(physi:GetAngleVelocity() * -0.75)
 				end
@@ -129,6 +141,9 @@ function ENT:Think()
 			self.Hovering = false
 		end
 	end
+	
+	self.Entity:NextThink( CurTime() + 0.01 ) 
+	return true
 end
 
 function ENT:PhysicsCollide( data, physobj )

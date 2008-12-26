@@ -9,7 +9,7 @@ ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Small"
-ENT.APPos			= Vector(0,0,0)
+ENT.APPos			= Vector(0,0,15)
 
 function ENT:SetArmed( val )
 	self.Entity:SetNetworkedBool("ClArmed",val,true)
