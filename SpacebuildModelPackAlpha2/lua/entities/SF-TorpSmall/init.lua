@@ -112,7 +112,8 @@ function ENT:Splode()
 		local effectdata = EffectData()
 		effectdata:SetOrigin(self.Entity:GetPos())
 		effectdata:SetStart(self.Entity:GetPos())
-		util.Effect( "BigTorpSplode", effectdata )
+		effectdata:SetMagnitude(3)
+		util.Effect( "PulseSplode", effectdata )
 		self.Exploded = true
 		
 		local ShakeIt = ents.Create( "env_shake" )
