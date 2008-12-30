@@ -73,13 +73,13 @@ function ENT:Think()
 		Bullet.Dir = self.Entity:GetForward() --Position * -1
 		Bullet.Spread = Vector( 0.03, 0.03, 0.03 )
 		Bullet.Tracer = 1
-		Bullet.Force = 10
+		Bullet.Force = 100
 		Bullet.TracerName = "Tracer"
 		Bullet.Attacker = self.SPL
-		Bullet.Damage = 70
+		Bullet.Damage = 100
 		Bullet.Callback = function (attacker, tr, dmginfo)
 			if (tr.Entity and tr.Entity:IsValid()) then
-				local  gdmg = math.random(5,10)
+				local  gdmg = math.random(50,100)
 				attack = cbt_dealdevhit(tr.Entity, gdmg, 5)
 				if (attack != nil) then
 					if (attack == 2) then
@@ -107,7 +107,7 @@ function ENT:Think()
 		self.Entity:EmitSound("SB/Gattling2.wav", 400)
 		
 	end
-	self.Entity:NextThink( CurTime() + 0.15 )
+	self.Entity:NextThink( CurTime() + 0.25 )
 	return true
 end
 

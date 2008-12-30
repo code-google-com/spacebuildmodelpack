@@ -35,15 +35,16 @@ function ENT:Draw()
 		local Pie = 3.14159265358 // Yes, I know it's spelled wrong. Shut up.
 		local Scale = self.Entity:GetSegSize()
 		local SDist = math.fmod(self.Scroll, Scale * 12)
-		local CircP = ((Pie * ( self.Entity:GetRadius() * 2 )) / (Scale * 12))
+		local CircP = (Scale * 12) / ((Pie * ( self.Entity:GetRadius() * 2 )) / 360)
 		
-		for i = 1, self.Entity:GetLength(), self.Entity:GetSpacing() do
+		for i = 1, self.Entity:GetLength(), CircP do
+			--self.Entity:SetAngles( OAng )
 			local Sine = math.sin(math.rad(i + SDist)) * self.Entity:GetRadius()
 			local CoSine = math.cos(math.rad(i + SDist)) * self.Entity:GetRadius()
 			self.Entity:SetPos( OPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
 			local NAng = OAng
 			NAng:RotateAroundAxis( self.Entity:GetRight(), i )
-			self.Entity:SetAngles( NAng )
+			--self.Entity:SetAngles( NAng )
 			self.Entity:SetModelWorldScale( Vector(Scale, Scale, Scale) )
 			self.Entity:DrawModel()
 		end

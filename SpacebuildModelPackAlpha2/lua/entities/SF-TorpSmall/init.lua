@@ -141,10 +141,15 @@ end
 
 function ENT:HPFire()
 	self.Entity:SetParent()
-	if self.HPWeld && self.HPWeld:IsValid() then self.HPWeld:Remove() end
+	constraint.RemoveConstraints( self.Entity, "Weld" )
+	constraint.RemoveConstraints( self.Entity, "Ballsocket" )
 	self.PhysObj:SetVelocity(self.Entity:GetForward()*10000)
-	self.Entity:Arm()
 	self.PFire = true
-	self.PhysObj:EnableCollisions(true)
-	self.PhysObj:EnableGravity(false)
+	self.Entity:GetPhysicsObject():EnableGravity(false)
+	timer.Simple(1.5,function()
+		if self.Entity:IsValid() then
+		self.Entity:GetPhysicsObject():EnableCollisions(true)
+		self.Entity:Arm()
+		end
+	 end)
 end

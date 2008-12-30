@@ -164,6 +164,8 @@ function ENT:Think()
 			if (self.CPL:KeyDown( IN_ATTACK )) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
+					print(HPC)
+					print(string.byte(HPC))
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
 						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
 							self.HP[i]["Ent"].Cont:HPFire()
@@ -243,7 +245,7 @@ function ENT:Touch( ent )
 end
 
 function ENT:OnRemove()
-	if self.Pod:IsValid() then
+	if self.Pod && self.Pod:IsValid() then
 		self.Pod:Remove()
 	end
 end
