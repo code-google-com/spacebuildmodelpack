@@ -6,12 +6,12 @@ util.PrecacheSound( "SB/Gattling2.wav" )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/Slyfo/smlturrettop.mdl" ) 
+	--self.Entity:SetModel( "models/Slyfo/smlturrettop.mdl" ) 
 	self.Entity:SetName("SmallMachineGun")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	--self.Inputs = Wire_CreateInputs( self.Entity, { "Fire" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "X", "Y", "Z", "Speed" } )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -25,13 +25,6 @@ function ENT:Initialize()
 	
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
-
-	self.HPC			= 1
-	self.HP				= {}
-	self.HP[1]			= {}
-	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= "Small"
-	self.HP[1]["Pos"]	= Vector(0,0,12)
 	
 	self.Cont = self.Entity
 end
@@ -44,9 +37,18 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent = ents.Create( "SF-SwivelMountS" )
 	ent:SetPos( SpawnPos )
+	ent:SetModel( "models/Slyfo/smlturrettop.mdl" ) 
 	ent:Spawn()
+	ent:Initialize()
 	ent:Activate()
 	ent.SPL = ply
+	
+	ent.HPC				= 1
+	ent.HP				= {}
+	ent.HP[1]			= {}
+	ent.HP[1]["Ent"]	= nil
+	ent.HP[1]["Type"]	= "Small"
+	ent.HP[1]["Pos"]	= Vector(0,0,12)
 	
 	SpawnPos2 = SpawnPos + Vector(3,-3,-30)
 	

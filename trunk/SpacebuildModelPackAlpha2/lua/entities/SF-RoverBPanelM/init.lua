@@ -68,7 +68,69 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
-
+	--self.Entity:SetColor( 0, 0, 255, 255)
+	local Weap = self.HP[1]["Ent"]
+	
+	if Weap && Weap:IsValid() then
+	
+		if !Weap.Swivved then
+			local LPos = Vector(0,0,0)
+			constraint.RemoveConstraints( Weap, "Weld" )
+			Weap:SetParent()
+			Weap:GetPhysicsObject():EnableCollisions(false)
+			
+			LPos = Weap:WorldToLocal(Weap:GetPos() + (Weap:GetForward() * (-Weap.APPos.x + -10)) + (Weap:GetRight() * (-Weap.APPos.y + 10 )) + (Weap:GetUp() * (-Weap.APPos.z + 5)))
+			self.WSock1 = constraint.Ballsocket( self.Entity, Weap, 0, 0, LPos, 0, 0, 1)
+			LPos = Weap:WorldToLocal(Weap:GetPos() + (Weap:GetForward() * (-Weap.APPos.x + -10)) + (Weap:GetRight() * (-Weap.APPos.y + -10)) + (Weap:GetUp() * (-Weap.APPos.z + 5)))
+			self.WSock2 = constraint.Ballsocket( self.Entity, Weap, 0, 0, LPos, 0, 0, 1)
+			
+			local Noc = constraint.NoCollide( Weap, self.Entity, 0, 0 )
+			Weap:GetPhysicsObject():EnableCollisions(false)
+			Weap.Swivved = true
+			--Weap:SetColor( 0, 255, 0, 255)
+		else
+			--Weap:SetColor( 255, 0, 0, 255)
+		end
+		
+		if self.Pod && self.Pod:IsValid() && self.Pod:IsVehicle() then
+			Weap.Pod = self.Pod
+			self.CPL = self.Pod:GetPassenger()
+			if (self.CPL && self.CPL:IsValid()) then
+							
+				if (self.CPL:KeyDown( IN_ATTACK )) then
+					--for i = 1, self.HPC do
+					--	local HPC = self.CPL:GetInfo( "SBHP_"..i )
+					--	if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
+							self.HP[1]["Ent"].Entity:HPFire()
+					--	end
+					--end
+				end
+				
+				self.CPL:CrosshairEnable()
+				
+				local PRel = Weap:GetPos() + self.CPL:GetAimVector() * 500
+				local FDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * 100 )
+				local BDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * -100 )
+				local Pitch = math.Clamp((FDist - BDist) * 0.75, -250, 250)
+				
+				local physi2 = Weap:GetPhysicsObject()
+				
+				physi2:AddAngleVelocity((physi2:GetAngleVelocity() * -1) + Angle(0,Pitch,0))
+			else
+				local PRel = Weap:GetPos() + self.Entity:GetForward() * 500
+				local FDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * 100 )
+				local BDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * -100 )
+				local Pitch = math.Clamp((FDist - BDist) * 0.75, -250, 250)
+				
+				local physi2 = Weap:GetPhysicsObject()
+				
+				physi2:AddAngleVelocity((physi2:GetAngleVelocity() * -1) + Angle(0,Pitch,0))
+			end
+		end
+	end
+	
+	self.Entity:NextThink( CurTime() + 0.01 ) 
+	return true	
 end
 
 function ENT:PhysicsCollide( data, physobj )

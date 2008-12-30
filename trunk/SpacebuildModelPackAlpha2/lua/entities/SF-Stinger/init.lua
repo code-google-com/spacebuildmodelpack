@@ -2,15 +2,17 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
+--util.PrecacheSound( "NPC_Ministrider.FireMinigun" )
+--util.PrecacheSound( "WeaponDissolve.Dissolve" )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/Slyfo/finfunnel.mdl" ) 
+	self.Entity:SetModel( "models/Slyfo/rover_stinger.mdl" ) 
 	self.Entity:SetName("ArtilleryCannon")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Force", "Homing" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire" } )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -25,18 +27,16 @@ function ENT:Initialize()
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
 	
-	self.MineProof = true
-	self.LForce = 0
-	
 	self.CDL = {}
 	self.CDL[1] = 0
 	self.CDL[2] = 0
 	self.CDL[3] = 0
 	self.CDL[4] = 0
-	self.CDL[5] = 0
-	self.CDL[6] = 0
-
-
+	self.CDL["1r"] = true
+	self.CDL["2r"] = true
+	self.CDL["3r"] = true
+	self.CDL["4r"] = true
+	
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -45,7 +45,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16
 	
-	local ent = ents.Create( "SF-MineLayer" )
+	local ent = ents.Create( "SF-Stinger" )
 	ent:SetPos( SpawnPos )
 	ent:Spawn()
 	ent:Activate()
@@ -60,19 +60,6 @@ function ENT:TriggerInput(iname, value)
 		if (value > 0) then
 			self.Entity:HPFire()
 		end
-	
-	elseif (iname == "Force") then
-		if (value > 0) then
-			self.LForce = value
-		end
-	
-	elseif (iname == "Homing") then
-		if (value > 0) then
-			self.Homer = true
-		else
-			self.Homer = false
-		end
-		
 	end
 end
 
@@ -81,7 +68,7 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
-	for n = 1, 6 do
+	for n = 1, 4 do
 		if (CurTime() >= self.CDL[n]) then
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
@@ -105,17 +92,13 @@ end
 
 function ENT:Touch( ent )
 	if ent.HasHardpoints then
-		if ent.Cont && ent.Cont:IsValid() then 
-			HPLink( ent.Cont, ent.Entity, self.Entity ) 
-			ent.Cont.MineProof = true
-			ent.MineProof = true
-		end
+		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
 	end
 end
 
 function ENT:HPFire()
 	if (CurTime() >= self.MCDown) then
-		for n = 1, 6 do
+		for n = 1, 4 do
 			if (CurTime() >= self.CDL[n]) then
 				self.Entity:FFire(n)
 				return
@@ -125,29 +108,22 @@ function ENT:HPFire()
 end
 
 function ENT:FFire( CCD )
-	local NewShell = ents.Create( "SF-SpaceMine" )
+	local NewShell = ents.Create( "SF-MortarShell" )
 	if ( !NewShell:IsValid() ) then return end
-	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * -100) )
-	--NewShell:SetAngles( self.Entity:GetForward():Angle() )
+	local CVel = self.Entity:GetPhysicsObject():GetVelocity():Length()
+	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * 10) + (self.Entity:GetForward() * (115 + CVel)) )
+	NewShell:SetAngles( self.Entity:GetAngles() )
 	NewShell.SPL = self.SPL
 	NewShell:Spawn()
 	NewShell:Initialize()
 	NewShell:Activate()
 	local NC = constraint.NoCollide(self.Entity, NewShell, 0, 0)
-	NewShell.PhysObj:SetVelocity(self.Entity:GetUp() * -self.LForce)
-	--NewShell:Fire("kill", "", 30)
+	NewShell.PhysObj:SetVelocity(self.Entity:GetForward() * 5000)
+	NewShell:Fire("kill", "", 30)
 	NewShell.ParL = self.Entity
 	--RD_ConsumeResource(self, "Munitions", 1000)
+	self.Entity:EmitSound("Weapon_GrenadeLauncher.Single")
+	self.MCDown = CurTime() + 0.1 + math.Rand(0,0.2)
 	self.CDL[CCD] = CurTime() + 6
-	self.MCDown = CurTime() + 0.4
-	self.Entity:EmitSound("Buttons.snd24")
-	NewShell:GetPhysicsObject():EnableGravity(false)
-	if self.Homer then NewShell.Homing = true end
-	
-	timer.Simple(5,function() NewShell:Arm() 
-	end)	
-	--local effectdata = EffectData()
-	--effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * 14)
-	--effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * 14)
-	--util.Effect( "Explosion", effectdata )
+	self.CDL[CCD.."r"] = false
 end

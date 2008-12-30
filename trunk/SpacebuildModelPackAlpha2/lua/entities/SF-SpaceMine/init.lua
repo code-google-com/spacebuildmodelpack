@@ -71,38 +71,42 @@ end
 
 function ENT:Think()
 	local phy = self.Entity:GetPhysicsObject()
-	if self.Armed && self.Homer then
-		if self.Target && self.Target:IsValid() then
-			--if self.Target && self.Target:IsValid() then
-				local IMass = self.Target:GetPhysicsObject():GetMass()
-				local IDist = (self.Entity:GetPos() - self.Target:GetPos()):Length()
-				local TVal = (IMass * 3) - IDist				
-				if !self.Entity:GetTracking() then self.Entity:SetTracking( true ) end
-				local DVec = self.Target:GetPos() - self.Entity:GetPos()
-				phy:SetVelocity( (DVec:Normalize() * ((self.Target:GetPhysicsObject():GetVelocity():Length() * 0.1) + (TVal * 0.01) )) + phy:GetVelocity() )
-				--phy:ApplyForceCenter( DVec:Normalize() * ((self.Target:GetPhysicsObject():GetVelocity():Length() * 100) + (TVal * 2000 ) )
-				if TVal <= 0 then
-					self.Target = nil
-				end
-			--end
-		else
-			if self.Entity:GetTracking() then self.Entity:SetTracking( false ) end
-			local targets = ents.FindInSphere( self.Entity:GetPos(), 5000)
-	
-			local CMass = 0
-			local CT = nil
-						
-			for _,i in pairs(targets) do
-				if i:GetPhysicsObject() && i:GetPhysicsObject():IsValid() && !i.MineProof && !i:IsPlayer() then
-					local IMass = i:GetPhysicsObject():GetMass()
-					local IDist = (self.Entity:GetPos() - i:GetPos()):Length()
-					local TVal = (IMass * 3) - IDist
-					if TVal > CMass then
-						CT = i
+	if self.Armed then
+		if self.Homer then
+			if self.Target && self.Target:IsValid() then
+				--if self.Target && self.Target:IsValid() then
+					local IMass = self.Target:GetPhysicsObject():GetMass()
+					local IDist = (self.Entity:GetPos() - self.Target:GetPos()):Length()
+					local TVal = (IMass * 3) - IDist				
+					if !self.Entity:GetTracking() then self.Entity:SetTracking( true ) end
+					local DVec = self.Target:GetPos() - self.Entity:GetPos()
+					phy:SetVelocity( (DVec:Normalize() * ((self.Target:GetPhysicsObject():GetVelocity():Length() * 0.1) + (TVal * 0.01) )) + phy:GetVelocity() )
+					--phy:ApplyForceCenter( DVec:Normalize() * ((self.Target:GetPhysicsObject():GetVelocity():Length() * 100) + (TVal * 2000 ) )
+					if TVal <= 0 then
+						self.Target = nil
+					end
+				--end
+			else
+				if self.Entity:GetTracking() then self.Entity:SetTracking( false ) end
+				local targets = ents.FindInSphere( self.Entity:GetPos(), 5000)
+		
+				local CMass = 0
+				local CT = nil
+							
+				for _,i in pairs(targets) do
+					if i:GetPhysicsObject() && i:GetPhysicsObject():IsValid() && !i.MineProof && !i:IsPlayer() then
+						local IMass = i:GetPhysicsObject():GetMass()
+						local IDist = (self.Entity:GetPos() - i:GetPos()):Length()
+						local TVal = (IMass * 3) - IDist
+						if TVal > CMass then
+							CT = i
+						end
 					end
 				end
+				self.Target = CT
+				phy:SetVelocity( phy:GetVelocity() * 0.9 )
 			end
-			self.Target = CT
+		else
 			phy:SetVelocity( phy:GetVelocity() * 0.9 )
 		end
 	end
