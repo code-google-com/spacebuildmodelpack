@@ -97,6 +97,11 @@ function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
 		if (self.CPL && self.CPL:IsValid()) then
+			local trace = {}
+			trace.start = self.CPL:GetShootPos()
+			trace.endpos = self.CPL:GetShootPos() + self.CPL:GetAimVector() * 10000
+			trace.filter = self.Pod
+			self.Pod.Trace = util.TraceLine( trace )
 			self.Active = true
 			if (self.CPL:KeyDown( IN_FORWARD )) then
 				if self.MCC then
@@ -221,6 +226,7 @@ function ENT:Think()
 			self.Yaw = 0
 			self.Roll = 0
 			self.Pitch = 0
+			self.Pod.Trace = nil
 		end
 	else
 		self.Entity:Remove()
