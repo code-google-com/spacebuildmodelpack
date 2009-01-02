@@ -1,6 +1,7 @@
 
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
+include('entities/base_wire_entity/init.lua')
 include( 'shared.lua' )
 
 function ENT:Initialize()
@@ -142,7 +143,7 @@ function ENT:LaunchMine( CCD, Offset )
 	self.MCDown = CurTime() + 0.4
 	self.Entity:EmitSound("Buttons.snd24")
 	NewShell:GetPhysicsObject():EnableGravity(false)
-	if self.Homing then NewShell.Homing = true end
+	if self.Homer then NewShell.Homing = true end
 	
 	timer.Simple(5,function() NewShell:Arm() 
 	end)	
