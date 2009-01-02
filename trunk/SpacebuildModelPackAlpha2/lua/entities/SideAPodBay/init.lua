@@ -157,6 +157,13 @@ function ENT:Think()
 	end
 end
 
+function ENT:OnRemove( )
+	self.NPod1:Remove()
+	self.NPod2:Remove()
+	self.NPod3:Remove()
+	self.NPod4:Remove()
+end
+
 function ENT:Use(activator)
 	
 end

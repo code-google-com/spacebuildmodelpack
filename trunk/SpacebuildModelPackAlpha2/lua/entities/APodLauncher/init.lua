@@ -99,6 +99,12 @@ function ENT:Think()
 	end
 end
 
+function ENT:OnRemove( )
+	--Remove the pods when the launcher is removed
+	self.NPod1:Remove()
+	self.NPod2:Remove()
+end
+
 function ENT:Use(activator)
 	
 end
