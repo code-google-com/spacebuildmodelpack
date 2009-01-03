@@ -107,7 +107,7 @@ function ENT:Think()
 			local CT = nil
 						
 			for _,i in pairs(targets) do
-				if i:GetPhysicsObject() && i:GetPhysicsObject():IsValid() then
+				if i:GetPhysicsObject() && i:GetPhysicsObject():IsValid() && !i.Autospawned then
 					local IMass = i:GetPhysicsObject():GetMass()
 					local IDist = (self.Entity:GetPos() - i:GetPos()):Length()
 					if i.IsFlare == true then IMass = 5000 end

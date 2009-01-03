@@ -2,6 +2,7 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
+include('entities/base_wire_entity/init.lua')
 
 util.PrecacheSound( "k_lab.ambient_powergenerators" )
 util.PrecacheSound( "ambient/machines/thumper_startup1.wav" )
@@ -14,6 +15,7 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	self.Entity:SetMaterial("models/props_combine/combinethumper002");
+	self.Inputs = Wire_CreateInputs( self.Entity, { "PitchMultiplyer", "YawMultiplyer", "RollMultiplyer" } ) -- "ShipWidth", "ShipLength", "ShipHeight" } )
 
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -26,6 +28,16 @@ function ENT:Initialize()
     self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	self.LTab = {}
+	
+	self.TSpeed = 25
+	
+	self.SWidth = 5000
+	self.SHeight = 5000
+	self.SLength = 5000
+	
+	self.PMult = 1
+	self.YMult = 1
+	self.RMult = 1
 end
 
 /*
@@ -48,15 +60,35 @@ end
 
 function ENT:TriggerInput(iname, value)
 	
-	if (iname == "Link") then
+	if (iname == "ShipWidth") then
 		if (value > 0) then
-			self.Linking = true
-		else
-			self.Linking = false
+			self.SWidth = value
 		end
 		
-	elseif (iname == "TSpeed") then
-		self.TSpeed = value
+	elseif (iname == "ShipLength") then
+		if (value > 0) then
+			self.SLength = value
+		end
+		
+	elseif (iname == "ShipHeight") then
+		if (value > 0) then
+			self.SHeight = value
+		end
+	
+	elseif (iname == "PitchMultiplyer") then
+		if (value > 0) then
+			self.PMult = value
+		end
+		
+	elseif (iname == "YawMultiplyer") then
+		if (value > 0) then
+			self.YMult = value
+		end
+	
+	elseif (iname == "RollMultiplyer") then
+		if (value > 0) then
+			self.RMult = value
+		end
 		
 	end
 	
@@ -144,10 +176,10 @@ function ENT:Think()
 				--Believe it or not, the following code came from a set of tank treads. Who'd have thunk it?
 				local FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * 500 )
 				local BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetUp() * -500 )
-				self.Pitch = (FDist - BDist) * 0.5
+				self.Pitch = (FDist - BDist) * 0.1
 				FDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * 500 )
 				BDist = PRel:Distance( self.Pod:GetPos() + self.Pod:GetForward() * -500 )
-				self.Yaw = (BDist - FDist) * 0.5
+				self.Yaw = (BDist - FDist) * 0.1
 
 				self.CPL:CrosshairEnable()
 			end
@@ -158,12 +190,12 @@ function ENT:Think()
 						local physi = c:GetPhysicsObject()
 						physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Entity:GetForward() * self.Speed) + (self.Entity:GetUp() * self.VSpeed)) )
 						physi:AddAngleVelocity(physi:GetAngleVelocity() * -0.5)
-						physi:ApplyForceOffset( self.Entity:GetForward() * (self.Pitch * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * 5000 )
-						physi:ApplyForceOffset( self.Entity:GetForward() * (-self.Pitch * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * -5000 )
-						physi:ApplyForceOffset( self.Entity:GetForward() * (self.Yaw * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
-						physi:ApplyForceOffset( self.Entity:GetForward() * (-self.Yaw * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
-						physi:ApplyForceOffset( self.Entity:GetUp() * (-self.Roll * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
-						physi:ApplyForceOffset( self.Entity:GetUp() * (self.Roll * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * ((self.Pitch * self.PMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * ((-self.Pitch * self.PMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * -5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * ((self.Yaw * self.YMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetForward() * ((-self.Yaw * self.YMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
+						physi:ApplyForceOffset( self.Entity:GetUp() * ((-self.Roll * self.RMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * 5000 )
+						physi:ApplyForceOffset( self.Entity:GetUp() * ((self.Roll * self.RMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetRight() * -5000 )
 						physi:EnableGravity(false)
 					end
 				end

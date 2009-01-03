@@ -14,7 +14,8 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "GuidanceType", "X", "Y", "Z", "WireGuidanceOnly" } )
-	
+	self.Outputs = Wire_CreateOutputs( self.Entity, { "ShotsLeft", "CanFire" })
+		
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
@@ -95,13 +96,22 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
+	local MCount = 0
 	for n = 1, 4 do
 		if (CurTime() >= self.CDL[n]) then
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
 				self.Entity:EmitSound("Buttons.snd26")
 			end
+			MCount = MCount + 1
 		end
+	end
+	
+	Wire_TriggerOutput(self.Entity, "ShotsLeft", MCount)
+	if MCount > 0 then 
+		Wire_TriggerOutput(self.Entity, "CanFire", 1) 
+	else
+		Wire_TriggerOutput(self.Entity, "CanFire", 0) 
 	end
 	
 	if self.Pod && self.Pod:IsValid() && !self.WireG && self.Pod.Trace then

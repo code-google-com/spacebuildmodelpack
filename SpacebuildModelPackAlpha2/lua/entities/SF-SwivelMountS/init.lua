@@ -1,8 +1,8 @@
 
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-include('entities/base_wire_entity/init.lua')
 include( 'shared.lua' )
+include('entities/base_wire_entity/init.lua')
 util.PrecacheSound( "SB/Gattling2.wav" )
 
 function ENT:Initialize()
@@ -12,7 +12,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "X", "Y", "Z", "Speed" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Active", "Fire", "X", "Y", "Z" } )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -28,6 +28,12 @@ function ENT:Initialize()
 	--RD_AddResource(self.Entity, "Munitions", 0)
 	
 	self.Cont = self.Entity
+	self.Firing = false
+	self.Active = false
+	
+	self.XCo = 0
+	self.YCo = 0
+	self.ZCo = 0
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -70,13 +76,29 @@ function ENT:SpawnFunction( ply, tr )
 end
 
 function ENT:TriggerInput(iname, value)		
-	if (iname == "Fire") then
+	if (iname == "Active") then
 		if (value > 0) then
 			self.Active = true
 		else
 			self.Active = false
 		end
-			
+		
+	elseif (iname == "Fire") then
+		if (value > 0) then
+			self.Firing = true
+		else
+			self.Firing = false
+		end
+		
+	elseif (iname == "X") then
+		self.XCo = value
+	
+	elseif (iname == "Y") then
+		self.YCo = value
+	
+	elseif (iname == "Z") then
+		self.ZCo = value
+				
 	end
 end
 
@@ -101,6 +123,7 @@ function ENT:Think()
 			Weap.Swivved = true
 		end
 		
+		local TargPos = nil
 		if self.CPod && self.CPod:IsValid() then
 			self.CPL = self.CPod:GetPassenger()
 			if (self.CPL && self.CPL:IsValid()) then
@@ -116,21 +139,25 @@ function ENT:Think()
 				
 				self.CPL:CrosshairEnable()
 				
-				local PRel = self.CPL:GetEyeTrace().HitPos
-				local FDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * 100 )
-				local BDist = PRel:Distance( Weap:GetPos() + Weap:GetUp() * -100 )
-				local Pitch = math.Clamp((FDist - BDist) * 0.75, -250, 250)
-				FDist = PRel:Distance( Weap:GetPos() + Weap:GetRight() * 100 )
-				BDist = PRel:Distance( Weap:GetPos() + Weap:GetRight() * -100 )
-				local Yaw = math.Clamp((BDist - FDist) * 0.75, -250, 250)
-				
-				local physi = self.Entity:GetPhysicsObject()
-				local physi2 = Weap:GetPhysicsObject()
-				
-				physi:AddAngleVelocity((physi:GetAngleVelocity() * -1) + Angle(0,0,-Yaw))
-				physi2:AddAngleVelocity((physi2:GetAngleVelocity() * -1) + Angle(0,Pitch,0))
-				
+				TargPos = self.CPL:GetEyeTrace().HitPos				
 			end
+		end
+		if self.Active then
+			TargPos = Vector(self.XCo,self.YCo,self.ZCo)
+		end
+		if TargPos then
+			local FDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * 100 )
+			local BDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * -100 )
+			local Pitch = math.Clamp((FDist - BDist) * 0.75, -250, 250)
+			FDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * 100 )
+			BDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * -100 )
+			local Yaw = math.Clamp((BDist - FDist) * 0.75, -250, 250)
+			
+			local physi = self.Entity:GetPhysicsObject()
+			local physi2 = Weap:GetPhysicsObject()
+			
+			physi:AddAngleVelocity((physi:GetAngleVelocity() * -1) + Angle(0,0,-Yaw))
+			physi2:AddAngleVelocity((physi2:GetAngleVelocity() * -1) + Angle(0,Pitch,0))
 		end
 	end
 	
