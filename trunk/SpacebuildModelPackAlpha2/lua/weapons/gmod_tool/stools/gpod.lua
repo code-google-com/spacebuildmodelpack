@@ -13,7 +13,7 @@ if ( CLIENT ) then
 
 	language.Add( "Tool_gpod_name", "Gyro-Pod" )
 	language.Add( "Tool_gpod_desc", "Make stuff fly." )
-	language.Add( "Tool_gpod_0", "Right-Click to spawn the gyro, left click a prop followed by a gyro to link the two. The last vehicle linked to the gyro will control its motion." )
+	language.Add( "Tool_gpod_0", "Right-Click to spawn the gyro, left click a prop followed by a gyro to link the two. The last vehicle linked to the gyro will control its motion. Connect the Gyro to every prop in the ship it's meant to control. The turning speed can be fine-tuned using wire-inputs on the gyro." )
 	language.Add( "Tool_gpod_1", "Now click a Gyro-Pod." )
 	
 	language.Add( "Tool_turret_type", "Type of weapon" )

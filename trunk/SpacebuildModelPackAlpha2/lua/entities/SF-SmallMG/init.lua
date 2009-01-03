@@ -72,7 +72,7 @@ function ENT:Think()
 		Bullet.Num = 1
 		Bullet.Src = self.Entity:GetPos()
 		Bullet.Dir = self.Entity:GetForward() --Position * -1
-		Bullet.Spread = Vector( 0.03, 0.03, 0.03 )
+		Bullet.Spread = Vector( 0.01, 0.01, 0.01 )
 		Bullet.Tracer = 1
 		Bullet.Force = 100
 		Bullet.TracerName = "Tracer"

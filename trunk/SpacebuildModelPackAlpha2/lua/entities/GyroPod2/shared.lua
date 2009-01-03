@@ -23,7 +23,6 @@ ENT.TakeOff			= false
 ENT.OldAngle		= Angle( 0, 0, 0 )
 --ENT.LTab			= {}
 ENT.EPrs			= false
-ENT.TSpeed			= 75
 ENT.LTog			= false
 ENT.MTog			= false
 ENT.MCC				= false
