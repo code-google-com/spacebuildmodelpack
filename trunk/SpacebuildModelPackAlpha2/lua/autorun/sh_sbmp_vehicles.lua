@@ -598,3 +598,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbmp_rover1_chassis", V )
+
+local V = { 	
+				Name = "Prometheus Chair", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Prometheus Chair",
+				Model = "models/SmallBridge/SBchair/SBchair.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPSitAnimation,
+							}
+}
+list.Set( "Vehicles", "sb_P_chair", V )
