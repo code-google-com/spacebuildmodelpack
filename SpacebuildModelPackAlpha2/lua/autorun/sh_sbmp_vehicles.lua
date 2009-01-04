@@ -617,13 +617,13 @@ local V = {
 }
 list.Set( "Vehicles", "sb_P_chair", V )
 
-local V = {
-				Name = "Arwing",
+local V = { 	
+				Name = "Arwing", 
 				Class = "prop_vehicle_prisoner_pod",
 				Category = Category,
 
 				Author = "SpaceBuild Model Pack",
-				Information = "Do a Barrel Roll!"
+				Information = "Do a Barrel Roll!",
 				Model = "models/Slyfo/arwing_body.mdl",
 				KeyValues = {
 								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
@@ -669,5 +669,5 @@ local V = {
 								HandleAnimation = HandleSBMPVehicleAnimation,
 							}
 }
-list.Set( "Vehicles", "sbmp_arwing_body", V )
+list.Set( "Vehicles", "sbmp_console_seat", V )
 
