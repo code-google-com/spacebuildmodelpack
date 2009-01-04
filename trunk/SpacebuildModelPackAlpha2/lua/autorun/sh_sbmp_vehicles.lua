@@ -616,3 +616,58 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sb_P_chair", V )
+
+local V = {
+				Name = "Arwing",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Do a Barrel Roll!"
+				Model = "models/Slyfo/arwing_body.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_arwing_body", V )
+
+local V = {
+				Name = "CrateMover",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Slightly more useless than the Clunker",
+				Model = "models/Slyfo/cratemover.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_CrateMover", V )
+
+local V = {
+				Name = "Console Seat",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Sit in it.",
+				Model = "models/Slyfo/consolechair.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_arwing_body", V )
+
