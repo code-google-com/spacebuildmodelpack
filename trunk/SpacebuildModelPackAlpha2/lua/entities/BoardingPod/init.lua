@@ -81,6 +81,45 @@ function ENT:SpawnFunction( ply, tr )
 	
 end
 
+local BPodjcon = {}	
+local BPodJoystickControl = function()
+	--Joystick control stuff
+	
+	BPodjcon.pitch = jcon.register{
+		uid = "bpod_pitch",
+		type = "analog",
+		description = "Pitch",
+		category = "Boarding Pod",
+	}
+	BPodjcon.yaw = jcon.register{
+		uid = "bpod_yaw",
+		type = "analog",
+		description = "Yaw",
+		category = "Boarding Pod",
+	}
+	BPodjcon.roll = jcon.register{
+		uid = "bpod_roll",
+		type = "analog",
+		description = "Roll",
+		category = "Boarding Pod",
+	}
+	BPodjcon.launch = jcon.register{
+		uid = "bpod_launch",
+		type = "digital",
+		description = "Launch",
+		category = "Boarding Pod",
+	}
+	BPodjcon.switch = jcon.register{
+		uid = "bpod_switch",
+		type = "digital",
+		description = "Yaw/Roll Switch",
+		category = "Boarding Pod",
+	}
+	
+end
+
+hook.Add("JoystickInitialize","BPodJoystickControl",BPodJoystickControl)
+
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
@@ -115,8 +154,37 @@ function ENT:Think()
 				self.Roll = 0
 			end
 			
+			
 			self.Yaw = self.CPL.SBEPYaw * -0.02
 			self.Pitch = self.CPL.SBEPPitch * 0.02
+			
+			if (joystick) then
+				local roll, yaw
+				local pitch = "bpod_pitch"
+				if (joystick.Get(self.CPL, "bpod_switch")) then
+				yaw = "bpod_roll"
+				roll = "bpod_yaw"
+				else
+				yaw = "bpod_yaw"
+				roll = "bpod_roll"
+				end
+				--Pitch is usually forwards to pitch down
+				if (joystick.Get(self.CPL, pitch)) then
+					self.Pitch = 10-joystick.Get(self.CPL, pitch)/12.75
+				end
+				--Yaw needs inverting again
+				if (joystick.Get(self.CPL, yaw)) then
+					self.Yaw = 10-joystick.Get(self.CPL, yaw)/12.75
+				end
+				if (joystick.Get(self.CPL, roll)) then
+					self.Roll = self.TSpeed * (joystick.Get(self.CPL, roll)/127.5-1)
+				end
+				if (joystick.Get(self.CPL, "bpod_launch")) then
+					if !self.Active then
+						self.Entity:SetActive()
+					end
+				end
+			end
 	
 			if (self.CPL:KeyDown( IN_ATTACK )) then
 				for i = 1, self.HPC do
