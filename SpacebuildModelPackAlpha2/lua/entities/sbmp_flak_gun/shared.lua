@@ -6,7 +6,7 @@ ENT.Author			= "Olivier 'LuaPineapple' Hamel"
 ENT.Contact			= "evilpineapple@cox.net"
 ENT.Purpose			= "Blow your fellow players to bits!"
 ENT.Instructions	= "Spawn, fire!"
-ENT.Category		= "Spacebuild Enhancement Project"
+ENT.Category		= "SBEP - Other"
 
 ENT.Spawnable		= true
 ENT.AdminSpawnable	= true

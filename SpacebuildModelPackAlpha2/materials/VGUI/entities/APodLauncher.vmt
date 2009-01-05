@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/APodLauncher"
+	"$basetexture"	"vgui/entities/sbmp_assaultpodhangar"
 	"$vertexcolor"	1
-	"$vertexalpha"	1
+	"$vertexalpha"	0
 	"$nolod"	1
 }

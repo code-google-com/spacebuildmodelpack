@@ -2,10 +2,10 @@ ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
 ENT.PrintName		= "Tank Treads"
 ENT.Author			= "Paradukes + SlyFo"
---ENT.Category		= "SBEP-Weapons"
+ENT.Category		= "SBEP - Other"
 
-ENT.Spawnable		= true
-ENT.AdminSpawnable	= true
+ENT.Spawnable		= false
+ENT.AdminSpawnable	= false
 
 
 function ENT:SetLength( val )

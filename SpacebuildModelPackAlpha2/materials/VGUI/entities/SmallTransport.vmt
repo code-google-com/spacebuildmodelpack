@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/SmallTransport"
+	"$basetexture"	"vgui/entities/sbmp_transportsmall"
 	"$vertexcolor"	1
-	"$vertexalpha"	1
+	"$vertexalpha"	0
 	"$nolod"	1
 }

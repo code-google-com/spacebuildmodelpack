@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/Clunker"
+	"$basetexture"	"vgui/entities/sbmp_clunker"
 	"$vertexcolor"	1
-	"$vertexalpha"	1
+	"$vertexalpha"	0
 	"$nolod"	1
 }

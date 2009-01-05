@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/PoliceWingM"
+	"$basetexture"	"vgui/entities/sbmp_policewing_med"
 	"$vertexcolor"	1
-	"$vertexalpha"	1
+	"$vertexalpha"	0
 	"$nolod"	1
 }
