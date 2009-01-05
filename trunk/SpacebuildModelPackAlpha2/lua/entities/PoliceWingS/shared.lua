@@ -2,7 +2,7 @@ ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
 ENT.PrintName		= "Police Wing - Small"
 ENT.Author			= "Paradukes + SlyFo"
---ENT.Category		= "SBEP-Weapons"
+ENT.Category		= "SBEP - Other"
 
 ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
