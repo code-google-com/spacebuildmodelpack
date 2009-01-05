@@ -1,7 +1,7 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
 ENT.PrintName		= "SWORD"
-ENT.Author			= "Paradukes + SlyFo"
+ENT.Author			= "Paradukes + SlyFo + Fishface60"
 ENT.Category		= "SBEP-Fighters"
 
 ENT.Spawnable		= true

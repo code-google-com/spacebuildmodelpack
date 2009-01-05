@@ -29,6 +29,7 @@ function ENT:Initialize()
 	self.TSpeed = 90
 	self.Active = false
 	self.Skewed = true
+	self.HSpeed = 0
 	
 	self.HPC			= 5
 	self.HP				= {}
@@ -52,7 +53,6 @@ function ENT:Initialize()
 	self.HP[5]["Ent"]	= nil
 	self.HP[5]["Type"]	= "Small"
 	self.HP[5]["Pos"]	= Vector(-50,215,40)
-	
 	
 end
 
@@ -90,8 +90,94 @@ function ENT:SpawnFunction( ply, tr )
 	ent2.Cont = ent
 	
 	return ent
+end
+
+local SWORDjcon = {}	
+local SWORDJoystickControl = function()
+	--Joystick control stuff
+	
+	SWORDjcon.pitch = jcon.register{
+		uid = "sword_pitch",
+		type = "analog",
+		description = "Pitch",
+		category = "SWORD",
+	}
+	SWORDjcon.yaw = jcon.register{
+		uid = "sword_yaw",
+		type = "analog",
+		description = "Yaw",
+		category = "SWORD",
+	}
+	SWORDjcon.roll = jcon.register{
+		uid = "sword_roll",
+		type = "analog",
+		description = "Roll",
+		category = "SWORD",
+	}
+	SWORDjcon.thrust = jcon.register{
+		uid = "sword_thrust",
+		type = "analog",
+		description = "Thrust",
+		category = "SWORD",
+	}
+	SWORDjcon.accelerate = jcon.register{
+		uid = "sword_accelerate",
+		type = "analog",
+		description = "Accelerate/Decelerate",
+		category = "SWORD",
+	}
+	SWORDjcon.up = jcon.register{
+		uid = "sword_strafe_up",
+		type = "digital",
+		description = "Strafe Up",
+		category = "SWORD",
+	}
+	SWORDjcon.down = jcon.register{
+		uid = "sword_strafe_down",
+		type = "digital",
+		description = "Strafe Down",
+		category = "SWORD",
+	}
+	SWORDjcon.right = jcon.register{
+		uid = "sword_strafe_right",
+		type = "digital",
+		description = "Strafe Right",
+		category = "SWORD",
+	}
+	SWORDjcon.left = jcon.register{
+		uid = "sword_strafe_left",
+		type = "digital",
+		description = "Strafe Left",
+		category = "SWORD",
+	}
+	SWORDjcon.launch = jcon.register{
+		uid = "sword_launch",
+		type = "digital",
+		description = "Launch",
+		category = "SWORD",
+	}
+	SWORDjcon.switch = jcon.register{
+		uid = "sword_switch",
+		type = "digital",
+		description = "Yaw/Roll Switch",
+		category = "SWORD",
+	}
+	SWORDjcon.fire1 = jcon.register{
+		uid = "sword_fire1",
+		type = "digital",
+		description = "Fire 1",
+		category = "SWORD",
+	}
+	SWORDjcon.fire2 = jcon.register{
+		uid = "sword_fire2",
+		type = "digital",
+		description = "Fire 2",
+		category = "SWORD",
+	}
 	
 end
+
+hook.Add("JoystickInitialize","SWORDJoystickControl",SWORDJoystickControl)
 
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
@@ -150,7 +236,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP )) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "sword_launch"))) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -166,7 +252,92 @@ function ENT:Think()
 				self.LTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_ATTACK )) then
+			if (joystick) then
+				if (joystick.Get(self.CPL, "sword_strafe_up")) then
+					self.VSpeed = 300
+				elseif (joystick.Get(self.CPL, "sword_strafe_down")) then
+					self.VSpeed = -300
+				end
+			
+				if (joystick.Get(self.CPL, "sword_strafe_right")) then
+					self.HSpeed = 300
+				elseif (joystick.Get(self.CPL, "sword_strafe_left")) then
+					self.HSpeed = -300
+				else
+					self.HSpeed = 0
+				end
+			
+				--Acceleration, greater than halfway accelerates, less than decelerates
+				if (joystick.Get(self.CPL, "sword_accelerate")) then
+					if (joystick.Get(self.CPL, "sword_accelerate") > 128) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sword_accelerate")/127.5-1)*5, -40, 2000)
+					elseif (joystick.Get(self.CPL, "sword_accelerate") < 127) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sword_accelerate")/127.5-1)*10, -40, 2000)
+					end
+				end
+				
+				--Set the speed
+				if (joystick.Get(self.CPL, "sword_thrust")) then
+					if (joystick.Get(self.CPL, "sword_thrust") > 128) then
+						self.TarSpeed = (joystick.Get(self.CPL, "sword_thrust")/127.5-1)*2000
+					elseif (joystick.Get(self.CPL, "sword_thrust") < 127) then
+						self.TarSpeed = (joystick.Get(self.CPL, "sword_thrust")/127.5-1)*40
+					elseif (joystick.Get(self.CPL, "sword_thrust") < 128 && joystick.Get(self.CPL, "sword_thrust") > 127) then
+						self.TarSpeed = 0
+					end
+					if (self.TarSpeed > self.Speed) then
+						self.Speed = math.Clamp(self.Speed + 5, -40, 2000)
+					elseif (self.TarSpeed < self.Speed) then
+						self.Speed = math.Clamp(self.Speed - 10, -40, 2000)						
+					end
+				end
+				
+				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
+				if (joystick.Get(self.CPL, "sword_pitch")) then
+					if (joystick.Get(self.CPL, "sword_pitch") > 128) then
+						self.Pitch = -(joystick.Get(self.CPL, "sword_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "sword_pitch") < 127) then
+						self.Pitch = -(joystick.Get(self.CPL, "sword_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "sword_pitch") < 128 && joystick.Get(self.CPL, "sword_pitch") > 127) then
+						self.Pitch = 0
+					end
+				end
+			
+				--The control for inverting yaw and roll
+				local yaw = ""
+				local roll = ""
+				if (joystick.Get(self.CPL, "sword_switch")) then
+					yaw = "sword_roll"
+					roll = "sword_yaw"
+				else
+					yaw = "sword_yaw"
+					roll = "sword_roll"
+				end
+				
+				--Yaw is negative because Paradukes says so
+				--You could invert it, but the default configuration should be correct
+				if (joystick.Get(self.CPL, yaw)) then
+					if (joystick.Get(self.CPL, yaw) > 128) then
+						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, yaw) < 127) then
+						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, yaw) < 128 && joystick.Get(self.CPL, yaw) > 127) then
+						self.Yaw = 0
+					end
+				end
+			
+				if (joystick.Get(self.CPL, roll)) then
+					if (joystick.Get(self.CPL, roll) > 128) then
+						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, roll) < 127) then
+						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, roll) < 128 && joystick.Get(self.CPL, roll) > 127) then
+						self.Roll = 0
+					end
+				end
+			end
+			
+			if (self.CPL:KeyDown( IN_ATTACK ) || (joystick && joystick.Get(self.CPL, "sword_fire1"))) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
 					print(HPC)
@@ -181,7 +352,7 @@ function ENT:Think()
 				end
 			end
 			
-			if (self.CPL:KeyDown( IN_ATTACK2 )) then
+			if (self.CPL:KeyDown( IN_ATTACK2 ) || (joystick && joystick.Get(self.CPL, "sword_fire2"))	) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
@@ -210,7 +381,7 @@ function ENT:Think()
 			
 			if (self.Launchy) then
 				local physi = self.Pod:GetPhysicsObject()
-				physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed)) )
+				physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
 				physi:AddAngleVelocity((physi:GetAngleVelocity() * -0.75) + Angle(self.Roll,self.Pitch,self.Yaw))
 				physi:EnableGravity(false)
 			else
