@@ -29,6 +29,7 @@ function ENT:Initialize()
 	self.TSpeed = 150
 	self.Active = false
 	self.Skewed = true
+	self.HSpeed = 0
 	
 	self.HPC			= 3
 	self.HP				= {}
@@ -103,6 +104,63 @@ function ENT:SpawnFunction( ply, tr )
 	
 end
 
+local Roverjcon = {}	
+local RoverJoystickControl = function()
+	--Joystick control stuff
+	
+	Roverjcon.turn = jcon.register{
+		uid = "rover_turn",
+		type = "analog",
+		description = "Turning",
+		category = "Rover",
+	}
+	Roverjcon.accelerate = jcon.register{
+		uid = "rover_accelerate",
+		type = "analog",
+		description = "Accelerate/Decelerate",
+		category = "Rover",
+	}
+	Roverjcon.strafe = jcon.register{
+		uid = "rover_strafe",
+		type = "analog",
+		description = "Strafe",
+		category = "Rover",
+	}
+	Roverjcon.right = jcon.register{
+		uid = "rover_strafe_right",
+		type = "digital",
+		description = "Strafe Right",
+		category = "Rover",
+	}
+	Roverjcon.left = jcon.register{
+		uid = "rover_strafe_left",
+		type = "digital",
+		description = "Strafe Left",
+		category = "Rover",
+	}
+	Roverjcon.jump = jcon.register{
+		uid = "rover_launch",
+		type = "digital",
+		description = "Jump",
+		category = "Rover",
+	}
+	Roverjcon.fire1 = jcon.register{
+		uid = "rover_fire1",
+		type = "digital",
+		description = "Fire 1",
+		category = "Rover",
+	}
+	Roverjcon.fire2 = jcon.register{
+		uid = "rover_fire2",
+		type = "digital",
+		description = "Fire 2",
+		category = "Rover",
+	}
+	
+end
+
+hook.Add("JoystickInitialize","RoverJoystickControl",RoverJoystickControl)
+
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
@@ -113,67 +171,8 @@ function ENT:Think()
 			trace.filter = self.Pod
 			self.Pod.Trace = util.TraceLine( trace )
 			self.Active = true
-			if (self.CPL:KeyDown( IN_FORWARD )) then
-				if self.MCC then
-					self.VSpeed = 50
-				else
-					self.Pitch = self.TSpeed
-				end
-			elseif (self.CPL:KeyDown( IN_BACK )) then
-				if self.MCC then
-					self.VSpeed = -50
-				else
-					self.Pitch = -self.TSpeed
-				end
-			else
-				self.Pitch = 0
-				self.VSpeed = 0
-			end
-	
-			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
-				self.Roll = self.TSpeed
-			elseif (self.CPL:KeyDown( IN_MOVELEFT )) then
-				self.Roll = -self.TSpeed
-			else
-				self.Roll = 0
-			end
-	
-			if (self.CPL:KeyDown( IN_SPEED )) then
-				self.Speed = math.Clamp(self.Speed + 5, -40, 2000)
-			elseif (self.CPL:KeyDown( IN_WALK )) then
-				self.Speed = math.Clamp(self.Speed - 10, -40, 2000)
-			end
-	
-			if (self.CPL:KeyDown( IN_RELOAD )) then
-				if !self.MTog then
-					if self.MCC then
-						self.MCC = false
-					else
-						--self.MCC = true
-					end
-				end
-				self.MTog = true
-			else
-				self.MTog = false
-			end
 			
-			if (self.CPL:KeyDown( IN_JUMP )) then
-				if !self.LTog then
-					if self.Launchy then
-						--self.Launchy = false
-						--self.Pod:StopSound( "k_lab.ambient_powergenerators" )
-					else
-						--self.Launchy = true
-						--self.Pod:EmitSound( "k_lab.ambient_powergenerators" )
-						--self.Pod:EmitSound( "ambient/machines/thumper_startup1.wav" )
-					end
-				end
-				self.LTog = true
-			else
-				self.LTog = false
-			end
-			
-			if (self.CPL:KeyDown( IN_ATTACK )) then
+			if (self.CPL:KeyDown( IN_ATTACK ) || (joystick && joystick.Get(self.CPL, "rover_fire1"))) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
@@ -182,7 +181,7 @@ function ENT:Think()
 				end
 			end
 			
-			if (self.CPL:KeyDown( IN_ATTACK2 )) then
+			if (self.CPL:KeyDown( IN_ATTACK2 ) || (joystick && joystick.Get(self.CPL, "rover_fire2"))) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
 					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
@@ -191,40 +190,6 @@ function ENT:Think()
 				end
 			end
 			
-			if self.MCC then
-				local PAng = self.CPL:EyeAngles()
-				local VAng = self.Pod:GetAngles()
-				local AAng = Angle(0,0,0)
-				
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(PAng.y) .. ", " .. math.Round(PAng.r) )
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(VAng.y) .. ", " .. math.Round(VAng.r) )
-				
-				AAng.r = VAng.r
-				AAng.p = PAng.p - VAng.p
-				AAng.z = PAng.y - VAng.y
-				
-				--self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(AAng.y) .. ", " .. math.Round(AAng.r) ) 
-				
-				CYaw = (AAng.y * math.cos(math.rad(AAng.r))) - (AAng.p * math.sin(math.rad(AAng.r)))
-				CPitch = (AAng.y * math.sin(math.rad(AAng.r))) - (AAng.p * math.cos(math.rad(AAng.r)))
-				
-				self.CPL:PrintMessage( HUD_PRINTCENTER, "Player: " .. math.Round(CYaw) .. ", " .. math.Round(CPitch) ) 
-				self.CPL:CrosshairEnable()
-			end
-			
-			if (self.Launchy) then
-				local physi = self.Pod:GetPhysicsObject()
-				physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed)) )
-				physi:AddAngleVelocity((physi:GetAngleVelocity() * -1) + Angle(self.Roll,self.Pitch,self.Yaw))
-				physi:EnableGravity(false)
-			else
-				self.Speed = 0
-				self.Yaw = 0
-				self.Roll = 0
-				self.Pitch = 0
-				local physi = self.Pod:GetPhysicsObject()
-				physi:EnableGravity(true)
-			end
 		else
 			self.Speed = 0
 			self.Yaw = 0

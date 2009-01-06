@@ -32,6 +32,7 @@ function ENT:Initialize()
 	self.HSpeed = 3
 	self.Hovering = false
 	self.Turbo = 1
+	self.StrafeSpeed = 0
 
 end
 
@@ -95,20 +96,43 @@ function ENT:Think()
 				SSpeed = -100
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP )) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "rover_jump"))) then
 				HOffset = 200
 			end
 			
-			if (self.CPL:KeyDown( IN_WALK )) then
-				--self.Turbo = 0.5
-			else
-				--self.Turbo = 1
-			end
-			
-			if (self.CPL:KeyDown( IN_SPEED )) then
-				--self.Turbo = 3
-			else
-				--self.Turbo = 1
+			if (joystick) then
+				if (joystick.Get(self.CPL, "rover_strafe_right")) then
+					self.StrafeSpeed = 200
+				elseif (joystick.Get(self.CPL, "rover_strafe_left")) then
+					self.StrafeSpeed = -200
+				elseif (joystick.Get(self.CPL, "rover_strafe")) then
+					if (joystick.Get(self.CPL, "rover_strafe") > 128 || joystick.Get(self.CPL, "rover_strafe") < 127) then
+						self.StrafeSpeed = (joystick.Get(self.CPL, "rover_strafe")/127.5-1)*200
+					end
+				else
+					self.StrafeSpeed = 0
+				end
+				
+				if (joystick.Get(self.CPL, "rover_turn")) then
+					local turn = joystick.Get(self.CPL, "rover_turn")
+					if (turn > 128 || turn < 127) then
+						if self.Side == "Left" then
+							HOffset = turn/12.75-10
+						elseif self.Side == "Right" then
+							HOffset = 10-turn/12.75
+						end
+						SSpeed = turn/1.275-100
+					end
+				end
+				
+				--Acceleration, greater than halfway accelerates, less than decelerates
+				if (joystick.Get(self.CPL, "rover_accelerate")) then
+					local accelerate = joystick.Get(self.CPL, "rover_accelerate")
+					if (accelerate > 128 || accelerate < 127) then
+						FSpeed = (accelerate/127.5-1)*400
+					end
+				end
+				
 			end
 			
 			local trace = {}
@@ -125,10 +149,11 @@ function ENT:Think()
 					
 					FSpeed = FSpeed * self.Entity:GetPhysicsObject():GetMass()
 					SSpeed = SSpeed * self.Entity:GetPhysicsObject():GetMass()
+					self.StrafeSpeed = self.StrafeSpeed * self.Entity:GetPhysicsObject():GetMass()
 					
 					local physi = self.Pod:GetPhysicsObject()
 					
-					physi:ApplyForceCenter( self.Pod:GetRight() * (FSpeed) )
+					physi:ApplyForceCenter( self.Pod:GetRight() * (FSpeed) - self.Pod:GetForward() * (self.StrafeSpeed) )
 					self.Pod:GetPhysicsObject():ApplyForceOffset( self.Entity:GetRight() * SSpeed, self.Pod:GetPos() + self.Entity:GetForward() * 300 )
 					physi:SetVelocity( physi:GetVelocity() * 0.75 )
 					physi:AddAngleVelocity(physi:GetAngleVelocity() * -0.75)
