@@ -19,6 +19,77 @@ CreateClientConVar("SBHP_7a", 0, true, true)
 CreateClientConVar("SBHP_8a", 0, true, true)
 CreateClientConVar("SBHP_9a", 0, true, true)
 
+local SBHPjcon = {}	
+local SBHPJoystickControl = function()
+	SBHPjcon.hp0 = jcon.register{
+		uid = "sbhp_0",
+		type = "digital",
+		description = "Select 0",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp1 = jcon.register{
+		uid = "sbhp_1",
+		type = "digital",
+		description = "Select 1",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp2 = jcon.register{
+		uid = "sbhp_2",
+		type = "digital",
+		description = "Select 2",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp3 = jcon.register{
+		uid = "sbhp_3",
+		type = "digital",
+		description = "Select 3",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp4 = jcon.register{
+		uid = "sbhp_4",
+		type = "digital",
+		description = "Select 4",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp5 = jcon.register{
+		uid = "sbhp_5",
+		type = "digital",
+		description = "Select 5",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp6 = jcon.register{
+		uid = "sbhp_6",
+		type = "digital",
+		description = "Select 6",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp7 = jcon.register{
+		uid = "sbhp_7",
+		type = "digital",
+		description = "Select 7",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp8 = jcon.register{
+		uid = "sbhp_8",
+		type = "digital",
+		description = "Select 8",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon.hp9 = jcon.register{
+		uid = "sbhp_9",
+		type = "digital",
+		description = "Select 9",
+		category = "Hardpoint Control",
+	}
+	SBHPjcon["alt"] = jcon.register{
+		uid = "sbhp_alt",
+		type = "digital",
+		description = "Alt Select",
+		category = "Hardpoint Control",
+	}
+end
+hook.Add("JoystickInitialize","SBHPJoystickControl",SBHPJoystickControl)
+
 function SBEPHPWS()
 	local ply = LocalPlayer()
 	local CD = ply:GetNetworkedInt( "SBHPCD" ) or 0
@@ -26,10 +97,10 @@ function SBEPHPWS()
 	local n = 0
 	if HPC > 0 then
 		for n = 1, HPC + 1 do
-			if input.IsKeyDown(n) && CurTime() > CD then
+			if (input.IsKeyDown(n) || joystick && SBHPjcon["hp"..n-1]:GetValue()) && CurTime() > CD then
 				local x = n - 1
 				local str = ""
-				if input.IsKeyDown(81) || input.IsKeyDown(82) then
+				if input.IsKeyDown(81) || input.IsKeyDown(82) || (joystick && SBHPjcon["alt"]:GetValue()) then
 					str = "SBHP_"..x.."a"
 					str2 = " for alt-fire"
 				else
