@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "VGUI/entities/wheelcycle"
+	"$basetexture" "VGUI/entities/sbmp_wheelcycle"
 	"$vertexcolor" 		1 
 	"$vertexalpha" 		1 
 	"$nolod" 		1 
