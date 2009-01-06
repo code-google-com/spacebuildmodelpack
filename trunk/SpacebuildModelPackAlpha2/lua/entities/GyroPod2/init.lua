@@ -58,6 +58,80 @@ function ENT:SpawnFunction( ply, tr )
 end
 */
 
+local Gyrojcon = {}	
+local GyroJoystickControl = function()
+	--Joystick control stuff
+	
+	Gyrojcon.pitch = jcon.register{
+		uid = "gyro_pitch",
+		type = "analog",
+		description = "Pitch",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.yaw = jcon.register{
+		uid = "gyro_yaw",
+		type = "analog",
+		description = "Yaw",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.roll = jcon.register{
+		uid = "gyro_roll",
+		type = "analog",
+		description = "Roll",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.thrust = jcon.register{
+		uid = "gyro_thrust",
+		type = "analog",
+		description = "Thrust",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.accelerate = jcon.register{
+		uid = "gyro_accelerate",
+		type = "analog",
+		description = "Accelerate/Decelerate",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.up = jcon.register{
+		uid = "gyro_strafe_up",
+		type = "digital",
+		description = "Strafe Up",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.down = jcon.register{
+		uid = "gyro_strafe_down",
+		type = "digital",
+		description = "Strafe Down",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.right = jcon.register{
+		uid = "gyro_strafe_right",
+		type = "digital",
+		description = "Strafe Right",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.left = jcon.register{
+		uid = "gyro_strafe_left",
+		type = "digital",
+		description = "Strafe Left",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.launch = jcon.register{
+		uid = "gyro_launch",
+		type = "digital",
+		description = "Launch",
+		category = "Gyro-Pod",
+	}
+	Gyrojcon.switch = jcon.register{
+		uid = "gyro_switch",
+		type = "digital",
+		description = "Yaw/Roll Switch",
+		category = "Gyro-Pod",
+	}
+end
+
+hook.Add("JoystickInitialize","GyroJoystickControl",GyroJoystickControl)
+
 function ENT:TriggerInput(iname, value)
 	
 	if (iname == "ShipWidth") then
@@ -154,7 +228,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP )) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "gyro_launch"))) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -168,6 +242,91 @@ function ENT:Think()
 				self.LTog = true
 			else
 				self.LTog = false
+			end
+			
+			if (joystick) then
+				if (joystick.Get(self.CPL, "gyro_strafe_up")) then
+					self.VSpeed = 300
+				elseif (joystick.Get(self.CPL, "gyro_strafe_down")) then
+					self.VSpeed = -300
+				end
+			
+				if (joystick.Get(self.CPL, "gyro_strafe_right")) then
+					self.HSpeed = 300
+				elseif (joystick.Get(self.CPL, "gyro_strafe_left")) then
+					self.HSpeed = -300
+				else
+					self.HSpeed = 0
+				end
+			
+				--Acceleration, greater than halfway accelerates, less than decelerates
+				if (joystick.Get(self.CPL, "gyro_accelerate")) then
+					if (joystick.Get(self.CPL, "gyro_accelerate") > 128) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "gyro_accelerate")/127.5-1)*5, -40, 2000)
+					elseif (joystick.Get(self.CPL, "gyro_accelerate") < 127) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "gyro_accelerate")/127.5-1)*10, -40, 2000)
+					end
+				end
+				
+				--Set the speed
+				if (joystick.Get(self.CPL, "gyro_thrust")) then
+					if (joystick.Get(self.CPL, "gyro_thrust") > 128) then
+						self.TarSpeed = (joystick.Get(self.CPL, "gyro_thrust")/127.5-1)*2000
+					elseif (joystick.Get(self.CPL, "gyro_thrust") < 127) then
+						self.TarSpeed = (joystick.Get(self.CPL, "gyro_thrust")/127.5-1)*40
+					elseif (joystick.Get(self.CPL, "gyro_thrust") < 128 && joystick.Get(self.CPL, "gyro_thrust") > 127) then
+						self.TarSpeed = 0
+					end
+					if (self.TarSpeed > self.Speed) then
+						self.Speed = math.Clamp(self.Speed + 5, -40, 2000)
+					elseif (self.TarSpeed < self.Speed) then
+						self.Speed = math.Clamp(self.Speed - 10, -40, 2000)						
+					end
+				end
+				
+				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
+				if (joystick.Get(self.CPL, "gyro_pitch")) then
+					if (joystick.Get(self.CPL, "gyro_pitch") > 128) then
+						self.Pitch = -(joystick.Get(self.CPL, "gyro_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "gyro_pitch") < 127) then
+						self.Pitch = -(joystick.Get(self.CPL, "gyro_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "gyro_pitch") < 128 && joystick.Get(self.CPL, "gyro_pitch") > 127) then
+						self.Pitch = 0
+					end
+				end
+			
+				--The control for inverting yaw and roll
+				local yaw = ""
+				local roll = ""
+				if (joystick.Get(self.CPL, "gyro_switch")) then
+					yaw = "gyro_roll"
+					roll = "gyro_yaw"
+				else
+					yaw = "gyro_yaw"
+					roll = "gyro_roll"
+				end
+				
+				--Yaw is negative because Paradukes says so
+				--You could invert it, but the default configuration should be correct
+				if (joystick.Get(self.CPL, yaw)) then
+					if (joystick.Get(self.CPL, yaw) > 128) then
+						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, yaw) < 127) then
+						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, yaw) < 128 && joystick.Get(self.CPL, yaw) > 127) then
+						self.Yaw = 0
+					end
+				end
+			
+				if (joystick.Get(self.CPL, roll)) then
+					if (joystick.Get(self.CPL, roll) > 128) then
+						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, roll) < 127) then
+						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
+					elseif (joystick.Get(self.CPL, roll) < 128 && joystick.Get(self.CPL, roll) > 127) then
+						self.Roll = 0
+					end
+				end
 			end
 			
 			if self.MCC then
@@ -188,7 +347,7 @@ function ENT:Think()
 				for x, c in pairs(self.LTab) do
 					if (c:IsValid()) then
 						local physi = c:GetPhysicsObject()
-						physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Entity:GetForward() * self.Speed) + (self.Entity:GetUp() * self.VSpeed)) )
+						physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Entity:GetForward() * self.Speed) + (self.Entity:GetUp() * self.VSpeed)) + (self.Entity:GetRight() * self.HSpeed) )
 						physi:AddAngleVelocity(physi:GetAngleVelocity() * -0.5)
 						physi:ApplyForceOffset( self.Entity:GetForward() * ((self.Pitch * self.PMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * 5000 )
 						physi:ApplyForceOffset( self.Entity:GetForward() * ((-self.Pitch * self.PMult) * physi:GetMass()), self.Entity:GetPos() + self.Entity:GetUp() * -5000 )
