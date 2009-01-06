@@ -10,4 +10,4 @@ list.Set("sbepfighters","drone",{VecOff=Vector(50,0,0), AngOff=Angle(0,0,0), Doc
 --Large Transport is too large for the hangar
 list.Set("sbepfighters","largetransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"dockingclamp"}})
 --Small Transport is longer than the hangar, but it should do
-list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,50), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
+list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
