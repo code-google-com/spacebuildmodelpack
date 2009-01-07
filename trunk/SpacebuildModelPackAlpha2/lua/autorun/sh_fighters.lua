@@ -8,7 +8,7 @@ list.Set("sbepfighters","assaultpodc",{VecOff=Vector(50,0,75), AngOff=Angle(0,0,
 --Drone = Clunker, damned if I know why
 list.Set("sbepfighters","drone",{VecOff=Vector(50,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
 --Large Transport is too large for the hangar
-list.Set("sbepfighters","largetransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"dockingclamp"}})
+list.Set("sbepfighters","largetransport",{VecOff=Vector(10,0,-30), AngOff=Angle(0,0,0), Docklist={"dockingclamp"}})
 --Small Transport is longer than the hangar, but it should do
 list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
 --The Arwing is too large to fit if the wings are attached, uncomment if wings are parented
