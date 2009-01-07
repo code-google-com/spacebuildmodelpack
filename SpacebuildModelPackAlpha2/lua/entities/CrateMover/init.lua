@@ -7,7 +7,7 @@ include( 'shared.lua' )
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
-	self.Entity:SetName("LargeTransport")
+	self.Entity:SetName("CrateMover")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -23,8 +23,7 @@ function ENT:Initialize()
 	end
 	self.Entity:StartMotionController()
 	self.PhysObj = self.Entity:GetPhysicsObject()
-
-
+	
 	self.Speed = 0
 	self.TSpeed = 150
 	self.Active = false
@@ -37,7 +36,7 @@ function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
 	
-	local ent = ents.Create( "LargeTransport" )
+	local ent = ents.Create( "CrateMover" )
 	ent:SetPos( Vector( 100000,100000,100000 ) )
 	ent:Spawn()
 	ent:Initialize()
@@ -47,7 +46,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent2:SetModel( "models/Slyfo/transportlarge.mdl" ) 
+	ent2:SetModel( "models/Slyfo/cratemover.mdl" ) 
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
@@ -68,79 +67,77 @@ function ENT:SpawnFunction( ply, tr )
 	return ent
 end
 
-local LTransjcon = {}	
-local LTransJoystickControl = function()
-	--Joystick control stuff
-	
-	LTransjcon.pitch = jcon.register{
-		uid = "ltrans_pitch",
+local CrateMoverjcon = {}	
+local CrateMoverJoystickControl = function()
+	CrateMoverjcon.pitch = jcon.register{
+		uid = "cmover_pitch",
 		type = "analog",
 		description = "Pitch",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.yaw = jcon.register{
-		uid = "ltrans_yaw",
+	CrateMoverjcon.yaw = jcon.register{
+		uid = "cmover_yaw",
 		type = "analog",
 		description = "Yaw",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.roll = jcon.register{
-		uid = "ltrans_roll",
+	CrateMoverjcon.roll = jcon.register{
+		uid = "cmover_roll",
 		type = "analog",
 		description = "Roll",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.thrust = jcon.register{
-		uid = "ltrans_thrust",
+	CrateMoverjcon.thrust = jcon.register{
+		uid = "cmover_thrust",
 		type = "analog",
 		description = "Thrust",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.accelerate = jcon.register{
-		uid = "ltrans_accelerate",
+	CrateMoverjcon.accelerate = jcon.register{
+		uid = "cmover_accelerate",
 		type = "analog",
 		description = "Accelerate/Decelerate",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.up = jcon.register{
-		uid = "ltrans_strafe_up",
+	CrateMoverjcon.up = jcon.register{
+		uid = "cmover_strafe_up",
 		type = "digital",
 		description = "Strafe Up",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.down = jcon.register{
-		uid = "ltrans_strafe_down",
+	CrateMoverjcon.down = jcon.register{
+		uid = "cmover_strafe_down",
 		type = "digital",
 		description = "Strafe Down",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.right = jcon.register{
-		uid = "ltrans_strafe_right",
+	CrateMoverjcon.right = jcon.register{
+		uid = "cmover_strafe_right",
 		type = "digital",
 		description = "Strafe Right",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.left = jcon.register{
-		uid = "ltrans_strafe_left",
+	CrateMoverjcon.left = jcon.register{
+		uid = "cmover_strafe_left",
 		type = "digital",
 		description = "Strafe Left",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.launch = jcon.register{
-		uid = "ltrans_launch",
+	CrateMoverjcon.launch = jcon.register{
+		uid = "cmover_launch",
 		type = "digital",
 		description = "Launch",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
-	LTransjcon.switch = jcon.register{
-		uid = "ltrans_switch",
+	CrateMoverjcon.switch = jcon.register{
+		uid = "cmover_switch",
 		type = "digital",
 		description = "Yaw/Roll Switch",
-		category = "Large Transport",
+		category = "Crate Mover",
 	}
 end
 
-hook.Add("JoystickInitialize","LTransJoystickControl",LTransJoystickControl)
+hook.Add("JoystickInitialize","CrateMoverJoystickControl",CrateMoverJoystickControl)
 
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
@@ -198,7 +195,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "ltrans_launch"))) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "cmover_launch"))) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -215,36 +212,36 @@ function ENT:Think()
 			end
 			
 			if (joystick) then
-				if (joystick.Get(self.CPL, "ltrans_strafe_up")) then
+				if (joystick.Get(self.CPL, "cmover_strafe_up")) then
 					self.VSpeed = 50
-				elseif (joystick.Get(self.CPL, "ltrans_strafe_down")) then
+				elseif (joystick.Get(self.CPL, "cmover_strafe_down")) then
 					self.VSpeed = -50
 				end
 			
-				if (joystick.Get(self.CPL, "ltrans_strafe_right")) then
+				if (joystick.Get(self.CPL, "cmover_strafe_right")) then
 					self.HSpeed = 50
-				elseif (joystick.Get(self.CPL, "ltrans_strafe_left")) then
+				elseif (joystick.Get(self.CPL, "cmover_strafe_left")) then
 					self.HSpeed = -50
 				else
 					self.HSpeed = 0
 				end
 			
 				--Acceleration, greater than halfway accelerates, less than decelerates
-				if (joystick.Get(self.CPL, "ltrans_accelerate")) then
-					if (joystick.Get(self.CPL, "ltrans_accelerate") > 128) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "ltrans_accelerate")/127.5-1)*5, -40, 2000)
-					elseif (joystick.Get(self.CPL, "ltrans_accelerate") < 127) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "ltrans_accelerate")/127.5-1)*10, -40, 2000)
+				if (joystick.Get(self.CPL, "cmover_accelerate")) then
+					if (joystick.Get(self.CPL, "cmover_accelerate") > 128) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "cmover_accelerate")/127.5-1)*5, -40, 2000)
+					elseif (joystick.Get(self.CPL, "cmover_accelerate") < 127) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "cmover_accelerate")/127.5-1)*10, -40, 2000)
 					end
 				end
 				
 				--Set the speed
-				if (joystick.Get(self.CPL, "ltrans_thrust")) then
-					if (joystick.Get(self.CPL, "ltrans_thrust") > 128) then
-						self.TarSpeed = (joystick.Get(self.CPL, "ltrans_thrust")/127.5-1)*2000
-					elseif (joystick.Get(self.CPL, "ltrans_thrust") < 127) then
-						self.TarSpeed = (joystick.Get(self.CPL, "ltrans_thrust")/127.5-1)*40
-					elseif (joystick.Get(self.CPL, "ltrans_thrust") < 128 && joystick.Get(self.CPL, "ltrans_thrust") > 127) then
+				if (joystick.Get(self.CPL, "cmover_thrust")) then
+					if (joystick.Get(self.CPL, "cmover_thrust") > 128) then
+						self.TarSpeed = (joystick.Get(self.CPL, "cmover_thrust")/127.5-1)*2000
+					elseif (joystick.Get(self.CPL, "cmover_thrust") < 127) then
+						self.TarSpeed = (joystick.Get(self.CPL, "cmover_thrust")/127.5-1)*40
+					elseif (joystick.Get(self.CPL, "cmover_thrust") < 128 && joystick.Get(self.CPL, "cmover_thrust") > 127) then
 						self.TarSpeed = 0
 					end
 					if (self.TarSpeed > self.Speed) then
@@ -255,12 +252,12 @@ function ENT:Think()
 				end
 				
 				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
-				if (joystick.Get(self.CPL, "ltrans_pitch")) then
-					if (joystick.Get(self.CPL, "ltrans_pitch") > 128) then
-						self.Pitch = -(joystick.Get(self.CPL, "ltrans_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "ltrans_pitch") < 127) then
-						self.Pitch = -(joystick.Get(self.CPL, "ltrans_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "ltrans_pitch") < 128 && joystick.Get(self.CPL, "ltrans_pitch") > 127) then
+				if (joystick.Get(self.CPL, "cmover_pitch")) then
+					if (joystick.Get(self.CPL, "cmover_pitch") > 128) then
+						self.Pitch = -(joystick.Get(self.CPL, "cmover_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "cmover_pitch") < 127) then
+						self.Pitch = -(joystick.Get(self.CPL, "cmover_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "cmover_pitch") < 128 && joystick.Get(self.CPL, "cmover_pitch") > 127) then
 						self.Pitch = 0
 					end
 				end
@@ -268,12 +265,12 @@ function ENT:Think()
 				--The control for inverting yaw and roll
 				local yaw = ""
 				local roll = ""
-				if (joystick.Get(self.CPL, "ltrans_switch")) then
-					yaw = "ltrans_roll"
-					roll = "ltrans_yaw"
+				if (joystick.Get(self.CPL, "cmover_switch")) then
+					yaw = "cmover_roll"
+					roll = "cmover_yaw"
 				else
-					yaw = "ltrans_yaw"
-					roll = "ltrans_roll"
+					yaw = "cmover_yaw"
+					roll = "cmover_roll"
 				end
 				
 				--Yaw is negative because Paradukes says so
@@ -315,7 +312,7 @@ function ENT:Think()
 			
 			if (self.Launchy) then
 				local physi = self.Pod:GetPhysicsObject()
-				physi:SetVelocity( (physi:GetVelocity() * 0.75) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
+				physi:SetVelocity( (physi:GetVelocity() * 0.75) + (self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed) )
 				physi:AddAngleVelocity((physi:GetAngleVelocity() * -0.75) + Angle(self.Roll,self.Pitch,self.Yaw))
 				physi:EnableGravity(false)
 			else

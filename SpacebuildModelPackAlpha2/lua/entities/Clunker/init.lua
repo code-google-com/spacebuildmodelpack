@@ -30,9 +30,6 @@ function ENT:Initialize()
 	self.Active = false
 	self.Skewed = true
 	self.HSpeed = 0
-	
-	self.HPC			= 0
-	
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -141,19 +138,6 @@ local ClunkerJoystickControl = function()
 		description = "Yaw/Roll Switch",
 		category = "Clunker",
 	}
-	Clunkerjcon.fire1 = jcon.register{
-		uid = "clunker_fire1",
-		type = "digital",
-		description = "Fire 1",
-		category = "Clunker",
-	}
-	Clunkerjcon.fire2 = jcon.register{
-		uid = "clunker_fire2",
-		type = "digital",
-		description = "Fire 2",
-		category = "Clunker",
-	}
-	
 end
 
 hook.Add("JoystickInitialize","ClunkerJoystickControl",ClunkerJoystickControl)
@@ -311,32 +295,6 @@ function ENT:Think()
 						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
 					elseif (joystick.Get(self.CPL, roll) < 128 && joystick.Get(self.CPL, roll) > 127) then
 						self.Roll = 0
-					end
-				end
-			end
-			
-			if (self.CPL:KeyDown( IN_ATTACK ) || (joystick && joystick.Get(self.CPL, "clunker_fire1"))) then
-				for i = 1, self.HPC do
-					local HPC = self.CPL:GetInfo( "SBHP_"..i )
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
-						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
-							self.HP[i]["Ent"].Cont:HPFire()
-						else
-							self.HP[i]["Ent"].Entity:HPFire()
-						end
-					end
-				end
-			end
-			
-			if (self.CPL:KeyDown( IN_ATTACK2 ) || (joystick && joystick.Get(self.CPL, "clunker_fire2"))) then
-				for i = 1, self.HPC do
-					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
-						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
-							self.HP[i]["Ent"].Cont:HPFire()
-						else
-							self.HP[i]["Ent"].Entity:HPFire()
-						end
 					end
 				end
 			end

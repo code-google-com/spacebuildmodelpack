@@ -3,7 +3,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 local Fighters = list.Get("sbepfighters")
-PrintTable(Fighters)
+--PrintTable(Fighters)
 
 function ENT:Initialize()
 
