@@ -11,3 +11,9 @@ list.Set("sbepfighters","drone",{VecOff=Vector(50,0,0), AngOff=Angle(0,0,0), Doc
 list.Set("sbepfighters","largetransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"dockingclamp"}})
 --Small Transport is longer than the hangar, but it should do
 list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
+--The Arwing is too large to fit if the wings are attached, uncomment if wings are parented
+list.Set("sbepfighters","arwing",{VecOff=Vector(50,0,50), AngOff=Angle(0,0,0), Docklist={/*"swordhangar", "swordhangarlarge", */"dockingclamp"}})
+--The light corvette fits into hangars easily, even smallbridge
+list.Set("sbepfighters","lightcombatcorvette",{VecOff=Vector(100,0,50), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "dockingclamp"}})
+--The Cargo Crate Mover won't even fit into a docking clamp
+list.Set("sbepfighters","cratemover",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={}})
