@@ -2,12 +2,12 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
---util.PrecacheSound( "SB/SteamEngine.wav" )
+util.PrecacheSound( "SB/SteamEngine.wav" )
 
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
-	self.Entity:SetName("LargeTransport")
+	self.Entity:SetName("LightCombatCorvette")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -26,10 +26,22 @@ function ENT:Initialize()
 
 
 	self.Speed = 0
-	self.TSpeed = 150
+	self.TSpeed = 90
 	self.Active = false
 	self.Skewed = true
 	self.HSpeed = 0
+	
+	self.HPC			= 2
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= "Large"
+	self.HP[1]["Pos"]	= Vector(-85,-5,50)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= "Large"
+	self.HP[2]["Pos"]	= Vector(85,-5,50)
+	
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -37,7 +49,7 @@ function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
 	
-	local ent = ents.Create( "LargeTransport" )
+	local ent = ents.Create( "LightCombatCorvette" )
 	ent:SetPos( Vector( 100000,100000,100000 ) )
 	ent:Spawn()
 	ent:Initialize()
@@ -47,7 +59,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent2:SetModel( "models/Slyfo/transportlarge.mdl" ) 
+	ent2:SetModel( "models/Spacebuild/light_combat_corvette.mdl" ) 
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
@@ -68,79 +80,92 @@ function ENT:SpawnFunction( ply, tr )
 	return ent
 end
 
-local LTransjcon = {}	
-local LTransJoystickControl = function()
+local LComCorvjcon = {}	
+local LComCorvJoystickControl = function()
 	--Joystick control stuff
 	
-	LTransjcon.pitch = jcon.register{
-		uid = "ltrans_pitch",
+	LComCorvjcon.pitch = jcon.register{
+		uid = "lcomcorv_pitch",
 		type = "analog",
 		description = "Pitch",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.yaw = jcon.register{
-		uid = "ltrans_yaw",
+	LComCorvjcon.yaw = jcon.register{
+		uid = "lcomcorv_yaw",
 		type = "analog",
 		description = "Yaw",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.roll = jcon.register{
-		uid = "ltrans_roll",
+	LComCorvjcon.roll = jcon.register{
+		uid = "lcomcorv_roll",
 		type = "analog",
 		description = "Roll",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.thrust = jcon.register{
-		uid = "ltrans_thrust",
+	LComCorvjcon.thrust = jcon.register{
+		uid = "lcomcorv_thrust",
 		type = "analog",
 		description = "Thrust",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.accelerate = jcon.register{
-		uid = "ltrans_accelerate",
+	LComCorvjcon.accelerate = jcon.register{
+		uid = "lcomcorv_accelerate",
 		type = "analog",
 		description = "Accelerate/Decelerate",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.up = jcon.register{
-		uid = "ltrans_strafe_up",
+	LComCorvjcon.up = jcon.register{
+		uid = "lcomcorv_strafe_up",
 		type = "digital",
 		description = "Strafe Up",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.down = jcon.register{
-		uid = "ltrans_strafe_down",
+	LComCorvjcon.down = jcon.register{
+		uid = "lcomcorv_strafe_down",
 		type = "digital",
 		description = "Strafe Down",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.right = jcon.register{
-		uid = "ltrans_strafe_right",
+	LComCorvjcon.right = jcon.register{
+		uid = "lcomcorv_strafe_right",
 		type = "digital",
 		description = "Strafe Right",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.left = jcon.register{
-		uid = "ltrans_strafe_left",
+	LComCorvjcon.left = jcon.register{
+		uid = "lcomcorv_strafe_left",
 		type = "digital",
 		description = "Strafe Left",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.launch = jcon.register{
-		uid = "ltrans_launch",
+	LComCorvjcon.launch = jcon.register{
+		uid = "lcomcorv_launch",
 		type = "digital",
 		description = "Launch",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
-	LTransjcon.switch = jcon.register{
-		uid = "ltrans_switch",
+	LComCorvjcon.switch = jcon.register{
+		uid = "lcomcorv_switch",
 		type = "digital",
 		description = "Yaw/Roll Switch",
-		category = "Large Transport",
+		category = "Light Combat Corvette",
 	}
+	LComCorvjcon.fire1 = jcon.register{
+		uid = "lcomcorv_fire1",
+		type = "digital",
+		description = "Fire 1",
+		category = "Light Combat Corvette",
+	}
+	LComCorvjcon.fire2 = jcon.register{
+		uid = "lcomcorv_fire2",
+		type = "digital",
+		description = "Fire 2",
+		category = "Light Combat Corvette",
+	}
+	
 end
 
-hook.Add("JoystickInitialize","LTransJoystickControl",LTransJoystickControl)
+hook.Add("JoystickInitialize","LComCorvJoystickControl",LComCorvJoystickControl)
 
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
@@ -154,13 +179,13 @@ function ENT:Think()
 			self.Active = true
 			if (self.CPL:KeyDown( IN_FORWARD )) then
 				if self.MCC then
-					self.VSpeed = 50
+					self.VSpeed = 300
 				else
 					self.Pitch = self.TSpeed
 				end
 			elseif (self.CPL:KeyDown( IN_BACK )) then
 				if self.MCC then
-					self.VSpeed = -50
+					self.VSpeed = -300
 				else
 					self.Pitch = -self.TSpeed
 				end
@@ -182,7 +207,8 @@ function ENT:Think()
 			elseif (self.CPL:KeyDown( IN_WALK )) then
 				self.Speed = math.Clamp(self.Speed - 10, -40, 2000)
 			end
-	
+			--self.TSpeed = math.Clamp(self.Speed / 10, 20, 200)
+			
 			if (self.CPL:KeyDown( IN_RELOAD )) then
 				if !self.MTog then
 					if self.MCC then
@@ -198,7 +224,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "ltrans_launch"))) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "lcomcorv_launch"))) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -215,36 +241,36 @@ function ENT:Think()
 			end
 			
 			if (joystick) then
-				if (joystick.Get(self.CPL, "ltrans_strafe_up")) then
-					self.VSpeed = 50
-				elseif (joystick.Get(self.CPL, "ltrans_strafe_down")) then
-					self.VSpeed = -50
+				if (joystick.Get(self.CPL, "lcomcorv_strafe_up")) then
+					self.VSpeed = 300
+				elseif (joystick.Get(self.CPL, "lcomcorv_strafe_down")) then
+					self.VSpeed = -300
 				end
 			
-				if (joystick.Get(self.CPL, "ltrans_strafe_right")) then
-					self.HSpeed = 50
-				elseif (joystick.Get(self.CPL, "ltrans_strafe_left")) then
-					self.HSpeed = -50
+				if (joystick.Get(self.CPL, "lcomcorv_strafe_right")) then
+					self.HSpeed = 300
+				elseif (joystick.Get(self.CPL, "lcomcorv_strafe_left")) then
+					self.HSpeed = -300
 				else
 					self.HSpeed = 0
 				end
 			
 				--Acceleration, greater than halfway accelerates, less than decelerates
-				if (joystick.Get(self.CPL, "ltrans_accelerate")) then
-					if (joystick.Get(self.CPL, "ltrans_accelerate") > 128) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "ltrans_accelerate")/127.5-1)*5, -40, 2000)
-					elseif (joystick.Get(self.CPL, "ltrans_accelerate") < 127) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "ltrans_accelerate")/127.5-1)*10, -40, 2000)
+				if (joystick.Get(self.CPL, "lcomcorv_accelerate")) then
+					if (joystick.Get(self.CPL, "lcomcorv_accelerate") > 128) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "lcomcorv_accelerate")/127.5-1)*5, -40, 2000)
+					elseif (joystick.Get(self.CPL, "lcomcorv_accelerate") < 127) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "lcomcorv_accelerate")/127.5-1)*10, -40, 2000)
 					end
 				end
 				
 				--Set the speed
-				if (joystick.Get(self.CPL, "ltrans_thrust")) then
-					if (joystick.Get(self.CPL, "ltrans_thrust") > 128) then
-						self.TarSpeed = (joystick.Get(self.CPL, "ltrans_thrust")/127.5-1)*2000
-					elseif (joystick.Get(self.CPL, "ltrans_thrust") < 127) then
-						self.TarSpeed = (joystick.Get(self.CPL, "ltrans_thrust")/127.5-1)*40
-					elseif (joystick.Get(self.CPL, "ltrans_thrust") < 128 && joystick.Get(self.CPL, "ltrans_thrust") > 127) then
+				if (joystick.Get(self.CPL, "lcomcorv_thrust")) then
+					if (joystick.Get(self.CPL, "lcomcorv_thrust") > 128) then
+						self.TarSpeed = (joystick.Get(self.CPL, "lcomcorv_thrust")/127.5-1)*2000
+					elseif (joystick.Get(self.CPL, "lcomcorv_thrust") < 127) then
+						self.TarSpeed = (joystick.Get(self.CPL, "lcomcorv_thrust")/127.5-1)*40
+					elseif (joystick.Get(self.CPL, "lcomcorv_thrust") < 128 && joystick.Get(self.CPL, "lcomcorv_thrust") > 127) then
 						self.TarSpeed = 0
 					end
 					if (self.TarSpeed > self.Speed) then
@@ -255,12 +281,12 @@ function ENT:Think()
 				end
 				
 				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
-				if (joystick.Get(self.CPL, "ltrans_pitch")) then
-					if (joystick.Get(self.CPL, "ltrans_pitch") > 128) then
-						self.Pitch = -(joystick.Get(self.CPL, "ltrans_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "ltrans_pitch") < 127) then
-						self.Pitch = -(joystick.Get(self.CPL, "ltrans_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "ltrans_pitch") < 128 && joystick.Get(self.CPL, "ltrans_pitch") > 127) then
+				if (joystick.Get(self.CPL, "lcomcorv_pitch")) then
+					if (joystick.Get(self.CPL, "lcomcorv_pitch") > 128) then
+						self.Pitch = -(joystick.Get(self.CPL, "lcomcorv_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "lcomcorv_pitch") < 127) then
+						self.Pitch = -(joystick.Get(self.CPL, "lcomcorv_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "lcomcorv_pitch") < 128 && joystick.Get(self.CPL, "lcomcorv_pitch") > 127) then
 						self.Pitch = 0
 					end
 				end
@@ -268,12 +294,12 @@ function ENT:Think()
 				--The control for inverting yaw and roll
 				local yaw = ""
 				local roll = ""
-				if (joystick.Get(self.CPL, "ltrans_switch")) then
-					yaw = "ltrans_roll"
-					roll = "ltrans_yaw"
+				if (joystick.Get(self.CPL, "lcomcorv_switch")) then
+					yaw = "lcomcorv_roll"
+					roll = "lcomcorv_yaw"
 				else
-					yaw = "ltrans_yaw"
-					roll = "ltrans_roll"
+					yaw = "lcomcorv_yaw"
+					roll = "lcomcorv_roll"
 				end
 				
 				--Yaw is negative because Paradukes says so
@@ -295,6 +321,34 @@ function ENT:Think()
 						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*90
 					elseif (joystick.Get(self.CPL, roll) < 128 && joystick.Get(self.CPL, roll) > 127) then
 						self.Roll = 0
+					end
+				end
+			end
+			
+			if (self.CPL:KeyDown( IN_ATTACK ) || (joystick && joystick.Get(self.CPL, "lcomcorv_fire1"))) then
+				for i = 1, self.HPC do
+					local HPC = self.CPL:GetInfo( "SBHP_"..i )
+					print(HPC)
+					print(string.byte(HPC))
+					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
+						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+							self.HP[i]["Ent"].Cont:HPFire()
+						else
+							self.HP[i]["Ent"].Entity:HPFire()
+						end
+					end
+				end
+			end
+			
+			if (self.CPL:KeyDown( IN_ATTACK2 ) || (joystick && joystick.Get(self.CPL, "lcomcorv_fire2"))	) then
+				for i = 1, self.HPC do
+					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
+					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
+						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+							self.HP[i]["Ent"].Cont:HPFire()
+						else
+							self.HP[i]["Ent"].Entity:HPFire()
+						end
 					end
 				end
 			end
