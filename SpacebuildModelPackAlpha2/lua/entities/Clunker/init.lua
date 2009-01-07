@@ -68,80 +68,6 @@ function ENT:SpawnFunction( ply, tr )
 	return ent
 end
 
-local Clunkerjcon = {}	
-local ClunkerJoystickControl = function()
-	--Joystick control stuff
-	
-	Clunkerjcon.pitch = jcon.register{
-		uid = "clunker_pitch",
-		type = "analog",
-		description = "Pitch",
-		category = "Clunker",
-	}
-	Clunkerjcon.yaw = jcon.register{
-		uid = "clunker_yaw",
-		type = "analog",
-		description = "Yaw",
-		category = "Clunker",
-	}
-	Clunkerjcon.roll = jcon.register{
-		uid = "clunker_roll",
-		type = "analog",
-		description = "Roll",
-		category = "Clunker",
-	}
-	Clunkerjcon.thrust = jcon.register{
-		uid = "clunker_thrust",
-		type = "analog",
-		description = "Thrust",
-		category = "Clunker",
-	}
-	Clunkerjcon.accelerate = jcon.register{
-		uid = "clunker_accelerate",
-		type = "analog",
-		description = "Accelerate/Decelerate",
-		category = "Clunker",
-	}
-	Clunkerjcon.up = jcon.register{
-		uid = "clunker_strafe_up",
-		type = "digital",
-		description = "Strafe Up",
-		category = "Clunker",
-	}
-	Clunkerjcon.down = jcon.register{
-		uid = "clunker_strafe_down",
-		type = "digital",
-		description = "Strafe Down",
-		category = "Clunker",
-	}
-	Clunkerjcon.right = jcon.register{
-		uid = "clunker_strafe_right",
-		type = "digital",
-		description = "Strafe Right",
-		category = "Clunker",
-	}
-	Clunkerjcon.left = jcon.register{
-		uid = "clunker_strafe_left",
-		type = "digital",
-		description = "Strafe Left",
-		category = "Clunker",
-	}
-	Clunkerjcon.launch = jcon.register{
-		uid = "clunker_launch",
-		type = "digital",
-		description = "Launch",
-		category = "Clunker",
-	}
-	Clunkerjcon.switch = jcon.register{
-		uid = "clunker_switch",
-		type = "digital",
-		description = "Yaw/Roll Switch",
-		category = "Clunker",
-	}
-end
-
-hook.Add("JoystickInitialize","ClunkerJoystickControl",ClunkerJoystickControl)
-
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
@@ -198,7 +124,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "clunker_launch"))) then
+			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "sbeptpt_launch"))) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -215,36 +141,36 @@ function ENT:Think()
 			end
 			
 			if (joystick) then
-				if (joystick.Get(self.CPL, "clunker_strafe_up")) then
+				if (joystick.Get(self.CPL, "sbeptpt_strafe_up")) then
 					self.VSpeed = 50
-				elseif (joystick.Get(self.CPL, "clunker_strafe_down")) then
+				elseif (joystick.Get(self.CPL, "sbeptpt_strafe_down")) then
 					self.VSpeed = -50
 				end
 			
-				if (joystick.Get(self.CPL, "clunker_strafe_right")) then
+				if (joystick.Get(self.CPL, "sbeptpt_strafe_right")) then
 					self.HSpeed = 50
-				elseif (joystick.Get(self.CPL, "clunker_strafe_left")) then
+				elseif (joystick.Get(self.CPL, "sbeptpt_strafe_left")) then
 					self.HSpeed = -50
 				else
 					self.HSpeed = 0
 				end
 			
 				--Acceleration, greater than halfway accelerates, less than decelerates
-				if (joystick.Get(self.CPL, "clunker_accelerate")) then
-					if (joystick.Get(self.CPL, "clunker_accelerate") > 128) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "clunker_accelerate")/127.5-1)*5, -40, 2000)
-					elseif (joystick.Get(self.CPL, "clunker_accelerate") < 127) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "clunker_accelerate")/127.5-1)*10, -40, 2000)
+				if (joystick.Get(self.CPL, "sbeptpt_accelerate")) then
+					if (joystick.Get(self.CPL, "sbeptpt_accelerate") > 128) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sbeptpt_accelerate")/127.5-1)*5, -40, 2000)
+					elseif (joystick.Get(self.CPL, "sbeptpt_accelerate") < 127) then
+						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sbeptpt_accelerate")/127.5-1)*10, -40, 2000)
 					end
 				end
 				
 				--Set the speed
-				if (joystick.Get(self.CPL, "clunker_thrust")) then
-					if (joystick.Get(self.CPL, "clunker_thrust") > 128) then
-						self.TarSpeed = (joystick.Get(self.CPL, "clunker_thrust")/127.5-1)*2000
-					elseif (joystick.Get(self.CPL, "clunker_thrust") < 127) then
-						self.TarSpeed = (joystick.Get(self.CPL, "clunker_thrust")/127.5-1)*40
-					elseif (joystick.Get(self.CPL, "clunker_thrust") < 128 && joystick.Get(self.CPL, "clunker_thrust") > 127) then
+				if (joystick.Get(self.CPL, "sbeptpt_thrust")) then
+					if (joystick.Get(self.CPL, "sbeptpt_thrust") > 128) then
+						self.TarSpeed = (joystick.Get(self.CPL, "sbeptpt_thrust")/127.5-1)*2000
+					elseif (joystick.Get(self.CPL, "sbeptpt_thrust") < 127) then
+						self.TarSpeed = (joystick.Get(self.CPL, "sbeptpt_thrust")/127.5-1)*40
+					elseif (joystick.Get(self.CPL, "sbeptpt_thrust") < 128 && joystick.Get(self.CPL, "sbeptpt_thrust") > 127) then
 						self.TarSpeed = 0
 					end
 					if (self.TarSpeed > self.Speed) then
@@ -255,12 +181,12 @@ function ENT:Think()
 				end
 				
 				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
-				if (joystick.Get(self.CPL, "clunker_pitch")) then
-					if (joystick.Get(self.CPL, "clunker_pitch") > 128) then
-						self.Pitch = -(joystick.Get(self.CPL, "clunker_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "clunker_pitch") < 127) then
-						self.Pitch = -(joystick.Get(self.CPL, "clunker_pitch")/127.5-1)*90
-					elseif (joystick.Get(self.CPL, "clunker_pitch") < 128 && joystick.Get(self.CPL, "clunker_pitch") > 127) then
+				if (joystick.Get(self.CPL, "sbeptpt_pitch")) then
+					if (joystick.Get(self.CPL, "sbeptpt_pitch") > 128) then
+						self.Pitch = -(joystick.Get(self.CPL, "sbeptpt_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "sbeptpt_pitch") < 127) then
+						self.Pitch = -(joystick.Get(self.CPL, "sbeptpt_pitch")/127.5-1)*90
+					elseif (joystick.Get(self.CPL, "sbeptpt_pitch") < 128 && joystick.Get(self.CPL, "sbeptpt_pitch") > 127) then
 						self.Pitch = 0
 					end
 				end
@@ -268,12 +194,12 @@ function ENT:Think()
 				--The control for inverting yaw and roll
 				local yaw = ""
 				local roll = ""
-				if (joystick.Get(self.CPL, "clunker_switch")) then
-					yaw = "clunker_roll"
-					roll = "clunker_yaw"
+				if (joystick.Get(self.CPL, "sbeptpt_switch")) then
+					yaw = "sbeptpt_roll"
+					roll = "sbeptpt_yaw"
 				else
-					yaw = "clunker_yaw"
-					roll = "clunker_roll"
+					yaw = "sbeptpt_yaw"
+					roll = "sbeptpt_roll"
 				end
 				
 				--Yaw is negative because Paradukes says so
