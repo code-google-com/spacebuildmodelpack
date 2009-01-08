@@ -62,23 +62,39 @@ end
 function ENT:Touch( ent )
 	if ( ent:IsValid() && ent:IsVehicle() && self.Entity:IsInBoth(ent) && (ent.Cont != nil) && !ent.Cont.Launchy ) then
 		local fighter = string.lower(ent.Cont:GetName())
-		for k, v in pairs(self.Bay) do
-			if ( !v.ship && !self.Entity:alreadyDocked(ent) ) then
-				v.ship = ent
-				v.ship:SetPos( self.Entity:LocalToWorld(v.pos + Fighters[fighter]["VecOff"]) )
-				v.ship:SetAngles( self.Entity:GetAngles() + v.ang + Fighters[fighter]["AngOff"] )
-				v.weld = constraint.Weld(self.Entity, v.ship, 0, 0, 0, true)
-				if (v.ship:GetPassenger():IsPlayer()) then
-					local pilot = v.ship:GetPassenger()
-					local colgroup = pilot:GetCollisionGroup()
-					pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
-					pilot:ExitVehicle()
-					pilot:SetPos( self.Entity:LocalToWorld(v.pexit) )
-					pilot:SetCollisionGroup( colgroup )
-				end
+		local dock = self.Entity:findNearestDock(ent)
+		if (dock == false) then return end
+		if ( !dock.ship && !self.Entity:alreadyDocked(ent) ) then
+			dock.ship = ent
+			dock.ship:SetPos( self.Entity:LocalToWorld(dock.pos + Fighters[fighter]["VecOff"]) )
+			dock.ship:SetAngles( self.Entity:GetAngles() + dock.ang + Fighters[fighter]["AngOff"] )
+			dock.weld = constraint.Weld(self.Entity, dock.ship, 0, 0, 0, true)
+			if (dock.ship:GetPassenger():IsPlayer()) then
+				local pilot = dock.ship:GetPassenger()
+				local colgroup = pilot:GetCollisionGroup()
+				pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
+				pilot:ExitVehicle()
+				pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
+				pilot:SetCollisionGroup( colgroup )
 			end
 		end
 	end
+end
+
+function ENT:findNearestDock(ent)
+	local pos = ent:GetPos()
+	local dis, closest
+	for k, v in pairs(self.Bay) do
+		if (v.ship == nil) then
+			local tdis = pos:Distance(v.pos)
+			local tclosest = v
+			if (dis == null || tdis < dis) then
+				dis = tdis
+				closest = tclosest
+			end
+		end
+	end
+	return closest or false
 end
 
 function ENT:alreadyDocked(ent)
