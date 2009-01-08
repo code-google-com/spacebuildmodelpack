@@ -6,8 +6,8 @@ local Fighters = list.Get("sbepfighters")
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/Slyfo/capturehull1.mdl" )
-	self.Entity:SetName("DockingClamp")
+	self.Entity:SetModel( "models/Slyfo/hangar3.mdl" )
+	self.Entity:SetName("SWORDHangarSpacious")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -21,7 +21,8 @@ function ENT:Initialize()
 	
     self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.Bay = {}
-	self.Bay[1] = {ship = nil, weld = nil, pos = Vector(425,0,0), ang = Angle(0,90,0), pexit = Vector(150,0,10)}
+	self.Bay[1] = {ship = nil, weld = nil, pos = Vector(0, 400, -300), ang = Angle(0,0,0), pexit = Vector(0, 200, -300)}
+	self.Bay[2] = {ship = nil, weld = nil, pos = Vector(0,-400, -300), ang = Angle(0,0,0), pexit = Vector(0,-200, -300)}
 	
 end
 
@@ -31,7 +32,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,500)
 	
-	local ent = ents.Create( "DockingClamp" )
+	local ent = ents.Create( "SWORDHangarSpacious" )
 	ent:SetPos( SpawnPos )
 	ent:Spawn()
 	ent:Initialize()
