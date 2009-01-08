@@ -8,7 +8,7 @@ local Fighters = list.Get("sbepfighters")
 function ENT:Initialize()
 
 	self.Entity:SetModel( "models/Slyfo/capturehull1.mdl" )
-	self.Entity:SetName("SWORDHangar")
+	self.Entity:SetName("DockingClamp")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -56,7 +56,7 @@ function ENT:Think()
 end
 
 function ENT:Touch( ent )
-	if ( ent:IsValid() && ent:IsVehicle() && self.Entity:IsInBoth(ent) && (ent.Cont != nil) && !ent.Cont.Launchy ) then
+	if ( ent:IsValid() && ent:IsVehicle() && self.Entity:IsInBoth(ent) && ent.Cont && !ent.Cont.Launchy ) then
 		local fighter = string.lower(ent.Cont:GetName())
 		if ( (self.SWORD1 == nil) ) then
 			self.SWORD1 = ent
@@ -81,7 +81,7 @@ function ENT:IsInBoth(ent)
 	if (!Fighters[fighter]) then return false end
 	local docklist = Fighters[fighter]["Docklist"]
 	--PrintTable(docklist)
-	return (Fighters[fighter] && table.HasValue(docklist, "dockingclamp"))
+	return (Fighters[fighter] && table.HasValue(docklist, string.lower(self.Entity:GetName())))
 end
 
 function ENT:Use(activator)
