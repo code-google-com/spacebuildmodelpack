@@ -1,8 +1,8 @@
 
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-include( 'shared.lua' )
 include('entities/base_wire_entity/init.lua')
+include( 'shared.lua' )
 util.PrecacheSound( "SB/Gattling2.wav" )
 
 function ENT:Initialize()
