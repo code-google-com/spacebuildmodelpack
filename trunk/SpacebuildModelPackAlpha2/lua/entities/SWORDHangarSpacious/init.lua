@@ -67,7 +67,7 @@ function ENT:Touch( ent )
 		if ( !dock.ship && !self.Entity:alreadyDocked(ent) ) then
 			dock.ship = ent
 			dock.ship:SetPos( self.Entity:LocalToWorld(dock.pos + Fighters[fighter]["VecOff"]) )
-			dock.ship:SetAngles( self.Entity:GetAngles() + dock.ang + Fighters[fighter]["AngOff"] )
+			dock.ship:SetAngles( self.Entity:getFacing(ent,(self.Entity:GetAngles() + dock.ang + Fighters[fighter]["AngOff"])) )
 			dock.weld = constraint.Weld(self.Entity, dock.ship, 0, 0, 0, true)
 			if (dock.ship:GetPassenger():IsPlayer()) then
 				local pilot = dock.ship:GetPassenger()
@@ -82,7 +82,7 @@ function ENT:Touch( ent )
 end
 
 function ENT:findNearestDock(ent)
-	local pos = ent:GetPos()
+	local pos = self.Entity:WorldToLocal(ent:GetPos())
 	local dis, closest
 	for k, v in pairs(self.Bay) do
 		if (v.ship == nil) then
@@ -95,6 +95,17 @@ function ENT:findNearestDock(ent)
 		end
 	end
 	return closest or false
+end
+
+function ENT:getFacing(ent, ang)
+	local pfw = ent:GetRight()
+	local forward = ang:Forward()
+	local back = forward * -1
+	if (pfw:DotProduct(forward) >= pfw:DotProduct(back)) then
+		return forward:Angle()
+	else
+		return back:Angle()
+	end
 end
 
 function ENT:alreadyDocked(ent)
