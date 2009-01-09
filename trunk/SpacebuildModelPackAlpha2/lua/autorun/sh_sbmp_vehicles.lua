@@ -671,3 +671,20 @@ local V = {
 }
 list.Set( "Vehicles", "sbmp_console_seat", V )
 
+local V = {
+				Name = "GCockpitSeat",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "For all your sitting needs.",
+				Model = "models/Slyfo/Gcockpitseat.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbmp_Gcockpitseat", V )
