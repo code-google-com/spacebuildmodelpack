@@ -5,7 +5,7 @@ include( "shared.lua" )
 
 ENT.WireDebugName = "SBMP Door"
 
-local model = { "models/SmallBridge/SBdooranim1/SBdooranim1.mdl" , "models/SmallBridge/SBdoor/SBdoor.mdl" }
+local model = { "models/SmallBridge/SBdooranim2/SBdooranim2.mdl" , "models/SmallBridge/SBdoorsquare/SBdoorsquare.mdl" }
 
 function ENT:Initialize()	
 
@@ -40,7 +40,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,65.1)
 	local RotAng   = Angle(180 , 0 , 0)
 	
-	local ent = ents.Create( "sbmp_door" )
+	local ent = ents.Create( "sbmp_door_square" )
 	ent:SetPos( SpawnPos )
 	ent:SetAngles( RotAng )
 	ent:Spawn()
@@ -52,25 +52,25 @@ end
 
 function ENT:OnRemove() 
 
-	self.SBdoor:Remove()
+	self.SBdoorsquare:Remove()
 	self:Remove()
 	
 end
 
 function ENT:AddDoorPhysics()
 
-	self.SBdoor = ents.Create( "prop_physics" )
-		self.SBdoor:PhysicsInit( SOLID_VPHYSICS )
-		self.SBdoor:SetMoveType( MOVETYPE_VPHYSICS )
-		self.SBdoor:SetSolid( SOLID_VPHYSICS )
-		self.SBdoor:SetModel( model[2] )
-		self.SBdoor:Spawn()
-		self.SBdoor:SetAngles(self:GetAngles() + Angle( 0 , 90 , 0 ))
-		self.SBdoor:SetPos(self:GetPos())
+	self.SBdoorsquare = ents.Create( "prop_physics" )
+		self.SBdoorsquare:PhysicsInit( SOLID_VPHYSICS )
+		self.SBdoorsquare:SetMoveType( MOVETYPE_VPHYSICS )
+		self.SBdoorsquare:SetSolid( SOLID_VPHYSICS )
+		self.SBdoorsquare:SetModel( model[2] )
+		self.SBdoorsquare:Spawn()
+		self.SBdoorsquare:SetAngles(self:GetAngles() + Angle( 0 , 0 , 0 ))
+		self.SBdoorsquare:SetPos(self:GetPos())
 
-		constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
+		constraint.Weld( self.SBdoorsquare, self, 0, 0, 0, true )
 				
-		self.SBdoor:SetNoDraw(true)
+		self.SBdoorsquare:SetNoDraw(true)
 		
 end
 
@@ -81,8 +81,8 @@ function ENT:Open()
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = false
-							if self.SBdoor and self.SBdoor:IsValid() then
-								self.SBdoor:SetNotSolid( true )
+							if self.SBdoorsquare and self.SBdoorsquare:IsValid() then
+								self.SBdoorsquare:SetNotSolid( true )
 							end
 						end)
 
@@ -95,8 +95,8 @@ function ENT:Close()
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = true
-							if self.SBdoor and self.SBdoor:IsValid() then
-								self.SBdoor:SetNotSolid( false )
+							if self.SBdoorsquare and self.SBdoorsquare:IsValid() then
+								self.SBdoorsquare:SetNotSolid( false )
 							end
 						end)
 
