@@ -31,6 +31,23 @@ function ENT:Initialize()
 
 end
 
+function ENT:SpawnFunction( ply, tr )
+
+	if ( !tr.Hit ) then return end
+	
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,65.1)
+	local RotAng   = Angle(180 , 0 , 0)
+	
+	local ent = ents.Create( "sbmp_door" )
+	ent:SetPos( SpawnPos )
+	ent:SetAngles( RotAng )
+	ent:Spawn()
+	ent:Activate()
+	
+	return ent
+	
+end
+
 function ENT:OnRemove() 
 
 	ent:Remove()
@@ -85,11 +102,11 @@ end
 
 function ENT:Use( activator, caller )
 
-	if self:IsValid() and (self:GetSequence() == self:LookupSequence( "close" )) and Delay and not Locked then
+	if self:IsValid() and (self:GetSequence() == self:LookupSequence( "close" )) and Delay and not DisableUse then
 
 		self:Open()
 
-	elseif self:IsValid() and (self:GetSequence() == self:LookupSequence( "open" )) and not Delay and not Locked then
+	elseif self:IsValid() and (self:GetSequence() == self:LookupSequence( "open" )) and not Delay and not DisableUse then
 
 		self:Close()
 	
@@ -100,7 +117,7 @@ function ENT:Use( activator, caller )
 end
 
 function ENT:TriggerInput(k,v)
-	if (k == "Open" and v >= 1) then
+	if (k == "Open" and v > 0) then
 	
 		if not Locked then
 			self:Open()
@@ -112,18 +129,22 @@ function ENT:TriggerInput(k,v)
 			self:Close()
 		end
 
-	elseif (k == "Lock" and v >= 1) then
+	elseif (k == "Lock" and v > 0) then
 
 		self:Close()
 		Locked = true
 		
-	elseif ((k == "Lock" and v == 0) or (k == "Disable Use" and v == 0)) then
+	elseif (k == "Lock" and v == 0) then
 	
 		Locked = false
 	
-	elseif (k == "Disable Use" and v >= 1) then
+	elseif (k == "Disable Use" and v > 0) then
 	
-		Locked = true
+		DisableUse = true
+		
+	elseif (k == "Disable Use" and v == 0) then
+	
+		DisableUse = false
 	
 	end
 end
