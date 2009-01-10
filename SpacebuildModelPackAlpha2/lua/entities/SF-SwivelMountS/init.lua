@@ -192,3 +192,36 @@ function ENT:HPFire()
 		self.HP[1]["Ent"]:HPFire()
 	end
 end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.CPod) and (self.CPod:IsValid()) then
+	    info.cpod = self.CPod:EntIndex()
+	end
+	if (self.HP[1]["Ent"]) and (self.HP[1]["Ent"]:IsValid()) then
+	    info.gun = self.HP[1]["Ent"]:EntIndex()
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.HPC				= 1
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= "Small"
+	self.HP[1]["Pos"]	= Vector(0,0,12)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.cpod) then
+		self.CPod = GetEntByID(info.cpod)
+		if (!self.CPod) then
+			self.CPod = ents.GetByIndex(info.cpod)
+		end
+	end
+	if (info.gun) then
+		self.HP[1]["Ent"] = GetEntByID(info.gun)
+		if (!self.HP[1]["Ent"]) then
+			self.HP[1]["Ent"] = ents.GetByIndex(info.gun)
+		end
+	end
+end
