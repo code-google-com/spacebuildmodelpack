@@ -133,3 +133,11 @@ end
 function ENT:HPFire()
 	self.FTime = CurTime() + 0.1
 end
+
+function ENT:PostEntityPaste(Player,Ent,CreatedEntities)
+	local phys = Ent:GetPhysicsObject()
+	if (phys:IsValid()) then
+		phys:EnableGravity(false)
+		phys:EnableDrag(false)
+	end
+end
