@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_gmodentity"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "Assault Boarding Pod"
 ENT.Author			= "Paradukes + SlyFo"
 ENT.Category		= "SBEP-Fighters"
