@@ -108,3 +108,22 @@ end
 function ENT:Use(activator)
 	
 end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.NPod1) and (self.NPod1:IsValid()) then
+	    info.NPod1 = self.NPod1:EntIndex()
+	end
+	if (self.NPod2) and (self.NPod2:IsValid()) then
+	    info.NPod2 = self.NPod2:EntIndex()
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	--Remove old pods instead instead of storing data for new ones
+	--It's easier this way and you can't tell the difference.
+	GetEntByID(info.NPod1):Remove()
+	GetEntByID(info.NPod2):Remove()
+end
