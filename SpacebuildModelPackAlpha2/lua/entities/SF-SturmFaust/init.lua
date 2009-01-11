@@ -56,6 +56,17 @@ function ENT:OnTakeDamage( dmginfo )
 	end
 end
 
+function ENT:Think()
+	local trace = {}
+	trace.start = self.Entity:GetPos()
+	trace.endpos = self.Entity:GetPos() + (self.Entity:GetVelocity())
+	trace.filter = self.Entity
+	local tr = util.TraceLine( trace )
+	if tr.Hit and tr.HitSky then
+		self.Entity:Remove()
+	end
+end
+
 function ENT:Splode()
 	if(!self.Exploded) then
 		--self.Exploded = true

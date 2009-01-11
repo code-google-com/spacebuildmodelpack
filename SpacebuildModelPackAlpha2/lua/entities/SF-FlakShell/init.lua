@@ -68,7 +68,11 @@ function ENT:Think()
 	if !tr.Hit then
 		self.Entity:SetPos(self.Entity:GetPos() + self.Entity:GetForward() * 500)
 	else
-		self.PhysObj:SetVelocity(self.Entity:GetForward()*3100)
+		if tr.HitSky then
+			self.Entity:Remove()
+		else
+			self.PhysObj:SetVelocity(self.Entity:GetForward()*3100)
+		end
 	end
 	if self.TCount > 1 then
 		local TFound = 0
