@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_gmodentity"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "SWORD"
 ENT.Author			= "Paradukes + SlyFo + Fishface60"
 ENT.Category		= "SBEP-Fighters"

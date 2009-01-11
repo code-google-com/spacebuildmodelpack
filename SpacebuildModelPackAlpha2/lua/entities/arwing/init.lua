@@ -68,6 +68,8 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	--Constrain so they get duped together
+	constraint.NoCollide( ent, ent2, 0, 0 )
 	
 	return ent
 end
@@ -316,5 +318,49 @@ end
 function ENT:OnRemove()
 	if self.Pod && self.Pod:IsValid() then
 		self.Pod:Remove()
+	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.Pod) and (self.Pod:IsValid()) then
+	    info.Pod = self.Pod:EntIndex()
+	end
+	info.guns = {}
+	for k,v in pairs(self.HP) do
+		if (v["Ent"]) and (v["Ent"]:IsValid()) then
+			info.guns[k] = v["Ent"]:EntIndex()
+		end
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.Pod) then
+		self.Pod = GetEntByID(info.Pod)
+		if (!self.Pod) then
+			self.Pod = ents.GetByIndex(info.Pod)
+		end
+		self.Pod.Cont = self.Entity
+		self.Pod.SPL = ply
+		self.Pod:SetNetworkedInt( "HPC", ent.HPC )
+		local TB = self.Pod:GetTable()
+		TB.HandleAnimation = function (vec, ply)
+			return ply:SelectWeightedSequence( ACT_HL2MP_SIT ) 
+		end 
+		self.Pod:SetTable(TB)
+		self.Pod:SetKeyValue("limitview", 0)
+	end
+	self.SPL = ply
+	if (info.guns) then
+		for k,v in pairs(info.guns) do
+			local gun = GetEntByID(v)
+			self.HP[k]["Ent"] = gun
+			if (!self.HP[k]["Ent"]) then
+				gun = ents.GetByIndex(v)
+				self.HP[k]["Ent"] = gun
+			end
+		end
 	end
 end
