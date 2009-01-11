@@ -8,7 +8,7 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
-ENT.HPType			= "Medium"
+ENT.HPType			= "Heavy"
 ENT.APPos			= Vector(20,0,-30)
 
 function ENT:SetArmed( val )

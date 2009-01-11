@@ -31,7 +31,36 @@ hook.Add("SetupMove", "SBEPControls", SBEPCCC)
 function HPLink( cont, pod, weap )
 	for i = 1, cont.HPC do
 		if !cont.HP[i]["Ent"] || !cont.HP[i]["Ent"]:IsValid() then
-			if cont.HP[i]["Type"] == weap.HPType then
+			local TypeMatch = false
+			if type(cont.HP[i]["Type"]) == "string" then
+				if type(weap.HPType) == "string" then
+					print("Double String")
+					if cont.HP[i]["Type"] == weap.HPType then
+						TypeMatch = true
+					end
+				elseif type(weap.HPType) == "table" then
+					print("String - Table")
+					if table.HasValue( weap.HPType, cont.HP[i]["Type"] ) then
+						TypeMatch = true
+					end
+				end
+			elseif type(cont.HP[i]["Type"]) == "table" then
+				if type(weap.HPType) == "string" then
+					print("Table - String")
+					if table.HasValue( cont.HP[i]["Type"], weap.HPType ) then
+						TypeMatch = true
+					end
+				elseif type(weap.HPType) == "table" then
+					print("Double Table")
+					for _,i in pairs(cont.HP[i]["Type"]) do
+						if table.HasValue( weap.HPType, cont.HP[i]["Type"] ) then
+							TypeMatch = true
+						end
+					end
+				end
+			end			
+			
+			if TypeMatch then
 				if cont.Skewed then
 					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.y ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.x ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
 				else
@@ -42,12 +71,14 @@ function HPLink( cont, pod, weap )
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)
 				weap.HPWeld = constraint.Weld(pod, weap, 0, 0, 0, true)
 				weap:SetParent( pod )
+				--pod:SetNetworkedEntity( "SBHPE_"..i, weap ) 
 				cont.HP[i]["Ent"] = weap
 				weap.Pod = pod
 				weap.HPN = i
 				weap:GetPhysicsObject():EnableGravity(false)
-				return
+				return true
 			end
 		end
 	end
+	return false
 end

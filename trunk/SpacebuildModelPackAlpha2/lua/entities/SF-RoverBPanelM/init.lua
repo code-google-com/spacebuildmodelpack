@@ -101,7 +101,7 @@ function ENT:Think()
 					--for i = 1, self.HPC do
 					--	local HPC = self.CPL:GetInfo( "SBHP_"..i )
 					--	if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
-							self.HP[1]["Ent"].Entity:HPFire()
+					--		self.HP[1]["Ent"].Entity:HPFire()
 					--	end
 					--end
 				end
