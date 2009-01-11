@@ -59,6 +59,15 @@ function ENT:Think()
 		self.PreLaunch = true
 	end
 	
+	local trace = {}
+	trace.start = self.Entity:GetPos()
+	trace.endpos = self.Entity:GetPos() + (self.Entity:GetVelocity())
+	trace.filter = self.Entity
+	local tr = util.TraceLine( trace )
+	if tr.Hit and tr.HitSky then
+		self.Entity:Remove()
+	end
+	
 end
 
 function ENT:PhysicsCollide( data, physobj )
