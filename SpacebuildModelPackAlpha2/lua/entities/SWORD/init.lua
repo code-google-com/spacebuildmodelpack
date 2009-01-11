@@ -43,7 +43,7 @@ function ENT:Initialize()
 	self.HP[2]["Pos"]	= Vector(140,60,35)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
-	self.HP[3]["Type"]	= "Medium"
+	self.HP[3]["Type"]	= { "Medium", "Heavy" }
 	self.HP[3]["Pos"]	= Vector(0,130,25)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil
@@ -253,9 +253,9 @@ function ENT:Think()
 			if (self.CPL:KeyDown( IN_ATTACK ) || (joystick && joystick.Get(self.CPL, "sbepftr_fire1"))) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
-					print(HPC)
-					print(string.byte(HPC))
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
+					--print(HPC) -- Debugging stuff. Ignore this.
+					--print(string.byte(HPC))
+					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
 						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
 							self.HP[i]["Ent"].Cont:HPFire()
 						else
@@ -268,7 +268,7 @@ function ENT:Think()
 			if (self.CPL:KeyDown( IN_ATTACK2 ) || (joystick && joystick.Get(self.CPL, "sbepftr_fire2"))	) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (HPC == "1.00" || HPC == "1" || HPC == 1) then
+					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
 						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
 							self.HP[i]["Ent"].Cont:HPFire()
 						else

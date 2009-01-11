@@ -12,7 +12,7 @@ end
 
 function ENT:Draw()
 	local OPos = self.Entity:GetPos()
-	local OAng = self.Entity:GetAngles()
+	local OAng = self.Entity:GetAngles() + Angle( 0.01, 0.01, 0.01 )
 	self.Entity:SetModel("models/Slyfo/rover_tread.mdl")
 	if self.Straight then
 		
@@ -38,20 +38,20 @@ function ENT:Draw()
 		local CircP = (Scale * 12) / ((Pie * ( self.Entity:GetRadius() * 2 )) / 360)
 		
 		for i = 1, self.Entity:GetLength(), CircP do
-			--self.Entity:SetAngles( OAng )
+			self.Entity:SetAngles( OAng )
 			local Sine = math.sin(math.rad(i + SDist)) * self.Entity:GetRadius()
 			local CoSine = math.cos(math.rad(i + SDist)) * self.Entity:GetRadius()
 			self.Entity:SetPos( OPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
-			local NAng = OAng
+			local NAng = OAng + Angle( 0.01, 0.01, 0.01 )
 			NAng:RotateAroundAxis( self.Entity:GetRight(), i )
-			--self.Entity:SetAngles( NAng )
+			self.Entity:SetAngles( NAng + Angle( 0.01, 0.01, 0.01 ) )
 			self.Entity:SetModelWorldScale( Vector(Scale, Scale, Scale) )
 			self.Entity:DrawModel()
 		end
 		
 	end
 	self.Entity:SetPos( OPos )
-	--self.Entity:SetAngles( OAng )
+	self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
 end
 
 function ENT:Think()

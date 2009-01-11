@@ -8,5 +8,5 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
-ENT.HPType			= "Tiny"
+ENT.HPType			= { "Tiny", "Small" }
 ENT.APPos			= Vector(-10,0,0)
