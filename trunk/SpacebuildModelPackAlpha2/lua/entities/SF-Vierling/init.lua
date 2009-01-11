@@ -220,3 +220,58 @@ function ENT:HPFire()
 		self.HP[self.CHP]["Ent"]:HPFire()
 	end
 end
+
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.CPod) and (self.CPod:IsValid()) then
+	    info.cpod = self.CPod:EntIndex()
+	end
+	info.guns = {}
+	for k,v in pairs(self.HP) do
+		if (v["Ent"]) and (v["Ent"]:IsValid()) then
+			info.guns[k] = v["Ent"]:EntIndex()
+		end
+	end
+	if (self.Base) and (self.Base:IsValid()) then
+		info.Base = self.Base:EntIndex()
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.HPC				= 4
+	self.HP				= {}
+	for k=1,4 do
+		self.HP[k]			= {}
+		self.HP[k]["Ent"]	= nil
+		self.HP[k]["Type"]	= "Small"
+	end
+	self.HP[1]["Pos"]	= Vector(20,-20,53)
+	self.HP[2]["Pos"]	= Vector(20,-20,23)
+	self.HP[3]["Pos"]	= Vector(20,20,53)
+	self.HP[4]["Pos"]	= Vector(20,20,23)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.cpod) then
+		self.CPod = GetEntByID(info.cpod)
+		if (!self.CPod) then
+			self.CPod = ents.GetByIndex(info.cpod)
+		end
+	end
+	if (info.Base) then
+		self.Base = GetEntByID(info.Base)
+		if (!self.Base) then
+			self.Base = ents.GetByIndex(info.Base)
+		end
+	end
+	if (info.guns) then
+		for k,v in pairs(info.guns) do
+			local gun = GetEntByID(v)
+			self.HP[k]["Ent"] = gun
+			if (!self.HP[k]["Ent"]) then
+				gun = ents.GetByIndex(v)
+				self.HP[k]["Ent"] = gun
+			end
+		end
+	end
+end
