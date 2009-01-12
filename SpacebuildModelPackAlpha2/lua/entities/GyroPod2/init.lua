@@ -1,8 +1,8 @@
 
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-include( 'shared.lua' )
 include('entities/base_wire_entity/init.lua')
+include( 'shared.lua' )
 
 util.PrecacheSound( "k_lab.ambient_powergenerators" )
 util.PrecacheSound( "ambient/machines/thumper_startup1.wav" )
@@ -419,4 +419,40 @@ end
 
 function ENT:OnRemove()
 	self.Entity:StopSound( "k_lab.ambient_powergenerators" )
+end
+
+function ENT:BuildDupeInfo()
+	PrintTable(self.LTab)
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	info.LTab = {}
+	for k,v in pairs(self.LTab) do
+		info.LTab[k] = v:EntIndex()
+	end
+	info.Pod = self.Pod:EntIndex()
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	PrintTable(info.LTab)
+	if (info.Pod) then
+		self.Pod = GetEntByID(info.Pod)
+		if (!self.Pod) then
+			self.Pod = ents.GetByIndex(info.Pod)
+		end
+		--[[local TB = self.Pod:GetTable()
+		TB.HandleAnimation = function (vec, ply)
+			return ply:SelectWeightedSequence( ACT_HL2MP_SIT ) 
+		end 
+		self.Pod:SetTable(TB)
+		self.Pod:SetKeyValue("limitview", 0)]]
+	end
+	self.LTab = self.LTab or {}
+	for k,v in pairs(info.LTab) do
+		self.LTab[k] = GetEntByID(v)
+		if (!self.LTab[k]) then
+			self.LTab[k] = ents.GetByIndex(v)
+		end
+	end
+	PrintTable(self.LTab)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
 end
