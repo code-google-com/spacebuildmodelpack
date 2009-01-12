@@ -246,15 +246,15 @@ function ENT:Think()
 			
 			if (joystick) then
 				if (joystick.Get(self.CPL, "gyro_strafe_up")) then
-					self.VSpeed = 300
+					self.VSpeed = 50
 				elseif (joystick.Get(self.CPL, "gyro_strafe_down")) then
-					self.VSpeed = -300
+					self.VSpeed = -50
 				end
 			
 				if (joystick.Get(self.CPL, "gyro_strafe_right")) then
-					self.HSpeed = 300
+					self.HSpeed = 50
 				elseif (joystick.Get(self.CPL, "gyro_strafe_left")) then
-					self.HSpeed = -300
+					self.HSpeed = -50
 				else
 					self.HSpeed = 0
 				end
