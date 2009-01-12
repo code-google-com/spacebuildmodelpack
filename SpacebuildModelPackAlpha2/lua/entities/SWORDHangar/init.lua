@@ -46,9 +46,19 @@ end
 function ENT:Think()
 	local bay = self.Bay
 	for k, v in pairs(bay) do
-		if ( !v.ship || !v.ship:IsValid() || !v.weld || !v.weld:IsValid() ) then
+		if ( !v.ship || !v.ship:IsValid() ) then
 			v.weld = nil
 			v.ship = nil
+		end
+		--if can't find weld, look for it and if it exists re-reference
+		--necessary for dupe as constraints get added after entities
+		if ( !v.weld || !v.weld:IsValid() ) then
+			local cons = constraint.FindConstraints( v.ship, "Weld" )
+			for l,w in pairs(cons) do
+				if (w.Ent1 == self.Entity || w.Ent2 == self.Entity) then
+					v.weld = w.Constraint
+				end
+			end
 		end
 		if ( v.ship && v.ship.Cont.Launchy ) then
 			v.weld:Remove()
@@ -125,4 +135,25 @@ function ENT:IsInBoth(ent)
 end
 
 function ENT:Use(activator)
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	info["ships"] = {}
+	for k, v in pairs(self.Bay) do
+		if (v.ship) and (v.ship:IsValid()) then
+			info["ships"][k] = v.ship:EntIndex()
+		end
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	for k, v in pairs(info.ships) do
+		self.Bay[k]["ship"] = GetEntByID(v)
+		if (!self.Bay[k]["ship"]) then
+			self.Bay[k]["ship"] = ents.GetByIndex(v)
+		end
+	end
 end
