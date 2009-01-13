@@ -8,7 +8,7 @@ include( 'shared.lua' )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "missile_pod_8.mdl" ) 
+	self.Entity:SetModel( "models/Slyfo/missile_pod_8.mdl" ) 
 	self.Entity:SetName("ArtilleryCannon")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
