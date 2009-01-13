@@ -30,7 +30,7 @@ function ENT:Initialize()
 	self.Active = false
 	self.Skewed = true
 	self.HSpeed = 0
-	
+		
 	self.HPC			= 3
 	self.HP				= {}
 	self.HP[1]			= {}
@@ -96,6 +96,8 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	ent2.HPType = "Vehicle"
+	ent2.APPos = Vector(-20,0,-86)
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
@@ -197,6 +199,23 @@ function ENT:Think()
 			self.Pitch = 0
 			self.Pod.Trace = nil
 		end
+		
+		if !self.Mounted then
+			local mn, mx = self.Pod:WorldSpaceAABB()
+			mn = mn - Vector(2, 2, 2)
+			mx = mx + Vector(2, 2, 2)
+			local T = ents.FindInBox(mn, mx)
+			for _,i in pairs( T ) do
+				if( i.Entity && i.Entity:IsValid() && i.Entity != self.Pod ) then
+					if i.HasHardpoints then
+						if i.Cont && i.Cont:IsValid() then HPLink( i.Cont, i.Entity, self.Pod ) end
+						self.Mounted = true
+						--self.Pod:SetParent()
+					end
+				end
+			end
+		end
+		
 	else
 		self.Entity:Remove()
 	end
@@ -222,5 +241,31 @@ end
 function ENT:OnRemove()
 	if self.Pod && self.Pod:IsValid() then
 		self.Pod:Remove()
+	end
+end
+
+function ENT:HPFire()
+	if !self.CPL || !self.CPL:IsValid() then
+		local ECPL = self.Pod.Pod:GetPassenger()
+		if ECPL && ECPL:IsValid() then
+			ECPL:ExitVehicle()
+			ECPL:EnterVehicle( self.Pod )	
+		end
+	end
+	if self.Pod.HPWeld && self.Pod.HPWeld:IsValid() then
+		self.Pod.HPWeld:Remove()
+		self.Pod.HPWeld = nil
+	end
+	self.Pod:SetParent()
+	if self.Pod.Pod && self.Pod.Pod:IsValid() then
+		self.Pod.Pod.Cont.HP[self.Pod.HPN]["Ent"] = nil
+		local NC = constraint.NoCollide(self.Pod, self.Pod.Pod, 0, 0, 0, true)
+	end
+	local phys = self.Pod:GetPhysicsObject()
+	if (phys:IsValid()) then
+		phys:Wake()
+		phys:EnableGravity(true)
+		phys:EnableDrag(true)
+		phys:EnableCollisions(true)
 	end
 end

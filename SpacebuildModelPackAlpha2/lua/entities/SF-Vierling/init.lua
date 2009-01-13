@@ -158,8 +158,8 @@ function ENT:Think()
 		TargPos = Vector(self.XCo,self.YCo,self.ZCo)
 	end
 	if TargPos then
-		local FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * 100 )
-		local BDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * -100 )
+		local FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * 120 ) --100 with compensation
+		local BDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * -80 )
 		local Pitch = math.Clamp((FDist - BDist) * 1.75, -450, 450)
 		FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetRight() * 100 )
 		BDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetRight() * -100 )
