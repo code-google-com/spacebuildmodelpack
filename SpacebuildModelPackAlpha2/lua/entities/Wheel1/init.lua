@@ -64,22 +64,22 @@ function ENT:Think()
 			local FSpeed = 0
 			local SSpeed = 0
 			if (self.CPL:KeyDown( IN_FORWARD )) then
-				FSpeed = 4000
+				FSpeed = 1000
 			elseif (self.CPL:KeyDown( IN_BACK )) then
-				FSpeed = -4000
+				FSpeed = -1000
 			end
 			
 			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
 				if self.Side == "Left" then
-					SSpeed = 2000
+					SSpeed = 800
 				elseif self.Side == "Right" then
-					SSpeed = -2000
+					SSpeed = -800
 				end
 			elseif (self.CPL:KeyDown( IN_MOVELEFT )) then
 				if self.Side == "Left" then
-					SSpeed = -2000
+					SSpeed = -800
 				elseif self.Side == "Right" then
-					SSpeed = 2000
+					SSpeed = 800
 				end
 			end
 			
@@ -95,9 +95,9 @@ function ENT:Think()
 			end
 			
 			if self.Side == "Left" then
-				Phys:AddAngleVelocity(Angle(0,(SSpeed + FSpeed),0))
+				Phys:AddAngleVelocity(Angle(0, 0, (SSpeed + FSpeed)))
 			elseif self.Side == "Right" then
-				Phys:AddAngleVelocity(Angle(0,(SSpeed + FSpeed) * -1,0))
+				Phys:AddAngleVelocity(Angle(0, 0, (SSpeed + FSpeed) * -1))
 			end
 				
 			if self.Entity:IsOnGround() then
@@ -128,17 +128,23 @@ end
 function ENT:WLink( Cont, Pod )
 	for i = 1, Cont.WhC do
 		if !Cont.Wh[i]["Ent"] || !Cont.Wh[i]["Ent"]:IsValid() then
-			local Offset = 0
-			local Ang = Pod:GetAngles()
+			local Offset = {0, 0, 10}
 			local AOffset = 0
+			local ZVecAngle = Angle(0, 90, 0)
+			local PodVec = (Pod:GetForward())
+			PodVec:Rotate(ZVecAngle)
 			if Cont.Wh[i]["Side"] == "Left" then
 				AOffset = 90
+				local Ang = (PodVec:Angle())
+				Ang:RotateAroundAxis( PodVec, AOffset )
+				self.Entity:SetAngles( Ang )
 			else
 				AOffset = -90
+				local Ang = ((PodVec*-1):Angle())
+				Ang:RotateAroundAxis( PodVec, AOffset )
+				self.Entity:SetAngles( Ang )
 			end
-			Ang:RotateAroundAxis( Pod:GetPos() + Pod:GetForward() * 100, AOffset )
-			self.Entity:SetAngles( Ang )
-			self.Entity:SetPos(Pod:GetPos() + Pod:GetForward() * (Cont.Wh[i]["Pos"].x + Offset) + (Pod:GetRight() * Cont.Wh[i]["Pos"].y ) + (Pod:GetUp() * (Cont.Wh[i]["Pos"].z )) )
+			self.Entity:SetPos(Pod:GetPos() + Pod:GetForward() * (Cont.Wh[i]["Pos"].x + Offset[1]) + Pod:GetRight() * (Cont.Wh[i]["Pos"].y + Offset[2]) + Pod:GetUp() * (Cont.Wh[i]["Pos"].z + Offset[3]))
 			local LPos = nil
 			local Cons = nil
 			LPos = Vector(0,0,0)

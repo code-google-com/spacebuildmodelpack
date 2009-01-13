@@ -1,6 +1,6 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-
+include('entities/base_wire_entity/init.lua')
 include( "shared.lua" ) 
 
 ENT.WireDebugName = "SBMP Door"
