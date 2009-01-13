@@ -93,7 +93,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
-	local ent = ents.Create( "TankTreads1" )
+	local ent = ents.Create( "TankTreadsLoop" )
 	ent:SetPos( SpawnPos )
 	ent:Spawn()
 	ent:Initialize()

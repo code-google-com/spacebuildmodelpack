@@ -34,7 +34,7 @@ function ENT:Draw()
 		//Drawing the top straight section.
 		local Scale = self.Entity:GetSegSize()
 		local SDist = math.fmod(self.Scroll, Scale * 12)
-		local TAng = OAng
+		local TAng = OAng - Angle( 0.01, 0.01, 0.01 )
 		TAng:RotateAroundAxis( self.Entity:GetRight() , 180 )
 		self.Entity:SetAngles( TAng )
 		
@@ -44,24 +44,42 @@ function ENT:Draw()
 			self.Entity:DrawModel()
 		end
 		
-		/*Drawing the front curved section.
+		//Drawing the front curved section.
 		local Pie = 3.14159265358 // Yes, I know it's spelled wrong. Shut up.
 		local Scale = self.Entity:GetSegSize()
-		local SDist = -1 * math.fmod(self.Scroll, Scale * 12)
-		local CircP = (Scale * 12) / ((Pie * ( self.Entity:GetRadius() * 2 )) / 360)
+		local CircP = (2160 / (Pie * self.Entity:GetRadius()))
+		local SDist = -1 * math.fmod(self.Scroll, CircP)
 		
-		for i = 1, self.Entity:GetLength(), CircP do
-			self.Entity:SetAngles( OAng )
+		for i = 1, 180, CircP do
+			local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
+			self.Entity:SetAngles( NAng )
 			local Sine = math.sin(math.rad(i + SDist)) * self.Entity:GetRadius()
 			local CoSine = math.cos(math.rad(i + SDist)) * self.Entity:GetRadius()
-			self.Entity:SetPos( OPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
-			local NAng = OAng + Angle( 0.01, 0.01, 0.01 )
+			self.Entity:SetPos( FrCircPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
 			NAng:RotateAroundAxis( self.Entity:GetRight(), 180 - i )
-			self.Entity:SetAngles( NAng + Angle( 0.01, 0.01, 0.01 ) )
+			self.Entity:SetAngles( NAng /*+ Angle( 0.01, 0.01, 0.01 )*/ )
 			self.Entity:SetModelWorldScale( Vector(Scale, Scale, Scale) )
 			self.Entity:DrawModel()
 		end
-		*/
+		
+		//Drawing the back curved section.
+		local Pie = 3.14159265358 // Yes, I know it's spelled wrong. Shut up.
+		local Scale = self.Entity:GetSegSize()
+		local CircP = (2160 / (Pie * self.Entity:GetRadius())) 
+		local SDist = -1 * math.fmod(self.Scroll, CircP)
+		
+		for i = 180, 360, CircP do
+			local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
+			self.Entity:SetAngles( NAng )
+			local Sine = math.sin(math.rad(i + SDist)) * self.Entity:GetRadius()
+			local CoSine = math.cos(math.rad(i + SDist)) * self.Entity:GetRadius()
+			self.Entity:SetPos( BaCircPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
+			NAng:RotateAroundAxis( self.Entity:GetRight(), 180 - i )
+			self.Entity:SetAngles( NAng /*+ Angle( 0.01, 0.01, 0.01 )*/ )
+			self.Entity:SetModelWorldScale( Vector(Scale, Scale, Scale) )
+			self.Entity:DrawModel()
+		end
+		
 		
 	self.Entity:SetPos( OPos )
 	self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
