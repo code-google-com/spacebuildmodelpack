@@ -24,7 +24,7 @@ function ENT:Draw()
 		--local SLength = self.Entity:GetSegLength()
 	
 		local Scale = self.Entity:GetSegSize()
-		local SDist = math.fmod(self.Scroll, Scale * 12)
+		local SDist = -1 * math.fmod(self.Scroll, Scale * 12)
 		
 		for i = 1, self.Entity:GetLength(), Scale * 12 do
 			self.Entity:SetPos( OPos + (self.Entity:GetForward() * (self.Entity:GetLength() * 0.5)) + self.Entity:GetForward() * -i + self.Entity:GetForward() * SDist )
@@ -43,7 +43,7 @@ function ENT:Draw()
 			local CoSine = math.cos(math.rad(i + SDist)) * self.Entity:GetRadius()
 			self.Entity:SetPos( OPos + (self.Entity:GetForward() * Sine) + (self.Entity:GetUp() * CoSine) )
 			local NAng = OAng + Angle( 0.01, 0.01, 0.01 )
-			NAng:RotateAroundAxis( self.Entity:GetRight(), i )
+			NAng:RotateAroundAxis( self.Entity:GetRight(), 180 - i )
 			self.Entity:SetAngles( NAng + Angle( 0.01, 0.01, 0.01 ) )
 			self.Entity:SetModelWorldScale( Vector(Scale, Scale, Scale) )
 			self.Entity:DrawModel()
