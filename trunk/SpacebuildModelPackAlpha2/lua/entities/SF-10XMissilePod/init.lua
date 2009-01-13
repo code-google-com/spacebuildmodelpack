@@ -8,7 +8,7 @@ include( 'shared.lua' )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "missile_pod_10.mdl" ) 
+	self.Entity:SetModel( "models/Slyfo/missile_pod_10.mdl" ) 
 	self.Entity:SetName("ArtilleryCannon")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
@@ -109,7 +109,7 @@ end
 
 function ENT:Think()
 	local MCount = 0
-	for n = 1, 1- do
+	for n = 1, 10 do
 		if (CurTime() >= self.CDL[n]) then
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
