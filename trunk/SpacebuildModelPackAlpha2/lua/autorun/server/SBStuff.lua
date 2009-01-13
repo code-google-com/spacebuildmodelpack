@@ -52,8 +52,8 @@ function HPLink( cont, pod, weap )
 					end
 				elseif type(weap.HPType) == "table" then
 					print("Double Table")
-					for _,i in pairs(cont.HP[i]["Type"]) do
-						if table.HasValue( weap.HPType, cont.HP[i]["Type"] ) then
+					for _,v in pairs(cont.HP[i]["Type"]) do
+						if table.HasValue( weap.HPType, v ) then
 							TypeMatch = true
 						end
 					end
