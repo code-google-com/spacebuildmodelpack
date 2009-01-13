@@ -1,6 +1,6 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
-ENT.PrintName		= "Small Missile Pod"
+ENT.PrintName		= "8x Missile Pod"
 ENT.Author			= "Paradukes"
 ENT.Category		= "SBEP-Weapons"
 ENT.Instructions	= "The guidance system for the missiles can be configured by wired inputs. 0 = Unguided, 1 = Non-Tracking, 2 = Tracking, 3 = Homing, 4 = Seeking, 5 = Optical. For more information, visit the thread." 
