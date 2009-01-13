@@ -71,7 +71,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
-	ent2.HPType = "Medium"
+	ent2.HPType = "Vehicle"
 	ent2.APPos = Vector(-20,0,-46)
 	
 	ent.Pod = ent2
