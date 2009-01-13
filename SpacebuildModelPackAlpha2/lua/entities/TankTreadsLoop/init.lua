@@ -14,10 +14,10 @@ function ENT:Initialize()
 	self.Inputs = Wire_CreateInputs( self.Entity, { "TrackLength", "MoveSpeed", "SegSize", "Radius", "Link", "Spacing" } )
 	self.Outputs = Wire_CreateOutputs( self.Entity, { "Scroll" })
     
-    self.Entity:SetLength( 300 )
+    self.Entity:SetLength( 200 )
     self.Entity:SetSegSize( 1 )
     --self.Entity:SetCurved( false )
-    self.Entity:SetRadius( 0 )
+    self.Entity:SetRadius( 25 )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
