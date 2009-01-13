@@ -1,5 +1,6 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
+include('entities/base_wire_entity/init.lua')
 include( 'shared.lua' )
 
 function ENT:Initialize()
@@ -76,4 +77,27 @@ function ENT:Use( ply )
 			ply:EnterVehicle( self.Vec )
 		end
 	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.Vec) and (self.Vec:IsValid()) then
+	    info.Vec = self.Vec:EntIndex()
+	end
+	if (self.CDown) then
+	    info.CDown = self.CDown
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.Vec) then
+		self.Vec = GetEntByID(info.Vec)
+		if (!self.Vec) then
+			self.Vec = ents.GetByIndex(info.Vec)
+		end
+		self.Vec.ExitPoint = self.Entity
+	end
+	self.CDown = info.CDown
 end
