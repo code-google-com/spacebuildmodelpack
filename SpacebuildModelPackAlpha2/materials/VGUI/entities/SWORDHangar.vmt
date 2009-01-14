@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "VGUI/entities/sbmp_swordhangar"
+	"$basetexture" "VGUI/entities/sbep_swordhangar"
 	"$nolod" 1
 	"$vertexalpha" 0
 	"$vertexcolor" 1

@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "VGUI/entities/sbmp_largeclamp"
+	"$basetexture" "VGUI/entities/sbep_largeclamp"
 	"$nolod"       1
 	"$vertexalpha" 0
 	"$vertexcolor" 1

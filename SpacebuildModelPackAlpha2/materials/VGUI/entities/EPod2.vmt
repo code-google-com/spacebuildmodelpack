@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/sbmp_droppodbay"
+	"$basetexture"	"vgui/entities/sbep_droppodbay"
 	"$vertexcolor"	1
 	"$vertexalpha"	0
 	"$nolod"	1

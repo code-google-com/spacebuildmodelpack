@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/sbmp_exitpoint"
+	"$basetexture"	"vgui/entities/sbep_exitpoint"
 	"$vertexcolor"	1
 	"$vertexalpha"	0
 	"$nolod"	1
