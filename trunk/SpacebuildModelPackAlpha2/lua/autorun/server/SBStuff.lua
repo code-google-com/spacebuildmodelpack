@@ -34,24 +34,24 @@ function HPLink( cont, pod, weap )
 			local TypeMatch = false
 			if type(cont.HP[i]["Type"]) == "string" then
 				if type(weap.HPType) == "string" then
-					print("Double String")
+					--print("Double String")
 					if cont.HP[i]["Type"] == weap.HPType then
 						TypeMatch = true
 					end
 				elseif type(weap.HPType) == "table" then
-					print("String - Table")
+					--print("String - Table")
 					if table.HasValue( weap.HPType, cont.HP[i]["Type"] ) then
 						TypeMatch = true
 					end
 				end
 			elseif type(cont.HP[i]["Type"]) == "table" then
 				if type(weap.HPType) == "string" then
-					print("Table - String")
+					--print("Table - String")
 					if table.HasValue( cont.HP[i]["Type"], weap.HPType ) then
 						TypeMatch = true
 					end
 				elseif type(weap.HPType) == "table" then
-					print("Double Table")
+					--print("Double Table")
 					for _,v in pairs(cont.HP[i]["Type"]) do
 						if table.HasValue( weap.HPType, v ) then
 							TypeMatch = true
