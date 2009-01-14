@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/SF-SpaceMine"
+	"$basetexture"	"vgui/entities/sbep_spacemine"
 	"$vertexcolor"	1
-	"$vertexalpha"	1
+	"$vertexalpha"	0
 	"$nolod"	1
 }

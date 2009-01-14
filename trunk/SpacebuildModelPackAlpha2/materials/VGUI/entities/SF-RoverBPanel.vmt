@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"vgui/entities/sbmp_rover_rear"
+	"$basetexture"	"vgui/entities/sbep_rover_rear"
 	"$vertexcolor"	1
 	"$vertexalpha"	0
 	"$nolod"	1

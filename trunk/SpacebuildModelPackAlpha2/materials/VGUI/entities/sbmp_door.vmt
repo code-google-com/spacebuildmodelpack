@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "VGUI/entities/sbmp_door1"
+	"$basetexture" "VGUI/entities/sbep_door1"
 	"$vertexcolor" 		1 
 	"$vertexalpha" 		0 
 	"$nolod" 		1 
