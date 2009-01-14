@@ -48,7 +48,7 @@ function ENT:Draw()
 		local Pie = 3.14159265358 // Yes, I know it's spelled wrong. Shut up.
 		local Scale = self.Entity:GetSegSize()
 		local CircP = (2160 / (Pie * self.Entity:GetRadius()))
-		local SDist = -1 * math.fmod(self.Scroll, CircP)
+		local SDist = -1 * math.fmod(self.Scroll * CircP, (Scale * 12) )
 		
 		for i = 1, 180, CircP do
 			local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
