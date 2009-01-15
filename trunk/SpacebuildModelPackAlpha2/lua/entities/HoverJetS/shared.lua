@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_gmodentity"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "Hover Jet S"
 ENT.Author			= "Paradukes"
 ENT.Category		= "SBEP-Rover Gear"

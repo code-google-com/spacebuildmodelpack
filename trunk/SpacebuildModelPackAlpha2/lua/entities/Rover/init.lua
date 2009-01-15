@@ -101,6 +101,8 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	--constraint so controller is duped
+	constraint.NoCollide( ent, ent2, 0, 0 )
 	
 	return ent
 	
@@ -268,4 +270,72 @@ function ENT:HPFire()
 		phys:EnableDrag(true)
 		phys:EnableCollisions(true)
 	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	--print("Building Rover Dupe Info")
+	if (self.Pod) and (self.Pod:IsValid()) then
+		info.Pod = self.Pod:EntIndex()
+	end
+	info.guns = {}
+	for k,v in pairs(self.HP) do
+		if (v["Ent"]) and (v["Ent"]:IsValid()) then
+			info.guns[k] = v["Ent"]:EntIndex()
+		end
+	end
+	info.wheels = {}
+	for k,v in pairs(self.Wh) do
+		if (v["Ent"]) and (v["Ent"]:IsValid()) then
+			info.wheels[k] = v["Ent"]:EntIndex()
+		end
+	end
+	--PrintTable(info)
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	--print("Applying Rover Dupe Info")
+	if (info.guns) then
+		for k,v in pairs(info.guns) do
+			local gun = GetEntByID(v)
+			self.HP[k]["Ent"] = gun
+			if (!self.HP[k]["Ent"]) then
+				gun = ents.GetByIndex(v)
+				self.HP[k]["Ent"] = gun
+			end
+		end
+	end
+	if (info.wheels) then
+		for k,v in pairs(info.wheels) do
+			local gun = GetEntByID(v)
+			self.Wh[k]["Ent"] = gun
+			if (!self.Wh[k]["Ent"]) then
+				gun = ents.GetByIndex(v)
+				self.Wh[k]["Ent"] = gun
+			end
+		end
+	end
+	if (info.Pod) then
+		self.Pod = GetEntByID(info.Pod)
+		if (!self.Pod) then
+			self.Pod = ents.GetByIndex(info.Pod)
+		end
+		local ent2 = self.Pod
+		ent2.Cont = ent
+		ent2:SetKeyValue("limitview", 0)
+		ent2.HasHardpoints = true
+		ent2.HasWheels = true
+		local TB = ent2:GetTable()
+		TB.HandleAnimation = function (vec, ply)
+			return ply:SelectWeightedSequence( ACT_HL2MP_SIT ) 
+		end 
+		ent2:SetTable(TB)
+		ent2.SPL = ply
+		ent2:SetNetworkedInt( "HPC", ent.HPC )
+		ent2.HPType = "Vehicle"
+		ent2.APPos = Vector(-20,0,-86)
+	end
+	self.SPL = ply
 end
