@@ -260,7 +260,6 @@ end
 
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BuildDupeInfo(self) or {}
-	--print("Building HoverJet Dupe Info")
 	if (self.Side) then
 		info.Side = self.Side
 	end
@@ -273,13 +272,11 @@ function ENT:BuildDupeInfo()
 	if (self.Cont) and (self.Cont:IsValid()) then
 		info.Cont = self.Cont:EntIndex()
 	end
-	--PrintTable(info)
 	return info
 end
 
 function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
-	--print("Applying HoverJet Dupe Info")
 	if (info.Cont) then
 		self.Cont = GetEntByID(info.Cont)
 		if (!self.Cont) then
