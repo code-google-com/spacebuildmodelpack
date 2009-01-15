@@ -1,7 +1,7 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
 ENT.PrintName		= "Tank Tread Loop"
-ENT.Author			= "Paradukes + SlyFo"
+ENT.Author			= "Paradukes + SlyFo + Hysteria"
 ENT.Category		= "SBEP - Other"
 
 ENT.Spawnable		= true
@@ -16,10 +16,10 @@ function ENT:GetLength()
 end
 
 function ENT:SetSegSize( val )
-	self:SetNetworkedInt( "SLength", val )
+	self:SetNetworkedVector( "SLength", val )
 end
 function ENT:GetSegSize()
-	return self:GetNetworkedInt( "SLength" )
+	return self:GetNetworkedVector( "SLength" )
 end
 
 /*

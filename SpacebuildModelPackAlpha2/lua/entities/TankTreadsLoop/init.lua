@@ -11,11 +11,14 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_combine/combinethumper002")
-	self.Inputs = Wire_CreateInputs( self.Entity, { "TrackLength", "MoveSpeed", "SegSize", "Radius", "Link", "Spacing" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "TrackLength", "SegWidth", "SegHeight", "SegLength", "Radius" } )
 	self.Outputs = Wire_CreateOutputs( self.Entity, { "Scroll" })
     
+	self.SWidth = 1
+	self.SHeigh = 1
+	self.SLength = 1
     self.Entity:SetLength( 300 )
-    self.Entity:SetSegSize( 1 )
+    self.Entity:SetSegSize( Vector(self.SWidth, self.SLength, self.SHeight) )
     --self.Entity:SetCurved( false )
     self.Entity:SetRadius( 50 )
 	
@@ -48,28 +51,29 @@ function ENT:TriggerInput(iname, value)
 			
 		end
 	
-	elseif (iname == "SegSize") then	
+	elseif (iname == "SegWidth") then	
 		if ( value > 0 && value < 10 ) then
-			self.Entity:SetSegSize( value )
+			self.SWidth = value
+			self.Entity:SetSegSize( Vector(self.SWidth, self.SLength, self.SHeight) )
+		end
+		
+	elseif (iname == "SegHeight") then	
+		if ( value > 0 && value < 10 ) then
+			self.SHeight = value
+			self.Entity:SetSegSize( Vector(self.SWidth, self.SLength, self.SHeight) )
+		end
+		
+	elseif (iname == "SegLength") then	
+		if ( value > 0 && value < 10 ) then
+			self.SLength = value
+			self.Entity:SetSegSize( Vector(self.SWidth, self.SLength, self.SHeight) )
 		end
 
 	elseif (iname == "Radius") then	
 		if ( value > 0 ) then
 			self.Entity:SetRadius( value )
 		end
-		
-	elseif (iname == "Spacing") then	
-		if ( value > 0 ) then
-			self.Entity:SetSpacing( value )
-		end
-		
-	elseif (iname == "Link") then	
-		if ( value > 0 ) then
-			self.Linking = true
-		else
-			self.Linking = false
-		end
-		
+
 	end
 end
 
