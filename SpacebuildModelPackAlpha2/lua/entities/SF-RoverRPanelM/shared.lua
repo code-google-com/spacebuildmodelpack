@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_gmodentity"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "Right Panel Mount"
 ENT.Author			= "Paradukes + SlyFo"
 ENT.Category		= "SBEP-Rover Gear"
