@@ -8,8 +8,8 @@ ENT.Purpose			= "Blow your fellow players to bits!"
 ENT.Instructions	= "Spawn, fire!"
 ENT.Category		= "SBEP - Other"
 
-ENT.Spawnable		= true
-ENT.AdminSpawnable	= true
+ENT.Spawnable		= false
+ENT.AdminSpawnable	= false
 
 ENT.WireInputsList = {"Fire"}
 
