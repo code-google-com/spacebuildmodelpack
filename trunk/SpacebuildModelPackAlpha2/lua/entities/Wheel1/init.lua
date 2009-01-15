@@ -71,9 +71,9 @@ function ENT:Think()
 			
 			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
 				if self.Side == "Left" then
-					SSpeed = 800
+					SSpeed = 1800
 				elseif self.Side == "Right" then
-					SSpeed = -800
+					SSpeed = -1800
 				end
 			elseif (self.CPL:KeyDown( IN_MOVELEFT )) then
 				if self.Side == "Left" then
@@ -160,4 +160,44 @@ function ENT:WLink( Cont, Pod )
 			return
 		end
 	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.Side) then
+		info.Side = self.Side
+	end
+	if (self.Mounted) then
+		info.Mounted = self.Mounted
+	end
+	if (self.Pod) and (self.Pod:IsValid()) then
+		info.Pod = self.Pod:EntIndex()
+	end
+	if (self.Cont) and (self.Cont:IsValid()) then
+		info.Cont = self.Cont:EntIndex()
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.Cont) then
+		self.Cont = GetEntByID(info.Cont)
+		if (!self.Cont) then
+			self.Cont = ents.GetByIndex(info.Cont)
+		end
+	end
+	if (info.Pod) then
+		self.Pod = GetEntByID(info.Pod)
+		if (!self.Pod) then
+			self.Pod = ents.GetByIndex(info.Pod)
+		end
+	end
+	if (info.Mounted) then
+		self.Mounted = info.Mounted
+	end
+	if (info.Side) then
+		self.Side = info.Side
+	end
+	self.SPL = ply
 end
