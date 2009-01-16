@@ -26,6 +26,7 @@
 		"16"		"models/Spacebuild/medbridge2_midsectionbridge.mdl"
 		"17"		"models/Spacebuild/medbridge2_midsection_doublebridge.mdl"
 		"18"		"models/Spacebuild/medbridge2_midsection_doublebridge2.mdl"
-		"19"		"models/Slyfo/thcockpit.mdl"
+		"19"		"models/Spacebuild/Nova/supercarrierbridge.mdl"
+		"20"		"models/Slyfo/thcockpit.mdl"
 	}
 }
