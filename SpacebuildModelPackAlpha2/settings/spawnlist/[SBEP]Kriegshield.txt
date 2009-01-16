@@ -12,5 +12,7 @@
 		"3"		"models/Kriegshield/ksjunct.mdl"
 		"4"		"models/Kriegshield/ksjuncx.mdl"
 		"5"		"models/Kriegshield/ksstraight2.mdl"
+		"6"		"models/Kriegshield/kswall1.mdl"
+		"7"		"models/Kriegshield/kswallr.mdl"
 	}
 }
