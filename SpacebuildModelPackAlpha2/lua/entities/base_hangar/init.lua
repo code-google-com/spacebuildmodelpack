@@ -44,19 +44,24 @@ function ENT:Touch( ent )
 		local dock = self.Entity:findNearestDock(ent,fighter)
 		if (!dock) then return end
 		if ( !dock.ship && !self.Entity:alreadyDocked(ent) ) then
-			ent:SetPos( self.Entity:LocalToWorld(dock.pos + Fighters[fighter]["VecOff"]) )
-			ent:SetAngles( self.Entity:alignToDock(ent,fighter,dock) )
+			local vecOff = Fighters[fighter]["VecOff"]
+			--workaround so that rotation doesn't alter the original vector
+			vecOff = Vector(vecOff.x,vecOff.y,vecOff.z)
+			local dockAng = self.Entity:alignToDock(ent,fighter,dock)
+			vecOff:Rotate(dockAng)
+			ent:SetPos( self.Entity:LocalToWorld(dock.pos + vecOff) )
+			ent:SetAngles( dockAng )
 			dock.ship = ent
 			dock.weld = constraint.Weld(self.Entity, ent, 0, 0, 0, true)
 			if (dock.ship:GetPassenger():IsPlayer()) then
-				local pilot = dock.ship:GetPassenger()
-				local colgroup = pilot:GetCollisionGroup()
-				pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
-				pilot:ExitVehicle()
 				if (dock.pexit) then
+					local pilot = dock.ship:GetPassenger()
+					local colgroup = pilot:GetCollisionGroup()
+					pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
+					pilot:ExitVehicle()
 					pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
+					pilot:SetCollisionGroup( colgroup )
 				end
-				pilot:SetCollisionGroup( colgroup )
 			end
 		end
 	end
@@ -88,7 +93,7 @@ end
 
 --find the nearest alignment of the fighter to possible alignments
 function ENT:alignToDock(ent,fighter,dock)
-	local fighterface = ent:GetAngles()
+	local fighterface = ent:LocalToWorldAngles(Fighters[fighter]["AngOff"])
 	local adif
 	--for each direction it can face
 	for k,v in pairs(dock.canface) do
@@ -100,7 +105,8 @@ function ENT:alignToDock(ent,fighter,dock)
 		if (!adif || tadif < adif) then
 			--record the difference and the angle
 			adif = tadif
-			angle = tangle
+			--angle = tangle
+			angle = v
 		end
 	end
 	--return the angle with the smallest difference in angle
