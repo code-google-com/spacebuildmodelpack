@@ -1,8 +1,8 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_hangar"
-ENT.PrintName		= "Large SWORD Hangar"
+ENT.PrintName		= "Fighterbay - Large"
 ENT.Author			= "fishface60"
-ENT.Category		= "SBEP - Other"
+ENT.Category		= "SBEP - Hangars"
 
 ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
