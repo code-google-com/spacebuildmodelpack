@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_wire_entity"
+ENT.Base 			= "base_hangar"
 ENT.PrintName		= "Docking Clamp T"
 ENT.Author			= "fishface60"
 ENT.Category		= "SBEP - Other"
