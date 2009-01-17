@@ -24,7 +24,7 @@ function ENT:Initialize()
 	self.Bay[1]["ship"] = nil
 	self.Bay[1]["weld"] = nil
 	self.Bay[1]["pos"] = Vector(425,0,0)
-	self.Bay[1]["canface"] = {"right","left"}
+	self.Bay[1]["canface"] = {Angle(0,90,0),Angle(0,270,0)}
 	self.Bay[1]["pexit"] = Vector(150,0,10)
 	
 	self.LaunchSpeed = 100

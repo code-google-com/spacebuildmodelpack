@@ -66,31 +66,52 @@ function ENT:findNearestDock(ent,fighter)
 	--The position of the dock
 	local pos = self.Entity:WorldToLocal(ent:GetPos())
 	local dis
+	--for each of the bays
 	for k, v in pairs(self.Bay) do
+		--if it hasn't got a ship already in it
 		if (v.ship == nil) then
+			--find the distance from the fighter
 			local tdis = pos:Distance(v.pos)
 			local tclosest = v
+			--store the smallest distance
 			if (!dis || tdis < dis) then
 				dis = tdis
 				closest = tclosest
 			end
 		end
 	end
+	--return the bay with the closest distance
 	return closest
 end
 
+--find the nearest alignment of the fighter to possible alignments
 function ENT:alignToDock(ent,fighter,dock)
-	local fighterface = self.Entity:GetVector(ent,Fighters[fighter]["Faces"])
+	local fighterface = ent:GetAngles()
 	local adif
+	--for each direction it can face
 	for k,v in pairs(dock.canface) do
-		local tangle = self.Entity:GetVector(self.Entity,v)
-		local tadif = fighterface:DotProduct(tangle)
-		if (!adif || tadif >= adif) then
+		--find the world angle for the direction
+		local tangle = self.Entity:LocalToWorldAngles(v)
+		--find the difference between these angles
+		local tadif = sbep_AngleDifference(fighterface,tangle)
+		--if the current difference is less
+		if (!adif || tadif < adif) then
+			--record the difference and the angle
 			adif = tadif
 			angle = tangle
 		end
 	end
-	return angle:Angle()
+	--return the angle with the smallest difference in angle
+	return angle
+end
+
+--find an arbitrary difference value between two angles
+function sbep_AngleDifference(ang1,ang2)
+	local pdif = math.AngleDifference(ang1.p,ang2.p)
+	local ydif = math.AngleDifference(ang1.y,ang2.y)
+	local rdif = math.AngleDifference(ang1.r,ang2.r)
+	--that's right, this is like the Hypotenuse formula
+	return math.sqrt(pdif*pdif + ydif*ydif + rdif*rdif)
 end
 
 function ENT:alreadyDocked(ent)
@@ -108,24 +129,6 @@ function ENT:IsInBoth(ent)
 	if (!Fighters[fighter]) then return false end
 	local docklist = Fighters[fighter]["Docklist"]
 	return (Fighters[fighter] && table.HasValue(docklist, string.lower(self.Entity:GetName())))
-end
-
-function ENT:GetVector(ent,alignment)
-	if (alignment == "forward") then
-		return ent:GetForward()
-	elseif (alignment == "backward") then
-		return ent:GetForward()*-1
-	elseif (alignment == "right") then
-		return ent:GetRight()
-	elseif (alignment == "left") then
-		return ent:GetRight()*-1
-	elseif (alignment == "up") then
-		return ent:GetUp()
-	elseif (alignment == "down") then
-		return ent:GetUp()*-1
-	else
-		return false
-	end
 end
 
 function ENT:Use(activator)
