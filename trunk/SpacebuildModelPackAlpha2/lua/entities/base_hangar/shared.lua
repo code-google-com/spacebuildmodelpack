@@ -1,8 +1,10 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_hangar"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "Docking Clamp"
 ENT.Author			= "fishface60"
 ENT.Category		= "SBEP - Other"
 
-ENT.Spawnable		= true
-ENT.AdminSpawnable	= true
+ENT.Spawnable		= false
+ENT.AdminSpawnable	= false
+
+ENT.LaunchSpeed = 1000
