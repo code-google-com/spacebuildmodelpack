@@ -53,7 +53,9 @@ function ENT:Touch( ent )
 				local colgroup = pilot:GetCollisionGroup()
 				pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
 				pilot:ExitVehicle()
-				pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
+				if (dock.pexit) then
+					pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
+				end
 				pilot:SetCollisionGroup( colgroup )
 			end
 		end
