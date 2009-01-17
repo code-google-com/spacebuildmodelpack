@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "Player Models/space_citizen_sheet"
+	"$halflambert" 1
+}
