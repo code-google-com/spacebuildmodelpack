@@ -50,7 +50,7 @@ function ENT:Touch( ent )
 			local dockAng = self.Entity:alignToDock(ent,fighter,dock)
 			vecOff:Rotate(dockAng)
 			ent:SetPos( self.Entity:LocalToWorld(dock.pos + vecOff) )
-			ent:SetAngles( dockAng )
+			ent:SetAngles( self.Entity:LocalToWorldAngles(dockAng) )
 			dock.ship = ent
 			dock.weld = constraint.Weld(self.Entity, ent, 0, 0, 0, true)
 			if (dock.ship:GetPassenger():IsPlayer()) then
@@ -142,6 +142,7 @@ end
 function ENT:Use(activator)
 end
 
+--[[
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BuildDupeInfo(self) or {}
 	info["ships"] = {}
@@ -161,4 +162,4 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 			self.Bay[k]["ship"] = ents.GetByIndex(v)
 		end
 	end
-end
+end]]
