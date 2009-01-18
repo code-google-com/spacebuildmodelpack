@@ -101,7 +101,7 @@ function SBEPHPWS()
 			if input.IsKeyDown(n) && CurTime() > CD then
 				local x = n - 1
 				local str = ""
-				if input.IsKeyDown(81) || input.IsKeyDown(82) || (joystick && SBHPjcon["alt"]:GetValue()) then
+				if input.IsKeyDown(81) || input.IsKeyDown(82) then --|| (joystick && SBHPjcon["alt"]:GetValue()) then -- More problems with joystick code. Leave it out for now.
 					str = "SBHP_"..x.."a"
 					str2 = " for alt-fire"
 				else
