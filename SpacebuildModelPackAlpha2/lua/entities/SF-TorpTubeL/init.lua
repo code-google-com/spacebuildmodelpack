@@ -12,6 +12,7 @@ function ENT:Initialize()
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
 	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Reload" } )
+	self.Outputs = Wire_CreateOutputs( self.Entity, { "Loaded" })
 
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -77,9 +78,15 @@ function ENT:Think()
 		Torp:Activate()
 		--self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
 		--Torp:SetParent( self.Entity )
-		self.Torp = Torp
+		--self.Torp = Torp
 		
 		self.Loading = false
+	end
+	
+	if self.Torp && self.Torp:IsValid() then
+		Wire_TriggerOutput(self.Entity, "Loaded", 1)
+	else
+		Wire_TriggerOutput(self.Entity, "Loaded", 1)
 	end
 end
 
