@@ -36,11 +36,11 @@ function ENT:Initialize()
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
 	self.HP[1]["Type"]	= { "Large", "Medium" }
-	self.HP[1]["Pos"]	= Vector(-140,60,35)
+	self.HP[1]["Pos"]	= Vector(-140,-60,35)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
 	self.HP[2]["Type"]	= { "Large", "Medium" }
-	self.HP[2]["Pos"]	= Vector(140,60,35)
+	self.HP[2]["Pos"]	= Vector(140,-60,35)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
 	self.HP[3]["Type"]	= { "Medium", "Heavy", "Vehicle" }

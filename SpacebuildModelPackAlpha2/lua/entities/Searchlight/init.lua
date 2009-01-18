@@ -84,11 +84,15 @@ function ENT:Think()
 			local trace = {}
 			trace.start = self.Entity:GetPos() + self.Entity:GetForward() * 10
 			trace.endpos = self.Entity:GetPos() + self.Entity:GetForward() * 5000
-			trace.filter = self.Entity
+			if self.Pod && self.Pod:IsValid() then
+				trace.filter = { self.Entity, self.Pod }
+			else
+				trace.filter = self.Entity
+			end
 			trace.mask = -1
 			local tr = util.TraceLine( trace )
 			local LWidth = self.Entity:GetPos():Distance(tr.HitPos) * math.tan(75) -- Once again, Hysteria comes to my rescue :)
-			print(LWidth)
+			--print(LWidth)
 			local targets = ents.FindInSphere( tr.HitPos, LWidth )
 			--local targets = ents.FindInCone( self.Entity:GetPos(), self.Entity:GetForward(), 4000, 360)
 			if table.HasValue( targets, self.Target ) then
@@ -123,7 +127,7 @@ function ENT:Think()
 			trace.mask = -1
 			local tr = util.TraceLine( trace )
 			local LWidth = self.Entity:GetPos():Distance(tr.HitPos) * math.tan(70)
-			print(LWidth)
+			--print(LWidth)
 			local targets = ents.FindInSphere( tr.HitPos, LWidth )
 			--local targets = ents.FindInCone( self.Entity:GetPos(), self.Entity:GetForward(), 4000, 360)
 					
