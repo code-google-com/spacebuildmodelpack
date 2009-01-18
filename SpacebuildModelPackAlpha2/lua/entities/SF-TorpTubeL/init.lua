@@ -69,13 +69,14 @@ end
 function ENT:Think()
 	if CurTime() >= self.LTime && self.Loading && !self.Torp then
 		local Torp = ents.Create( "SF-TorpBig" )
+		if !Torp || !Torp:IsValid() then return end
 		Torp:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * -102 + self.Entity:GetUp() * 63 + self.Entity:GetForward() * -50)
 		Torp:SetAngles( self.Entity:GetAngles() )
 		Torp:Spawn()
 		Torp:Initialize()
 		Torp:Activate()
 		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
-		--Torp:SetParent( self.Entity )
+		Torp:SetParent( self.Entity )
 		self.Torp = Torp
 		
 		self.Loading = false
