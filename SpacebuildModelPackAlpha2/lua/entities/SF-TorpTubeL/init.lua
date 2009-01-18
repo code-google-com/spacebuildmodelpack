@@ -75,8 +75,8 @@ function ENT:Think()
 		Torp:Spawn()
 		Torp:Initialize()
 		Torp:Activate()
-		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
-		Torp:SetParent( self.Entity )
+		--self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
+		--Torp:SetParent( self.Entity )
 		self.Torp = Torp
 		
 		self.Loading = false
