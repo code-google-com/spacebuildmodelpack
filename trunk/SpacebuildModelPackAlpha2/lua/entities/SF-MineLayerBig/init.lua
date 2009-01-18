@@ -143,7 +143,7 @@ function ENT:LaunchMine( CCD, Offset )
 	self.MCDown = CurTime() + 0.4
 	self.Entity:EmitSound("Buttons.snd24")
 	NewShell:GetPhysicsObject():EnableGravity(false)
-	if self.Homer then NewShell.Homing = true end
+	if self.Homer then NewShell.Homer = true end
 	
 	timer.Simple(5,function() NewShell:Arm() 
 	end)	
