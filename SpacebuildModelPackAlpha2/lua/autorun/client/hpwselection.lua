@@ -97,7 +97,8 @@ function SBEPHPWS()
 	local n = 0
 	if HPC > 0 then
 		for n = 1, HPC + 1 do
-			if (input.IsKeyDown(n) || joystick && SBHPjcon["hp"..n-1]:GetValue()) && CurTime() > CD then
+			--if (input.IsKeyDown(n) || joystick && SBHPjcon["hp"..n-1]:GetValue()) && CurTime() > CD then -- The joystick code seems to be causing problems for some people. Let's see if it works without it.
+			if input.IsKeyDown(n) && CurTime() > CD then
 				local x = n - 1
 				local str = ""
 				if input.IsKeyDown(81) || input.IsKeyDown(82) || (joystick && SBHPjcon["alt"]:GetValue()) then
