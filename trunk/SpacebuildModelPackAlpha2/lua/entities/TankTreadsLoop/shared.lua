@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_gmodentity"
+ENT.Base 			= "base_wire_entity"
 ENT.PrintName		= "Tank Tread Loop"
 ENT.Author			= "Paradukes + SlyFo + Hysteria"
 ENT.Category		= "SBEP - Other"
@@ -38,11 +38,11 @@ function ENT:GetRadius()
 	return self:GetNetworkedInt( "Radius" )
 end
 
-function ENT:SetSpacing( val )
-	self:SetNetworkedInt( "Space", val )
+function ENT:SetCSModel( val )
+	self:SetNetworkedInt( "CSModel", val )
 end
-function ENT:GetSpacing()
-	return self:GetNetworkedInt( "Space" )
+function ENT:GetCSModel()
+	return self:GetNetworkedInt( "CSModel" )
 end
 
 function ENT:SetCont( val )

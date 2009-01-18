@@ -27,9 +27,9 @@ function ENT:Initialize()
 	end
 
 	self.cbt = {}
-	self.cbt.health = 5000
-	self.cbt.armor = 2200
-	self.cbt.maxhealth = 5000
+	self.cbt.health = 700
+	self.cbt.armor = 10
+	self.cbt.maxhealth = 700
 	self.Armed = true
 	
     --self.Entity:SetKeyValue("rendercolor", "0 0 0")
@@ -101,7 +101,7 @@ function ENT:Think()
 		if self.Target && self.Target:IsValid() then
 			TVec = self.Target:GetPos()
 		else
-			local targets = ents.FindInCone( self.Entity:GetPos(), self.Entity:GetForward(), 5000, 45)
+			local targets = ents.FindInCone( self.Entity:GetPos(), self.Entity:GetForward(), 5000, 65)
 	
 			local CMass = 0
 			local CT = nil
