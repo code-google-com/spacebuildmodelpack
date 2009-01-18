@@ -86,7 +86,7 @@ function ENT:Think()
 	if self.Torp && self.Torp:IsValid() then
 		Wire_TriggerOutput(self.Entity, "Loaded", 1)
 	else
-		Wire_TriggerOutput(self.Entity, "Loaded", 1)
+		Wire_TriggerOutput(self.Entity, "Loaded", 0)
 	end
 end
 
