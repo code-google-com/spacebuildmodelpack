@@ -11,7 +11,7 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire" } ) --, "Reload" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Reload" } )
 
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
