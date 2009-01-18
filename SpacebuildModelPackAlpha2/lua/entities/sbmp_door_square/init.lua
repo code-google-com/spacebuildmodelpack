@@ -118,6 +118,11 @@ function ENT:Use( activator, caller )
 	
 end
 
+function ENT:Think()
+self.Entity:NextThink( CurTime() + 0.01 )
+return true
+end
+
 function ENT:TriggerInput(k,v)
 	
 	if (k == "Open" and v > 0) then
