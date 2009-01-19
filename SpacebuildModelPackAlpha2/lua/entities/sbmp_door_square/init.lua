@@ -19,7 +19,7 @@ function ENT:Initialize()
 			phys:Wake()  	
 		end 
 		
-		self:SetSequence( self:LookupSequence( "close" ) )
+		self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 
 		self.Opened       = false
@@ -76,8 +76,7 @@ end
 
 function ENT:Open()
 
-	self:SetSequence( self:LookupSequence( "open" ) )
-		self:ResetSequence( self:LookupSequence( "open" ) )
+	self:ResetSequence( self:LookupSequence( "open" ) )
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = false
@@ -90,8 +89,7 @@ end
 
 function ENT:Close()
 
-	self:SetSequence( self:LookupSequence( "close" ) )
-		self:ResetSequence( self:LookupSequence( "close" ) )
+	self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = true
