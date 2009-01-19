@@ -6,8 +6,8 @@ local small = {"swordhangar", "swordhangarlarge", "swordhangarspacious",
 			   "dockingclamp", "dockingclampt", "dockingclampx",
 			   "deck","deckdouble","deckdoublewide",
 			   "sbhangar","sbfighterbay1","sbfighterbay2",
-			   "sbfighterbay3","sbfighterbay4","sbclamp"}
-list.Set("sbepfighters","sword",{VecOff=Vector(-50,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide"}})
+			   "sbfighterbay3","sbfighterbay4","sbclamp","landingpad"}
+list.Set("sbepfighters","sword",{VecOff=Vector(-50,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide","landingpad"}})
 --is is programmed differently
 list.Set("sbepfighters","assaultpodc",{VecOff=Vector(0,0,75), AngOff=Angle(0,0,0), Docklist=small})
 --Drone = Clunker, damned if I know why
@@ -15,14 +15,14 @@ list.Set("sbepfighters","drone",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Dock
 --Large Transport is too large for the hangar
 list.Set("sbepfighters","largetransport",{VecOff=Vector(10,0,-30), AngOff=Angle(0,0,0), Docklist={"dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide"}})
 --Small Transport is longer than the hangar, but it should do
-list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide"}})
+list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide","landingpad"}})
 --The Arwing is too large to fit if the wings are attached, uncomment if wings are parented
 list.Set("sbepfighters","arwing",{VecOff=Vector(0,0,50), AngOff=Angle(0,0,0),
 Docklist={--[["swordhangar", "swordhangarlarge", ]]"swordhangarspacious",
 		  "dockingclamp", "dockingclampt", "dockingclampx",
 		  "deck","deckdouble","deckdoublewide",
 		  "sbhangar","sbfighterbay1","sbfighterbay2",
-		  "sbfighterbay3","sbfighterbay4","sbclamp"}})
+		  "sbfighterbay3","sbfighterbay4","sbclamp","landingpad","landingpad"}})
 --The light corvette fits into hangars easily, even smallbridge
 list.Set("sbepfighters","lightcombatcorvette",{VecOff=Vector(75,0,50), AngOff=Angle(0,0,0),Docklist=small})
 --The Cargo Crate Mover won't even fit into a docking clamp
