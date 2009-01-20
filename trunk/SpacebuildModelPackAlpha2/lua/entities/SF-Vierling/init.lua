@@ -160,10 +160,10 @@ function ENT:Think()
 	if TargPos then
 		local FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * 120 ) --100 with compensation
 		local BDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * -80 )
-		local Pitch = math.Clamp((FDist - BDist) * 1.75, -450, 450)
+		local Pitch = math.Clamp((FDist - BDist) * 7.75, -1050, 1050)
 		FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetRight() * 100 )
 		BDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetRight() * -100 )
-		local Yaw = math.Clamp((BDist - FDist) * 1.75, -450, 450)
+		local Yaw = math.Clamp((BDist - FDist) * 7.75, -1050, 1050)
 		
 		local physi = self.Base:GetPhysicsObject()
 		local physi2 = self.Entity:GetPhysicsObject()
