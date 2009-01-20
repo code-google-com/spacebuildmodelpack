@@ -24,6 +24,7 @@ function ENT:Initialize()
 	self.Bay[2] = {ship = nil, weld = nil, pos = Vector(0,-400,-100), canface = {Angle(0,0,0),Angle(0,180,0)}, pexit = Vector(0,-200,-100)}
 	
 	self.LaunchSpeed = 100
+	self.Entity:MakeWire()
 	
 end
 

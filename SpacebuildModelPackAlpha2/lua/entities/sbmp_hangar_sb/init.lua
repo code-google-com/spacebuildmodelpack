@@ -27,7 +27,8 @@ function ENT:Initialize()
 	self.Bay[1]["canface"] = {Angle(0,0,0),Angle(0,180,0),Angle(90,90,0),Angle(90,180,0),Angle(90,270,0),Angle(90,360,0)}
 	self.Bay[1]["pexit"] = Vector(-250,0,10)
 	
-	self.LaunchSpeed = 1
+	self.LaunchSpeed = 0
+	self.Entity:MakeWire()
 	
 end
 

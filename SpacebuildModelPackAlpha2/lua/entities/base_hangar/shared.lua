@@ -7,4 +7,6 @@ ENT.Category		= "SBEP - Other"
 ENT.Spawnable		= false
 ENT.AdminSpawnable	= false
 
+ENT.WireDebugName = "Hangar"
+
 ENT.LaunchSpeed = 1000

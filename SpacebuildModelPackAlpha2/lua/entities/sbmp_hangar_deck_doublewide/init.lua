@@ -32,6 +32,7 @@ function ENT:Initialize()
 	self.Bay[2]["canface"] = {Angle(0,0,0),Angle(0,90,0),Angle(0,180,0),Angle(0,270,0)}
 	
 	self.LaunchSpeed = 100
+	self.Entity:MakeWire()
 	
 end
 
