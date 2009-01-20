@@ -146,12 +146,12 @@ function ENT:Think()
 			TargPos = Vector(self.XCo,self.YCo,self.ZCo)
 		end
 		if TargPos then
-			local FDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * 100 )
-			local BDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * -100 )
-			local Pitch = math.Clamp((FDist - BDist) * 0.75, -250, 250)
-			FDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * 100 )
-			BDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * -100 )
-			local Yaw = math.Clamp((BDist - FDist) * 0.75, -250, 250)
+			local FDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * 200 )
+			local BDist = TargPos:Distance( Weap:GetPos() + Weap:GetUp() * -200 )
+			local Pitch = math.Clamp((FDist - BDist) * 6.75, -1050, 1050)
+			FDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * 200 )
+			BDist = TargPos:Distance( Weap:GetPos() + Weap:GetRight() * -200 )
+			local Yaw = math.Clamp((BDist - FDist) * 6.75, -1050, 1050)
 			
 			local physi = self.Entity:GetPhysicsObject()
 			local physi2 = Weap:GetPhysicsObject()
