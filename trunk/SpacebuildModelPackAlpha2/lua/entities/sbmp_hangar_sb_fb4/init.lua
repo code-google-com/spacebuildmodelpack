@@ -23,17 +23,18 @@ function ENT:Initialize()
 	self.Bay[1] = {}
 	self.Bay[1]["ship"] = nil
 	self.Bay[1]["weld"] = nil
-	self.Bay[1]["pos"] = Vector(0,384,0)
+	self.Bay[1]["pos"] = Vector(0,448,0)
 	self.Bay[1]["canface"] = {Angle(0,0,0),Angle(0,180,0)}
 	self.Bay[1]["pexit"] = Vector(0,320,0)
 	self.Bay[2] = {}
 	self.Bay[2]["ship"] = nil
 	self.Bay[2]["weld"] = nil
-	self.Bay[2]["pos"] = Vector(0,-384,0)
+	self.Bay[2]["pos"] = Vector(0,-448,0)
 	self.Bay[2]["canface"] = {Angle(0,0,0),Angle(0,180,0)}
 	self.Bay[2]["pexit"] = Vector(0,-320,0)
 	
 	self.LaunchSpeed = 100
+	self.Entity:MakeWire()
 	
 end
 

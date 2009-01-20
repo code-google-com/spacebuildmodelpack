@@ -34,6 +34,7 @@ function ENT:Initialize()
 	self.Bay[2]["pexit"] = Vector(0,-256,0)
 	
 	self.LaunchSpeed = 100
+	self.Entity:MakeWire()
 	
 end
 

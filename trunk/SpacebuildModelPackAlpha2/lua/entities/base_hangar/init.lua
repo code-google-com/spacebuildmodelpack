@@ -4,6 +4,59 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 local Fighters = list.Get("sbepfighters")
 
+function ENT:MakeWire()
+	local InputTable = {}
+	table.insert(InputTable,"Launchspeed")
+	for k,v in pairs(self.Bay) do
+		table.insert(InputTable,"Disable "..tostring(k))
+	end
+	for k,v in pairs(self.Bay) do
+		table.insert(InputTable,"Eject "..tostring(k))
+	end
+	self.Inputs = Wire_CreateInputs(self.Entity,InputTable)
+	local OutputTable = {Name = {}, Type = {}, Desc = {}}
+	for k,v in pairs(self.Bay) do
+		table.insert(OutputTable.Name,"Ship "..tostring(k))
+		table.insert(OutputTable.Type,"STRING")
+	end
+	self.Outputs = WireLib.CreateSpecialOutputs(self.Entity,OutputTable.Name,OutputTable.Type,OutputTable.Desc)
+end
+
+function ENT:TriggerInput(iname, value)
+	if (iname == "Launchspeed") then
+		self.Entity:SetLaunchSpeed(value)
+	end
+	local input = string.Explode(" ",iname)
+	for k,v in pairs(self.Bay) do
+		if (iname == "Disable "..tostring(k)) then
+			self.Entity:SetDisabled(v,value)
+		end
+		if (iname == "Eject "..tostring(k)) then
+			self.Entity:Eject(v,value)
+		end
+	end
+end
+
+function ENT:SetLaunchSpeed(value)
+	self.LaunchSpeed = value
+end
+
+function ENT:SetDisabled(bay,value)
+	if (value != 0) then
+		bay.disabled = true
+	else
+		bay.disabled = false
+	end
+end
+
+function ENT:Eject(bay,value)
+	if (value != 0) then
+		if bay.ship then
+			bay.ship.Cont.Launchy = true
+		end
+	end
+end
+
 function ENT:Think()
 	--For each bay on the hangar
 	for k, v in pairs(self.Bay) do
@@ -12,6 +65,7 @@ function ENT:Think()
 		if ( !v.ship || !v.ship:IsValid() ) then
 			v.weld = nil
 			v.ship = nil
+			Wire_TriggerOutput(self.Entity, "Ship "..tostring(k), "")
 		end
 		--if can't find weld, look for it and if it exists re-reference
 		--necessary for dupe as constraints get added after entities
@@ -33,6 +87,7 @@ function ENT:Think()
 			v.weld = nil
 			v.ship.Cont.Speed = self.LaunchSpeed
 			v.ship = nil
+			Wire_TriggerOutput(self.Entity, "Ship "..tostring(k), "")
 		end
 	end
 end
@@ -41,7 +96,7 @@ function ENT:Touch( ent )
 	--if the entity is a valid vehicle on the fighter table and isn't launched
 	if ( ent:IsValid() && ent:IsVehicle() && self.Entity:IsInBoth(ent) && (ent.Cont != nil) && !ent.Cont.Launchy ) then
 		local fighter = string.lower(ent.Cont:GetName())
-		local dock = self.Entity:findNearestDock(ent,fighter)
+		local index,dock = self.Entity:findNearestDock(ent,fighter)
 		if (!dock) then return end
 		if ( !dock.ship && !self.Entity:alreadyDocked(ent) ) then
 			local vecOff = Fighters[fighter]["VecOff"]
@@ -63,6 +118,7 @@ function ENT:Touch( ent )
 					pilot:SetCollisionGroup( colgroup )
 				end
 			end
+			Wire_TriggerOutput(self.Entity, "Ship "..tostring(index), ent.Cont:GetName())
 		end
 	end
 end
@@ -76,10 +132,10 @@ function ENT:findNearestDock(ent,fighter)
 	--for each of the bays
 	for k, v in pairs(self.Bay) do
 		--if it hasn't got a ship already in it
-		if (v.ship == nil) then
+		if (v.ship == nil) and not v.disabled then
 			--find the distance from the fighter
 			local tdis = pos:Distance(v.pos)
-			local tclosest = v
+			local tclosest = k
 			--store the smallest distance
 			if (!dis || tdis < dis) then
 				dis = tdis
@@ -88,7 +144,7 @@ function ENT:findNearestDock(ent,fighter)
 		end
 	end
 	--return the bay with the closest distance
-	return closest
+	return closest,self.Bay[closest]
 end
 
 --find the nearest alignment of the fighter to possible alignments

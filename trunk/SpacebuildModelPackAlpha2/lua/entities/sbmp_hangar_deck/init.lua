@@ -25,9 +25,9 @@ function ENT:Initialize()
 	self.Bay[1]["weld"] = nil
 	self.Bay[1]["pos"] = Vector(0,0,150)
 	self.Bay[1]["canface"] = {Angle(0,0,0),Angle(0,90,0),Angle(0,180,0),Angle(0,270,0)}
-	--self.Bay[1]["pexit"] = Vector(0,0,0)
 	
 	self.LaunchSpeed = 100
+	self.Entity:MakeWire()
 	
 end
 
