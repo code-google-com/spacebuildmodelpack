@@ -81,10 +81,13 @@ function ENT:Think()
 		end
 		--Launch procedure
 		--If the ship is activated
-		if ( v.ship && v.ship.Cont.Launchy ) then
+		if ( v.ship && v.ship.Cont && v.ship.Cont.Launchy ) then
 			--unweld and launch
 			v.weld:Remove()
 			v.weld = nil
+			if (v.EP == v.ship.ExitPoint) then
+				v.ship.ExitPoint = nil
+			end
 			v.ship.Cont.Speed = self.LaunchSpeed
 			v.ship = nil
 			Wire_TriggerOutput(self.Entity, "Ship "..tostring(k), "")
@@ -108,14 +111,20 @@ function ENT:Touch( ent )
 			ent:SetAngles( self.Entity:LocalToWorldAngles(dockAng) )
 			dock.ship = ent
 			dock.weld = constraint.Weld(self.Entity, ent, 0, 0, 0, true)
+			if (dock.EP && !ent.ExitPoint) then
+				ent.ExitPoint = dock.EP
+				dock.EP.Vec = ent
+			end
 			if (dock.ship:GetPassenger():IsPlayer()) then
-				if (dock.pexit) then
+				if (dock.pexit && !ent.ExitPoint) then
 					local pilot = dock.ship:GetPassenger()
 					local colgroup = pilot:GetCollisionGroup()
 					pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
 					pilot:ExitVehicle()
 					pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
 					pilot:SetCollisionGroup( colgroup )
+				elseif ent.ExitPoint then
+					dock.ship:GetPassenger():ExitVehicle()
 				end
 			end
 			Wire_TriggerOutput(self.Entity, "Ship "..tostring(index), ent.Cont:GetName())
@@ -201,9 +210,13 @@ end
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BaseClass.BuildDupeInfo(self) or {}
 	info["ships"] = {}
+	info["EPs"] = {}
 	for k, v in pairs(self.Bay) do
 		if (v.ship) and (v.ship:IsValid()) then
 			info["ships"][k] = v.ship:EntIndex()
+		end
+		if (v.EP) and (v.EP:IsValid()) then
+			info["EPs"][k] = v.EP:EntIndex()
 		end
 	end
 	return info
@@ -215,6 +228,12 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		self.Bay[k]["ship"] = GetEntByID(v)
 		if (!self.Bay[k]["ship"]) then
 			self.Bay[k]["ship"] = ents.GetByIndex(v)
+		end
+	end
+	for k, v in pairs(info.EPs) do
+		self.Bay[k]["EP"] = GetEntByID(v)
+		if (!self.Bay[k]["EP"]) then
+			self.Bay[k]["EP"] = ents.GetByIndex(v)
 		end
 	end
 end
