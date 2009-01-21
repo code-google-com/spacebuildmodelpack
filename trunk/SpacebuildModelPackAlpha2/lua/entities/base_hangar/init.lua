@@ -104,7 +104,7 @@ function ENT:Touch( ent )
 			vecOff = Vector(vecOff.x,vecOff.y,vecOff.z)
 			local dockAng = self.Entity:alignToDock(ent,fighter,dock)
 			vecOff:Rotate(dockAng)
-			ent:SetPos( self.Entity:LocalToWorld(dock.pos + vecOff) )
+			ent:SetPos( self.Entity:LocalToWorld(dock.pos - vecOff) )
 			ent:SetAngles( self.Entity:LocalToWorldAngles(dockAng) )
 			dock.ship = ent
 			dock.weld = constraint.Weld(self.Entity, ent, 0, 0, 0, true)
@@ -198,9 +198,8 @@ end
 function ENT:Use(activator)
 end
 
---[[
 function ENT:BuildDupeInfo()
-	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	local info = self.BaseClass.BaseClass.BuildDupeInfo(self) or {}
 	info["ships"] = {}
 	for k, v in pairs(self.Bay) do
 		if (v.ship) and (v.ship:IsValid()) then
@@ -211,11 +210,11 @@ function ENT:BuildDupeInfo()
 end
 
 function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
-	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	self.BaseClass.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
 	for k, v in pairs(info.ships) do
 		self.Bay[k]["ship"] = GetEntByID(v)
 		if (!self.Bay[k]["ship"]) then
 			self.Bay[k]["ship"] = ents.GetByIndex(v)
 		end
 	end
-end]]
+end

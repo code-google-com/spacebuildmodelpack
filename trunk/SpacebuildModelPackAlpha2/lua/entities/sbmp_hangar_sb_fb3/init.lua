@@ -23,13 +23,13 @@ function ENT:Initialize()
 	self.Bay["Right"] = {}
 	self.Bay["Right"]["ship"] = nil
 	self.Bay["Right"]["weld"] = nil
-	self.Bay["Right"]["pos"] = Vector(0,320,0)
+	self.Bay["Right"]["pos"] = Vector(0,320,80)
 	self.Bay["Right"]["canface"] = {Angle(0,0,0),Angle(0,180,0)}
 	self.Bay["Right"]["pexit"] = Vector(0,256,0)
 	self.Bay["Left"] = {}
 	self.Bay["Left"]["ship"] = nil
 	self.Bay["Left"]["weld"] = nil
-	self.Bay["Left"]["pos"] = Vector(0,-320,0)
+	self.Bay["Left"]["pos"] = Vector(0,-320,80)
 	self.Bay["Left"]["canface"] = {Angle(0,0,0),Angle(0,180,0)}
 	self.Bay["Left"]["pexit"] = Vector(0,-256,0)
 	
@@ -53,25 +53,4 @@ function ENT:SpawnFunction( ply, tr )
 	
 	return ent
 	
-end
-
-function ENT:BuildDupeInfo()
-	local info = self.BaseClass.BuildDupeInfo(self) or {}
-	info["ships"] = {}
-	for k, v in pairs(self.Bay) do
-		if (v.ship) and (v.ship:IsValid()) then
-			info["ships"][k] = v.ship:EntIndex()
-		end
-	end
-	return info
-end
-
-function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
-	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
-	for k, v in pairs(info.ships) do
-		self.Bay[k]["ship"] = GetEntByID(v)
-		if (!self.Bay[k]["ship"]) then
-			self.Bay[k]["ship"] = ents.GetByIndex(v)
-		end
-	end
 end
