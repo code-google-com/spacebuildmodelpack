@@ -23,7 +23,7 @@ function ENT:Initialize()
 	self.Bay["Pad"] = {}
 	self.Bay["Pad"]["ship"] = nil
 	self.Bay["Pad"]["weld"] = nil
-	self.Bay["Pad"]["pos"] = Vector(0,0,15)
+	self.Bay["Pad"]["pos"] = Vector(0,0,175)
 	self.Bay["Pad"]["canface"] = {Angle(0,90,0),Angle(0,270,0),Angle(0,180,0),Angle(0,0,0)}
 	self.Bay["Pad"]["pexit"] = Vector(-300,-225,2)
 	
