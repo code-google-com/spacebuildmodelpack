@@ -20,12 +20,12 @@ function ENT:Initialize()
 	
     self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.Bay = {}
-	self.Bay[1] = {}
-	self.Bay[1]["ship"] = nil
-	self.Bay[1]["weld"] = nil
-	self.Bay[1]["pos"] = Vector(425,0,0)
-	self.Bay[1]["canface"] = {Angle(0,90,0),Angle(0,270,0)}
-	self.Bay[1]["pexit"] = Vector(150,0,10)
+	self.Bay["Clamp"] = {}
+	self.Bay["Clamp"]["ship"] = nil
+	self.Bay["Clamp"]["weld"] = nil
+	self.Bay["Clamp"]["pos"] = Vector(425,0,0)
+	self.Bay["Clamp"]["canface"] = {Angle(0,90,0),Angle(0,270,0)}
+	self.Bay["Clamp"]["pexit"] = Vector(150,0,10)
 	
 	self.LaunchSpeed = 100
 	self.Entity:MakeWire()

@@ -1,29 +1,24 @@
---VecOff is a local vector offset, use it to reposition the vehicle
---AngOff is a rotational offset, use it if the vehicle faces up or right
---Docklist is a list of the Hangars the ship can dock at
---all names lower case because the GetName() function returns lowercase sometimes
-local small = {"swordhangar", "swordhangarlarge", "swordhangarspacious",
-			   "dockingclamp", "dockingclampt", "dockingclampx",
-			   "deck","deckdouble","deckdoublewide",
-			   "sbhangar","sbfighterbay1","sbfighterbay2",
-			   "sbfighterbay3","sbfighterbay4","sbclamp","landingpad"}
-list.Set("sbepfighters","sword",{VecOff=Vector(-50,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide","landingpad"}})
---is is programmed differently
-list.Set("sbepfighters","assaultpodc",{VecOff=Vector(0,0,75), AngOff=Angle(0,0,0), Docklist=small})
---Drone = Clunker, damned if I know why
-list.Set("sbepfighters","drone",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist=small})
---Large Transport is too large for the hangar
-list.Set("sbepfighters","largetransport",{VecOff=Vector(10,0,-30), AngOff=Angle(0,0,0), Docklist={"dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide"}})
---Small Transport is longer than the hangar, but it should do
-list.Set("sbepfighters","smalltransport",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangar", "swordhangarlarge", "swordhangarspacious", "dockingclamp", "dockingclampt", "dockingclampx","deck","deckdouble","deckdoublewide","landingpad"}})
---The Arwing is too large to fit if the wings are attached, uncomment if wings are parented
-list.Set("sbepfighters","arwing",{VecOff=Vector(0,0,50), AngOff=Angle(0,0,0),
-Docklist={--[["swordhangar", "swordhangarlarge", ]]"swordhangarspacious",
-		  "dockingclamp", "dockingclampt", "dockingclampx",
-		  "deck","deckdouble","deckdoublewide",
-		  "sbhangar","sbfighterbay1","sbfighterbay2",
-		  "sbfighterbay3","sbfighterbay4","sbclamp","landingpad","landingpad"}})
---The light corvette fits into hangars easily, even smallbridge
-list.Set("sbepfighters","lightcombatcorvette",{VecOff=Vector(75,0,50), AngOff=Angle(0,0,0),Docklist=small})
---The Cargo Crate Mover won't even fit into a docking clamp
-list.Set("sbepfighters","cratemover",{VecOff=Vector(0,0,0), AngOff=Angle(0,0,0), Docklist={"swordhangarspacious","deck","deckdouble","deckdoublewide"}})
+--[[
+VecOff is a local vector offset, use it to reposition the vehicle
+AngOff is a rotational offset, use it if the vehicle faces up or right
+Docklist is a list of the Hangars the ship can dock at
+all names lower case because the GetName() function returns lowercase sometimes
+]]
+--[[The table heirachy has been designed so that you decide what the largest ship you'll allow
+into the hangar is and all the smaller classes will also be able to dock at it.
+Semi-counter-intuitively this means that the small table has the most entries.]]
+local heavy = {"swordhangarspacious","deck","deckdouble","deckdoublewide","landingpad"}
+local large = {"dockingclamp", "dockingclampt", "dockingclampx","mbhangarside2"}
+table.Add(large,heavy)
+local medium = {"swordhangar", "swordhangarlarge","swordhangarsingle"}
+table.Add(medium,large)
+local small = {"sbhangar","sbfighterbay1","sbfighterbay2","sbfighterbay3","sbfighterbay4","sbclamp"}
+table.Add(small,medium)
+list.Set("sbepfighters","cratemover",		{VecOff=Vector(0,0,0), 		AngOff=Angle(0,0,0), Docklist=heavy})
+list.Set("sbepfighters","largetransport",	{VecOff=Vector(10,0,-30), 	AngOff=Angle(0,0,0), Docklist=large})
+list.Set("sbepfighters","sword",			{VecOff=Vector(-50,0,0), 	AngOff=Angle(0,0,0), Docklist=medium})
+list.Set("sbepfighters","smalltransport",	{VecOff=Vector(0,0,0), 		AngOff=Angle(0,0,0), Docklist=medium})
+list.Set("sbepfighters","lightcombatcorvette",{VecOff=Vector(75,0,50), 	AngOff=Angle(0,0,0), Docklist=small})
+list.Set("sbepfighters","arwing",			{VecOff=Vector(0,0,50), 	AngOff=Angle(0,0,0), Docklist=small})
+list.Set("sbepfighters","drone",			{VecOff=Vector(0,0,0), 		AngOff=Angle(0,0,0), Docklist=small})
+list.Set("sbepfighters","assaultpodc",		{VecOff=Vector(0,0,75), 	AngOff=Angle(0,0,0), Docklist=small})

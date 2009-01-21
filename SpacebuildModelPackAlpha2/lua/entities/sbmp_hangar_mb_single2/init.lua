@@ -5,8 +5,8 @@ include( 'shared.lua' )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/Slyfo/cdeck_double.mdl" )
-	self.Entity:SetName("DeckDouble")
+	self.Entity:SetModel( "models/Slyfo/shangar.mdl" )
+	self.Entity:SetName("mbhangarside2")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -20,16 +20,7 @@ function ENT:Initialize()
 	
     self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.Bay = {}
-	self.Bay["Right"] = {}
-	self.Bay["Right"]["ship"] = nil 
-	self.Bay["Right"]["weld"] = nil
-	self.Bay["Right"]["pos"] = Vector(0,256,150)
-	self.Bay["Right"]["canface"] = {Angle(0,0,0),Angle(0,90,0),Angle(0,180,0),Angle(0,270,0)}
-	self.Bay["Left"] = {}
-	self.Bay["Left"]["ship"] = nil 
-	self.Bay["Left"]["weld"] = nil
-	self.Bay["Left"]["pos"] = Vector(0,-256,150)
-	self.Bay["Left"]["canface"] = {Angle(0,0,0),Angle(0,90,0),Angle(0,180,0),Angle(0,270,0)}
+	self.Bay["Side"] = {ship = nil, weld = nil, pos = Vector(0,214,-80), canface = {Angle(0,0,0),Angle(0,180,0)}, pexit = Vector(0,100,-100)}
 	
 	self.LaunchSpeed = 100
 	self.Entity:MakeWire()
@@ -42,7 +33,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,500)
 	
-	local ent = ents.Create( "sbmp_hangar_deck_double" )
+	local ent = ents.Create( "sbmp_hangar_mb_single2" )
 	ent:SetPos( SpawnPos )
 	ent:Spawn()
 	ent:Initialize()
