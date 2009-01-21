@@ -9,4 +9,4 @@ ENT.AdminSpawnable	= false
 
 ENT.WireDebugName = "Hangar"
 
-ENT.LaunchSpeed = 1000
+ENT.LaunchSpeed = 0
