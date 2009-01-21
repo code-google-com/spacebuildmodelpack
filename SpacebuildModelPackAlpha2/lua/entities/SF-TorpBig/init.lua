@@ -68,7 +68,7 @@ end
 function ENT:Think()
 	if self.Armed then
 		local Vel = self.PhysObj:GetVelocity()
-		self.Entity:SetAngles( self.PAngle )
+		--self.Entity:SetAngles( self.PAngle )
 		self.PhysObj:SetVelocity( Vel )
 	end
 	if (self.PFire) then
