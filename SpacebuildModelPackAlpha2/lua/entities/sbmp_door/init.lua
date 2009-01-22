@@ -27,7 +27,11 @@ function ENT:Initialize()
 		self.Locked     = false
 		self.DisableUse = false
 
+		if !self.SBdoor or !self.SBdoor:IsValid() then
+			self.SBdoor = ents.Create( "prop_physics" )
+		end
 		self:AddDoorPhysics()
+
 		
 		self.Inputs = Wire_CreateInputs(self.Entity, { "Open" , "Lock" , "Disable Use" })
 
@@ -58,9 +62,8 @@ function ENT:OnRemove()
 end
 
 function ENT:AddDoorPhysics()
-
-	self.SBdoor = ents.Create( "prop_physics" )
-		self.SBdoor:PhysicsInit( SOLID_VPHYSICS )
+	
+	self.SBdoor:PhysicsInit( SOLID_VPHYSICS )
 		self.SBdoor:SetMoveType( MOVETYPE_VPHYSICS )
 		self.SBdoor:SetSolid( SOLID_VPHYSICS )
 		self.SBdoor:SetModel( model[2] )
@@ -69,15 +72,13 @@ function ENT:AddDoorPhysics()
 		self.SBdoor:SetPos(self:GetPos())
 
 		constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
-				
+
 		self.SBdoor:SetNoDraw(true)
-		
 end
 
 function ENT:Open()
 
 	self:ResetSequence( self:LookupSequence( "open" ) )
-		//self:ResetSequence( self:LookupSequence( "open" ) )
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = false
@@ -91,7 +92,6 @@ end
 function ENT:Close()
 
 	self:ResetSequence( self:LookupSequence( "close" ) )
-		//self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 		timer.Simple(2, function()
 							self.Delay = true
@@ -119,8 +119,15 @@ function ENT:Use( activator, caller )
 end
 
 function ENT:Think()
-self.Entity:NextThink( CurTime() + 0.01 )
-return true
+
+	if !self.SBdoor or !self.SBdoor:IsValid() then
+		self.SBdoor = ents.Create( "prop_physics" )
+		self:AddDoorPhysics()
+	end
+		
+	self.Entity:NextThink( CurTime() + 0.01 )
+	
+	return true
 end
 
 function ENT:TriggerInput(k,v)
@@ -161,5 +168,20 @@ function ENT:TriggerInput(k,v)
 	
 		self.DisableUse = false
 	
+	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.SBdoor) then
+		info.SBdoor = self.SBdoor
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.SBdoor) then
+		self.SBdoor = info.SBdoor
 	end
 end
