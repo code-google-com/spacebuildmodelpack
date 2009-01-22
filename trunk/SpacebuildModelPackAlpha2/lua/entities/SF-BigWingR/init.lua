@@ -6,7 +6,7 @@ util.PrecacheSound( "SB/Gattling2.wav" )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/SmallBridge/SBwingC1L/sbwingc1l.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/SBwingC1R/sbwingc1r.mdl" ) 
 	self.Entity:SetName("SmallMachineGun")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
@@ -41,17 +41,17 @@ function ENT:Initialize()
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
 	self.HP[3]["Type"]	= { "Small", "Medium" }
-	self.HP[3]["Pos"]	= Vector(-35,35,11)
+	self.HP[3]["Pos"]	= Vector(-35,-35,11)
 	self.HP[3]["Angle"]	= Angle(180,0,180)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil
 	self.HP[4]["Type"]	= { "Small", "Medium" }
-	self.HP[4]["Pos"]	= Vector(-20,110,11)
+	self.HP[4]["Pos"]	= Vector(-20,-110,11)
 	self.HP[4]["Angle"]	= Angle(180,0,180)
 	self.HP[5]			= {}
 	self.HP[5]["Ent"]	= nil
 	self.HP[5]["Type"]	= "Small"
-	self.HP[5]["Pos"]	= Vector(-22,223,10)
+	self.HP[5]["Pos"]	= Vector(-22,-223,10)
 	self.HP[5]["Angle"]	= Angle(90,0,180)
 	
 	self.Cont = self.Entity
@@ -93,7 +93,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
-	local ent = ents.Create( "SF-BigWingL" )
+	local ent = ents.Create( "SF-BigWingR" )
 	ent:SetPos( SpawnPos )
 	ent:Spawn()
 	ent:Activate()
@@ -146,9 +146,9 @@ function ENT:Think()
 	end
 	
 	if self.HP[1]["Ent"] && self.HP[1]["Ent"]:IsValid() then
-		local SwivPos = ( Vector(-28,223,18) )
+		local SwivPos = ( Vector(-28,-223,18) )
 		local NAng = self.Entity:GetAngles()
-		NAng:RotateAroundAxis( self.Entity:GetForward(), -self.WingAngle + 90 )
+		NAng:RotateAroundAxis( self.Entity:GetForward(), self.WingAngle + -90 )
 		NAng:RotateAroundAxis( NAng:Up(), 180 )
 		RAng = self.Entity:WorldToLocalAngles(NAng)
 		self.HP[1]["Ent"]:SetLocalAngles( self.Entity:WorldToLocalAngles(NAng) )
@@ -156,9 +156,9 @@ function ENT:Think()
 	end
 	
 	if self.HP[2]["Ent"] && self.HP[2]["Ent"]:IsValid() then
-		local SwivPos = ( Vector(-28,223,18) )
+		local SwivPos = ( Vector(-28,-223,18) )
 		local NAng = self.Entity:GetAngles()
-		NAng:RotateAroundAxis( self.Entity:GetForward(), self.WingAngle + 90 )
+		NAng:RotateAroundAxis( self.Entity:GetForward(), -self.WingAngle + -90 )
 		NAng:RotateAroundAxis( NAng:Up(), 180 )
 		RAng = self.Entity:WorldToLocalAngles(NAng)
 		self.HP[2]["Ent"]:SetLocalAngles( self.Entity:WorldToLocalAngles(NAng) )
@@ -167,7 +167,7 @@ function ENT:Think()
 	
 	if self.HP[5]["Ent"] && self.HP[5]["Ent"]:IsValid() then
 		local NAng = self.Entity:GetAngles()
-		NAng:RotateAroundAxis( self.Entity:GetForward(), self.WingAngle + 90 )
+		NAng:RotateAroundAxis( self.Entity:GetForward(), -90 )
 		NAng:RotateAroundAxis( NAng:Up(), 180 )
 		self.HP[5]["Ent"]:SetLocalAngles( self.Entity:WorldToLocalAngles(NAng) )
 	end
