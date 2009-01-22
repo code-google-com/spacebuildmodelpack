@@ -17,33 +17,33 @@ function ENT:Draw()
 		Be careful about how many times a model is drawn per frame. Too many can cause serious lag. I learned that to my regret when I made the tank treads.
 		*/
 	self.Entity:SetModelScale( Vector(1,1,1) ) 
-	self.Entity:SetModel( "models/SmallBridge/SBwingC1L/sbwingc1l.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/SBwingC1R/sbwingc1r.mdl" ) 
 	self.Entity:DrawModel()
 	
 	local OPos = self.Entity:GetPos()
 	local OAng = self.Entity:GetAngles() + Angle( 0.01, 0.01, 0.01 ) -- The extra angle stops the whole thing from pinwheeling out of control. I have no idea why it works, but it does.
-	local SwivPos = (self.Entity:GetPos() + (self.Entity:GetForward() * -28) + (self.Entity:GetRight() * -223) + (self.Entity:GetUp() * 18)) -- The vector the wings rotate around
+	local SwivPos = (self.Entity:GetPos() + (self.Entity:GetForward() * -28) + (self.Entity:GetRight() * 223) + (self.Entity:GetUp() * 18)) -- The vector the wings rotate around
 	
 	local CAngle = self.WingAngle
 	
 	--Position and rotate the upper wing
-	self.Entity:SetModel( "models/SmallBridge/SBwingM1L/sbwingm1l.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/SBwingM1R/sbwingm1r.mdl" ) 
 	local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
-	NAng:RotateAroundAxis( self.Entity:GetForward(), -CAngle )
+	NAng:RotateAroundAxis( self.Entity:GetForward(), CAngle )
 	self.Entity:SetAngles( NAng )
-	self.Entity:SetPos( SwivPos + ( self.Entity:GetUp() * 15 ) + NAng:Up() * -18 + NAng:Right() * 111 )
+	self.Entity:SetPos( SwivPos + ( self.Entity:GetUp() * 15 ) + NAng:Up() * -18 + NAng:Right() * -111 )
 	
 	--Draw the upper wing
 	self.Entity:SetModelScale( Vector(1,1,1) ) 
 	self.Entity:DrawModel()
 	
 	--Position and rotate the lower wing
-	self.Entity:SetModel( "models/SmallBridge/SBwingM1Le/sbwingm1le.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/SBwingM1Re/sbwingm1re.mdl" ) 
 	local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
 	self.Entity:SetAngles( NAng )
-	NAng:RotateAroundAxis( self.Entity:GetForward(), CAngle )
+	NAng:RotateAroundAxis( self.Entity:GetForward(), -CAngle )
 	self.Entity:SetAngles( NAng )
-	self.Entity:SetPos( SwivPos + ( self.Entity:GetUp() * -15 ) + NAng:Up() * -18 + NAng:Right() * 111 )
+	self.Entity:SetPos( SwivPos + ( self.Entity:GetUp() * -15 ) + NAng:Up() * -18 + NAng:Right() * -111 )
 	
 	--Draw the lower wing
 	self.Entity:SetModelScale( Vector(1,1,1) ) 

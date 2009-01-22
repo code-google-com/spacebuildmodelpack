@@ -1,6 +1,6 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
-ENT.PrintName		= "S-Foils - Left"
+ENT.PrintName		= "S-Foils - Right"
 ENT.Author			= "Paradukes"
 ENT.Category		= "SBEP - Other"
 
