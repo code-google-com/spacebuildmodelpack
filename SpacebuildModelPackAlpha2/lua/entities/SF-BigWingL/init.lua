@@ -128,11 +128,11 @@ end
 function ENT:Think()
 
 	if self.Dpl then
-		if self.WingAngle < 45 then 
+		if self.WingAngle < 90 then 
 			self.WingAngle = self.WingAngle + 1
 			self.Entity:SetFold( self.WingAngle )
 		else
-			self.WingAngle = 45
+			self.WingAngle = 90
 		end
 	else
 		if self.WingAngle > 0 then 
