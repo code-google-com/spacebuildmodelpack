@@ -1,5 +1,5 @@
 ENT.Type			      = "anim"
-ENT.Base                  = "base_gmodentity" 
+ENT.Base                  = "base_wire_entity" 
 ENT.PrintName		      = "Blast Door 2"
 ENT.Author			      = "Hysteria"
 ENT.Category			  = "SBEP - Other"
