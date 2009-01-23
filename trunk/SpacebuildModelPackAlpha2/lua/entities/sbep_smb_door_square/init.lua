@@ -19,11 +19,12 @@ function ENT:Initialize()
 		self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 
-		self.Opened       = false
-		self.Delay      = true
-		self.Locked     = false
-		self.DisableUse = false
-		self.DoorModel = model[2]
+		self.Opened      		= false
+		self.Delay      		= true
+		self.Locked     		= false
+		self.DisableUse 		= false
+		self.DoorModel 			= model[2]
+		self.DoorAngleOffset 	= Angle(0, 0, 90)
 
 		if !self.SBdoor or !self.SBdoor:IsValid() then
 			self.SBdoor = ents.Create( "prop_physics" )
