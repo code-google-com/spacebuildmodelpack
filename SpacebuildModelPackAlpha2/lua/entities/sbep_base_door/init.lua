@@ -19,7 +19,7 @@ function ENT:AddDoorPhysics()
 		self.SBdoor:SetSolid( SOLID_VPHYSICS )
 		self.SBdoor:SetModel( self.DoorModel )
 		self.SBdoor:Spawn()
-		self.SBdoor:SetAngles(self:GetAngles() + Angle( 0 , 90 , 0 ))
+		self.SBdoor:SetAngles(self:GetAngles() + self.DoorAngleOffset)
 		self.SBdoor:SetPos(self:GetPos())
 
 		constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
