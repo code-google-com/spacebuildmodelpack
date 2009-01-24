@@ -209,6 +209,15 @@ function ENT:BuildDupeInfo()
 	if (self.TLength) then
 		info.TLength = self.TLength
 	end
+	
+	if (self.HeightOffSet) then
+		info.HeightOffSet = self.HeightOffSet
+	end
+	
+	if (self.FTab) then
+		info.FTab = self.FTab
+	end
+	
 	return info
 end
 
@@ -232,11 +241,18 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 	if (info.TLength) then
 		self.TLength = info.TLength
 	end
+	if (info.HeightOffSet) then
+		self.HeightOffSet = info.HeightOffSet
+	end
+	if (info.FTab) then
+		self.FTab = info.FTab
+	end
 	
+	self.Entity:SetCSModel( self.CSModel )
+	self.Entity:SetSegSize( Vector(self.SLength, self.SWidth, self.SHeight) )
 	self.Entity:SetLength( self.TLength )
-    self.Entity:SetSegSize( Vector(self.SLength, self.SWidth, self.SHeight) )
     self.Entity:SetRadius( self.Radius )
-    self.Entity:SetCSModel( self.CSModel )
+    
 end
 
 function ENT:PhysicsSimulate( phys, deltatime )
