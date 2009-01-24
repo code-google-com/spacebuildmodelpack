@@ -18,7 +18,7 @@ end
 
 hook.Add("PlayerLeaveVehicle", "PlayerRepositioning", SetExPoint)
 
-
+--For controling certain entities
 function SBEPCCC(ply, data)
 	local cmd = ply:GetCurrentCommand()
 	ply.SBEPYaw = cmd:GetMouseX()
@@ -28,6 +28,7 @@ end
  
 hook.Add("SetupMove", "SBEPControls", SBEPCCC)
 
+--This is all the hardpointing stuff
 function HPLink( cont, pod, weap )
 	for i = 1, cont.HPC do
 		if !cont.HP[i]["Ent"] || !cont.HP[i]["Ent"]:IsValid() then
@@ -61,12 +62,27 @@ function HPLink( cont, pod, weap )
 			end			
 			
 			if TypeMatch then
+				weap:SetAngles( pod:GetAngles() )
+				local PAngle = pod:GetAngles()
+				
+				if weap.APAng then
+					PAngle:RotateAroundAxis( pod:GetUp(), weap.APAng.y )
+					PAngle:RotateAroundAxis( pod:GetRight(), weap.APAng.p )
+					PAngle:RotateAroundAxis( pod:GetForward(), weap.APAng.r )
+				end
+				if cont.HP[i]["Angle"] then
+					PAngle:RotateAroundAxis( pod:GetUp(), cont.HP[i]["Angle"].y )
+					PAngle:RotateAroundAxis( pod:GetRight(), cont.HP[i]["Angle"].p )
+					PAngle:RotateAroundAxis( pod:GetForward(), cont.HP[i]["Angle"].r )
+				end
+				weap:SetAngles( PAngle )
+				
 				if cont.Skewed then
 					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.y ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.x ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
 				else
 					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.x ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.y ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
 				end
-				weap:SetAngles( pod:GetAngles() )
+				
 				weap:GetPhysicsObject():EnableCollisions(false)
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)
 				weap.HPWeld = constraint.Weld(pod, weap, 0, 0, 0, true)
