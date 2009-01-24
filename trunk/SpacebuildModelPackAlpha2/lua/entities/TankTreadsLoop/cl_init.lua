@@ -18,6 +18,7 @@ function ENT:Initialize()
 	self.PrevPos = self.Entity:GetPos()
 	self.Straight = true
 	self.ILock = self.MTable[self.Entity:GetCSModel().."I"] -- This is the interlock distance for the current tread model
+	self.RLimit = 50
 end
 
 function ENT:Draw()
@@ -26,6 +27,7 @@ function ENT:Draw()
 	self.Entity:DrawModel()
 	local OPos = self.Entity:GetPos()
 	local OAng = self.Entity:GetAngles() + Angle( 0.01, 0.01, 0.01 ) -- The extra angle stops the whole thing from pinwheeling out of control. I have no idea why it works, but it does.
+	local RCount = 0
 	self.Entity:SetModel( self.MTable[self.Entity:GetCSModel()] )
 			
 		//Setting up the origin points for the 4 sections of the tread.
@@ -42,6 +44,12 @@ function ENT:Draw()
 			self.Entity:SetPos( LowStrPos + (self.Entity:GetForward() * (self.Entity:GetLength() * 0.5)) + self.Entity:GetForward() * -i + self.Entity:GetForward() * SDist )
 			self.Entity:SetModelScale( Scale )
 			self.Entity:DrawModel()
+			RCount = RCount + 1
+			if RCount > self.RLimit then
+				self.Entity:SetPos( OPos )
+				self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
+				return
+			end
 		end
 		
 		//Drawing the top straight section.
@@ -55,6 +63,12 @@ function ENT:Draw()
 			self.Entity:SetPos( UppStrPos + (self.Entity:GetForward() * (self.Entity:GetLength() * 0.5)) + self.Entity:GetForward() * -i + self.Entity:GetForward() * SDist )
 			self.Entity:SetModelScale( Scale )
 			self.Entity:DrawModel()
+			RCount = RCount + 1
+			if RCount > self.RLimit then
+				self.Entity:SetPos( OPos )
+				self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
+				return
+			end
 		end
 		
 		//Drawing the front curved section.
@@ -75,6 +89,12 @@ function ENT:Draw()
 			self.Entity:SetAngles( NAng )
 			self.Entity:SetModelScale( Scale )
 			self.Entity:DrawModel()
+			RCount = RCount + 1
+			if RCount > self.RLimit then
+				self.Entity:SetPos( OPos )
+				self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
+				return
+			end
 		end
 		
 		//Drawing the back curved section.
@@ -95,6 +115,12 @@ function ENT:Draw()
 			self.Entity:SetAngles( NAng )
 			self.Entity:SetModelScale( Scale )
 			self.Entity:DrawModel()
+			RCount = RCount + 1
+			if RCount > self.RLimit then
+				self.Entity:SetPos( OPos )
+				self.Entity:SetAngles( OAng - Angle( 0.01, 0.01, 0.01 ) )
+				return
+			end
 		end
 		
 		
@@ -108,7 +134,9 @@ function ENT:Think()
 		self.Scroll = Cont.Scroll
 	else
 		
-		local Len = self.Entity:GetLength() * 0.5
+		local Len = (self.Entity:GetLength() * 0.5) + self.Entity:GetRadius() + 10
+		local Hei = self.Entity:GetRadius() + (self.Entity:GetSegSize().z * 10)
+		local Wid = self.Entity:GetSegSize().y * 100
 		local EPos = self.Entity:GetPos() + (self.Entity:GetForward() * Len)
 		local SPos = self.Entity:GetPos() + (self.Entity:GetForward() * -Len)
 		self.Entity:SetRenderBoundsWS( SPos, EPos )
