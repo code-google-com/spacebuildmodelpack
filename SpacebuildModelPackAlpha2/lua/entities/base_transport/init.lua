@@ -177,17 +177,31 @@ function ENT:Think()
 			end
 			
 			if (self.Launchy) then
-				local physi = self.Pod:GetPhysicsObject()
-				physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
-				physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
-				physi:EnableGravity(false)
+				if (self.EMount) then
+					local physi = self.Entity:GetPhysicsObject()
+					physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
+					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
+					physi:EnableGravity(false)
+					self.Pod:GetPhysicsObject():EnableGravity(false)
+				else
+					local physi = self.Pod:GetPhysicsObject()
+					physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
+					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
+					physi:EnableGravity(false)
+				end
 			else
-				self.Speed = 0
-				self.Yaw = 0
-				self.Roll = 0
-				self.Pitch = 0
-				local physi = self.Pod:GetPhysicsObject()
-				physi:EnableGravity(true)
+				if (self.EMount) then
+					local physi = self.Entity:GetPhysicsObject()
+					physi:EnableGravity(true)
+					self.Pod:GetPhysicsObject():EnableGravity(true)
+				else
+					self.Speed = 0
+					self.Yaw = 0
+					self.Roll = 0
+					self.Pitch = 0
+					local physi = self.Pod:GetPhysicsObject()
+					physi:EnableGravity(true)
+				end
 			end
 		else
 			self.Speed = 0
@@ -224,6 +238,13 @@ function ENT:OnRemove()
 	end
 end
 
+--[[function ENT:Use( activator, caller )
+	if ( activator:IsPlayer() ) and not (self.Pod:GetPassenger() == activator) then
+		activator:EnterVehicle( self.Pod )
+	else
+		activator:ExitVehicle()
+	end
+end]]
 
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BaseClass.BuildDupeInfo(self) or {}
