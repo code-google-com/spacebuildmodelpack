@@ -270,7 +270,7 @@ function ENT:Open( mode )
 		
 		local Panel = ents.Create( "prop_physics" )
 		
-		Panel:SetModel( "models/Slyfo/smuggler_side.mdl" )
+		Panel:SetModel( "models/Slyfo/smuggler_topside.mdl" )
 		Panel:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * 10 ) 
 		Panel:SetAngles( self.Entity:GetAngles() )
 		Panel:Spawn()
@@ -283,7 +283,7 @@ function ENT:Open( mode )
 		
 		self.Panel = Panel
 		
-		self.BTime = CurTime() + 0.1
+		self.BTime = CurTime() + 0.05
 	
 	elseif mode == 3 then
 		self.COp = true
