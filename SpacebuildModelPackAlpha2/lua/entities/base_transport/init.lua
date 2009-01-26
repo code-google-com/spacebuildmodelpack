@@ -4,6 +4,25 @@ include( 'shared.lua' )
 
 util.PrecacheSound( "SB/SteamEngine.wav" )
 
+local function GetJBool(self,sVal)
+	if not joystick then return false end
+	return joystick.Get(self.CPL, "sbeptpt_"..sVal)
+end
+
+local function GetJNum(self,sVal, nMax, nMin)
+	if not joystick then return false end
+	local nJoyGet = joystick.Get(self.CPL, "sbeptpt_"..sVal)
+	if nJoyGet then
+		nJoyGet = nJoyGet/127.5-1
+		if nJoyGet > 0 then
+			nJoyGet = nJoyGet * nMax
+		else
+			nJoyGet = nJoyGet * nMin
+		end
+	end
+	return nJoyGet
+end
+
 function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
@@ -61,7 +80,7 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
-			if (self.CPL:KeyDown( IN_JUMP ) || (joystick && joystick.Get(self.CPL, "sbeptpt_launch"))) then
+			if (self.CPL:KeyDown( IN_JUMP ) || GetJBool(self,"launch")) then
 				if !self.LTog then
 					if self.Launchy then
 						self.Launchy = false
@@ -77,90 +96,54 @@ function ENT:Think()
 				self.LTog = false
 			end
 			
-			if (joystick) then
-				if (joystick.Get(self.CPL, "sbeptpt_strafe_up")) then
-					self.VSpeed = self.StrafeSpeed
-				elseif (joystick.Get(self.CPL, "sbeptpt_strafe_down")) then
-					self.VSpeed = -self.StrafeSpeed
-				end
 			
-				if (joystick.Get(self.CPL, "sbeptpt_strafe_right")) then
-					self.HSpeed = self.StrafeSpeed
-				elseif (joystick.Get(self.CPL, "sbeptpt_strafe_left")) then
-					self.HSpeed = -self.StrafeSpeed
-				else
-					self.HSpeed = 0
-				end
+			if (GetJBool(self,"strafe_up")) then
+				self.VSpeed = self.StrafeSpeed
+			elseif (GetJBool(self,"strafe_down")) then
+				self.VSpeed = -self.StrafeSpeed
+			end
+		
+			if (GetJBool(self,"strafe_right")) then
+				self.HSpeed = self.StrafeSpeed
+			elseif (GetJBool(self,"strafe_left")) then
+				self.HSpeed = -self.StrafeSpeed
+			else
+				self.HSpeed = 0
+			end
+		
+			--Acceleration, greater than halfway accelerates, less than decelerates
+			local nAccel = GetJNum(self,"accelerate",self.AccelMax,self.DecelMax)
+			if nAccel then self.Speed = math.Clamp(self.Speed + nAccel, -self.MinSpeed, self.MaxSpeed) end
 			
-				--Acceleration, greater than halfway accelerates, less than decelerates
-				if (joystick.Get(self.CPL, "sbeptpt_accelerate")) then
-					if (joystick.Get(self.CPL, "sbeptpt_accelerate") > 128) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sbeptpt_accelerate")/127.5-1)*self.AccelMax, -self.MinSpeed, self.MaxSpeed)
-					elseif (joystick.Get(self.CPL, "sbeptpt_accelerate") < 127) then
-						self.Speed = math.Clamp(self.Speed + (joystick.Get(self.CPL, "sbeptpt_accelerate")/127.5-1)*self.DecelMax, -self.MinSpeed, self.MaxSpeed)
-					end
-				end
-				
-				--Set the speed
-				if (joystick.Get(self.CPL, "sbeptpt_thrust")) then
-					if (joystick.Get(self.CPL, "sbeptpt_thrust") > 128) then
-						self.TarSpeed = (joystick.Get(self.CPL, "sbeptpt_thrust")/127.5-1)*self.MaxSpeed
-					elseif (joystick.Get(self.CPL, "sbeptpt_thrust") < 127) then
-						self.TarSpeed = (joystick.Get(self.CPL, "sbeptpt_thrust")/127.5-1)*self.MinSpeed
-					elseif (joystick.Get(self.CPL, "sbeptpt_thrust") < 128 && joystick.Get(self.CPL, "sbeptpt_thrust") > 127) then
-						self.TarSpeed = 0
-					end
-					if (self.TarSpeed > self.Speed) then
-						self.Speed = math.Clamp(self.Speed + self.AccelMax, -self.MinSpeed, self.MaxSpeed)
-					elseif (self.TarSpeed < self.Speed) then
-						self.Speed = math.Clamp(self.Speed - self.DecelMax, -self.MinSpeed, self.MaxSpeed)						
-					end
-				end
-				
-				--forward is down on pitch, if you don't like it check the box on joyconfig to inver it
-				if (joystick.Get(self.CPL, "sbeptpt_pitch")) then
-					if (joystick.Get(self.CPL, "sbeptpt_pitch") > 128) then
-						self.Pitch = -(joystick.Get(self.CPL, "sbeptpt_pitch")/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, "sbeptpt_pitch") < 127) then
-						self.Pitch = -(joystick.Get(self.CPL, "sbeptpt_pitch")/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, "sbeptpt_pitch") < 128 && joystick.Get(self.CPL, "sbeptpt_pitch") > 127) then
-						self.Pitch = 0
-					end
-				end
-			
-				--The control for inverting yaw and roll
-				local yaw = ""
-				local roll = ""
-				if (joystick.Get(self.CPL, "sbeptpt_switch")) then
-					yaw = "sbeptpt_roll"
-					roll = "sbeptpt_yaw"
-				else
-					yaw = "sbeptpt_yaw"
-					roll = "sbeptpt_roll"
-				end
-				
-				--Yaw is negative because Paradukes says so
-				--You could invert it, but the default configuration should be correct
-				if (joystick.Get(self.CPL, yaw)) then
-					if (joystick.Get(self.CPL, yaw) > 128) then
-						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, yaw) < 127) then
-						self.Yaw = -(joystick.Get(self.CPL, yaw)/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, yaw) < 128 && joystick.Get(self.CPL, yaw) > 127) then
-						self.Yaw = 0
-					end
-				end
-			
-				if (joystick.Get(self.CPL, roll)) then
-					if (joystick.Get(self.CPL, roll) > 128) then
-						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, roll) < 127) then
-						self.Roll = (joystick.Get(self.CPL, roll)/127.5-1)*self.TSpeed
-					elseif (joystick.Get(self.CPL, roll) < 128 && joystick.Get(self.CPL, roll) > 127) then
-						self.Roll = 0
-					end
+			--Set the speed
+			local nTarSpeed = GetJNum(self,"thrust",self.MaxSpeed,self.MinSpeed)
+			if nTarSpeed then
+				if (nTarSpeed > self.Speed) then
+					self.Speed = math.Clamp(self.Speed + self.AccelMax, -self.MinSpeed, self.MaxSpeed)
+				elseif (nTarSpeed < self.Speed) then
+					self.Speed = math.Clamp(self.Speed - self.DecelMax, -self.MinSpeed, self.MaxSpeed)						
 				end
 			end
+			
+			--forward is down on pitch, if you don't like it check the box on joyconfig to invert it
+			local nPitch = GetJNum(self,"pitch",self.TSpeed,self.TSpeed)
+			if nPitch then self.Pitch = -nPitch end
+		
+			--The control for inverting yaw and roll
+			local sYaw = "yaw"
+			local sRoll = "roll"
+			if (GetJBool(self,"switch")) then
+				sYaw = "roll"
+				sRoll = "yaw"
+			end
+			
+			--Yaw is negative because Paradukes says so
+			--You could invert it, but the default configuration should be correct
+			local nYaw = GetJNum(self,sYaw,self.TSpeed,self.TSpeed)
+			if nYaw then self.Yaw = -nYaw end
+			
+			local nRoll = GetJNum(self,sRoll,self.TSpeed,self.TSpeed)
+			if nRoll then self.Roll = nRoll end
 			
 			if self.MCC then
 				local PRel = self.Pod:GetPos() + self.CPL:GetAimVector() * 100
@@ -177,20 +160,24 @@ function ENT:Think()
 			end
 			
 			if (self.Launchy) then
+				local PodAng = self.Pod:LocalToWorldAngles(Angle(0,0,0))
 				if (self.EMount) then
 					local physi = self.Entity:GetPhysicsObject()
 					physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
 					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
 					physi:EnableGravity(false)
 					self.Pod:GetPhysicsObject():EnableGravity(false)
-				else
-					local physi = self.Pod:GetPhysicsObject()
-					physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
-					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
-					physi:EnableGravity(false)
 				end
+				local physi = self.Pod:GetPhysicsObject()
+				physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((PodAng:Forward() * self.Speed) + (PodAng:Up() * self.VSpeed) + (PodAng:Right() * self.HSpeed)) )
+				physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
+				physi:EnableGravity(false)
 			else
 				if (self.EMount) then
+					self.Speed = 0
+					self.Yaw = 0
+					self.Roll = 0
+					self.Pitch = 0
 					local physi = self.Entity:GetPhysicsObject()
 					physi:EnableGravity(true)
 					self.Pod:GetPhysicsObject():EnableGravity(true)

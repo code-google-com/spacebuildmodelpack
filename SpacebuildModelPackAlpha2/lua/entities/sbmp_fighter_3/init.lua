@@ -52,7 +52,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
 	ent2:SetModel( "models/spacebuild/milcock3_redux.mdl" ) 
-	ent2:SetPos( ent:LocalToWorld(Vector(110,0,-5)) )
+	ent2:SetPos( ent:LocalToWorld(Vector(108,0,-6.3)) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
 	ent2.HasHardpoints = true
