@@ -35,6 +35,7 @@ function ENT:Initialize()
 	self.PMult = 1
 	self.YMult = 1
 	self.RMult = 1
+	self.AngOffset = Angle(0,180,0)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -52,8 +53,8 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
 	ent2:SetModel( "models/Spacebuild/milcock6a.mdl" ) 
-	ent2:SetPos( ent:LocalToWorld(Vector(-100,0,0)) )
-	ent2:SetAngles( ent:LocalToWorldAngles( Angle(0,180,0) ) )
+	ent2:SetPos( ent:LocalToWorld(Vector(-96,0,14)) )
+	ent2:SetAngles( ent:LocalToWorldAngles( self.AngOff ) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
 	ent2.HasHardpoints = true

@@ -8,3 +8,5 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.CPL				= nil
+
+ENT.AngOff			= Angle(0,180,0)
