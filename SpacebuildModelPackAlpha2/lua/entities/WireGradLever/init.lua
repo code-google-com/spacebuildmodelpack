@@ -29,7 +29,7 @@ function ENT:Initialize()
 	--RD_AddResource(self.Entity, "Munitions", 0)
 	
 	self.MinV = 0
-	self.MaxV = 0
+	self.MaxV = 1
 end
 
 function ENT:SpawnFunction( ply, tr )
