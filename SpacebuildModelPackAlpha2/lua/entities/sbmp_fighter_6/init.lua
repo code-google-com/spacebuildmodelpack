@@ -32,9 +32,9 @@ function ENT:Initialize()
 	self.Skewed = true
 	self.HSpeed = 0
 	
-	self.PMult = 1
+	self.PMult = -1
 	self.YMult = 1
-	self.RMult = 1
+	self.RMult = -1
 	self.AngOffset = Angle(0,180,0)
 end
 
