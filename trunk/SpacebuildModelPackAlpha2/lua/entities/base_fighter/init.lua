@@ -189,16 +189,22 @@ function ENT:Think()
 			
 			if (self.Launchy) then
 				local PodAng = self.Pod:LocalToWorldAngles(Angle(0,0,0))
+				local pitch = self.PMult or 1
+				pitch = pitch * self.Pitch
+				local yaw = self.YMult or 1
+				yaw = yaw * self.Yaw
+				local roll = self.RMult or 1
+				roll = roll * self.Roll
 				if (self.EMount) then
 					local physi = self.Entity:GetPhysicsObject()
 					physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((self.Pod:GetRight() * self.Speed) + (self.Pod:GetUp() * self.VSpeed) + (self.Pod:GetForward() * -self.HSpeed)) )
-					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
+					physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(roll,pitch,yaw))
 					physi:EnableGravity(false)
 					self.Pod:GetPhysicsObject():EnableGravity(false)
 				end
 				local physi = self.Pod:GetPhysicsObject()
 				physi:SetVelocity( (physi:GetVelocity() * self.DragRate) + ((PodAng:Forward() * self.Speed) + (PodAng:Up() * self.VSpeed) + (PodAng:Right() * self.HSpeed)) )
-				physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(self.Roll,self.Pitch,self.Yaw))
+				physi:AddAngleVelocity((physi:GetAngleVelocity() * -self.DragRate) + Angle(roll,pitch,yaw))
 				physi:EnableGravity(false)
 			else
 				self.Speed = 0
