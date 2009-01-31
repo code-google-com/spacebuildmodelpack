@@ -1,6 +1,5 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
-include('entities/base_wire_entity/init.lua')
 include('shared.lua')
 
 local STATE_IDLE       = 1
@@ -275,10 +274,21 @@ function ENT:PreEntityCopy() -- build the DupeInfo table and save it as an entit
 	SBMPLift.Speed = self.Speed 
 	SBMPLift.Perc  = self.Perc
 	
+	--Wire dupe
+	local DupeInfo = self:BuildDupeInfo()
+	if(DupeInfo) then
+		duplicator.StoreEntityModifier(self.Entity,"WireDupeInfo",DupeInfo)
+	end
+	
 	return duplicator.StoreEntityModifier(self.Entity, "SBMPLift", SBMPLift)
 end
 
 function ENT:PostEntityPaste(Player, Ent, CreatedEntities)
+	--wire dupe
+	if(Ent.EntityMods and Ent.EntityMods.WireDupeInfo) then
+		Ent:ApplyDupeInfo(Player, Ent, Ent.EntityMods.WireDupeInfo, function(id) return CreatedEntities[id] end)
+	end
+	
 	if Ent.EntityMods and Ent.EntityMods.SBMPLift then
 		if Ent.EntityMods.SBMPLift then
 			local TopCntrlPnt = CreatedEntities[Ent.EntityMods.SBMPLift.TopCntrlPnt]
@@ -320,14 +330,5 @@ function ENT:PostEntityPaste(Player, Ent, CreatedEntities)
 			self.StopTimestamp = CurTime() + (self.Speed * (1 - self.Perc))
 		end
 	end
-end
-
-function ENT:BuildDupeInfo()
-end
-
-function ENT:ApplyDupeInfo(ply, ent, data, CreatedEntities)
-end
-
-function ENT.AfterPasteMods(ply, Ent, DupeInfo)
 end
 duplicator.RegisterEntityModifier("SBMPLift", ENT.AfterPasteMods)
