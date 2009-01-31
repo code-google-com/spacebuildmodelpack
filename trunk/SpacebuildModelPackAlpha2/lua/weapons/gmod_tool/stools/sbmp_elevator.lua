@@ -84,5 +84,10 @@ function TOOL.BuildCPanel(panel)
 									ConVar = "sbmp_elevator_model",
 									Category = "SBMP Elevators",
 									Models = list.Get("SBMP_ElevatorMdls")})
+	panel:AddControl( "Label", { Text  = "1. Select a Model\n"
+									   .."2. Spawn the Lift\n"
+									   .."3. Separate the Ghosts from the lift with the physgun\n"
+									   .."4. Place the ghosts where you want the lift to move to\n"
+									   .."5. (Optional) Wire it up."}  )
 end
 
