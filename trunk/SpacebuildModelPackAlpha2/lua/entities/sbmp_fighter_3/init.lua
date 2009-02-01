@@ -35,6 +35,24 @@ function ENT:Initialize()
 	self.PMult = 1
 	self.YMult = 1
 	self.RMult = 1
+	
+	self.HPC	= 3
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= { "WingRight","Wing" }
+	self.HP[1]["Pos"]	= Vector(24,29,0)
+	self.HP[1]["Angle"] = Angle(0,0,180)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= { "WingLeft","Wing" }
+	self.HP[2]["Pos"]	= Vector(24,-29,0)
+	self.HP[2]["Angle"] = Angle(0,0,0)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= { "Wing" }
+	self.HP[3]["Pos"]	= Vector(23,0,32)
+	self.HP[3]["Angle"] = Angle(0,0,90)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -48,6 +66,8 @@ function ENT:SpawnFunction( ply, tr )
 	ent:Spawn()
 	ent:Initialize()
 	ent:Activate()
+	ent.HasHardpoints = true
+	--ent:SetNetworkedInt( "HPC", ent.HPC )
 	ent.SPL = ply
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
@@ -55,7 +75,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetPos( ent:LocalToWorld(Vector(108,0,-6.3)) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
-	ent2.HasHardpoints = true
+	--ent2.HasHardpoints = true
 	ent2:Spawn()
 	ent2:Activate()
 	local TB = ent2:GetTable()
