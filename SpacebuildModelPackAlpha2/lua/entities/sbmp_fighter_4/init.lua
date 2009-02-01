@@ -35,6 +35,29 @@ function ENT:Initialize()
 	self.PMult = 1
 	self.YMult = 1
 	self.RMult = 1
+	
+	self.HPC	= 4
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= { "WingRight","Wing" }
+	self.HP[1]["Pos"]	= Vector(-42,32,32)
+	self.HP[1]["Angle"] = Angle(0,0,180)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= { "WingLeft","Wing" }
+	self.HP[2]["Pos"]	= Vector(-42,-32,32)
+	self.HP[2]["Angle"] = Angle(0,0,0)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= { "WingRight","Wing" }
+	self.HP[3]["Pos"]	= Vector(-42,56,-32)
+	self.HP[3]["Angle"] = Angle(0,0,180)
+	self.HP[4]			= {}
+	self.HP[4]["Ent"]	= nil
+	self.HP[4]["Type"]	= { "WingLeft","Wing" }
+	self.HP[4]["Pos"]	= Vector(-42,-56,-32)
+	self.HP[4]["Angle"] = Angle(0,0,0)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -45,6 +68,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent = ents.Create( "sbmp_fighter_4" )
 	ent:SetPos( SpawnPos )
+	ent.HasHardpoints = true
 	ent:Spawn()
 	ent:Initialize()
 	ent:Activate()
@@ -55,7 +79,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetPos( ent:LocalToWorld(Vector(100,0,23)) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
-	ent2.HasHardpoints = true
+	--ent2.HasHardpoints = true
 	ent2:Spawn()
 	ent2:Activate()
 	local TB = ent2:GetTable()
