@@ -31,8 +31,16 @@ function ENT:Initialize()
 	self.Skewed = true
 	self.HSpeed = 0
 	
-	self.HPC			= 0
+	self.HPC			= 2
 	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= { "ArwingPodRight" }
+	self.HP[1]["Pos"]	= Vector(-110,-100,-48)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= { "ArwingPodLeft" }
+	self.HP[2]["Pos"]	= Vector(110,-100,-48)
 	
 end
 
