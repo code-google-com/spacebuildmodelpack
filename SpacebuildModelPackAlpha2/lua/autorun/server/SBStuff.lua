@@ -63,9 +63,9 @@ function HPLink( cont, pod, weap )
 			end			
 			
 			if TypeMatch then
+				--[[Paradukes' old code
 				weap:SetAngles( pod:GetAngles() )
 				local PAngle = pod:GetAngles()
-				
 				if weap.APAng then
 					PAngle:RotateAroundAxis( pod:GetUp(), weap.APAng.y )
 					PAngle:RotateAroundAxis( pod:GetRight(), weap.APAng.p )
@@ -82,7 +82,26 @@ function HPLink( cont, pod, weap )
 					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.y ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.x ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
 				else
 					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.x ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.y ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
+				end]]
+				
+				------Fishface60's new code-------
+				local APAng = weap.APAng or Angle(0,0,0)
+				local HPAng = cont.HP[i]["Angle"] or Angle(0,0,0)
+				weap:SetAngles(pod:LocalToWorldAngles(APAng+HPAng))
+				
+				local APPos = weap.APPos or Vector(0,0,0)
+				APPos = Vector(APPos.x,APPos.y,APPos.z)
+				APPos:Rotate(APAng+HPAng)
+				local HPPos = cont.HP[i]["Pos"] or Vector(0,0,0)
+				HPPos = Vector(HPPos.x,HPPos.y,HPPos.z)
+				if cont.Skewed then
+					if (type(cont.Skewed) == "boolean" and cont.Skewed == true) then
+						HPPos:Rotate(Angle(0,-90,0))
+					elseif type(cont.Skewed) == "angle" then
+						HPPos:Rotate(cont.Skewed)
+					end
 				end
+				weap:SetPos(pod:LocalToWorld(APPos+HPPos))
 				
 				weap:GetPhysicsObject():EnableCollisions(false)
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)

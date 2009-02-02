@@ -25,11 +25,13 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	self.EMount = true
+	self.HasHardpoints = true
+	self.Cont = self.Entity
 	
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.PMult = 1
@@ -40,19 +42,19 @@ function ENT:Initialize()
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= { "WingRight","Wing" }
+	self.HP[1]["Type"]	= { "WingLeft","Wing" }
 	self.HP[1]["Pos"]	= Vector(24,29,0)
-	self.HP[1]["Angle"] = Angle(0,0,180)
+	self.HP[1]["Angle"] = Angle(0,0,270)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
-	self.HP[2]["Type"]	= { "WingLeft","Wing" }
+	self.HP[2]["Type"]	= { "WingRight","Wing" }
 	self.HP[2]["Pos"]	= Vector(24,-29,0)
-	self.HP[2]["Angle"] = Angle(0,0,0)
+	self.HP[2]["Angle"] = Angle(0,0,90)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
 	self.HP[3]["Type"]	= { "Wing" }
 	self.HP[3]["Pos"]	= Vector(23,0,32)
-	self.HP[3]["Angle"] = Angle(0,0,90)
+	self.HP[3]["Angle"] = Angle(0,0,0)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -66,7 +68,6 @@ function ENT:SpawnFunction( ply, tr )
 	ent:Spawn()
 	ent:Initialize()
 	ent:Activate()
-	ent.HasHardpoints = true
 	--ent:SetNetworkedInt( "HPC", ent.HPC )
 	ent.SPL = ply
 	

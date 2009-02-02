@@ -25,11 +25,13 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	self.EMount = true
+	self.HasHardpoints = true
+	self.Cont = self.Entity
 	
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.PMult = 1
@@ -42,22 +44,22 @@ function ENT:Initialize()
 	self.HP[1]["Ent"]	= nil
 	self.HP[1]["Type"]	= { "WingRight","Wing" }
 	self.HP[1]["Pos"]	= Vector(-42,32,32)
-	self.HP[1]["Angle"] = Angle(0,0,180)
+	self.HP[1]["Angle"] = Angle(0,0,270)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
 	self.HP[2]["Type"]	= { "WingLeft","Wing" }
 	self.HP[2]["Pos"]	= Vector(-42,-32,32)
-	self.HP[2]["Angle"] = Angle(0,0,0)
+	self.HP[2]["Angle"] = Angle(0,0,90)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
-	self.HP[3]["Type"]	= { "WingRight","Wing" }
+	self.HP[3]["Type"]	= { "WingLeft","Wing" }
 	self.HP[3]["Pos"]	= Vector(-42,56,-32)
-	self.HP[3]["Angle"] = Angle(0,0,180)
+	self.HP[3]["Angle"] = Angle(0,0,270)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil
-	self.HP[4]["Type"]	= { "WingLeft","Wing" }
+	self.HP[4]["Type"]	= { "WingRight","Wing" }
 	self.HP[4]["Pos"]	= Vector(-42,-56,-32)
-	self.HP[4]["Angle"] = Angle(0,0,0)
+	self.HP[4]["Angle"] = Angle(0,0,90)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -68,7 +70,6 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent = ents.Create( "sbmp_fighter_4" )
 	ent:SetPos( SpawnPos )
-	ent.HasHardpoints = true
 	ent:Spawn()
 	ent:Initialize()
 	ent:Activate()
