@@ -7,7 +7,7 @@ include( 'shared.lua' )
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
-	self.Entity:SetName("Drone")
+	self.Entity:SetName("Clunker")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -26,7 +26,7 @@ function ENT:Initialize()
 
 
 	self.Speed = 0
-	self.TSpeed = 150
+	self.TSpeed = 40
 	self.Active = false
 	self.Skewed = true
 	self.HSpeed = 0
@@ -51,7 +51,6 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
-	ent2.HasHardpoints = true
 	ent2:Spawn()
 	ent2:Activate()
 	local TB = ent2:GetTable()
@@ -60,8 +59,9 @@ function ENT:SpawnFunction( ply, tr )
 	end 
 	ent2:SetTable(TB)
 	ent2.SPL = ply
-	ent2:SetNetworkedInt( "HPC", ent.HPC )
-	
+	--ent2.HasHardpoints = true
+	--ent2:SetNetworkedInt( "HPC", ent.HPC )
+		
 	ent.Pod = ent2
 	ent2.Cont = ent
 	--Constrain so they get duped together
