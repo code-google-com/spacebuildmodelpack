@@ -93,6 +93,6 @@ function ENT:Use(activator)
 		self.NPod:SetTable(TB)
 		local NC = constraint.NoCollide(self.Entity, self.NPod, 0, 0)
 		self.WD = constraint.Weld(self.Entity, self.NPod, 0, 0, 0)
-		self.NPod.Entity:SetParent(self.Entity)
+		--self.NPod.Entity:SetParent(self.Entity)
 	end
 end
