@@ -26,18 +26,28 @@ function ENT:Initialize()
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
 
-	self.HPC			= 2
+	self.HPC			= 4
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
 	self.HP[1]["Type"]	= {"Small","Tiny"}
-	self.HP[1]["Pos"]	= Vector(0,-20,-5)
-	self.HP[1]["Angle"] = Angle(0,0,-90)
+	self.HP[1]["Pos"]	= Vector(0,21,5)
+	self.HP[1]["Angle"] = Angle(0,0,0)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
 	self.HP[2]["Type"]	= {"Small","Tiny"}
-	self.HP[2]["Pos"]	= Vector(0,-20,-35)
-	self.HP[2]["Angle"] = Angle(0,0,-90)
+	self.HP[2]["Pos"]	= Vector(0,21,-5)
+	self.HP[2]["Angle"] = Angle(0,0,180)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= {"Small","Tiny"}
+	self.HP[3]["Pos"]	= Vector(0,192,2)
+	self.HP[3]["Angle"] = Angle(0,0,0)
+	self.HP[4]			= {}
+	self.HP[4]["Ent"]	= nil
+	self.HP[4]["Type"]	= {"Small","Tiny"}
+	self.HP[4]["Pos"]	= Vector(0,192,-2)
+	self.HP[4]["Angle"] = Angle(0,0,180)
 	
 	self.Cont = self.Entity
 end

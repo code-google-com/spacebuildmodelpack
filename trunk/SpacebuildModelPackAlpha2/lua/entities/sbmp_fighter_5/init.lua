@@ -25,16 +25,36 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	self.EMount = true
+	self.HasHardpoints = true
+	self.Cont = self.Entity
 	
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.PMult = 1
 	self.YMult = 1
 	self.RMult = 1
+	
+	self.HPC	= 3
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= {"Small","Tiny"}
+	self.HP[1]["Pos"]	= Vector(7,32,0)
+	self.HP[1]["Angle"] = Angle(0,0,-90)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= {"Small","Tiny"}
+	self.HP[2]["Pos"]	= Vector(7,-32,0)
+	self.HP[2]["Angle"] = Angle(0,0,90)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= {"Small","Tiny"}
+	self.HP[3]["Pos"]	= Vector(7,0,32)
+	self.HP[3]["Angle"] = Angle(0,0,0)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -55,7 +75,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetPos( ent:LocalToWorld(Vector(60,0,10)) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
-	ent2.HasHardpoints = true
+	--ent2.HasHardpoints = true
 	ent2:Spawn()
 	ent2:Activate()
 	local TB = ent2:GetTable()

@@ -28,7 +28,7 @@ function ENT:Initialize()
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	self.TSAInc			= 3 -- The speed fighters start to turn at
 	self.TSADec			= 3 -- the speed fighters stop turning at
@@ -37,12 +37,14 @@ function ENT:Initialize()
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= { "ArwingPodRight" }
-	self.HP[1]["Pos"]	= Vector(-110,-100,-48)
+	self.HP[1]["Type"]	= { "ArwingPodLeft"--[[,"Small"]] }
+	self.HP[1]["Pos"]	= Vector(-118,50,25)
+	self.HP[1]["Angle"]	= Angle(0,0,-90)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
-	self.HP[2]["Type"]	= { "ArwingPodLeft" }
-	self.HP[2]["Pos"]	= Vector(110,-100,-48)
+	self.HP[2]["Type"]	= { "ArwingPodRight"--[[,"Small"]] }
+	self.HP[2]["Pos"]	= Vector(-118,-50,25)
+	self.HP[2]["Angle"]	= Angle(0,0,90)
 	
 end
 
