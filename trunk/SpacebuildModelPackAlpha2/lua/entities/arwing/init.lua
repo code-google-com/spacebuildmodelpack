@@ -30,6 +30,8 @@ function ENT:Initialize()
 	self.Active = false
 	self.Skewed = true
 	self.HSpeed = 0
+	self.TSAInc			= 3 -- The speed fighters start to turn at
+	self.TSADec			= 3 -- the speed fighters stop turning at
 	
 	self.HPC			= 2
 	self.HP				= {}

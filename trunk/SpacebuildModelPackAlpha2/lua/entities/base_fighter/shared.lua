@@ -9,8 +9,6 @@ ENT.AdminSpawnable	= false
 ENT.Owner			= nil
 ENT.CPL				= nil
 
-
-
 ENT.EPrs			= false
 ENT.LTog			= false
 ENT.MTog			= false
@@ -30,3 +28,8 @@ ENT.DecelMax		= 10
 ENT.MinSpeed		= 40
 ENT.MaxSpeed		= 2000
 ENT.DragRate		= 0.75
+ENT.TSAInc			= 3
+ENT.TSADec			= 3
+ENT.CPSpeed			= 0
+ENT.CYSpeed			= 0
+ENT.CRSpeed			= 0

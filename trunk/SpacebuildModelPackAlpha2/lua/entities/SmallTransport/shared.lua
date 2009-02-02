@@ -1,5 +1,5 @@
 ENT.Type 			= "anim"
-ENT.Base 			= "base_transport"
+ENT.Base 			= "base_fighter"
 ENT.PrintName		= "Small Transport"
 ENT.Author			= "Paradukes + SlyFo + fishface60"
 ENT.Category		= "SBEP-Fighters"

@@ -2,7 +2,8 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
-util.PrecacheSound( "SB/SteamEngine.wav" )
+util.PrecacheSound( "k_lab.ambient_powergenerators" )
+util.PrecacheSound( "ambient/machines/thumper_startup1.wav" )
 
 local function GetJBool(self,sVal)
 	if not joystick then return false end
@@ -27,37 +28,104 @@ function ENT:Think()
 	if self.Pod and self.Pod:IsValid() then
 		self.CPL = self.Pod:GetPassenger()
 		if (self.CPL && self.CPL:IsValid()) then
+			---------------------------------------- Pilot tracing ----------------------------------------
+			-- this stuff is used when you attach any weapons that use the pilot's view coordinates, like the missile pods
 			local trace = {}
 			trace.start = self.CPL:GetShootPos()
 			trace.endpos = self.CPL:GetShootPos() + self.CPL:GetAimVector() * 10000
 			trace.filter = self.Pod
 			self.Pod.Trace = util.TraceLine( trace )
 			self.Active = true
+			
+			---------------------------------------- Key Pitching ----------------------------------------
 			if (self.CPL:KeyDown( IN_FORWARD )) then
 				if self.MCC then
 					self.VSpeed = self.StrafeSpeed
 				else
-					self.Pitch = self.TSpeed
+					if self.CPSpeed < self.TSpeed then
+						if self.CPSpeed < 0 then -- Adding in the gradual turns everyone's been nagging me for...
+							self.CPSpeed = self.CPSpeed + (self.TSAInc + self.TSADec)
+						else
+							self.CPSpeed = self.CPSpeed + self.TSAInc
+						end
+					end
+					self.Pitch = self.CPSpeed
 				end
 			elseif (self.CPL:KeyDown( IN_BACK )) then
 				if self.MCC then
 					self.VSpeed = -self.StrafeSpeed
 				else
-					self.Pitch = -self.TSpeed
+					if self.CPSpeed > -self.TSpeed then
+						if self.CPSpeed > 0 then
+							self.CPSpeed = self.CPSpeed - (self.TSAInc + self.TSADec)
+						else
+							self.CPSpeed = self.CPSpeed - self.TSAInc
+						end
+					end
+					self.Pitch = self.CPSpeed
 				end
 			else
-				self.Pitch = 0
+				if self.CPSpeed > -self.TSADec && self.CPSpeed < self.TSADec then
+					self.CPSpeed = 0
+				elseif self.CPSpeed < 0 then
+					self.CPSpeed = self.CPSpeed + self.TSADec
+				elseif self.CPSpeed > 0 then
+					self.CPSpeed = self.CPSpeed - self.TSADec
+				end
+				self.Pitch = self.CPSpeed
 				self.VSpeed = 0
 			end
+			
+			
+			---------------------------------------- Key Yawing ----------------------------------------
+			-- Technically, there's currently no way to yaw with the keys, mostly because I haven't found any 
+			-- bindings that are appropriate. However, this section still needs to exist to prevent uncontrolled 
+			-- yawing that sometimes happens when switching from mouse to keyboard control.
+			if self.CYSpeed > -self.TSADec && self.CYSpeed < self.TSADec then
+				self.CYSpeed = 0
+			elseif self.CYSpeed < 0 then
+				self.CYSpeed = self.CYSpeed + self.TSADec
+			elseif self.CYSpeed > 0 then
+				self.CYSpeed = self.CYSpeed - self.TSADec
+			end
+			self.Yaw = self.CYSpeed
+			
+			
 	
+			---------------------------------------- Key Rolling ----------------------------------------
 			if (self.CPL:KeyDown( IN_MOVERIGHT )) then
-				self.Roll = self.TSpeed
+				if self.CRSpeed < self.TSpeed then
+					if self.CRSpeed < 0 then
+						self.CRSpeed = self.CRSpeed + (self.TSAInc + self.TSADec)
+					else
+						self.CRSpeed = self.CRSpeed + self.TSAInc
+					end
+				end
+				self.Roll = self.CRSpeed
 			elseif (self.CPL:KeyDown( IN_MOVELEFT )) then
-				self.Roll = -self.TSpeed
+				if self.CRSpeed > -self.TSpeed then
+					if self.CRSpeed > 0 then
+						self.CRSpeed = self.CRSpeed - (self.TSAInc + self.TSADec)
+					else
+						self.CRSpeed = self.CRSpeed - self.TSAInc
+					end
+					self.Roll = self.CRSpeed
+				end
 			else
-				self.Roll = 0
+				if self.CRSpeed > -self.TSADec && self.CRSpeed < self.TSADec then
+					self.CRSpeed = 0
+				elseif self.CRSpeed < 0 then
+					self.CRSpeed = self.CRSpeed + self.TSADec
+				elseif self.CRSpeed > 0 then
+					self.CRSpeed = self.CRSpeed - self.TSADec
+				end
+				self.Roll = self.CRSpeed
 			end
 	
+			--print(self.CPSpeed..", "..self.CRSpeed..", "..self.CYSpeed)
+			
+			
+			---------------------------------------- Key Acceleration ----------------------------------------
 			if (self.CPL:KeyDown( IN_SPEED )) then
 				self.Speed = math.Clamp(self.Speed + self.AccelMax, -self.MinSpeed, self.MaxSpeed)
 			elseif (self.CPL:KeyDown( IN_WALK )) then
@@ -65,6 +133,8 @@ function ENT:Think()
 			end
 			--self.TSpeed = math.Clamp(self.Speed / 10, 20, 200)
 			
+			
+			---------------------------------------- Mouse Toggle ----------------------------------------
 			if (self.CPL:KeyDown( IN_RELOAD )) then
 				if !self.MTog then
 					if self.MCC then
@@ -80,6 +150,8 @@ function ENT:Think()
 				self.MTog = false
 			end
 			
+			
+			---------------------------------------- Activation ----------------------------------------
 			if (self.CPL:KeyDown( IN_JUMP ) || GetJBool(self,"launch")) then
 				if !self.LTog then
 					if self.Launchy then
@@ -97,6 +169,7 @@ function ENT:Think()
 			end
 			
 			
+			---------------------------------------- Joystick Code ----------------------------------------
 			if (GetJBool(self,"strafe_up")) then
 				self.VSpeed = self.StrafeSpeed
 			elseif (GetJBool(self,"strafe_down")) then
@@ -145,6 +218,8 @@ function ENT:Think()
 			local nRoll = GetJNum(self,sRoll,self.TSpeed,self.TSpeed)
 			if nRoll then self.Roll = nRoll end
 			
+			
+			---------------------------------------- Primary Attack ----------------------------------------
 			if ( self.CPL:KeyDown( IN_ATTACK ) || GetJBool(self,"fire1") ) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i )
@@ -160,6 +235,8 @@ function ENT:Think()
 				end
 			end
 			
+			
+			---------------------------------------- Secondary Attack ----------------------------------------
 			if (self.CPL:KeyDown( IN_ATTACK2 ) || GetJBool(self,"fire2")	) then
 				for i = 1, self.HPC do
 					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
@@ -173,6 +250,8 @@ function ENT:Think()
 				end
 			end
 			
+			
+			---------------------------------------- Mouse Control ----------------------------------------
 			if self.MCC then
 				local PRel = self.Pod:GetPos() + self.CPL:GetAimVector() * 100
 				
@@ -226,6 +305,9 @@ function ENT:Think()
 			self.Roll = 0
 			self.Pitch = 0
 			self.Pod.Trace = nil
+			self.CPSpeed = 0
+			self.CYSpeed = 0
+			self.CRSpeed = 0
 		end
 	else
 		self.Entity:Remove()
