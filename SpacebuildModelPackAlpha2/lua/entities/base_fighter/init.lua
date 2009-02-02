@@ -221,15 +221,17 @@ function ENT:Think()
 			
 			---------------------------------------- Primary Attack ----------------------------------------
 			if ( self.CPL:KeyDown( IN_ATTACK ) || GetJBool(self,"fire1") ) then
-				for i = 1, self.HPC do
-					local HPC = self.CPL:GetInfo( "SBHP_"..i )
-					--print(HPC)
-					--print(string.byte(HPC))
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
-						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
-							self.HP[i]["Ent"].Cont:HPFire()
-						else
-							self.HP[i]["Ent"].Entity:HPFire()
+				if self.HPC && self.HPC > 0 then
+					for i = 1, self.HPC do
+						local HPC = self.CPL:GetInfo( "SBHP_"..i )
+						--print(HPC)
+						--print(string.byte(HPC))
+						if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
+							if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+								self.HP[i]["Ent"].Cont:HPFire()
+							else
+								self.HP[i]["Ent"].Entity:HPFire()
+							end
 						end
 					end
 				end
@@ -238,13 +240,15 @@ function ENT:Think()
 			
 			---------------------------------------- Secondary Attack ----------------------------------------
 			if (self.CPL:KeyDown( IN_ATTACK2 ) || GetJBool(self,"fire2")	) then
-				for i = 1, self.HPC do
-					local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
-					if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
-						if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
-							self.HP[i]["Ent"].Cont:HPFire()
-						else
-							self.HP[i]["Ent"].Entity:HPFire()
+				if self.HPC && self.HPC > 0 then
+					for i = 1, self.HPC do
+						local HPC = self.CPL:GetInfo( "SBHP_"..i.."a" )
+						if self.HP[i]["Ent"] && self.HP[i]["Ent"]:IsValid() && (string.byte(HPC) == 49) then
+							if self.HP[i]["Ent"].Cont && self.HP[i]["Ent"].Cont:IsValid() then
+								self.HP[i]["Ent"].Cont:HPFire()
+							else
+								self.HP[i]["Ent"].Entity:HPFire()
+							end
 						end
 					end
 				end
