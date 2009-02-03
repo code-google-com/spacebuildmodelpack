@@ -76,6 +76,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	ent2.Pod = ent2
 	--Constrain so they get duped together
 	constraint.NoCollide( ent, ent2, 0, 0 )
 	
@@ -380,6 +381,7 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		if (!self.Pod.Pod) then
 			self.Pod.Pod = ents.GetByIndex(info.Pod2)
 		end
+		self.Pod.Pod.Pod = self.Pod
 		self.Pod.Cont = self.Entity
 		self.Pod.SPL = ply
 		self.Pod:SetNetworkedInt( "HPC", ent.HPC )

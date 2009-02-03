@@ -97,7 +97,8 @@ end
 
 function ENT:Touch( ent )
 	--if the entity is a valid vehicle on the fighter table and isn't launched
-	if ( ent:IsValid() && ent:IsVehicle() && self.Entity:IsInBoth(ent) && (ent.Cont != nil) && !ent.Cont.Launchy ) then
+	if ( ent:IsValid() && self.Entity:IsInBoth(ent) && (ent.Cont != nil) && (ent:IsVehicle() && !ent.Cont.Launchy && !ent.Cont.EMount
+		or ent.EMount && !ent.Launchy)) then
 		local fighter = string.lower(ent.Cont:GetName())
 		local index,dock = self.Entity:findNearestDock(ent,fighter)
 		if (!dock) then return end
@@ -115,16 +116,16 @@ function ENT:Touch( ent )
 				ent.ExitPoint = dock.EP
 				dock.EP.Vec = ent
 			end
-			if (dock.ship:GetPassenger():IsPlayer()) then
+			local pilot = dock.ship.Pod:GetPassenger()
+			if (pilot:IsPlayer()) then
 				if (dock.pexit && !ent.ExitPoint) then
-					local pilot = dock.ship:GetPassenger()
 					--local colgroup = pilot:GetCollisionGroup()
 					--pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
 					pilot:ExitVehicle()
 					pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
 					--pilot:SetCollisionGroup( colgroup )
 				elseif ent.ExitPoint then
-					dock.ship:GetPassenger():ExitVehicle()
+					pilot:ExitVehicle()
 				end
 			end
 			Wire_TriggerOutput(self.Entity, "Ship "..tostring(index), ent.Cont:GetName())

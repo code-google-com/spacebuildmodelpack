@@ -7,7 +7,7 @@ include( 'shared.lua' )
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/emount3_milcock6.mdl" ) 
-	self.Entity:SetName("Fighter6")
+	self.Entity:SetName("SPIKE")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -78,7 +78,7 @@ function ENT:SpawnFunction( ply, tr )
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
 	ent2:SetModel( "models/Spacebuild/milcock6a.mdl" ) 
 	ent2:SetPos( ent:LocalToWorld(Vector(-96,0,14)) )
-	ent2:SetAngles( ent:LocalToWorldAngles( self.AngOff ) )
+	ent2:SetAngles( ent:LocalToWorldAngles( Angle(0,180,0) ) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
 	--ent2.HasHardpoints = true
@@ -103,6 +103,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	ent2.Pod = ent2
 	
 	ent2.ExitPoint = ent
 	

@@ -379,6 +379,7 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		ent2:SetTable(TB)
 		ent2.SPL = ply
 		ent2:SetNetworkedInt( "HPC", ent.HPC )
+		ent2.Pod = ent2
 	end
 	self.SPL = ply
 	if (info.guns) then

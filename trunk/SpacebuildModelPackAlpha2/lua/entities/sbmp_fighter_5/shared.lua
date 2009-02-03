@@ -1,6 +1,6 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_fighter"
-ENT.PrintName		= "Fighter 5"
+ENT.PrintName		= "DAGGER"
 ENT.Author			= "Paradukes + GlenSkunk + fishface60"
 ENT.Category		= "SBEP-Fighters"
 
