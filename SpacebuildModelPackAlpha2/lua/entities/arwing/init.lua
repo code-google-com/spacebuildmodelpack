@@ -80,6 +80,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	ent2.Pod = ent2
 	--Constrain so they get duped together
 	constraint.NoCollide( ent, ent2, 0, 0 )
 	

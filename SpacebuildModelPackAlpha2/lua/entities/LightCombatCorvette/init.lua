@@ -7,7 +7,7 @@ util.PrecacheSound( "SB/SteamEngine.wav" )
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
-	self.Entity:SetName("LightCombatCorvette")
+	self.Entity:SetName("KNIFE")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -76,6 +76,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	ent2.Pod = ent2
 	--Constrain so they get duped together
 	constraint.NoCollide( ent, ent2, 0, 0 )
 	
