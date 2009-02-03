@@ -118,11 +118,11 @@ function ENT:Touch( ent )
 			if (dock.ship:GetPassenger():IsPlayer()) then
 				if (dock.pexit && !ent.ExitPoint) then
 					local pilot = dock.ship:GetPassenger()
-					local colgroup = pilot:GetCollisionGroup()
-					pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
+					--local colgroup = pilot:GetCollisionGroup()
+					--pilot:SetCollisionGroup( COLLISION_GROUP_NONE )
 					pilot:ExitVehicle()
 					pilot:SetPos( self.Entity:LocalToWorld(dock.pexit) )
-					pilot:SetCollisionGroup( colgroup )
+					--pilot:SetCollisionGroup( colgroup )
 				elseif ent.ExitPoint then
 					dock.ship:GetPassenger():ExitVehicle()
 				end
