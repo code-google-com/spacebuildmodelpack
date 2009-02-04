@@ -7,7 +7,7 @@ include( 'shared.lua' )
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Slyfo/shuttle.mdl" ) 
-	self.Entity:SetName("Drone")
+	self.Entity:SetName("Shuttle")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -25,11 +25,12 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	self.EMount = true
+	self.Cont = self.Entity
 	
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.PMult = 1
@@ -77,6 +78,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
+	ent2.Pod = ent2
 	
 	ent2.ExitPoint = ent
 	
