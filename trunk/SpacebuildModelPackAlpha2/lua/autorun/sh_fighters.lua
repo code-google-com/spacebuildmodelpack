@@ -28,6 +28,7 @@ list.Set("sbepfighters","knife",			{VecOff=Vector(-75,0,15), 	AngOff=Angle(0,0,0
 list.Set("sbepfighters","sawblade",			{VecOff=Vector(-96,0,0), 	AngOff=Angle(0,0,0), Docklist=small})
 list.Set("sbepfighters","arwing",			{VecOff=Vector(0,0,40), 	AngOff=Angle(0,0,0), Docklist=small})
 list.Set("sbepfighters","clunker",			{VecOff=Vector(0,0,60), 	AngOff=Angle(0,0,0), Docklist=small})
+list.Set("sbepfighters","shuttle",			{VecOff=Vector(0,0,0),	 	AngOff=Angle(0,0,0), Docklist=small})
 list.Set("sbepfighters","assaultpodc",		{VecOff=Vector(0,0,0),		AngOff=Angle(0,0,0), Docklist=tiny})
 list.Set("sbepfighters","dagger",			{VecOff=Vector(23,0,0),		AngOff=Angle(0,0,0), Docklist=tiny})
 list.Set("sbepfighters","dart",				{VecOff=Vector(16,0,0),		AngOff=Angle(0,0,0), Docklist=tiny})
