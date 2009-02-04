@@ -157,6 +157,7 @@ function ENT:WLink( Cont, Pod )
 			self.Pod = Pod
 			self.Cont = Cont
 			self.Side = Cont.Wh[i]["Side"]
+			self.Mounted = true
 			return
 		end
 	end

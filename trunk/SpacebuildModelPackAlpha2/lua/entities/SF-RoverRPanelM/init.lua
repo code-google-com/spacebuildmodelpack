@@ -30,8 +30,9 @@ function ENT:Initialize()
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= "Tiny"
-	self.HP[1]["Pos"]	= Vector(-6,6,-2)
+	self.HP[1]["Type"]	= {"Tiny","Small"}
+	self.HP[1]["Pos"]	= Vector(-6,-6,-2)
+	self.HP[1]["Angle"] = Angle(0,0,90)
 	
 	self.Cont = self.Entity
 end

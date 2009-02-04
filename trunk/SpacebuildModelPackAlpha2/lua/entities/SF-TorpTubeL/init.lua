@@ -1,6 +1,5 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-include('entities/base_wire_entity/init.lua')
 include( 'shared.lua' )
 
 function ENT:Initialize()
@@ -44,22 +43,11 @@ end
 
 function ENT:TriggerInput(iname, value)		
 	
-	if (iname == "Fire") then
-		if (value > 0) then
-			if self.Torp && self.Torp:IsValid() then
-				self.Torp:Arm()
-				self.Torp:SetParent()
-				self.Torp.PFire2 = true
-				if self.BWeld && self.BWeld:IsValid() then self.BWeld:Remove() end
-				self.Torp:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * -102 + self.Entity:GetUp() * 63 + self.Entity:GetForward() * -200 )
-				self.Torp.PhysObj:EnableCollisions(true)
-				self.Torp.PhysObj:EnableGravity(false)
-				self.Torp = nil
-			end
-		end
+	if (iname == "Fire") and (value > 0) then
+		self.Entity:HPFire()
 		
 	elseif (iname == "Reload") then	
-		if (value > 0) && !self.Loading then
+		if (value > 0) then
 			self.LTime = CurTime() + 15
 			self.Loading = true
 		end
@@ -109,10 +97,51 @@ function ENT:Touch( ent )
 				
 		self.Loading = false
 	end
+	if ent.HasHardpoints then
+		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
+		self.Entity:GetPhysicsObject():EnableCollisions(true)
+		self.Entity:SetParent()
+		self.Loading = true
+	end
 end
 
 function ENT:OnRemove()
 	if self.Torp && self.Torp:IsValid() then
 		self.Torp:Remove()
+	end
+end
+
+function ENT:HPFire()
+	if self.Torp && self.Torp:IsValid() then
+		self.Torp:Arm()
+		self.Torp:SetParent()
+		self.Torp.PFire2 = true
+		if self.BWeld && self.BWeld:IsValid() then self.BWeld:Remove() end
+		self.Torp:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * -102 + self.Entity:GetUp() * 63 + self.Entity:GetForward() * -200 )
+		self.Torp.PhysObj:EnableCollisions(true)
+		self.Torp.PhysObj:EnableGravity(false)
+		self.Torp = nil
+	end
+	if not self.Loading then
+		self.LTime = CurTime() + 15
+		self.Loading = true
+	end
+end
+
+function ENT:BuildDupeInfo()
+	local info = self.BaseClass.BuildDupeInfo(self) or {}
+	if (self.Torp) and (self.Torp:IsValid()) then
+	    info.Torp = self.Torp:EntIndex()
+	end
+	return info
+end
+
+function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
+	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
+	if (info.Torp) then
+		self.Torp = GetEntByID(info.Torp)
+		if (!self.Torp) then
+			self.Torp = ents.GetByIndex(info.Torp)
+		end
 	end
 end

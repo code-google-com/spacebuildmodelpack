@@ -35,11 +35,11 @@ function ENT:Initialize()
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= "RRightPanel"
+	self.HP[1]["Type"]	= "RLeftPanel"
 	self.HP[1]["Pos"]	= Vector(-29,33,63)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
-	self.HP[2]["Type"]	= "RLeftPanel"
+	self.HP[2]["Type"]	= "RRightPanel"
 	self.HP[2]["Pos"]	= Vector(29,33,63)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil

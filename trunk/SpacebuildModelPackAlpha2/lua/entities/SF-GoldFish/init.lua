@@ -99,10 +99,12 @@ function ENT:Splode()
 		cbt_hcgexplode( self.Entity:GetPos(), 9000, math.random(10000,25000), 8)
 		
 		local nuke = ents.Create("sent_nuke")
-		nuke:SetPos( self.Entity:GetPos() )
-		nuke:SetOwner( self.Entity:GetOwner() )
-		nuke:Spawn()
-		nuke:Activate()
+		if nuke then
+			nuke:SetPos( self.Entity:GetPos() )
+			nuke:SetOwner( self.Entity:GetOwner() )
+			nuke:Spawn()
+			nuke:Activate()
+		end
 		
 		local ShakeIt = ents.Create( "env_shake" )
 		ShakeIt:SetName("Shaker")
