@@ -31,6 +31,7 @@ hook.Add("SetupMove", "SBEPControls", SBEPCCC)
 --This is all the hardpointing stuff
 function HPLink( cont, pod, weap )
 	if weap.Mounted then return false end
+	if !cont.HPC then return false end
 	for i = 1, cont.HPC do
 		if !cont.HP[i]["Ent"] || !cont.HP[i]["Ent"]:IsValid() then
 			local TypeMatch = false
