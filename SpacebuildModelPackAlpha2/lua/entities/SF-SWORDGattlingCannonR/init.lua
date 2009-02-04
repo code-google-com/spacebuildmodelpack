@@ -65,13 +65,13 @@ function ENT:Think()
 	
 	if (self.Active == true || self.FTime > CurTime() ) then	
 	
-		local vStart = self.Entity:GetPos()-- + (self.Entity:GetForward() * 20) + (self.Entity:GetUp() * BUp) + (self.Entity:GetRight() * BRi)
+		local vStart = self.Entity:LocalToWorld(Vector(150,0,40))-- + (self.Entity:GetForward() * 20) + (self.Entity:GetUp() * BUp) + (self.Entity:GetRight() * BRi)
 		local vForward = self.Entity:GetForward()
 		
 		local Bullet = {}
 		Bullet.Num = 1
-		Bullet.Src = self.Entity:GetPos() + (self.Entity:GetForward() * 200)
-		Bullet.Dir = self.Entity:GetForward() --Position * -1
+		Bullet.Src = self.Entity:LocalToWorld(Vector(150,0,40))
+		Bullet.Dir = self.Entity:GetForward()
 		Bullet.Spread = Vector( 0.06, 0.06, 0.06 )
 		Bullet.Tracer = 1
 		Bullet.Force = 10

@@ -28,19 +28,21 @@ function ENT:Initialize()
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.HPC			= 2
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= {"Medium", "Large"}
-	self.HP[1]["Pos"]	= Vector(-85,-5,50)
+	self.HP[1]["Type"]	= {"Small","Medium", "Large"}
+	self.HP[1]["Pos"]	= Vector(-82,-66,14)
+	self.HP[1]["Angle"] = Angle(0,0,90)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
-	self.HP[2]["Type"]	= {"Medium", "Large"}
-	self.HP[2]["Pos"]	= Vector(85,-5,50)
+	self.HP[2]["Type"]	= {"Small","Medium", "Large"}
+	self.HP[2]["Pos"]	= Vector(-82,66,14)
+	self.HP[2]["Angle"] = Angle(0,0,270)
 	
 end
 

@@ -341,11 +341,18 @@ function ENT:OnRemove()
 	end
 end
 
---[[function ENT:Use( activator, caller )
+function ENT:Use( activator, caller )
+	if self.DisableUse then return end
 	if ( activator:IsPlayer() ) then
-		activator:EnterVehicle( self.Pod )
+		if activator == self.Pod:GetPassenger() then
+			activator:ExitVehicle( self.Pod )
+		else
+			activator:EnterVehicle( self.Pod )
+		end
 	end
-end]]
+	self.DisableUse = true
+	timer.Simple(3,function(self) self.DisableUse = false end,self)
+end
 
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BaseClass.BuildDupeInfo(self) or {}
@@ -353,11 +360,9 @@ function ENT:BuildDupeInfo()
 	    info.Pod = self.Pod:EntIndex()
 	end
 	info.guns = {}
-	if self.HP then
-		for k,v in pairs(self.HP) do
-			if (v["Ent"]) and (v["Ent"]:IsValid()) then
-				info.guns[k] = v["Ent"]:EntIndex()
-			end
+	for k,v in pairs(self.HP) do
+		if (v["Ent"]) and (v["Ent"]:IsValid()) then
+			info.guns[k] = v["Ent"]:EntIndex()
 		end
 	end
 	return info

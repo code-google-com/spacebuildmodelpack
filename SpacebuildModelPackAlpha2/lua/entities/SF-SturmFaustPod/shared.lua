@@ -9,4 +9,5 @@ ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
 ENT.HPType			= { "Tiny", "Small" }
-ENT.APPos			= Vector(-10,0,0)
+ENT.APPos			= Vector(4.5,0,7.5)
+ENT.APAng			= Angle(0,0,180)

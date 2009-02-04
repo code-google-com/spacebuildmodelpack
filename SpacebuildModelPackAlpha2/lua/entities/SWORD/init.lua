@@ -28,33 +28,36 @@ function ENT:Initialize()
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
-	self.Skewed = true
+	--self.Skewed = true
 	self.HSpeed = 0
 	
 	self.HPC			= 5
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
-	self.HP[1]["Type"]	= { "Large", "Medium" }
-	self.HP[1]["Pos"]	= Vector(-140,-60,35)
+	self.HP[1]["Type"]	= { "GatRight","Large", "Medium" }
+	self.HP[1]["Pos"]	= Vector(-60,-140,30)
+	self.HP[1]["Angle"] = Angle(0,0,180)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
-	self.HP[2]["Type"]	= { "Large", "Medium" }
-	self.HP[2]["Pos"]	= Vector(140,-60,35)
+	self.HP[2]["Type"]	= { "GatLeft","Large", "Medium" }
+	self.HP[2]["Pos"]	= Vector(-60,140,30)
+	self.HP[2]["Angle"] = Angle(0,0,180)
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
-	self.HP[3]["Type"]	= { "Medium", "Heavy", "Vehicle" }
-	self.HP[3]["Pos"]	= Vector(0,130,25)
+	self.HP[3]["Type"]	= { "GatMid","Medium", "Heavy", "Vehicle" }
+	self.HP[3]["Pos"]	= Vector(130,0,25)
+	self.HP[3]["Angle"] = Angle(0,0,180)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil
 	self.HP[4]["Type"]	= { "Small", "Tiny" }
-	self.HP[4]["Pos"]	= Vector(50,215,40)
-	self.HP[4]["Angle"]	= Angle(-90,0,0)
+	self.HP[4]["Pos"]	= Vector(215,-30,40)
+	self.HP[4]["Angle"]	= Angle(0,0,90)
 	self.HP[5]			= {}
 	self.HP[5]["Ent"]	= nil
 	self.HP[5]["Type"]	= { "Small", "Tiny" }
-	self.HP[5]["Pos"]	= Vector(-50,215,40)
-	self.HP[5]["Angle"]	= Angle(90,0,0)
+	self.HP[5]["Pos"]	= Vector(215,30,40)
+	self.HP[5]["Angle"]	= Angle(0,0,270)
 	
 end
 

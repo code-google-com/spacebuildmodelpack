@@ -9,7 +9,8 @@ ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Large"
-ENT.APPos			= Vector(-100,100,-30)
+ENT.APPos			= Vector(0,100,-20)
+ENT.APAng			= Angle(0,0,180)
 ENT.BigTorp			= true
 
 function ENT:SetArmed( val )
