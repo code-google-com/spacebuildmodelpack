@@ -1,11 +1,11 @@
 "AddonInfo"
 {
-	"name"		"SpaceBuild ModelPack Alpha B"
+	"name"		"SpaceBuild ModelPack Alpha C"
 	"version"	"1.5b"
 	"up_date"	"16th October 2007"
-	"author_name"	"PJB, Cheesman55, Firgof Umbra, Squad08, Omni, SnakeSVx, votekick"
+	"author_name"	"PJB, Cheesman55, Firgof Umbra, Squad08, Omni, SnakeSVx, votekick, syflo, paradukes, fishface"
 	"author_email"	"pokejoyboy@aol.com"
-	"author_url"	"www.pjb.i8.com"
+	"author_url"	"pjb.no-ip.org"
 	"info"		"Spacebuild Model Pack"
 
 	//
