@@ -8,3 +8,6 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.CPL				= nil
+ENT.OffsetOut		= 1000
+
+
