@@ -76,6 +76,12 @@ function ENT:SpawnFunction( ply, tr )
 		
 	constraint.Weld(ent,ent2,0,0,0,true)
 	
+	--Networked so the client knows these values
+	--does it need to be networked? can it just be sent once?
+	ent2:SetNetworkedEntity("Controller",ent)
+	--300 is how far out we want to see
+	ent2:SetNetworkedInt("OffsetOut",self.OffsetOut)
+	
 	ent.Pod = ent2
 	ent2.Cont = ent
 	ent2.Pod = ent2

@@ -45,7 +45,7 @@ function ENT:Initialize()
 	self.AccelMax			= 1.25
 	self.DecelMax			= 2.5
 	self.MinSpeed			= 20
-	self.MaxSpeed			= 1000
+	self.MaxSpeed			= 2000
 	self.DragRate			= 0.5
 	self.TSAInc				= 10
 	self.TSADec				= 10
@@ -125,6 +125,12 @@ function ENT:SpawnFunction( ply, tr )
 	end
 	
 	constraint.Weld(ent,ent2,0,0,0,true)
+	
+	--Networked so the client knows these values
+	--does it need to be networked? can it just be sent once?
+	ent2:SetNetworkedEntity("Controller",ent)
+	--1000 is how far out we want to see
+	ent2:SetNetworkedInt("OffsetOut",self.OffsetOut)
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
