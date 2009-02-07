@@ -63,53 +63,52 @@ end
 
 function ENT:Think()
 	
-	if (self.Active == true) then	
-	
-		local vStart = self.Entity:GetPos()-- + (self.Entity:GetForward() * 20) + (self.Entity:GetUp() * BUp) + (self.Entity:GetRight() * BRi)
-		local vForward = self.Entity:GetForward()
-		
-		local Bullet = {}
-		Bullet.Num = 1
-		Bullet.Src = self.Entity:GetPos() + (self.Entity:GetForward() * 200)
-		Bullet.Dir = self.Entity:GetForward() --Position * -1
-		Bullet.Spread = Vector( 0.06, 0.06, 0.06 )
-		Bullet.Tracer = 1
-		Bullet.Force = 10
-		Bullet.TracerName = "Tracer"
-		Bullet.Attacker = self.SPL
-		Bullet.Damage = 50
-		Bullet.Callback = function (attacker, tr, dmginfo)
-			if (tr.Entity and tr.Entity:IsValid()) then
-				local  gdmg = math.random(10,20)
-				attack = cbt_dealdevhit(tr.Entity, gdmg, 5)
-				if (attack != nil) then
-					if (attack == 2) then
-						local wreck = ents.Create( "wreckedstuff" )
-						wreck:SetModel( tr.Entity:GetModel() )
-						wreck:SetAngles( tr.Entity:GetAngles() )
-						wreck:SetPos( tr.Entity:GetPos() )
-						wreck:Spawn()
-						wreck:Activate()
-						tr.Entity:Remove()
-						local effectdata1 = EffectData()
-						effectdata1:SetOrigin(tr.Entity:GetPos())
-						effectdata1:SetStart(tr.Entity:GetPos())
-						effectdata1:SetScale( 10 )
-						effectdata1:SetRadius( 100 )
-						util.Effect( "Explosion", effectdata1 )
-					end
-				end
-			end
-		end
-			
-				
-		self.Entity:FireBullets(Bullet)
-				
-		self.Entity:EmitSound("SB/Gattling2.wav", 400)
-		
+	if (self.Active == true) then
+		self.Entity:HPFire()
 	end
 	self.Entity:NextThink( CurTime() + 0.05 )
 	return true
+end
+
+function ENT:HPFire()
+	local vStart = self.Entity:GetPos()-- + (self.Entity:GetForward() * 20) + (self.Entity:GetUp() * BUp) + (self.Entity:GetRight() * BRi)
+	local vForward = self.Entity:GetForward()
+	
+	local Bullet = {}
+	Bullet.Num = 1
+	Bullet.Src = self.Entity:GetPos() + (self.Entity:GetForward() * 200)
+	Bullet.Dir = self.Entity:GetForward() --Position * -1
+	Bullet.Spread = Vector( 0.06, 0.06, 0.06 )
+	Bullet.Tracer = 1
+	Bullet.Force = 10
+	Bullet.TracerName = "Tracer"
+	Bullet.Attacker = self.SPL
+	Bullet.Damage = 50
+	Bullet.Callback = function (attacker, tr, dmginfo)
+		if (tr.Entity and tr.Entity:IsValid()) then
+			local  gdmg = math.random(10,20)
+			attack = cbt_dealdevhit(tr.Entity, gdmg, 5)
+			if (attack != nil) then
+				if (attack == 2) then
+					local wreck = ents.Create( "wreckedstuff" )
+					wreck:SetModel( tr.Entity:GetModel() )
+					wreck:SetAngles( tr.Entity:GetAngles() )
+					wreck:SetPos( tr.Entity:GetPos() )
+					wreck:Spawn()
+					wreck:Activate()
+					tr.Entity:Remove()
+					local effectdata1 = EffectData()
+					effectdata1:SetOrigin(tr.Entity:GetPos())
+					effectdata1:SetStart(tr.Entity:GetPos())
+					effectdata1:SetScale( 10 )
+					effectdata1:SetRadius( 100 )
+					util.Effect( "Explosion", effectdata1 )
+				end
+			end
+		end
+	end
+	self.Entity:FireBullets(Bullet)
+	self.Entity:EmitSound("SB/Gattling2.wav", 400)
 end
 
 function ENT:PhysicsCollide( data, physobj )
@@ -122,4 +121,10 @@ end
 
 function ENT:Use( activator, caller )
 
+end
+
+function ENT:Touch( ent )
+	if ent.HasHardpoints then
+		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
+	end
 end
