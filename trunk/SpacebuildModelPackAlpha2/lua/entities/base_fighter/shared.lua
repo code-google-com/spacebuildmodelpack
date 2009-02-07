@@ -33,3 +33,5 @@ ENT.TSADec			= 3
 ENT.CPSpeed			= 0
 ENT.CYSpeed			= 0
 ENT.CRSpeed			= 0
+
+ENT.OffsetOut		= 100
