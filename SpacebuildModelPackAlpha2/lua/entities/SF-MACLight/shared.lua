@@ -15,6 +15,10 @@ ENT.Charging		= false
 ENT.SmTime			= 0
 ENT.SpTime			= 0
 
+ENT.HPType			= "Huge"
+ENT.APPos			= Vector(275,0,50)
+ENT.APAng			= Angle(0,0,0)
+
 function ENT:SetBrightness( _in_ )
 	self:SetNetworkedVar( "Brightness", _in_ )
 end
