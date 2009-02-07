@@ -27,8 +27,7 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	self.val1 = 0
-	RD_AddResource(self.Entity, "energy", 0)
-
+	--RD_AddResource(self.Entity, "energy", 0)
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -51,32 +50,7 @@ function ENT:TriggerInput(iname, value)
 	if (iname == "Fire") then
 		if (value > 0) then
 			if (CurTime() >= self.CDown && self.Charge >= 5000) then
-				--if (self.val1 >= 1000) then
-					local NewShell = ents.Create( "SF-MACLightShell" )
-					if ( !NewShell:IsValid() ) then return end
-					NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetForward() * 165) )
-					NewShell:SetAngles( self.Entity:GetAngles() )
-					NewShell.SPL = self.SPL
-					NewShell:Spawn()
-					NewShell:Initialize()
-					NewShell:Activate()
-					local NC = constraint.NoCollide(self.Entity, NewShell, 0, 0)
-					NewShell.PhysObj:SetVelocity(self.Entity:GetForward() * 10000)
-					NewShell:Fire("kill", "", 30)
-					NewShell.ParL = self.Entity
-					self.Charge = 0
-					self.CDown = CurTime() + 10
-					local phys = self.Entity:GetPhysicsObject()  	
-					if (phys:IsValid()) then  		
-						phys:ApplyForceCenter( self.Entity:GetForward() * -10000 ) 
-					end 
-					
-					--local effectdata = EffectData()
-					--effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * 150)
-					--effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * 150)
-					--util.Effect( "Explosion", effectdata )
-					self.Entity:EmitSound("SB/RailgunLight.wav", 500)
-				--end
+				ENT:MACFire()
 			end
 		end
 	elseif (iname == "ChargeCannon") then
@@ -166,4 +140,56 @@ end
 
 function ENT:Use( activator, caller )
 
+end
+
+function ENT:Touch( ent )
+	if ent.HasHardpoints then
+		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
+	end
+end
+
+function ENT:HPFire()
+	if CurTime() >= self.CDown then
+		if not self.Charging then
+			self.Charging = true
+			print("MAC Charging")
+		else
+			self.Charging = false
+			print("MAC not Charging")
+		end
+		if self.Charge >= 5000 then
+			self.Entity:MACFire()
+			print("MAC Firing")
+		end
+		self.CDown = CurTime() + 10
+	end
+end
+
+function ENT:MACFire()
+--if (self.val1 >= 1000) then
+	local NewShell = ents.Create( "SF-MACLightShell" )
+	if ( !NewShell:IsValid() ) then return end
+	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetForward() * 165) )
+	NewShell:SetAngles( self.Entity:GetAngles() )
+	NewShell.SPL = self.SPL
+	NewShell:Spawn()
+	NewShell:Initialize()
+	NewShell:Activate()
+	local NC = constraint.NoCollide(self.Entity, NewShell, 0, 0)
+	NewShell.PhysObj:SetVelocity(self.Entity:GetForward() * 10000)
+	NewShell:Fire("kill", "", 30)
+	NewShell.ParL = self.Entity
+	self.Charge = 0
+	self.CDown = CurTime() + 10
+	local phys = self.Entity:GetPhysicsObject()  	
+	if (phys:IsValid()) then  		
+		phys:ApplyForceCenter( self.Entity:GetForward() * -10000 ) 
+	end 
+	
+	--local effectdata = EffectData()
+	--effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * 150)
+	--effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * 150)
+	--util.Effect( "Explosion", effectdata )
+	self.Entity:EmitSound("SB/RailgunLight.wav", 500)
+--end
 end
