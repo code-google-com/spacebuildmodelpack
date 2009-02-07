@@ -1,0 +1,11 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "organicbridge/blood_and_guts"
+	"$bumpmap"	"organicbridge/blood_and_guts_normal"
+	"$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "100"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .8 1]"
+
+}

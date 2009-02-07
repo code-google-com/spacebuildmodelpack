@@ -1,0 +1,15 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[OrganicBridge]extras"
+	}
+	"Entries"
+	{
+		"1"		"models/organicbridge/heart.mdl"
+		"2"		"models/organicbridge/lung.mdl"
+		"3"		"models/organicbridge/wings1l.mdl"
+		"4"		"models/organicbridge/wings1r.mdl"
+		"5"		"models/organicbridge/claw1.mdl"
+	}

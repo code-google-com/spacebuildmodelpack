@@ -1,0 +1,27 @@
+"VertexlitGeneric"
+{
+
+	"$basetexture" "Models/flesh"
+	"$normalmapalphaenvmapmask" "1"
+                "$bumpmap" "models/flesh_nrm"
+	"$nodecal" "0"
+	"$halflambert" 1
+
+	"$phong" "1" 
+	"$phongboost" "1" 
+	"$phongfresnelranges" "[2 5 10]"
+	"$phongexponent" "100"
+
+	//"$basetexture"	"models/flesh"
+	//"$bumpmap"	"models/flesh"
+	
+	//"$envmap"	"env_cubemap"
+	//"$envmaptint"	 "[0.989, 0.079 0.079]"
+
+	//"$phong"     "1"
+	//"$halflambert"	1
+ 	//"$phongexponent"   "60"
+ 	//"$phongboost"   "1"
+ 	//"$phongfresnelranges"   "[.5 .8 1]"
+
+}

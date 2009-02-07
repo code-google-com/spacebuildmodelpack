@@ -1,0 +1,13 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[OrganicBridge]cockpits, Medium"
+	}
+	"Entries"
+	{
+		"1"		"models/organicbridge/cp1.mdl"
+		"2"		"models/organicbridge/cp2.mdl"
+		"3"		"models/organicbridge/eye_sphere_v.mdl"
+	}

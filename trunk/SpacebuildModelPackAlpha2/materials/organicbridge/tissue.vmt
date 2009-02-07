@@ -1,0 +1,18 @@
+"VertexlitGeneric"
+{
+
+	//"$basetexture" 	"organicbridge/brain"
+	//"$bumpmap"	"organicbridge/brain_normal"
+	
+	"$basetexture" 	"organicbridge/blood_and_guts"
+	"$bumpmap"	"organicbridge/blood_and_guts_normal"
+
+	//"$basetexture" 	"organicbridge/tissue"
+	//"$bumpmap"	"organicbridge/tissue_normal"
+	"$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "60"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .8 1]"
+
+}

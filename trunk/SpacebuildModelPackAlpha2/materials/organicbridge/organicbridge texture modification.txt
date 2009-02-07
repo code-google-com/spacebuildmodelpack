@@ -1,0 +1,15 @@
+The texture groups for the organic bridge is as follows:
+
+	{ "bone.vmt", "glow.vmt", "organ1.vmt", "organ2.vmt", "organ3.vmt" }
+	{ "bone.vmt", "glow.vmt", "mutantskin1.vmt", "inside_tex2.vmt", "mutantskin2.vmt" }
+	{ "bone.vmt", "glow.vmt", "monster_green_skin.vmt", "inside_tex3.vmt", "spiral_arms3.vmt" }
+
+
+organ1 = outside main texture
+organ2 = inside main texture
+organ3 = what most of the spiral tentacles are
+glow = white glowy parts on the ends of the tentacles, and on the little lamps in the tubes
+bone = boney parts. (horns, beak)
+
+
+So yeah... you could use several of these textures by just changing the vmt's up.

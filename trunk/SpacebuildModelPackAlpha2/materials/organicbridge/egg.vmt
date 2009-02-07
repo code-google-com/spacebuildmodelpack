@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "organicbridge/egg"
+	"$bumpmap" "organicbridge/egg_nor"
+}

@@ -1,0 +1,25 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[OrganicBridge]External Corridors, Medium"
+	}
+	"Entries"
+	{
+		"1"		"models/organicbridge/05x1_v.mdl"
+		"3"		"models/organicbridge/05x1.mdl"
+		"4"		"models/organicbridge/1x1.mdl"
+		"5"		"models/organicbridge/1x1corner.mdl"
+		"6"		"models/organicbridge/1x1corner_d.mdl"
+		"7"		"models/organicbridge/1x1corner_u.mdl"
+		"8"		"models/organicbridge/1x1cross.mdl"
+		"9"		"models/organicbridge/1x1cross_v.mdl"
+		"10"		"models/organicbridge/1x1t.mdl"
+		"11"		"models/organicbridge/1x1t_md.mdl"
+		"12"		"models/organicbridge/1x1t_mu.mdl"
+		"13"		"models/organicbridge/1x1t_v.mdl"
+		"14"		"models/organicbridge/horntube/1x1_horns.mdl"
+		"15"		"models/organicbridge/1x1_boild.mdl"
+		"16"		"models/organicbridge/2x1.mdl"
+	}
