@@ -69,13 +69,15 @@ function ENT:Think()
 		end
 		--if can't find weld, look for it and if it exists re-reference
 		--necessary for dupe as constraints get added after entities
-		if ( !v.weld || !v.weld:IsValid() ) then
+		if not ( v.weld and v.weld:IsValid() ) then
 			--for all the welds of the ship
 			for l,w in pairs(constraint.FindConstraints( v.ship, "Weld" )) do
 				--if the weld is also constrained to the hangar
 				if (w.Ent1 == self.Entity || w.Ent2 == self.Entity) then
 					--re-reference the weld
 					v.weld = w.Constraint
+				else
+					v.ship = nil
 				end
 			end
 		end
@@ -83,7 +85,9 @@ function ENT:Think()
 		--If the ship is activated
 		if ( v.ship && v.ship.Cont && v.ship.Cont.Launchy ) then
 			--unweld and launch
-			v.weld:Remove()
+			if (v.weld and v.weld:IsValid()) then
+				v.weld:Remove()
+			end
 			v.weld = nil
 			if (v.EP == v.ship.ExitPoint) then
 				v.ship.ExitPoint = nil
