@@ -8,3 +8,6 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
+ENT.HPType			= "Medium"
+ENT.APPos			= Vector(105,0,-46)
+ENT.APAng			= Angle(0,0,180)
