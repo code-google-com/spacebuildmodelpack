@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "organicbridge/natural_blood"
+	"$bumpmap"	"organicbridge/natural_blood_normal"
+	
+	"$envmap"	"env_cubemap"
+	"$envmaptint"	 "[0.989, 0.079 0.079]"
+
+	"$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "60"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .8 1]"
+
+}

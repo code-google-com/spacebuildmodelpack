@@ -1,0 +1,12 @@
+"VertexlitGeneric"
+{
+	"$basetexture" 	"organicbridge/orc_skin"
+	"$bumpmap"	"organicbridge/orc_skin_normal"
+
+	"$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "30"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .5 1]"
+
+}

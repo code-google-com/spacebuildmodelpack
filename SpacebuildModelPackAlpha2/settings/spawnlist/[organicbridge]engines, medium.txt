@@ -1,0 +1,11 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[OrganicBridge]engines, Medium"
+	}
+	"Entries"
+	{
+		"1"		"models/organicbridge/1x1engine_squid.mdl"
+	}
