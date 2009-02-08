@@ -23,7 +23,7 @@ function ENT:Think()
 	elseif LP == 100 then
 		Suff = "Loaded"
 	else
-		Suff = "Loading: "..LP.."%"
+		Suff = "Loading: "..math.floor(LP).."%"
 	end
 	self.WInfo = "Torpedo Tube - "..Suff
 end

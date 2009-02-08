@@ -24,7 +24,7 @@ function ENT:Initialize()
 		phys:EnableCollisions(true)
 	end
 	self.Entity:SetKeyValue("rendercolor", "255 255 255")
-	self.Entity:SetNetworkedInt( "Shots", 8 )
+	self.Entity:SetNetworkedInt( "Shots", 10 )
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	--self.val1 = 0

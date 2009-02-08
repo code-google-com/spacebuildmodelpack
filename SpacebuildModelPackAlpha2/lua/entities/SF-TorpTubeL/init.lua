@@ -74,7 +74,7 @@ function ENT:Think()
 	end
 	local LPercent = 0
 	if self.LTime > CurTime() then
-		local LPercent = ( ( self.ReloadPeriod - ( self.LTime - CurTime() ) ) / self.ReloadPeriod ) * 100
+		LPercent = ( ( self.ReloadPeriod - ( self.LTime - CurTime() ) ) / self.ReloadPeriod ) * 100
 	else
 		LPercent = 0
 	end
