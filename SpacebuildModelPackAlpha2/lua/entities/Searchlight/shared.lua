@@ -9,6 +9,7 @@ ENT.AdminSpawnable	= true
 ENT.TogC			= 0
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(15,0,0)
+ENT.WInfo			= "Searchlight"
 
 function ENT:SetActive( val )
 	self.Entity:SetNetworkedBool("ClActive",val,true)

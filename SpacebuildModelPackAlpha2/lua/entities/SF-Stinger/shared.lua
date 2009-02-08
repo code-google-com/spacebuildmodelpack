@@ -15,3 +15,10 @@ ENT.CDown2			= true
 ENT.CDown2			= 0
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(5,0,10)
+ENT.WInfo			= "Stinger Mortar"
+
+function ENT:ShotsAdd(ShotsAdd)
+	local Shots = self.Entity:GetNetworkedInt("Shots")
+	Shots = Shots + ShotsAdd
+	self.Entity:SetNetworkedInt("Shots",Shots)
+end

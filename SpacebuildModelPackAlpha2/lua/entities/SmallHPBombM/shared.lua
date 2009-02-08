@@ -10,3 +10,4 @@ ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(0,0,15)
+ENT.WInfo			= "Small Bomb"

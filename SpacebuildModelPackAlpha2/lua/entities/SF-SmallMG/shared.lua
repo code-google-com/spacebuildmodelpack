@@ -11,3 +11,4 @@ ENT.SPL				= nil
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(20,0,10)
 ENT.FTime			= 0
+ENT.WInfo			= "Small Machine Gun"

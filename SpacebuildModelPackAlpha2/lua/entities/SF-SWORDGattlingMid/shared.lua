@@ -12,3 +12,4 @@ ENT.HPType			= "GatMid"
 ENT.APPos			= Vector(90,0,-46)
 ENT.APAng			= Angle(0,0,180)
 ENT.FTime			= 0
+ENT.WInfo			= "Middle Gattling"

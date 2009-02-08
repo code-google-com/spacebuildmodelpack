@@ -29,13 +29,20 @@ function ENT:Initialize()
 	self.MineProof = true
 	self.LForce = 0
 	
-	self.CDL = {}
-	self.CDL[1] = 0
-	self.CDL[2] = 0
-	self.CDL[3] = 0
-	self.CDL[4] = 0
-	self.CDL[5] = 0
-	self.CDL[6] = 0
+	self.CDL 		= {}
+	self.CDL[1] 	= 0
+	self.CDL["1r"] 	= true
+	self.CDL[2] 	= 0
+	self.CDL["2r"] 	= true
+	self.CDL[3] 	= 0
+	self.CDL["3r"] 	= true
+	self.CDL[4] 	= 0
+	self.CDL["4r"] 	= true
+	self.CDL[5] 	= 0
+	self.CDL["5r"] 	= true
+	self.CDL[6] 	= 0
+	self.CDL["6r"] 	= true
+	self.Entity:SetNetworkedInt("Shots",6)
 
 
 end
@@ -87,6 +94,7 @@ function ENT:Think()
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
 				self.Entity:EmitSound("Buttons.snd26")
+				self.Entity:ShotsAdd(1)
 			end
 		end
 	end
@@ -119,6 +127,7 @@ function ENT:HPFire()
 		for n = 1, 6 do
 			if (CurTime() >= self.CDL[n]) then
 				self.Entity:FFire(n)
+				self.Entity:ShotsAdd(-1)
 				return
 			end
 		end
@@ -140,6 +149,7 @@ function ENT:FFire( CCD )
 	NewShell.ParL = self.Entity
 	--RD_ConsumeResource(self, "Munitions", 1000)
 	self.CDL[CCD] = CurTime() + 6
+	self.CDL[CCD.."r"] = false
 	self.MCDown = CurTime() + 0.4
 	self.Entity:EmitSound("Buttons.snd24")
 	NewShell:GetPhysicsObject():EnableGravity(false)

@@ -10,3 +10,4 @@ ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Medium"
 ENT.APPos			= Vector(0,0,-20)
+ENT.WInfo			= "Medium Bomb"
