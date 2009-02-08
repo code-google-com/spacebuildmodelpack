@@ -35,7 +35,6 @@ function ENT:Initialize()
 	self.Cont = self.Entity
 	
 	self.Speed = 0
-	self.TSpeed = 90
 	self.Active = false
 	--self.Skewed = true
 	self.HSpeed = 0
@@ -43,10 +42,10 @@ function ENT:Initialize()
 	self.PMult = 1
 	self.YMult = 1
 	self.RMult = 1
-	self.TSpeed				= 90
-	self.StrafeSpeed		= 300
-	self.AccelMax			= 1.25
-	self.DecelMax			= 2.5
+	self.TSpeed				= 15
+	self.StrafeSpeed		= 150
+	self.AccelMax			= 2.5
+	self.DecelMax			= 1.75
 	self.MinSpeed			= 20
 	self.MaxSpeed			= 2000
 	self.DragRate			= 0.5

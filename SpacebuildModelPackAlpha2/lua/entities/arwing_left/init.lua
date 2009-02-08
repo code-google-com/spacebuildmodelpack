@@ -34,6 +34,8 @@ function ENT:Initialize()
 	self.HP[1]["Pos"]	= Vector(0,-50,68)
 	self.HP[1]["Angle"]	= Angle(0,0,180)
 	
+	self.Entity:SetNetworkedInt( "HPC", self.HPC )
+	
 	self.Cont = self.Entity
 end
 
