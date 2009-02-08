@@ -342,7 +342,6 @@ function ENT:OnRemove()
 end
 
 function ENT:Use( activator, caller )
-	if self.DisableUse then return end
 	if ( activator:IsPlayer() ) then
 		if activator == self.Pod:GetPassenger() then
 			activator:ExitVehicle( self.Pod )
@@ -350,8 +349,6 @@ function ENT:Use( activator, caller )
 			activator:EnterVehicle( self.Pod )
 		end
 	end
-	self.DisableUse = true
-	timer.Simple(3,function(self) self.DisableUse = false end,self)
 end
 
 function ENT:BuildDupeInfo()
