@@ -88,12 +88,12 @@ function HPLink( cont, pod, weap )
 				------Fishface60's new code-------
 				local APAng = weap.APAng or Angle(0,0,0)
 				local HPAng = cont.HP[i]["Angle"] or Angle(0,0,0)
-				weap:SetAngles(pod:LocalToWorldAngles(APAng+HPAng))
+				weap:SetAngles(pod:LocalToWorldAngles(HPAng))
+				weap:SetAngles(weap:LocalToWorldAngles(APAng))
 				
 				local APPos = weap.APPos or Vector(0,0,0)
-				APPos = Vector(APPos.x,APPos.y,APPos.z)
-				APPos:Rotate(APAng+HPAng)
 				local HPPos = cont.HP[i]["Pos"] or Vector(0,0,0)
+				--copy the vector in case we change it
 				HPPos = Vector(HPPos.x,HPPos.y,HPPos.z)
 				if cont.Skewed then
 					if (type(cont.Skewed) == "boolean" and cont.Skewed == true) then
@@ -102,7 +102,8 @@ function HPLink( cont, pod, weap )
 						HPPos:Rotate(cont.Skewed)
 					end
 				end
-				weap:SetPos(pod:LocalToWorld(APPos+HPPos))
+				weap:SetPos(pod:LocalToWorld(HPPos))
+				weap:SetPos(weap:LocalToWorld(APPos))
 				
 				weap:GetPhysicsObject():EnableCollisions(false)
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)
