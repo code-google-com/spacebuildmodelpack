@@ -16,3 +16,10 @@ ENT.CDown2			= true
 ENT.CDown2			= 0
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(-10,0,17)
+
+function ENT:SetShots( val )
+	local CVal = self.Entity:GetNetworkedInt( "Shots" )
+	if CVal != val then
+		self.Entity:SetNetworkedInt( "Shots", val )
+	end
+end

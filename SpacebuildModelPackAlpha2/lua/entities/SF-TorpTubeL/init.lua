@@ -11,7 +11,7 @@ function ENT:Initialize()
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
 	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "Reload" } )
-	self.Outputs = Wire_CreateOutputs( self.Entity, { "Loaded" })
+	self.Outputs = Wire_CreateOutputs( self.Entity, { "Loaded", "ReloadProgress" })
 
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -23,7 +23,7 @@ function ENT:Initialize()
 	self.Entity:StartMotionController()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 
-	
+	self.ReloadPeriod = 15 -- This is a constant that states how long it takes to automatically reload
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -48,8 +48,10 @@ function ENT:TriggerInput(iname, value)
 		
 	elseif (iname == "Reload") then	
 		if (value > 0) then
-			self.LTime = CurTime() + 15
-			self.Loading = true
+			if !self.Loading then
+				self.LTime = CurTime() + self.ReloadPeriod
+				self.Loading = true
+			end
 		end
 	end
 	
@@ -70,11 +72,20 @@ function ENT:Think()
 		
 		self.Loading = false
 	end
+	local LPercent = 0
+	if self.LTime > CurTime() then
+		local LPercent = ( ( self.ReloadPeriod - ( self.LTime - CurTime() ) ) / self.ReloadPeriod ) * 100
+	else
+		LPercent = 0
+	end
+	Wire_TriggerOutput( self.Entity, "ReloadProgress", LPercent )
 	
 	if self.Torp && self.Torp:IsValid() then
-		Wire_TriggerOutput(self.Entity, "Loaded", 1)
+		Wire_TriggerOutput( self.Entity, "Loaded", 1 )
+		self.Entity:SetLVar(100)
 	else
-		Wire_TriggerOutput(self.Entity, "Loaded", 0)
+		Wire_TriggerOutput( self.Entity, "Loaded", 0 )
+		self.Entity:SetLVar(LPercent)
 	end
 end
 
@@ -122,8 +133,8 @@ function ENT:HPFire()
 		self.Torp.PhysObj:EnableGravity(false)
 		self.Torp = nil
 	end
-	if not self.Loading then
-		self.LTime = CurTime() + 15
+	if !self.Loading then
+		self.LTime = CurTime() + self.ReloadPeriod
 		self.Loading = true
 	end
 end

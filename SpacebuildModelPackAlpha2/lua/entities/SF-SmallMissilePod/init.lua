@@ -24,6 +24,7 @@ function ENT:Initialize()
 		phys:EnableCollisions(true)
 	end
 	self.Entity:SetKeyValue("rendercolor", "255 255 255")
+	self.Entity:SetNetworkedInt( "Shots", 8 )
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	--self.val1 = 0
@@ -154,8 +155,8 @@ end
 function ENT:FFire( CCD )
 	local NewShell = ents.Create( "SF-HomingMissile" )
 	if ( !NewShell:IsValid() ) then return end
-	local CVel = self.Entity:GetPhysicsObject():GetVelocity():Length()
-	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * 10) + (self.Entity:GetForward() * (115 + CVel)) )
+	local CVel = self.Entity:GetPhysicsObject():GetVelocity()
+	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * 10) + (self.Entity:GetForward() * 115) + CVel )
 	NewShell:SetAngles( self.Entity:GetAngles() )
 	NewShell.SPL = self.SPL
 	NewShell:Spawn()

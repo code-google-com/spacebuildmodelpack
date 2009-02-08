@@ -14,7 +14,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Entity:SetMaterial("models/props_combine/combinethumper002");
+	--self.Entity:SetMaterial("models/props_combine/combinethumper002");
 	self.Inputs = Wire_CreateInputs( self.Entity, { "Hardpoints" } )
 	self.Outputs = Wire_CreateOutputs( self.Entity, { "X", "Y", "Z", "HP1", "HP2", "HP3", "HP4", "HP5", "HP6", "HP7", "HP8", "HP9" })
 

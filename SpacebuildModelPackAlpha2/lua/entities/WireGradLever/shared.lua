@@ -1,6 +1,6 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_wire_entity"
-ENT.PrintName		= "Wired Lever"
+ENT.PrintName		= "Analogue Lever"
 ENT.Author			= "Paradukes + SlyFo"
 --ENT.Category		= "SBEP-Weapons"
 
