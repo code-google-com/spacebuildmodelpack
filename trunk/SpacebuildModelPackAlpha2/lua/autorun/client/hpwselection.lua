@@ -176,12 +176,12 @@ function SBHud()
 						Weap = ply:GetVehicle():GetNetworkedEntity( "HPW_"..n )
 						if Weap && Weap:IsValid() then
 							if Weap.WInfo then
-								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,c,30,c),Color(255,255,255,255))
+								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,240,30,240),Color(255,255,255,255))
 							else
-								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,240,30,240),Color(255,255,255,255))
 							end
 						else
-							draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "No Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+							draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "No Weapon", "Default",Color(30,100,30,100),Color(255,255,255,255))
 						end
 					end
 					
