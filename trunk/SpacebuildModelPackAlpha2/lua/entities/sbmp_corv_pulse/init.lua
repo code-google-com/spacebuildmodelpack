@@ -11,6 +11,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
+	self.Entity:SetUseType( SIMPLE_USE )
 	--fix for those without GCombat suggested by jdm12989
 	if gcombat then
 		gcombat.registerent( self.Entity, 6000, 10 )
