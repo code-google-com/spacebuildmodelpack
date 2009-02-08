@@ -15,3 +15,4 @@ ENT.CDown2			= true
 ENT.CDown2			= 0
 ENT.HPType			= "Small"
 ENT.APPos			= Vector(0,0,0)
+ENT.WInfo			= "Small Pulse Cannon"

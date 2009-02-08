@@ -37,6 +37,7 @@ function ENT:Initialize()
 	self.CDL["2r"] = true
 	self.CDL["3r"] = true
 	self.CDL["4r"] = true
+	self.Entity:SetNetworkedInt("Shots",4)
 	
 end
 
@@ -74,6 +75,7 @@ function ENT:Think()
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
 				self.Entity:EmitSound("Buttons.snd26")
+				self.Entity:ShotsAdd(1)
 			end
 		end
 	end
@@ -102,6 +104,7 @@ function ENT:HPFire()
 		for n = 1, 4 do
 			if (CurTime() >= self.CDL[n]) then
 				self.Entity:FFire(n)
+				self.Entity:ShotsAdd(-1)
 				return
 			end
 		end

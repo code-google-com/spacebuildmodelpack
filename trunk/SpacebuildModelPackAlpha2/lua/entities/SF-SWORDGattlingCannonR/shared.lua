@@ -12,3 +12,4 @@ ENT.HPType			= "GatRight"
 ENT.APPos			= Vector(90,-6,-83)
 ENT.APAng			= Angle(0,0,180)
 ENT.FTime			= 0
+ENT.WInfo			= "Right Gattling"

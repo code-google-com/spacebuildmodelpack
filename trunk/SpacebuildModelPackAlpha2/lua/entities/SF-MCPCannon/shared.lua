@@ -16,3 +16,9 @@ ENT.CDown2			= 0
 ENT.HPType			= "Medium"
 ENT.APPos			= Vector(40,0,-20)
 ENT.APAng			= Angle(0,0,180)
+
+function ENT:ShotsAdd(ShotsAdd)
+	local Shots = self.Entity:GetNetworkedInt("Shots")
+	Shots = Shots + ShotsAdd
+	self.Entity:SetNetworkedInt("Shots",Shots)
+end

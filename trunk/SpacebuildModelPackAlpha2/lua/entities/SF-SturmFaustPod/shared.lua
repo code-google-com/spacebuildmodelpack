@@ -11,3 +11,4 @@ ENT.SPL				= nil
 ENT.HPType			= { "Tiny", "Small" }
 ENT.APPos			= Vector(4.5,0,7.5)
 ENT.APAng			= Angle(0,0,180)
+ENT.WInfo			= "Sturm Faust"

@@ -11,6 +11,7 @@ ENT.Exploded		= false
 ENT.HPType			= "Medium"
 ENT.APPos			= Vector(0,0,-13)
 ENT.APAng			= Angle(0,0,180)
+ENT.WInfo			= "Medium Torpedo"
 
 function ENT:SetArmed( val )
 	self.Entity:SetNetworkedBool("ClArmed",val,true)
