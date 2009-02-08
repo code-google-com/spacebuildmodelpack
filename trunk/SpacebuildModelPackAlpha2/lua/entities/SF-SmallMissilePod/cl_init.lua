@@ -15,5 +15,5 @@ end
 
 function ENT:Think()
 	self.Shots = self.Entity:GetNetworkedInt( "Shots" ) or 0
-	self.WInfo = "8x Missile Pod - Shots: "..self.Shots
+	self.WInfo = "4x Missile Pod - Shots: "..self.Shots
 end
