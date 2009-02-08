@@ -68,23 +68,23 @@ function ENT:Initialize()
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
 	self.HP[3]["Type"]	= {"Medium","Large","Wing","WingLeft"}
-	self.HP[3]["Pos"]	= Vector(-525,261,-25)
-	self.HP[3]["Angle"] = Angle(0,0,270)
+	self.HP[3]["Pos"]	= Vector(-500,225,40)
+	self.HP[3]["Angle"] = Angle(0,0,-60)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil
 	self.HP[4]["Type"]	= {"Medium","Large"}
-	self.HP[4]["Pos"]	= Vector(-115,265,-25)
-	self.HP[4]["Angle"] = Angle(0,0,270)
+	self.HP[4]["Pos"]	= Vector(-115,215,-45)
+	self.HP[4]["Angle"] = Angle(0,0,180)
 	self.HP[5]			= {}
 	self.HP[5]["Ent"]	= nil
 	self.HP[5]["Type"]	= {"Medium","Large","Wing","WingRight"}
-	self.HP[5]["Pos"]	= Vector(-525,-261,-25)
-	self.HP[5]["Angle"] = Angle(0,0,90)
+	self.HP[5]["Pos"]	= Vector(-500,-225,40)
+	self.HP[5]["Angle"] = Angle(0,0,60)
 	self.HP[6]			= {}
 	self.HP[6]["Ent"]	= nil
 	self.HP[6]["Type"]	= {"Medium","Large"}
-	self.HP[6]["Pos"]	= Vector(-115,-265,-25)
-	self.HP[6]["Angle"] = Angle(0,0,90)
+	self.HP[6]["Pos"]	= Vector(-115,-215,-45)
+	self.HP[6]["Angle"] = Angle(0,0,180)
 end
 
 function ENT:SpawnFunction( ply, tr )

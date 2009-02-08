@@ -16,3 +16,4 @@ ENT.CDown2			= 0
 ENT.HPType			= "Large"
 ENT.APPos			= Vector(330,18,0)
 ENT.APAng			= Angle(0,0,90)
+ENT.WInfo			= "Flak Cannon"
