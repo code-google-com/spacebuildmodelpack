@@ -90,7 +90,7 @@ local SBHPJoystickControl = function()
 end
 hook.Add("JoystickInitialize","SBHPJoystickControl",SBHPJoystickControl)
 
-function SBEPHPWS()
+function SBEPHPWS() -- Stands for Spacebuild Enhancement Project Hardpoint Weapon Selection, in case you were curious :)
 	local ply = LocalPlayer()
 	local CD = ply:GetNetworkedInt( "SBHPCD" ) or 0
 	local HPC = ply:GetVehicle():GetNetworkedInt( "HPC" ) or 0
@@ -124,16 +124,26 @@ function SBEPHPWS()
 				
 				RunConsoleCommand(str,i)
 				--LocalPlayer():ChatPrint("Hardpoint "..x..s..str2) 
-				ply:SetNetworkedInt( "SBHPCD", CurTime() + 0.3 )
+				ply:SetNetworkedInt( "SBHPCD", CurTime() + 0.2 )
 			end
 		end
 	end
+	if input.IsKeyDown(KEY_MINUS) && CurTime() > CD then	
+		ply.SBHudSize = math.Clamp((ply.SBHudSize - 1),0,3)
+		ply:SetNetworkedInt( "SBHPCD", CurTime() + 0.2 )
+	end
+	if input.IsKeyDown(KEY_EQUAL) && CurTime() > CD then
+		ply.SBHudSize = math.Clamp((ply.SBHudSize + 1),0,3)
+		ply:SetNetworkedInt( "SBHPCD", CurTime() + 0.2 )
+	end
+	
 end
 
 hook.Add("Think", "SBEPHPWS", SBEPHPWS)
 
 function SBHud() 
 	local ply = LocalPlayer()
+	ply.SBHudSize = ply.SBHudSize or 3
 	local HPC = ply:GetVehicle():GetNetworkedInt( "HPC" ) or 0
 	local n = 0
 	local Weap = nil
@@ -141,35 +151,42 @@ function SBHud()
 		for n = 1, HPC do
 			local c = 0
 			local info = LocalPlayer():GetInfo( "SBHP_"..n )
-			--if info == "0.00" || info == "0" || info == 0 || info == "0.0" then -- Before
-			if string.byte(info) == 48 then -- After
-				c = 100
-			else
-				c = 240
-			end
 			
-			draw.WordBox( 10, 40, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
-			
-			info = LocalPlayer():GetInfo( "SBHP_"..n.."a" )
-			if string.byte(info) == 48 then 
-				c = 100
-			else
-				c = 240
-			end
-			
-			draw.WordBox( 10, 70, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
-			
-			Weap = ply:GetVehicle():GetNetworkedEntity( "HPW_"..n )
-			if Weap && Weap:IsValid() then
-				if Weap.WInfo then
-					draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,c,30,c),Color(255,255,255,255))
+			if ply.SBHudSize >= 1 then
+				if string.byte(info) == 48 then
+					c = 100
 				else
-					draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+					c = 240
 				end
-			else
-				draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "No Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+				
+				draw.WordBox( 10, 40, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
+				
+				if ply.SBHudSize >= 2 then
+				
+					info = LocalPlayer():GetInfo( "SBHP_"..n.."a" )
+					if string.byte(info) == 48 then 
+						c = 100
+					else
+						c = 240
+					end
+								
+					draw.WordBox( 10, 70, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
+					
+					if ply.SBHudSize >= 3 then
+						Weap = ply:GetVehicle():GetNetworkedEntity( "HPW_"..n )
+						if Weap && Weap:IsValid() then
+							if Weap.WInfo then
+								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,c,30,c),Color(255,255,255,255))
+							else
+								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+							end
+						else
+							draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "No Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+						end
+					end
+					
+				end
 			end
-		
 		end
 	end
 end 
