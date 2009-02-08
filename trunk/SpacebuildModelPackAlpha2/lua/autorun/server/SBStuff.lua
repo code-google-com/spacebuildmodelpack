@@ -109,7 +109,10 @@ function HPLink( cont, pod, weap )
 				weap.HPNoc = constraint.NoCollide(pod, weap, 0, 0, 0, true)
 				weap.HPWeld = constraint.Weld(pod, weap, 0, 0, 0, true)
 				weap:SetParent( pod )
-				pod:SetNetworkedEntity( "HPW_"..i, weap ) 
+				pod:SetNetworkedEntity( "HPW_"..i, weap )
+				if pod.Pod && pod.Pod:IsValid() then 
+					pod.Pod:SetNetworkedEntity( "HPW_"..i, weap )
+				end
 				cont.HP[i]["Ent"] = weap
 				weap.Pod = pod
 				weap.HPN = i
