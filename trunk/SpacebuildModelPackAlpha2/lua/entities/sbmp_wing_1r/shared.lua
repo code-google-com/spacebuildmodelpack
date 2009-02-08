@@ -10,6 +10,6 @@ ENT.Owner			= nil
 ENT.SPL				= nil
 ENT.HPType			= "WingRight"
 ENT.APPos			= Vector(0,0,0)
-ENT.APAng			= Angle(0,180,270)
+ENT.APAng			= Angle(0,180,90)
 ENT.FTime			= 0
 ENT.HasHardpoints	= true
