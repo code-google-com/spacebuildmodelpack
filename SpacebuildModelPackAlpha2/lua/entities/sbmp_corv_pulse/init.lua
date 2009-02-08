@@ -11,7 +11,10 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	gcombat.registerent( self.Entity, 6000, 10 )
+	--fix for those without GCombat suggested by jdm12989
+	if gcombat then
+		gcombat.registerent( self.Entity, 6000, 10 )
+	end
 	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
 	--self.Inputs = Wire_CreateInputs( self.Entity, { "Activate" } )
 	
