@@ -97,11 +97,13 @@ function ENT:Touch( ent )
 end
 
 function ENT:HPFire()
+	local CDown1 = self.Entity:GetNetworkedFloat("CDown1")
+	local CDown2 = self.Entity:GetNetworkedFloat("CDown2")
 	if (CurTime() >= self.MCDown) then
-		if (CurTime() >= self.CDown1) then
+		if (CurTime() >= CDown1) then
 			self.Entity:FFire1()
 		else
-			if (CurTime() >= self.CDown2) then
+			if (CurTime() >= CDown2) then
 				self.Entity:FFire2()
 			end
 		end
@@ -122,7 +124,7 @@ function ENT:FFire1()
 	NewShell:Fire("kill", "", 30)
 	NewShell.ParL = self.Entity
 	--RD_ConsumeResource(self, "Munitions", 1000)
-	self.CDown1 = CurTime() + 5
+	self.Entity:SetNetworkedFloat("CDown1",CurTime() + 5)
 	self.MCDown = CurTime() + 0.4
 	local phys = self.Entity:GetPhysicsObject()  	
 	if (phys:IsValid()) then  		
@@ -149,7 +151,7 @@ function ENT:FFire2()
 	NewShell:Fire("kill", "", 30)
 	NewShell.ParL = self.Entity
 	--RD_ConsumeResource(self, "Munitions", 1000)
-	self.CDown2 = CurTime() + 5
+	self.Entity:SetNetworkedFloat("CDown2",CurTime() + 5)
 	self.MCDown = CurTime() + 0.4
 	local phys = self.Entity:GetPhysicsObject()  	
 	if (phys:IsValid()) then  		

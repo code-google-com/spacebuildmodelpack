@@ -14,11 +14,11 @@ function ENT:Draw()
 end
 
 function ENT:Think()
-	local ReloadTime = self.Entity:GetNetworkedInt( "ReloadTime" ) or 0
-	local timeleft = ReloadTime - CurTime()
-	if timeleft <=0 then
-		self.WInfo = "Artillery Cannon - Ready"
+	local ReloadTime = self.Entity:GetNetworkedFloat( "ReloadTime" ) or 0
+	local ReloadPercent = ((5-( ReloadTime-CurTime())) / 5)*100
+	if ReloadPercent > 100 then
+		self.WInfo = "Artillery Cannon - Loaded"
 	else
-		self.WInfo = "Artillery Cannon - Reload: "..math.Round(timeleft)
+		self.WInfo = "Artillery Cannon - Loading: "..math.Round(ReloadPercent).."%"
 	end
 end

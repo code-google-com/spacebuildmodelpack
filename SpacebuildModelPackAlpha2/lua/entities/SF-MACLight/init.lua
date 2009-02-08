@@ -55,9 +55,9 @@ function ENT:TriggerInput(iname, value)
 		end
 	elseif (iname == "ChargeCannon") then
 		if ( value > 0 && CurTime() >= self.CDown ) then
-			self.Charging = true
+			self.Entity:SetNetworkedBool("Charging",true)
 		else
-			self.Charging = false
+			self.Entity:SetNetworkedBool("Charging",true)
 		end
 	end
 end
@@ -67,30 +67,34 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
+	local Charging = self.Entity:GetNetworkedBool("Charging")
+	local Charge = self.Entity:GetNetworkedInt("Charge")
 	--self.val1 = RD_GetResourceAmount(self.Entity, "energy")
 	self.val1 = 10000
 	
-	if self.Charging && self.val1 > 100 && self.Charge <= 5100 && CurTime() >= self.CDown then
+	if Charging && self.val1 > 100 && Charge <= 5100 && CurTime() >= self.CDown then
 		--self.Entity:EmitSound("SB/Charging.wav", 150 )
 		--RD_ConsumeResource(self.Entity, "energy", 100)
-		self.Charge = self.Charge + 100
+		Charge = Charge + 100
+		self.Entity:SetNetworkedInt("Charge",Charge)
 	else
-		if self.Charge >= 10 then
-			self.Charge = self.Charge - 10
+		if Charge >= 10 then
+			Charge = Charge - 10
+			self.Entity:SetNetworkedInt("Charge",Charge)
 		end
 	end
 	
-	Wire_TriggerOutput(self.Entity, "ChargeLevel", self.Charge)
+	Wire_TriggerOutput(self.Entity, "ChargeLevel", Charge)
 	
-	if self.Charge >= 5000 && CurTime() >= self.CDown then
+	if Charge >= 5000 && CurTime() >= self.CDown then
 		Wire_TriggerOutput(self.Entity, "CanFire", 1)
 	else
 		Wire_TriggerOutput(self.Entity, "CanFire", 0)
 	end
 	
-	if self.Charge > 0 then
+	if Charge > 0 then
 		if CurTime() >= self.SpTime then
-			self.SpTime = CurTime() + math.Rand( math.Clamp( (5000 - self.Charge) / 2, 0, 1), 1 )
+			self.SpTime = CurTime() + math.Rand( math.Clamp( (5000 - Charge) / 2, 0, 1), 1 )
 			
 			Sparky = ents.Create("point_tesla")
 			Sparky:SetKeyValue("targetname", "teslab")
@@ -124,7 +128,7 @@ function ENT:Think()
 		end
 	end
 	
-	self.Entity:SetBrightness( self.Charge / 1000 )
+	self.Entity:SetBrightness( Charge / 1000 )
 	
 	self.Entity:NextThink( CurTime() + 0.1 ) 
 	return true
@@ -149,17 +153,16 @@ function ENT:Touch( ent )
 end
 
 function ENT:HPFire()
+	local Charging = self.Entity:GetNetworkedBool("Charging")
+	local Charge = self.Entity:GetNetworkedInt("Charge")
 	if CurTime() >= self.CDown then
-		if not self.Charging then
-			self.Charging = true
-			print("MAC Charging")
+		if not Charging then
+			self.Entity:SetNetworkedBool("Charging",true)
 		else
-			self.Charging = false
-			print("MAC not Charging")
+			self.Entity:SetNetworkedBool("Charging",false)
 		end
-		if self.Charge >= 5000 then
+		if Charge >= 5000 then
 			self.Entity:MACFire()
-			print("MAC Firing")
 		end
 		self.CDown = CurTime() + 10
 	end
@@ -179,7 +182,7 @@ function ENT:MACFire()
 	NewShell.PhysObj:SetVelocity(self.Entity:GetForward() * 10000)
 	NewShell:Fire("kill", "", 30)
 	NewShell.ParL = self.Entity
-	self.Charge = 0
+	self.Entity:SetNetworkedInt("Charge",0)
 	self.CDown = CurTime() + 10
 	local phys = self.Entity:GetPhysicsObject()  	
 	if (phys:IsValid()) then  		

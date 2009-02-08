@@ -41,6 +41,9 @@ function ENT:Think()
 		dlight.DieTime = CurTime() + 0.2
 	end
 	
+	local Charging = self.Entity:GetNetworkedBool( "Charging" ) or false
+	local Charge = self.Entity:GetNetworkedInt("Charge") or 0
+	self.WInfo = "Light MAC - "..(Charging and "" or "Not ").."Charging, Charge:"..Charge
 	self.Entity:NextThink( CurTime() + 0.1 ) 
 	return true
 end
