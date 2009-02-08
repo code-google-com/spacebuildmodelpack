@@ -30,6 +30,8 @@ function ENT:Initialize()
 	
 	self.MinV = 0
 	self.MaxV = 1
+	self.RTime = 0
+	self.Angle = 0
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -87,7 +89,7 @@ function ENT:Think()
 		return
 	end
 	
-	if self.CPL && self.CPL:IsValid() && self.CPL:KeyDown( IN_USE ) then
+	if self.CPL && self.CPL:IsValid() && ( self.CPL:KeyDown( IN_USE ) || self.CPL:KeyDown( IN_ATTACK ) ) && self.CPL:GetShootPos():Distance(self.Entity:GetPos()) < 200 then
 		local Dist = self.CPL:GetShootPos():Distance( self.Base:GetPos() )
 		local TargPos = self.CPL:GetShootPos() + self.CPL:GetAimVector() * Dist
 		local FDist = TargPos:Distance( self.Base:GetPos() + self.Base:GetForward() * 30 )
@@ -97,21 +99,21 @@ function ENT:Think()
 		BDist = TargPos:Distance( self.Base:GetPos() + self.Base:GetUp() * 40 )
 		local HPos = 40 + (((BDist - FDist) * -0.5) - 20)
 		
-		local Angle = math.Clamp(math.deg(math.atan2( HPos, FPos )) - 90,-45,45)
-		
-		local Val = Lerp( ( Angle + 45 ) / 90 , self.MinV , self.MaxV )
-		Wire_TriggerOutput( self.Entity, "Value", Val )
-		
-		--print( Angle..", "..FPos..", "..HPos )
-		
-		local NAng = self.Base:GetAngles()
-		NAng:RotateAroundAxis( NAng:Right(), -Angle )
-		RAng = self.Base:WorldToLocalAngles(NAng)
-		self.Entity:SetLocalPos( RAng:Up() * 20 )
-		self.Entity:SetLocalAngles( RAng )
+		self.Angle = math.Clamp( math.deg( math.atan2( HPos, FPos ) ) - 90, -45, 45 )
 	else
 		self.CPL = nil
 	end
+	
+	local Val = Lerp( ( self.Angle + 45 ) / 90 , self.MinV , self.MaxV )
+	Wire_TriggerOutput( self.Entity, "Value", Val )
+	
+	--print( Angle..", "..FPos..", "..HPos )
+	
+	local NAng = self.Base:GetAngles()
+	NAng:RotateAroundAxis( NAng:Right(), -self.Angle )
+	RAng = self.Base:WorldToLocalAngles(NAng)
+	self.Entity:SetLocalPos( RAng:Up() * 20 )
+	self.Entity:SetLocalAngles( RAng )
 
 	self.Entity:NextThink( CurTime() + 0.01 ) 
 	return true	
@@ -131,6 +133,11 @@ end
 
 function ENT:Use( ply, caller )
 	self.CPL = ply
+	if self.RTime > CurTime() then
+		--self.Angle = 0
+		--self.CPL = nil
+	end
+	self.RTime = CurTime() + 0.5
 end
 
 function ENT:Touch( ent )

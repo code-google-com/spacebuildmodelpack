@@ -136,6 +136,7 @@ function SBHud()
 	local ply = LocalPlayer()
 	local HPC = ply:GetVehicle():GetNetworkedInt( "HPC" ) or 0
 	local n = 0
+	local Weap = nil
 	if HPC > 0 then
 		for n = 1, HPC do
 			local c = 0
@@ -158,10 +159,17 @@ function SBHud()
 			
 			draw.WordBox( 10, 70, (ScrH() * 0.45) + (n * 40), n, "Default",Color(30,c,30,c),Color(255,255,255,255))
 			
-			--local WEnt = ply:GetVehicle():GetNetworkedEntity( "SBHPE_"..n ) or nil
-			--if WEnt && WEnt:IsValid() then
-				
-			--end
+			Weap = ply:GetVehicle():GetNetworkedEntity( "HPW_"..n )
+			if Weap && Weap:IsValid() then
+				if Weap.WInfo then
+					draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,c,30,c),Color(255,255,255,255))
+				else
+					draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+				end
+			else
+				draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "No Weapon", "Default",Color(30,c,30,c),Color(255,255,255,255))
+			end
+		
 		end
 	end
 end 

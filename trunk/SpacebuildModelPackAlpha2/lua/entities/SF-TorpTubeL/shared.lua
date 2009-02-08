@@ -16,3 +16,10 @@ ENT.Loaded			= false
 ENT.Torp			= nil
 ENT.LTime			= 0
 ENT.Loading			= false
+
+function ENT:SetLVar( val )
+	local CVal = self.Entity:GetNetworkedInt( "Loading" )
+	if CVal != val then
+		self.Entity:SetNetworkedInt( "Loading", val )
+	end
+end

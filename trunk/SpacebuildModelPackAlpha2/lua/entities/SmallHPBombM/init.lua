@@ -121,5 +121,13 @@ function ENT:BombDrop()
 	end
 	NewShell:GetPhysicsObject():SetVelocity((self.Entity:GetPhysicsObject():GetVelocity() * 0.5) + self.Entity:GetUp() * -100)
 	NewShell:Fire("kill", "", 10)
+	NewShell.Armed = false
+	NewShell:GetPhysicsObject():EnableCollisions(false)
+	timer.Simple(1,function()
+		if NewShell:IsValid() then
+		NewShell:GetPhysicsObject():EnableCollisions(true)
+		NewShell.Armed = true
+		end
+	 end)
 	self.Ready = false
 end

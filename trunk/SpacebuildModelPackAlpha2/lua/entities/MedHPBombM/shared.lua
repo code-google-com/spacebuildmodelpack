@@ -9,4 +9,4 @@ ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Medium"
-ENT.APPos			= Vector(0,0,15)
+ENT.APPos			= Vector(0,0,-20)

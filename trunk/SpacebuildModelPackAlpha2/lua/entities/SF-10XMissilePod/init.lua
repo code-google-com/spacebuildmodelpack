@@ -24,6 +24,7 @@ function ENT:Initialize()
 		phys:EnableCollisions(true)
 	end
 	self.Entity:SetKeyValue("rendercolor", "255 255 255")
+	self.Entity:SetNetworkedInt( "Shots", 8 )
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
 	--self.val1 = 0
@@ -120,6 +121,7 @@ function ENT:Think()
 	end
 	
 	Wire_TriggerOutput(self.Entity, "ShotsLeft", MCount)
+	self.Entity:SetShots(MCount)
 	if MCount > 0 then 
 		Wire_TriggerOutput(self.Entity, "CanFire", 1) 
 	else
