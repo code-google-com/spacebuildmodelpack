@@ -71,15 +71,17 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
+	local MCount = 0
 	for n = 1, 4 do
 		if (CurTime() >= self.CDL[n]) then
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
 				self.Entity:EmitSound("Buttons.snd26")
-				self.Entity:ShotsAdd(1)
 			end
+			MCount = MCount + 1
 		end
 	end
+	self.Entity:SetShots(MCount)
 end
 
 function ENT:PhysicsCollide( data, physobj )
