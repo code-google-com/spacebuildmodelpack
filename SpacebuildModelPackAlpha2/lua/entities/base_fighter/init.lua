@@ -356,10 +356,12 @@ function ENT:BuildDupeInfo()
 	if (self.Pod) and (self.Pod:IsValid()) then
 	    info.Pod = self.Pod:EntIndex()
 	end
-	info.guns = {}
-	for k,v in pairs(self.HP) do
-		if (v["Ent"]) and (v["Ent"]:IsValid()) then
-			info.guns[k] = v["Ent"]:EntIndex()
+	if self.HP then
+		info.guns = {}
+		for k,v in pairs(self.HP) do
+			if (v["Ent"]) and (v["Ent"]:IsValid()) then
+				info.guns[k] = v["Ent"]:EntIndex()
+			end
 		end
 	end
 	return info
