@@ -66,6 +66,10 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:Activate()
 	ent.Base = ent2
 	
+	ent2.HPType			= "SwivelMountC"
+	ent2.APPos			= Vector(0,0,0)
+	ent2.HasHardpoints	= true
+	
 	local LPos = ent:WorldToLocal(ent:GetPos() + ent:GetUp() * 10)
 	local Cons = constraint.Ballsocket( ent2, ent, 0, 0, LPos, 0, 0, 1)
 	LPos = ent:WorldToLocal(ent:GetPos() + ent:GetUp() * -10)
@@ -139,7 +143,12 @@ function ENT:Think()
 				
 				self.CPL:CrosshairEnable()
 				
-				TargPos = self.CPL:GetEyeTrace().HitPos				
+				local trace = {}
+				trace.start = self.CPL:GetShootPos()
+				trace.endpos = self.CPL:GetShootPos() + self.CPL:GetAimVector() * 65535
+				trace.filter = self.Filter
+				local tr = util.TraceLine( trace )
+				TargPos = tr.HitPos
 			end
 		end
 		if self.Active then
@@ -185,11 +194,38 @@ function ENT:Touch( ent )
 	if ent && ent:IsValid() && ent:IsVehicle() then
 		self.CPod = ent
 	end
+	if ent.HasHardpoints then
+		if ent.Cont && ent.Cont:IsValid() then
+			HPLink(ent.Cont, ent, self.Entity)
+			self.Entity:SetParent()
+			self.Entity:GetPhysicsObject():EnableCollisions(true)
+			cons = constraint.FindConstraints( self.Entity, "Weld" )
+			for k,v in pairs(cons) do
+				if v.Ent1 == ent or v.Ent2 == ent then
+					v.Constraint:Remove()
+				end
+			end
+			self.Base:SetPos(self.Entity:LocalToWorld(Vector(0,9,-40)))
+			self.Base:SetAngles(self.Entity:GetAngles())
+			self.Base.Mounted = true
+			self.Mounted = true
+			self.CPod = ent.Pod
+			self.HPWeld = constraint.Weld(ent, self.Base, 0, 0, 0, true)
+			if not self.Filter then
+				self.Filter = {self.Entity,self.Base,ent.Pod,ent.Cont}
+			end
+		end
+	end
 end
 
 function ENT:HPFire()
-	if self.HP[1]["Ent"] && self.HP[1]["Ent"]:IsValid() then
-		self.HP[1]["Ent"]:HPFire()
+	local weap = self.HP[1]["Ent"]
+	if weap and weap:IsValid() then
+		tr = util.QuickTrace(weap:GetPos(),weap:GetForward() * 65535,weap)
+		local trent = tr.Entity
+		if trent ~= self.CPod.Entity and trent ~= self.CPod.Cont.Entity then
+			weap:HPFire()
+		end
 	end
 end
 

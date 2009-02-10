@@ -5,10 +5,10 @@ ENT.Author			= "Paradukes, Cerus and Hysteria"
 ENT.Category		= "SBEP-Weapons"
 
 ENT.Spawnable		= false
-ENT.AdminSpawnable	= false
+ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
---ENT.HPType			= "SwivelMount2"
---ENT.APPos			= Vector(0,0,23)
+ENT.HPType			= "SwivelMountC"
+ENT.APPos			= Vector(0,0,40)
 ENT.FTime			= 0
 ENT.HasHardpoints	= true
