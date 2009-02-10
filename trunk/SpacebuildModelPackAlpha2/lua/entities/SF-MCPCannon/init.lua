@@ -107,7 +107,6 @@ function ENT:HPFire()
 		for n = 1, 4 do
 			if (CurTime() >= self.CDL[n]) then
 				self.Entity:FFire(n)
-				self.Entity:ShotsAdd(-1)
 				return
 			end
 		end
