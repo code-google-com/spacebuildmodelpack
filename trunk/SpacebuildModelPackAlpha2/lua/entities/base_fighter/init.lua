@@ -5,6 +5,25 @@ include( 'shared.lua' )
 util.PrecacheSound( "k_lab.ambient_powergenerators" )
 util.PrecacheSound( "ambient/machines/thumper_startup1.wav" )
 
+function ENT:Initialize(self)
+	self.Entity:PhysicsInit( SOLID_VPHYSICS )
+	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+	self.Entity:SetSolid( SOLID_VPHYSICS )
+	self.Entity:SetUseType( SIMPLE_USE )
+	
+	
+
+	local phys = self.Entity:GetPhysicsObject()
+	if (phys:IsValid()) then
+		phys:Wake()
+		phys:EnableGravity(true)
+		phys:EnableDrag(true)
+		phys:EnableCollisions(true)
+	end
+	self.Entity:StartMotionController()
+	self.PhysObj = self.Entity:GetPhysicsObject()
+end
+
 local function GetJBool(self,sVal)
 	if not joystick then return false end
 	return joystick.Get(self.CPL, "sbepftr_"..sVal)
@@ -355,6 +374,14 @@ function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BaseClass.BuildDupeInfo(self) or {}
 	if (self.Pod) and (self.Pod:IsValid()) then
 	    info.Pod = self.Pod:EntIndex()
+		local OffsetOut = self.Pod:GetNetworkedInt("OffsetOut")
+		if OffsetOut then
+			info.OffsetOut = OffsetOut
+		end
+		local ViewEnt = self.Pod:GetNetworkedEntity("ViewEnt")
+		if (ViewEnt) and (ViewEnt:IsValid()) then
+			info.ViewEnt = ViewEnt:EntIndex()
+		end
 	end
 	if self.HP then
 		info.guns = {}
@@ -385,8 +412,14 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		ent2:SetTable(TB)
 		ent2.SPL = ply
 		ent2:SetNetworkedInt( "HPC", ent.HPC )
-		ent2:SetNetworkedInt("OffsetOut",self.OffsetOut)
-		ent2:SetNetworkedEntity("Controller",ent)
+		if info.OffsetOut then
+			ent2:SetNetworkedInt("OffsetOut",info.OffsetOut)
+		end
+		local ViewEnt = GetEntByID(info.ViewEnt)
+		if not ViewEnt then
+			ViewEnt = ents.GetByIndex(info.ViewEnt)
+		end
+		ent2:SetNetworkedEntity("ViewEnt",ViewEnt)
 		ent2.Pod = ent2
 	end
 	self.SPL = ply

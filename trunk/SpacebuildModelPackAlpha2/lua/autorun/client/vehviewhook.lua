@@ -5,7 +5,7 @@ local calcVehView
 local function SBMP_OverrideOrigin( Vehicle, ply, origin, angles, fov )
 	--call the original function
 	view = calcVehView(Vehicle,ply,origin,angles,fov)
-	local ViewEnt = ply:GetNetworkedEntity("Controller")
+	local ViewEnt = ply:GetNetworkedEntity("ViewEnt")
 	local OffsetOut = ply:GetNetworkedInt("OffsetOut") or 1000
 	if (ViewEnt and ViewEnt:IsValid()) then
 		local pos = ViewEnt:GetPos()

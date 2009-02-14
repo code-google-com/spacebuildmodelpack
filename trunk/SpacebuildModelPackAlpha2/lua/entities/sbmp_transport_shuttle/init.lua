@@ -8,22 +8,7 @@ function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Slyfo/shuttle.mdl" ) 
 	self.Entity:SetName("Shuttle")
-	self.Entity:PhysicsInit( SOLID_VPHYSICS )
-	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
-	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Entity:SetUseType( SIMPLE_USE )
-	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
-	--self.Inputs = Wire_CreateInputs( self.Entity, { "Activate" } )
-
-	local phys = self.Entity:GetPhysicsObject()
-	if (phys:IsValid()) then
-		phys:Wake()
-		phys:EnableGravity(true)
-		phys:EnableDrag(true)
-		phys:EnableCollisions(true)
-	end
-	self.Entity:StartMotionController()
-	self.PhysObj = self.Entity:GetPhysicsObject()
+	self.BaseClass:Initialize(self)
 	
 	self.EMount = true
 	self.Cont = self.Entity
@@ -67,6 +52,9 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	--Networked so the client knows these values
+	ent2:SetNetworkedEntity("ViewEnt",ent)
+	ent2:SetNetworkedInt( "OffsetOut", 600 )
 	local phys = ent2:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
@@ -76,13 +64,7 @@ function ENT:SpawnFunction( ply, tr )
 	end
 		
 	constraint.Weld(ent,ent2,0,0,0,true)
-	
-	--Networked so the client knows these values
-	--does it need to be networked? can it just be sent once?
-	ent2:SetNetworkedEntity("Controller",ent)
-	--300 is how far out we want to see
-	ent2:SetNetworkedInt("OffsetOut",self.OffsetOut)
-	
+		
 	ent.Pod = ent2
 	ent2.Cont = ent
 	ent2.Pod = ent2
