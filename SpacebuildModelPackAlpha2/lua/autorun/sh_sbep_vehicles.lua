@@ -688,3 +688,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbep_gcockpitseat", V )
+
+local V = {
+				Name = "StingRay",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Sit, stay.",
+				Model = "models/Cerus/Fighters/Stingray.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPVehicleAnimation,
+							}
+}
+list.Set( "Vehicles", "sbep_StingRay", V )
