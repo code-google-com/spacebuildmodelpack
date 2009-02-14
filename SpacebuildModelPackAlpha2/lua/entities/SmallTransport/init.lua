@@ -8,22 +8,7 @@ function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
 	self.Entity:SetName("SmallTransport")
-	self.Entity:PhysicsInit( SOLID_VPHYSICS )
-	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
-	self.Entity:SetSolid( SOLID_VPHYSICS )
-	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
-	--self.Inputs = Wire_CreateInputs( self.Entity, { "Activate" } )
-
-	local phys = self.Entity:GetPhysicsObject()
-	if (phys:IsValid()) then
-		phys:Wake()
-		phys:EnableGravity(false)
-		phys:EnableDrag(false)
-		phys:EnableCollisions(false)
-	end
-	self.Entity:StartMotionController()
-	self.PhysObj = self.Entity:GetPhysicsObject()
-
+	self.BaseClass:Initialize(self)
 
 	self.Speed = 0
 	self.Active = false
@@ -60,6 +45,9 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	--Networked so the client knows these values
+	ent2:SetNetworkedEntity("ViewEnt",ent2)
+	ent2:SetNetworkedInt( "OffsetOut", 600 )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent

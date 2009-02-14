@@ -5,26 +5,10 @@ include( 'shared.lua' )
 util.PrecacheSound( "SB/SteamEngine.wav" )
 
 function ENT:Initialize()
-	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
 	self.Entity:SetName("Arwing")
-	self.Entity:PhysicsInit( SOLID_VPHYSICS )
-	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
-	self.Entity:SetSolid( SOLID_VPHYSICS )
-	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
-	--self.Inputs = Wire_CreateInputs( self.Entity, { "Activate" } )
-
-	local phys = self.Entity:GetPhysicsObject()
-	if (phys:IsValid()) then
-		phys:Wake()
-		phys:EnableGravity(false)
-		phys:EnableDrag(false)
-		phys:EnableCollisions(false)
-	end
-	self.Entity:StartMotionController()
-	self.PhysObj = self.Entity:GetPhysicsObject()
-
-
+	self.BaseClass:Initialize(self)
+	
 	self.Speed = 0
 	self.TSpeed = 90
 	self.Active = false
@@ -33,7 +17,7 @@ function ENT:Initialize()
 	self.TSAInc			= 3 -- The speed fighters start to turn at
 	self.TSADec			= 3 -- the speed fighters stop turning at
 	
-	self.HPC			= 2
+	self.HPC			= 3
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
@@ -45,6 +29,11 @@ function ENT:Initialize()
 	self.HP[2]["Type"]	= { "ArwingPodRight"--[[,"Small"]] }
 	self.HP[2]["Pos"]	= Vector(-118,-50,25)
 	self.HP[2]["Angle"]	= Angle(0,0,90)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= "Small"
+	self.HP[3]["Pos"]	= Vector(145,0,16)
+	self.HP[3]["Angle"]	= Angle(0,0,180)
 	
 end
 
@@ -77,6 +66,10 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	
+	--Networked so the client knows these values
+	ent2:SetNetworkedEntity("ViewEnt",ent2)
+	ent2:SetNetworkedInt( "OffsetOut", 500 )
 	
 	ent.Pod = ent2
 	ent2.Cont = ent

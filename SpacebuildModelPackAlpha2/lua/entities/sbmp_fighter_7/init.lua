@@ -8,22 +8,7 @@ function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/milcock7_emount1.mdl" ) 
 	self.Entity:SetName("KATANA")
-	self.Entity:PhysicsInit( SOLID_VPHYSICS )
-	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
-	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Entity:SetUseType( SIMPLE_USE )
-	--self.Entity:SetMaterial("models/props_wasteland/tugboat02")
-	--self.Inputs = Wire_CreateInputs( self.Entity, { "Activate" } )
-
-	local phys = self.Entity:GetPhysicsObject()
-	if (phys:IsValid()) then
-		phys:Wake()
-		phys:EnableGravity(true)
-		phys:EnableDrag(true)
-		phys:EnableCollisions(true)
-	end
-	self.Entity:StartMotionController()
-	self.PhysObj = self.Entity:GetPhysicsObject()
+	self.BaseClass:Initialize(self)
 	
 	self.EMount = true
 	self.HasHardpoints = true
@@ -98,6 +83,9 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetTable(TB)
 	ent2.SPL = ply
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
+	--Networked so the client knows these values
+	ent2:SetNetworkedEntity("ViewEnt",ent)
+	ent2:SetNetworkedInt( "OffsetOut", 600 )
 	local phys = ent2:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
