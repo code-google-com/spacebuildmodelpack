@@ -38,6 +38,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent.SPL = ply
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
+	gamemode.Call("PlayerSpawnedVehicle",ply,ent2)
 	ent2:SetModel( "models/smallbridge/sbchair/sbchair.mdl" ) 
 	ent2:SetPos( ent:LocalToWorld(Vector(55,0,-55)) )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
