@@ -702,7 +702,7 @@ local V = {
 								limitview		=	"0"
 							},
 				Members = {
-								HandleAnimation = HandleSBMPVehicleAnimation,
+								HandleAnimation = HandleSBMPSitAnimation,
 							}
 }
 list.Set( "Vehicles", "sbep_StingRay", V )
