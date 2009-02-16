@@ -40,6 +40,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent:SetPos( SpawnPos )
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
+	gamemode.Call("PlayerSpawnedVehicle",ply,ent2)
 	ent2:SetModel( "models/spacebuild/corvette_chair.mdl" )
 	ent2:SetPos( ent:LocalToWorld( Vector(1000,0,35) ) )
 	ent2:SetAngles( ent:LocalToWorldAngles( Angle(0,0,0)) )

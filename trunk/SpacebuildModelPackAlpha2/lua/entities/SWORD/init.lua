@@ -61,6 +61,7 @@ function ENT:SpawnFunction( ply, tr )
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
+	gamemode.Call("PlayerSpawnedVehicle",ply,ent2)
 	ent2:SetModel( "models/Slyfo/sword.mdl" ) 
 	ent2:SetPos( SpawnPos )
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
