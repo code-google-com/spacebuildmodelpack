@@ -1,0 +1,12 @@
+Prop Types>T<As of right now, there are 3 main prop types:  Smallbridge, Mediumbridge, and Kreigshield.
+
+Smallbridge (known as SB from here on) is generally used for smaller ships, hence the name.  SB has two main sizes, singlewide (SW) and doublewide
+(DW).  These are interchangable through parts available in the "Splitters" category.
+
+Mediumbridge (henceforth MB) parts are larger then SB.  Instead of differences in width, MB parts are divided by siz.  Available sizes are Single High
+(SH), Double High (DH), Triple High (TH), and inverse (similar to SH, but upside down).  All parts are fully interchangable with each other.
+
+In the "Splitters" category, there are parts to go between SB and MB.
+
+The third available parts are Kreigshield (KS).  These are used for bases on the surfaces of planets.  Of the three types, KS are the least developed,
+and more are soon to come.

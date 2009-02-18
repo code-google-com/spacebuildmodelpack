@@ -1,0 +1,12 @@
+Weapons Systems>T<Fire1 {Default: LMB} to Fire 1-9 on the left side of the arms report.
+Fire2 {Default: RMB} to Fire 1-9 on the right side of the arms report.
+
+Arming Left Arms Report: Hit 1-9 to arm that slot.
+Arming Right Arms Report: Hold ALT and Hit 1-9 to arm that slot.
+
+Bright Green: Armed
+Dark Green: Disarmed
+
+Note: At times you may have to 'cycle' all your weapon ports once to make them properly armed. This is accomplished by arming each slot (the slot
+turns bright green), dearming each slot(the slot returns to dark green), and then rearming each slot. Once done this should arm/disarm that weapon
+port properly afterwords.

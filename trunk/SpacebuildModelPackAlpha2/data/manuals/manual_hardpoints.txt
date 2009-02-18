@@ -1,0 +1,8 @@
+Hardpoints>T<SBEP weapons are equipped with a hardpoint system.
+
+Attaching Weapons: Simply tap the weapon against the hardpoint enabled ship.  The weapon will automatically attach where applicable.
+
+Detaching Weapons: Removing weapons and preserving them is currently not available.  To switch weapons, pull out your remover tool and erase
+the weapon.
+
+For use of weapons, see "Weapons Systems."

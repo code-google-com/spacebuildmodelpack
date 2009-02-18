@@ -1,0 +1,13 @@
+Flying>T<(Reload) to enable mouseflight
+
+Mouseflight Enabled: W and S are vertical ascent/descent.
+
+Mouseflight Disabled: W and S are pitch up and pitch down.
+
+In both cases,  A and D are bank left and bank right.
+
+Alt to decelerate.
+
+(Sprint) to accelerate.
+
+For Weapons, see "Weapons Systems."
