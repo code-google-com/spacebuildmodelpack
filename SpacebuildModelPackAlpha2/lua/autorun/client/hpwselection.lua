@@ -174,9 +174,19 @@ function SBHud()
 					
 					if ply.SBHudSize >= 3 then
 						Weap = ply:GetVehicle():GetNetworkedEntity( "HPW_"..n )
-						if Weap && Weap:IsValid() then
+						if Weap && Weap:IsValid() && Weap != ply:GetVehicle() then
+							local Info = nil
 							if Weap.WInfo then
-								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Weap.WInfo, "Default",Color(30,240,30,240),Color(255,255,255,255))
+								Info = Weap.WInfo
+							else 
+								local I = Weap:GetNetworkedString( "WInfo" ) or false
+								if I && I != ""then
+									Info = I
+								end
+							end
+								
+							if Info then
+								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), Info, "Default",Color(30,240,30,240),Color(255,255,255,255))
 							else
 								draw.WordBox( 10, 100, (ScrH() * 0.45) + (n * 40), "Unknown Weapon", "Default",Color(30,240,30,240),Color(255,255,255,255))
 							end
