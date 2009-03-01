@@ -1,0 +1,62 @@
+
+function ENT:PhysicsSimulate( entphys, deltatime )
+	entphys:Wake()
+	local pos = self.Pod:GetPos()
+	-- Make all the props float towards this sent
+	if self.HP == nil or self.HP == {} then return end
+	for _,prop in pairs( self.HP ) do
+	
+		if not prop["Ent"] then return end
+		if prop["Ent"]:IsValid() then
+			PrintTable(prop)
+			prop["Ent"]:SetParent(nil)
+			--if prop["Ent"].HPWeld and prop["Ent"].HPWeld:IsValid() then prop["Ent"].HPWeld:Remove() end
+			constraint.RemoveAll(prop["Ent"])
+			constraint.NoCollide(self.Pod, prop["Ent"], 0, 0)
+			local phys = prop["Ent"]:GetPhysicsObject()
+			if not phys or not phys:IsValid() then return end
+			phys:Wake()
+			
+			local vel = self.Pod:GetVelocity():Length()*10
+			if vel <= 0 then vel = 1000000000 end
+			
+				local APAng = prop["Ent"].APAng or Angle(0,0,0)
+				local HPAng = self.HP[prop["Ent"].HPN]["Angle"] or Angle(0,0,0)
+				local destang = self.Pod:LocalToWorldAngles(APAng+HPAng)
+				
+				local APPos = prop["Ent"].APPos or Vector(0,0,0)
+				APPos = Vector(APPos.x,APPos.y,APPos.z)
+				APPos:Rotate(APAng+HPAng)
+				local HPPos = self.HP[prop["Ent"].HPN]["Pos"] or Vector(0,0,0)
+				HPPos = Vector(HPPos.x,HPPos.y,HPPos.z)
+				if self.Skewed then
+					if (type(self.Skewed) == "boolean" and self.Skewed == true) then
+						HPPos:Rotate(Angle(0,-90,0))
+					elseif type(self.Skewed) == "angle" then
+						HPPos:Rotate(self.Skewed)
+					end
+				end
+				local destpos = self.Pod:LocalToWorld(APPos+HPPos)
+			
+			
+			phys:ComputeShadowControl(
+			{
+				secondstoarrive		= (1/vel or 0.000001),
+				pos					= destpos, --self.Pod:GetPos()+(prop["Pos"] or Vector(0,0,0)),				 -- Where you want to move to 
+				angle			= destang, --self.Pod:LocalToWorldAngles(prop["Ent"].APAng+prop["Angle"]), --self.Pod:GetAngles()+(prop["Angle"] or Angle(0,0,0)),  -- Angle you want to move to --:RotateAroundAxis(self.Pod:GetAngles():Up(),num)?
+				maxangular		= 5000,
+				maxangulardamp		= 10000,
+				maxspeed		= 2000,
+				maxspeeddamp		= 10000,
+				dampfactor		= 0.8,
+				teleportdistance	= 1, -- If it's further away than this it'll teleport (Set to 0 to not teleport) 
+				deltatime			= deltatime 
+			})
+			
+		end
+	
+	end
+	
+	--return SIM_NOTHING
+
+end
