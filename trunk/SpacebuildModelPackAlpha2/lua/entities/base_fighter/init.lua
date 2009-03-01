@@ -22,6 +22,13 @@ function ENT:Initialize(self)
 	end
 	self.Entity:StartMotionController()
 	self.PhysObj = self.Entity:GetPhysicsObject()
+	
+	if CAF then
+		local RDist = CAF.GetAddon("Resource Distribution")
+		if RDist then
+			timer.Simple(3,function() RDist.RegisterNonStorageDevice(self.Pod) end)
+		end
+	end
 end
 
 function ENT:IsFighter()
