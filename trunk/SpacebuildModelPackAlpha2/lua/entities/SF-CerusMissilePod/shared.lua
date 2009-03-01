@@ -6,7 +6,7 @@ ENT.Category		= "SBEP-Weapons"
 ENT.Instructions	= "The guidance system for the missiles can be configured by wired inputs. 0 = Unguided, 1 = Non-Tracking, 2 = Tracking, 3 = Homing, 4 = Seeking, 5 = Optical. For more information, visit the thread." 
 
 ENT.Spawnable		= false
-ENT.AdminSpawnable	= false
+ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
 ENT.MCDown			= 0

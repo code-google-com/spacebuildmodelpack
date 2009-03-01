@@ -13,7 +13,9 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire", "GuidanceType", "X", "Y", "Z", "WireGuidanceOnly" } )
+	local inNames = {"Fire","GuidanceType","X","Y","Z","Vector","WireGuidanceOnly"}
+	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR","NORMAL"}
+	self.Inputs = WireLib.CreateSpecialInputs( self.Entity,inNames,inTypes)
 	self.Outputs = Wire_CreateOutputs( self.Entity, { "ShotsLeft", "CanFire" })
 		
 	local phys = self.Entity:GetPhysicsObject()
@@ -80,6 +82,11 @@ function ENT:TriggerInput(iname, value)
 	
 	elseif (iname == "Z") then
 		self.ZCo = value
+	
+	elseif (iname == "Vector") then
+		self.XCo = value.x
+		self.YCo = value.y
+		self.ZCo = value.z
 		
 	elseif (iname == "WireGuidanceOnly") then
 		if (value > 0) then
