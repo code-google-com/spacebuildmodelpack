@@ -1,3 +1,6 @@
+//SpacebuildEnhancementProject function table
+SBEP = SBEP or {}
+
 -- This function basically deals with stuff that happens when a player hops out of a vehicle
 function SetExPoint(player, vehicle)
 	if vehicle.ExitPoint && vehicle.ExitPoint:IsValid() then
@@ -17,6 +20,7 @@ function SetExPoint(player, vehicle)
 end
 
 hook.Add("PlayerLeaveVehicle", "PlayerRepositioning", SetExPoint)
+SBEP.SetExPoint = SetExPoint
 
 --For controling certain entities
 function SBEPCCC(ply, data)
@@ -27,6 +31,7 @@ function SBEPCCC(ply, data)
 end  
  
 hook.Add("SetupMove", "SBEPControls", SBEPCCC)
+SBEP.CCC = SBEPCCC
 
 --This is all the hardpointing stuff
 function HPLink( cont, pod, weap )
@@ -64,27 +69,6 @@ function HPLink( cont, pod, weap )
 			end			
 			
 			if TypeMatch then
-				--[[Paradukes' old code
-				weap:SetAngles( pod:GetAngles() )
-				local PAngle = pod:GetAngles()
-				if weap.APAng then
-					PAngle:RotateAroundAxis( pod:GetUp(), weap.APAng.y )
-					PAngle:RotateAroundAxis( pod:GetRight(), weap.APAng.p )
-					PAngle:RotateAroundAxis( pod:GetForward(), weap.APAng.r )
-				end
-				if cont.HP[i]["Angle"] then
-					PAngle:RotateAroundAxis( pod:GetUp(), cont.HP[i]["Angle"].y )
-					PAngle:RotateAroundAxis( pod:GetRight(), cont.HP[i]["Angle"].p )
-					PAngle:RotateAroundAxis( pod:GetForward(), cont.HP[i]["Angle"].r )
-				end
-				weap:SetAngles( PAngle )
-				
-				if cont.Skewed then
-					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.y ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.x ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
-				else
-					weap:SetPos( pod:GetPos() + ( pod:GetForward() * ( cont.HP[i]["Pos"].x + weap.APPos.x ) ) + ( pod:GetRight() * ( cont.HP[i]["Pos"].y + weap.APPos.y ) ) + ( pod:GetUp() * ( cont.HP[i]["Pos"].z + weap.APPos.z ) ) )
-				end]]
-				
 				------Fishface60's new code-------
 				local APAng = weap.APAng or Angle(0,0,0)
 				local HPAng = cont.HP[i]["Angle"] or Angle(0,0,0)
@@ -124,3 +108,4 @@ function HPLink( cont, pod, weap )
 	end
 	return false
 end
+SBEP.HPLink = HPLink

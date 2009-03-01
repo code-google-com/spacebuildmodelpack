@@ -3,6 +3,8 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
+local ZeroVector = Vector(0,0,0)
+
 function ENT:Initialize()
 
 	self.Entity:SetModel( "models/Slyfo/searchlight.mdl" )
@@ -12,7 +14,10 @@ function ENT:Initialize()
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_combine/combinethumper002")
 	self.Inputs = Wire_CreateInputs( self.Entity, { "On", "Searching" } )
-	self.Outputs = Wire_CreateOutputs( self.Entity, { "TargetFound", "X", "Y", "Z" })
+	local outNames = {"TargetFound","X","Y","Z","Vector"}
+	local outTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","VECTOR"}
+	local outDescs = {}
+	self.Outputs = WireLib.CreateSpecialOutputs( self.Entity,outNames,outTypes,outDescs)
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -28,7 +33,6 @@ function ENT:Initialize()
 	
 	self.Searching = false
 end
-
 function ENT:TriggerInput(iname, value)		
 	
 	if (iname == "On") then
@@ -109,6 +113,7 @@ function ENT:Think()
 					Wire_TriggerOutput(self.Entity, "X", Pos.x)
 					Wire_TriggerOutput(self.Entity, "Y", Pos.y)
 					Wire_TriggerOutput(self.Entity, "Z", Pos.z)
+					Wire_TriggerOutput(self.Entity, "Vector",Pos)
 				end
 			else
 				self.Target = nil
@@ -118,6 +123,7 @@ function ENT:Think()
 			Wire_TriggerOutput(self.Entity, "X", 0)
 			Wire_TriggerOutput(self.Entity, "Y", 0)
 			Wire_TriggerOutput(self.Entity, "Z", 0)
+			Wire_TriggerOutput(self.Entity, "Vector",ZeroVector)
 			
 			--I really wish ents.FindInCone was working properly...
 			local trace = {}
@@ -152,6 +158,7 @@ function ENT:Think()
 		Wire_TriggerOutput(self.Entity, "X", 0)
 		Wire_TriggerOutput(self.Entity, "Y", 0)
 		Wire_TriggerOutput(self.Entity, "Z", 0)
+		Wire_TriggerOutput(self.Entity, "Vector",ZeroVector)
 	end
 	
 	
