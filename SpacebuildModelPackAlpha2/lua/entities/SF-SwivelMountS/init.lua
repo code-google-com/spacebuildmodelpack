@@ -12,7 +12,9 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Active", "Fire", "X", "Y", "Z" } )
+	local inNames = {"Active", "Fire", "X", "Y", "Z","Vector"}
+	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR"}
+	self.Inputs = WireLib.CreateSpecialInputs( self.Entity,inNames,inTypes)
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -98,6 +100,11 @@ function ENT:TriggerInput(iname, value)
 	
 	elseif (iname == "Z") then
 		self.ZCo = value
+	
+	elseif (iname == "Vector") then
+		self.XCo = value.x
+		self.YCo = value.y
+		self.ZCo = value.z
 				
 	end
 end
