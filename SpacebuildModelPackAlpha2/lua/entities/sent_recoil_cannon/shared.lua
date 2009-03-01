@@ -1,6 +1,6 @@
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
-ENT.PrintName		= "Recoil-Animation Cannon"
+ENT.PrintName		= "Gauss Laser"
 ENT.Author			= "Levybreak"
 ENT.Contact 		= "Facepunch"
 ENT.Purpose			= "Firein Mah Lasor!"
@@ -11,10 +11,10 @@ ENT.Spawnable		= true
 ENT.AdminSpawnable	= true
 ENT.Owner			= nil
 ENT.SPL				= nil
-ENT.HPType			= "Medium"
-ENT.APPos			= Vector(0,0,20)
+ENT.HPType			= "Medium" --:D
+ENT.APPos			= Vector(0,0,15)
 ENT.APAng			= Angle(0,-90,0)
 ENT.FTime			= 0
-ENT.WInfo			= "Rapid-Fire Laser"
+ENT.WInfo			= "Gauss Laser"
 
 ENT.AutomaticFrameAdvance = true

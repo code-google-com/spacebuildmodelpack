@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "weapons/gausslaser_orange"
+	"$translucent" 1
+}

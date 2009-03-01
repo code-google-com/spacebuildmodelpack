@@ -18,6 +18,11 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	self.CAng = self.Entity:GetAngles()
 	
+	--[[
+	PrintTable(self:GetAttachment(self:LookupAttachment("Cannon_Tip")))
+	
+	self.Tip = self:GetAttachment(self:LookupAttachment("Cannon_Tip"))]] --not accurate enough. o.O
+	
 end
 
 function ENT:Think()
@@ -32,12 +37,40 @@ function ENT:Use(ply)
 end
 
 function ENT:FireLazor()
-	print("I'm firin mah lazor!")
 	local seq = self:LookupSequence("fire")
 	self:ResetSequence(seq)
 	self:EmitSound("Weapon_Mortar.Impact")
+	local start = self:GetPos() + (self:GetAngles():Right() * 10)
+	local trace = {}
+	trace.start = start
+	trace.endpos = self:GetPos() + (self:GetAngles():Right() * -9000000)
+	trace.filter = self
+	local tr = util.TraceLine(trace) 
+	local efct = EffectData()
+	efct:SetStart(start)
+	efct:SetOrigin(tr.HitPos)
+	efct:SetMagnitude(2.5)
+	util.Effect("laser_beamz",efct)
 	
-	self:GetPhysicsObject():ApplyForceCenter(self:GetAngles():Forward()*-200) --recoilz
+	util.BlastDamage(self, self.SPL, tr.HitPos, 250, 5000)
+	if (not gcombat) then
+		for k,v in pairs(ents.FindInSphere(tr.HitPos, 250)) do
+			v:TakeDamage(math.random(4000,5000),self.SPL, self)
+		end
+	else
+		cbt_hcgexplode( tr.HitPos, 250, math.Rand(800,1000), 9)
+		if tr.Entity and tr.Entity:IsValid() then
+			tr.Entity:GetPhysicsObject():ApplyForceCenter((self:GetAngles():Right()*-1000)*tr.Entity:GetPhysicsObject():GetMass())
+			cbt_dealhcghit( tr.Entity, 900, 9, tr.HitPos, tr.HitPos)
+		end
+	end
+	
+	local phy = self:GetPhysicsObject()
+	
+	phy:ApplyForceCenter((self:GetAngles():Right()*200)*phy:GetMass()) --recoilz
+	if self:GetParent() and self:GetParent():IsValid() then
+		self:GetParent():GetPhysicsObject():ApplyForceCenter((self:GetAngles():Right()*200)*phy:GetMass())
+	end
 end
 
 function ENT:PhysicsCollide( data, physobj )  
@@ -47,9 +80,10 @@ end
 function ENT:TriggerInput(iname, value)		
 	if (iname == "Fire") then
 		if (value > 0) then
-			self.Active = true
-		else
-			self.Active = false
+			if (not self.CanFireAgain or self.CanFireAgain <= CurTime()) then
+				self.CanFireAgain = CurTime() + 2.5
+				self:FireLazor()
+			end
 		end
 			
 	end
