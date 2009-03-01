@@ -4,21 +4,12 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
 function ENT:Initialize()
-
+	self.BaseClass:Initialize(self)
 	self.Entity:SetModel( "models/Spacebuild/pad.mdl" )
 	self.Entity:SetName("LandingPad")
-	self.Entity:PhysicsInit( SOLID_VPHYSICS )
-	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
-	self.Entity:SetSolid( SOLID_VPHYSICS )
-	local phys = self.Entity:GetPhysicsObject()
-	if (phys:IsValid()) then
-		phys:Wake()
-		phys:EnableGravity(true)
-		phys:EnableDrag(true)
-		phys:EnableCollisions(true)
-	end
-	
-    self.Entity:SetKeyValue("rendercolor", "255 255 255")
+end
+
+function ENT:InitDock()
 	self.Bay = {}
 	self.Bay["Pad"] = {}
 	self.Bay["Pad"]["ship"] = nil
@@ -26,10 +17,6 @@ function ENT:Initialize()
 	self.Bay["Pad"]["pos"] = Vector(0,0,175)
 	self.Bay["Pad"]["canface"] = {Angle(0,90,0),Angle(0,270,0),Angle(0,180,0),Angle(0,0,0)}
 	self.Bay["Pad"]["pexit"] = Vector(-300,-225,2)
-	
-	self.LaunchSpeed = 0
-	self.Entity:MakeWire()
-	
 end
 
 function ENT:SpawnFunction( ply, tr )

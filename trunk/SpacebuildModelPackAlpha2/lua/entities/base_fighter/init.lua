@@ -24,6 +24,10 @@ function ENT:Initialize(self)
 	self.PhysObj = self.Entity:GetPhysicsObject()
 end
 
+function ENT:IsFighter()
+	return true
+end
+
 local function GetJBool(self,sVal)
 	if not joystick then return false end
 	return joystick.Get(self.CPL, "sbepftr_"..sVal)
@@ -335,7 +339,9 @@ function ENT:Think()
 	else
 		self.Entity:Remove()
 	end
-
+	if (self.Entity.IsHangar and self.Entity:IsHangar()) then
+		SBEP.Hangar.Think(self)
+	end
 	self.Entity:NextThink( CurTime() + 0.01 ) 
 	return true
 end

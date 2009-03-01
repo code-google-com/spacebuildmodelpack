@@ -12,7 +12,7 @@ local large = {"dockingclamp", "dockingclampt", "dockingclampx","mbhangarside2"}
 table.Add(large,heavy)
 local medium = {"swordhangar", "swordhangarlarge","swordhangarsingle"}
 table.Add(medium,large)
-local small = {"sbhangar","sbfighterbay1","sbfighterbay2","sbfighterbay3","sbfighterbay4","sbclamp"}
+local small = {"sbhangar","sbfighterbay1","sbfighterbay2","sbfighterbay3","sbfighterbay4","sbclamp","steakknife"}
 table.Add(small,medium)
 local tiny = {}
 table.Add(tiny,small)
