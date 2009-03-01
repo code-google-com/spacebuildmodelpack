@@ -31,7 +31,7 @@ function ENT:Initialize()
 	self.HP[3]			= {}
 	self.HP[3]["Ent"]	= nil
 	self.HP[3]["Type"]	= { "GatMid","Medium", "Heavy", "Vehicle" }
-	self.HP[3]["Pos"]	= Vector(130,0,55)
+	self.HP[3]["Pos"]	= Vector(130,0,25)
 	self.HP[3]["Angle"] = Angle(0,0,180)
 	self.HP[4]			= {}
 	self.HP[4]["Ent"]	= nil

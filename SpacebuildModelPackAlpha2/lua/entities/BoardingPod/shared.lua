@@ -23,6 +23,7 @@ ENT.Yaw				= 0
 ENT.Roll			= 0
 ENT.HPType			= "Vehicle"
 ENT.APPos			= Vector(0,0,-46)
+ENT.APAng			= Angle(0,0,180)
 
 function ENT:SetActive( val )
 	self.Entity:SetNetworkedBool("Active",val,true)
