@@ -62,12 +62,7 @@ function ENT:Think()
 					self.WD:Remove()
 				end
 				self.PR = true
-				local TM = ents.Create( "DTimer" )
-				if ( !TM:IsValid() ) then return end
-				TM:Spawn()
-				TM:Activate()
-				TM.DEnt = self.NPod
-				TM.DTime = CurTime() + 20 
+				self.NPod:Fire("kill", "", 20)
 			end
 		end
 	end
