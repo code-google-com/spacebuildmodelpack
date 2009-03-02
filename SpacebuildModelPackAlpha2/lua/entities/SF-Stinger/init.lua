@@ -33,11 +33,23 @@ function ENT:Initialize()
 	self.CDL[2] = 0
 	self.CDL[3] = 0
 	self.CDL[4] = 0
+	self.CDL[5] = 0
+	self.CDL[6] = 0
+	self.CDL[7] = 0
+	self.CDL[8] = 0
+	self.CDL[9] = 0
+	self.CDL[10] = 0
 	self.CDL["1r"] = true
 	self.CDL["2r"] = true
 	self.CDL["3r"] = true
 	self.CDL["4r"] = true
-	self.Entity:SetNetworkedInt("Shots",4)
+	self.CDL["5r"] = true
+	self.CDL["6r"] = true
+	self.CDL["7r"] = true
+	self.CDL["8r"] = true
+	self.CDL["9r"] = true
+	self.CDL["10r"] = true
+	self.Entity:SetNetworkedInt("Shots",10)
 	
 end
 
@@ -70,15 +82,17 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think()
-	for n = 1, 4 do
+	local MCount = 0
+	for n = 1, 10 do
 		if (CurTime() >= self.CDL[n]) then
 			if self.CDL[n.."r"] == false then
 				self.CDL[n.."r"] = true
 				self.Entity:EmitSound("Buttons.snd26")
-				self.Entity:ShotsAdd(1)
 			end
+			MCount = MCount + 1
 		end
 	end
+	self.Entity:SetShots(MCount)
 end
 
 function ENT:PhysicsCollide( data, physobj )
@@ -101,10 +115,9 @@ end
 
 function ENT:HPFire()
 	if (CurTime() >= self.MCDown) then
-		for n = 1, 4 do
+		for n = 1, 10 do
 			if (CurTime() >= self.CDL[n]) then
 				self.Entity:FFire(n)
-				self.Entity:ShotsAdd(-1)
 				return
 			end
 		end

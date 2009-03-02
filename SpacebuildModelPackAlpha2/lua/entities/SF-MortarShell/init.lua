@@ -91,7 +91,7 @@ function ENT:GoBang()
 	util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 100, 75)
 	gcombat.hcgexplode( self.Entity:GetPos(), 100, math.Rand(150, 300), 7)
 
-	self.Entity:EmitSound("WeaponDissolve.Dissolve")
+	self.Entity:EmitSound("explode_4")
 	
 	local effectdata = EffectData()
 	effectdata:SetOrigin(self.Entity:GetPos())
