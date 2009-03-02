@@ -695,7 +695,7 @@ local V = {
 				Category = Category,
 
 				Author = "SpaceBuild Model Pack",
-				Information = "Sit, stay.",
+				Information = "Stingray Light Fighter",
 				Model = "models/Cerus/Fighters/Stingray.mdl",
 				KeyValues = {
 								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
@@ -706,3 +706,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbep_StingRay", V )
+
+local V = {
+				Name = "Wraith",
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "SpaceBuild Model Pack",
+				Information = "Wraith Assault Bomber",
+				Model = "models/Cerus/Fighters/Wraith.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPSitAnimation,
+							}
+}
+list.Set( "Vehicles", "sbep_WraithBomber", V )
