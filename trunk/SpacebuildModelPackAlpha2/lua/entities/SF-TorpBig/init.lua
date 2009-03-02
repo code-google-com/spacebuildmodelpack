@@ -33,6 +33,7 @@ function ENT:Initialize()
 	self.CAng = self.Entity:GetAngles()
 	
 	self.hasdamagecase = true
+	self.ATime = 0
 end
 
 function ENT:TriggerInput(iname, value)		
@@ -69,17 +70,25 @@ end
 
 function ENT:Think()
 	if self.Armed then
-		local Vel = self.PhysObj:GetVelocity()
-		--self.Entity:SetAngles( self.PAngle )
-		self.PhysObj:SetVelocity( Vel )
+		if self.Vel then
+			self.PhysObj:SetVelocity( self.Vel )
+		end
+		self.PhysObj:AddAngleVelocity(self.PhysObj:GetAngleVelocity() * -1)
 	end
 	if (self.PFire) then
 		self.PhysObj:SetVelocity(self.Entity:GetForward() * 10000)
 		self.PFire = false
+		self.Vel = self.Entity:GetForward() * 10000
+		self.Entity:Fire("kill", "", 45)
 	end
 	if (self.PFire2) then
 		self.PhysObj:SetVelocity(self.Entity:GetForward() * -10000)
 		self.PFire2 = false
+		self.Vel = self.Entity:GetForward() * -10000
+		self.Entity:Fire("kill", "", 45)
+	end
+	if CurTime() > self.ATime && self.ATime > 0 then
+		self.Entity:GetPhysicsObject():EnableCollisions(true)
 	end
 end
 
@@ -159,8 +168,9 @@ function ENT:HPFire()
 	if self.HPWeld && self.HPWeld:IsValid() then self.HPWeld:Remove() end
 	self.PhysObj:SetVelocity(self.Entity:GetForward()*10000)
 	self.Entity:Arm()
+	self.ATime = CurTime() + 0.5
 	self.PFire = true
-	self.PhysObj:EnableCollisions(true)
+	self.PhysObj:EnableCollisions(false)
 	self.PhysObj:EnableGravity(false)
 end
 

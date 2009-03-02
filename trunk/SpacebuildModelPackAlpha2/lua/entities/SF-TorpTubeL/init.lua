@@ -73,10 +73,13 @@ function ENT:Think()
 		self.Loading = false
 	end
 	local LPercent = 0
-	if self.LTime > CurTime() then
+	if self.LTime > CurTime() && !self.Loaded then
 		LPercent = ( ( self.ReloadPeriod - ( self.LTime - CurTime() ) ) / self.ReloadPeriod ) * 100
 	else
 		LPercent = 0
+	end
+	if self.Loaded then
+		LPercent = 100
 	end
 	Wire_TriggerOutput( self.Entity, "ReloadProgress", LPercent )
 	
@@ -98,13 +101,15 @@ function ENT:OnTakeDamage( dmginfo )
 end
 
 function ENT:Touch( ent )
-	if (!self.Torp || !self.Torp:IsValid()) && ent:IsValid() && ent.BigTorp && !ent.Armed then
+	if (!self.Torp || !self.Torp:IsValid()) && ent:IsValid() && ent.BigTorp && !ent.Armed && !ent.Mounted then
 		self.Torp = ent
 		ent:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * -102 + self.Entity:GetUp() * 63 + self.Entity:GetForward() * -50)
 		ent:SetAngles( self.Entity:GetAngles() )
 		constraint.RemoveConstraints( self.Torp, "Weld" )
 		self.BWeld = constraint.Weld(Torp, self.Entity, 0, 0, 0, true)
 		ent:SetParent( self.Entity )
+		ent.Mounted = true
+		ent:GetPhysicsObject():EnableCollisions(false)
 				
 		self.Loading = false
 	end
@@ -125,12 +130,13 @@ end
 function ENT:HPFire()
 	if self.Torp && self.Torp:IsValid() then
 		self.Torp:Arm()
+		self.Torp.ATime = CurTime() + 0.5
 		self.Torp:SetParent()
 		self.Torp.PFire2 = true
 		if self.BWeld && self.BWeld:IsValid() then self.BWeld:Remove() end
 		self.Torp:SetPos( self.Entity:GetPos() + self.Entity:GetRight() * -102 + self.Entity:GetUp() * 63 + self.Entity:GetForward() * -200 )
-		self.Torp.PhysObj:EnableCollisions(true)
-		self.Torp.PhysObj:EnableGravity(false)
+		--self.Torp.PhysObj:EnableCollisions(true)
+		--self.Torp.PhysObj:EnableGravity(false)
 		self.Torp = nil
 	end
 	if !self.Loading then
