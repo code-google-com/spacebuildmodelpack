@@ -109,10 +109,6 @@ function ENT:TriggerInput(iname, value)
 	end
 end
 
-function ENT:PhysicsUpdate()
-
-end
-
 function ENT:Think()
 	local Weap = self.HP[1]["Ent"]
 	

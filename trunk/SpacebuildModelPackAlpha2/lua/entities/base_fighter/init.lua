@@ -375,12 +375,11 @@ end
 
 function ENT:Use( activator, caller )
 	if ( activator:IsPlayer() ) then
-		if activator == self.Pod:GetPassenger() then
-			activator:ExitVehicle( self.Pod )
-		else
-			activator:EnterVehicle( self.Pod )
-		end
+		activator:EnterVehicle( self.Pod )
 	end
+end
+
+function ENT:ExitFighter(player,vehicle)
 end
 
 function ENT:BuildDupeInfo()

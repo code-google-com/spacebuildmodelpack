@@ -22,6 +22,14 @@ end
 hook.Add("PlayerLeaveVehicle", "PlayerRepositioning", SetExPoint)
 SBEP.SetExPoint = SetExPoint
 
+function SBEP.ExitFighter(player,vehicle)
+	if not vehicle.Cont then return end
+	if vehicle.Cont.ExitFighter then
+		vehicle.Cont:ExitFighter(player,vehicle)
+	end
+end
+hook.Add("PlayerLeaveVehicle", "SBEP.ExitFighter", SBEP.ExitFighter)
+
 --For controling certain entities
 function SBEPCCC(ply, data)
 	local cmd = ply:GetCurrentCommand()
