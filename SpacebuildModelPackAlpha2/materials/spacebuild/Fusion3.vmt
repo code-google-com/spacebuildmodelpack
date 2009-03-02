@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "spacebuild/Fusion3"
+	"$surfaceprop" "metal"
+	"$model"     1
+}
