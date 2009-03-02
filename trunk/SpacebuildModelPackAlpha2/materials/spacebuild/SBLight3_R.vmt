@@ -1,13 +1,13 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "spacebuild/iron_rails"
+	"$basetexture" "spacebuild/SBLight3_R"
 	"$surfaceprop" "metal"
-	"$model" 1
+	"$model" 1 
+	"$selfillum" 1
+	"$bumpmap" "spacebuild/SBLight3Bump_R"
 	 "$phong"     "1"
 	"$halflambert"	1
  	"$phongexponent"   "60"
- 	"$phongboost"   "0.5"
+ 	"$phongboost"   "1"
  	"$phongfresnelranges"   "[.5 .8 1]"
 }
-
-
