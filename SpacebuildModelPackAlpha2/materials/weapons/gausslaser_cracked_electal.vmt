@@ -1,0 +1,14 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "weapons/gausslaser_cracked_electal"
+	"$bumpmap" "weapons/gausslaser_cracked_electal_normal"
+	"$normalmap" "weapons/gausslaser_cracked_electal_normal"
+	 "$phong"     "1"
+	"$halflambert"	1
+ 	"$phongexponent"   "60"
+ 	"$phongboost"   "1"
+ 	"$phongfresnelranges"   "[.5 .8 1]"
+	"$model" 1 
+	"$selfillum" 1
+	"$surfaceprop" "metal"
+}
