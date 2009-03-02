@@ -59,7 +59,7 @@ function ENT:FireLazor()
 		end
 	else
 		cbt_hcgexplode( tr.HitPos, 250, math.Rand(800,1000), 9)
-		if tr.Entity and tr.Entity:IsValid() then
+		if tr.Entity and tr.Entity:IsValid() and tr.Entity:GetPhysicsObject() and tr.Entity:GetPhysicsObject():IsValid() then
 			tr.Entity:GetPhysicsObject():ApplyForceCenter((self:GetAngles():Right()*-1000)*tr.Entity:GetPhysicsObject():GetMass())
 			cbt_dealhcghit( tr.Entity, 900, 9, tr.HitPos, tr.HitPos)
 		end
