@@ -18,13 +18,14 @@ function ENT:Initialize()
 		phys:EnableDrag(true)
 		phys:EnableCollisions(true)
 	end
+	gcombat.registerent( self.Entity, 10, 4 )
 
-    	self.Entity:SetKeyValue("rendercolor", "0 0 0")
+    self.Entity:SetKeyValue("rendercolor", "0 0 0")
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	self.CAng = self.Entity:GetAngles()
 	util.SpriteTrail( self.Entity, 0,  Color(255,50,50,200), false, 10, 0, 1, 1, "trails/smoke.vmt" )
 
-
+	self.hasdamagecase = true
 end
 
 function ENT:PhysicsUpdate()
@@ -57,16 +58,16 @@ function ENT:Think()
 	end
 	
 	if (self.Exploded != true) then
-		self.CAng = self.Entity:GetAngles()
+		self.Entity:SetAngles(self.CAng)
 	end
 	
 	local trace = {}
 	trace.start = self.Entity:GetPos()
-	trace.endpos = self.Entity:GetPos() + (self.Entity:GetForward() * 500)
+	trace.endpos = self.Entity:GetPos() + (self.Entity:GetForward() * 200)
 	trace.filter = self.Entity
 	local tr = util.TraceLine( trace )
 	if !tr.Hit then
-		self.Entity:SetPos(self.Entity:GetPos() + self.Entity:GetForward() * 500)
+		self.Entity:SetPos(self.Entity:GetPos() + self.Entity:GetForward() * 200)
 	else
 		if tr.HitSky then
 			self.Entity:Remove()
@@ -76,15 +77,15 @@ function ENT:Think()
 	end
 	if self.TCount > 1 then
 		local TFound = 0
-		local targets = ents.FindInSphere( self.Entity:GetPos(), 500)
+		local targets = ents.FindInSphere( self.Entity:GetPos(), 200)
 		
 		if targets then
 			for _,i in pairs(targets) do
-				if i:GetClass() != self.Entity:GetClass() then
+				if i:GetPhysicsObject() && i:GetPhysicsObject():IsValid() && i:GetPhysicsObject():GetMass() > 0 && i:GetClass() != self.Entity:GetClass() && i:GetClass() != "wreckedstuff" then
 					TFound = TFound + 1
 				end
 			end
-			if TFound > 2 then
+			if TFound > 0 then
 				self.Entity:GoBang()
 			end
 		end
@@ -97,14 +98,16 @@ end
 
 function ENT:PhysicsCollide( data, physobj )
 	if(!self.Exploded) then
-		self.Entity:GoBang()
+		--self.Entity:GoBang()
 	end
+	--self.Exploded = true
 end
 
 function ENT:OnTakeDamage( dmginfo )
 	if(!self.Exploded) then
-		self.Entity:GoBang()
+		--self.Entity:GoBang()
 	end
+	--self.Exploded = true
 end
 
 function ENT:Use( activator, caller )
@@ -112,12 +115,21 @@ function ENT:Use( activator, caller )
 end
 
 function ENT:GoBang()
-	self.Exploded = true
-	util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 700, 75)
-	cbt_hcgexplode( self.Entity:GetPos(), 700, math.Rand(500, 1000), 6)
+	if !self.Exploded then
+		self.Exploded = true
+		util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 500, 75)
+		SBGCSplash( self.Entity:GetPos(), 500, math.Rand(100, 200), 6, { self.Entity:GetClass() } )
+	
+		local effectdata = EffectData()
+		effectdata:SetOrigin(self.Entity:GetPos())
+		effectdata:SetStart(self.Entity:GetPos())
+		util.Effect( "Explosion", effectdata )
+	end
+end
 
-	local effectdata = EffectData()
-	effectdata:SetOrigin(self.Entity:GetPos())
-	effectdata:SetStart(self.Entity:GetPos())
-	util.Effect( "Explosion", effectdata )
+function ENT:gcbt_breakactions( damage, pierce )
+	if !self.Exploded then
+		self.Entity:GoBang()
+	end
+	self.Exploded = true
 end

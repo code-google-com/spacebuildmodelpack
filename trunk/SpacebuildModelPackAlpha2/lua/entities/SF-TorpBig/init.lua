@@ -25,12 +25,14 @@ function ENT:Initialize()
 		phys:EnableDrag(false)
 		phys:EnableCollisions(true)
 	end
+	
+	gcombat.registerent( self.Entity, 60, 6 )
 
     --self.Entity:SetKeyValue("rendercolor", "0 0 0")
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	self.CAng = self.Entity:GetAngles()
 	
-
+	self.hasdamagecase = true
 end
 
 function ENT:TriggerInput(iname, value)		
@@ -90,6 +92,9 @@ end
 function ENT:OnTakeDamage( dmginfo )
 	if (!self.Exploded && self.Armed) then
 		--self:Explode()
+		if dmginfo:GetInflictor():GetClass() != self.Entity:GetClass() then
+			gcombat.devhit( self.Entity, dmginfo:GetDamage(), 50 )
+		end
 	end
 	--self.Exploded=true
 end
@@ -107,9 +112,9 @@ end
 
 function ENT:Splode()
 	if(!self.Exploded) then
-		--self.Exploded = true
+		self.Exploded = true
 		util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 1500, 1500)
-		cbt_hcgexplode( self.Entity:GetPos(), 1000, math.random(5000,9000), 8)
+		SBGCSplash( self.Entity:GetPos(), 1000, math.random(5000,9000), 8, { self.Entity:GetClass() } )
 		local targets = ents.FindInSphere( self.Entity:GetPos(), 1000)
 	
 		for _,i in pairs(targets) do
@@ -157,4 +162,11 @@ function ENT:HPFire()
 	self.PFire = true
 	self.PhysObj:EnableCollisions(true)
 	self.PhysObj:EnableGravity(false)
+end
+
+function ENT:gcbt_breakactions( damage, pierce )
+	if !self.Exploded then
+		self.Entity:Splode()
+	end
+	self.Exploded = true
 end

@@ -26,10 +26,7 @@ function ENT:Initialize()
 		phys:SetMass( 1 )
 	end
 
-	self.cbt = {}
-	self.cbt.health = 700
-	self.cbt.armor = 10
-	self.cbt.maxhealth = 700
+	gcombat.registerent( self.Entity, 10, 4 )
 	self.Armed = true
 	
     --self.Entity:SetKeyValue("rendercolor", "0 0 0")
@@ -44,6 +41,8 @@ function ENT:Initialize()
 	
 	self.Yaw = 0
 	self.Pitch = 0
+	
+	self.hasdamagecase = true
 	
 end
 
@@ -167,13 +166,14 @@ function ENT:PhysicsCollide( data, physobj )
 	if (!self.Exploded && self.Armed) then
 		self:Splode()
 	end
+	self.Exploded = true
 end
 
 function ENT:OnTakeDamage( dmginfo )
 	if (!self.Exploded && self.Armed) then
-		--self:Explode()
+		--self:Splode()
 	end
-	--self.Exploded=true
+	--self.Exploded = true
 end
 
 function ENT:Use( activator, caller )
@@ -182,9 +182,9 @@ end
 
 function ENT:Splode()
 	if(!self.Exploded) then
-		--self.Exploded = true
+		self.Exploded = true
 		util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 150, 150)
-		cbt_hcgexplode( self.Entity:GetPos(), 100, math.Rand(200, 500), 6)
+		SBGCSplash( self.Entity:GetPos(), 100, math.Rand(200, 500), 6, { self.Entity:GetClass() } )
 		
 		--targets = ents.FindInSphere( self.Entity:GetPos(), 2000)
 		
@@ -221,4 +221,11 @@ end
 
 function ENT:OnRemove()
 	--self.CPL:SetViewEntity()
+end
+
+function ENT:gcbt_breakactions( damage, pierce )
+	if !self.Exploded then
+		self.Entity:Splode()
+	end
+	self.Exploded = true
 end

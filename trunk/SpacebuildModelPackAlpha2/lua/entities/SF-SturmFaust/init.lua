@@ -26,10 +26,7 @@ function ENT:Initialize()
 		phys:SetMass( 1 )
 	end
 
-	self.cbt = {}
-	self.cbt.health = 5000
-	self.cbt.armor = 2200
-	self.cbt.maxhealth = 5000
+	gcombat.registerent( self.Entity, 10, 4 )
 	self.Armed = false
 	
     --self.Entity:SetKeyValue("rendercolor", "0 0 0")
@@ -51,9 +48,9 @@ function ENT:PhysicsCollide( data, physobj )
 end
 
 function ENT:OnTakeDamage( dmginfo )
-	if (!self.Exploded && self.Armed) then
-		self:Splode()
-	end
+	--if (!self.Exploded && self.Armed) then
+		--self:Splode()
+	--end
 end
 
 function ENT:Think()
@@ -69,9 +66,9 @@ end
 
 function ENT:Splode()
 	if(!self.Exploded) then
-		--self.Exploded = true
+		self.Exploded = true
 		util.BlastDamage(self.Entity, self.Entity, self.Entity:GetPos(), 100, 100)
-		cbt_hcgexplode( self.Entity:GetPos(), 100, math.Rand(400, 700), 9)
+		SBGCSplash( self.Entity:GetPos(), 100, math.Rand(400, 700), 9, { self.Entity:GetClass() } )
 		
 		--targets = ents.FindInSphere( self.Entity:GetPos(), 2000)
 		

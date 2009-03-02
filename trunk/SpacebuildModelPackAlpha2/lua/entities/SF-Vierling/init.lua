@@ -144,9 +144,12 @@ function ENT:PhysicsUpdate()
 
 end
 
-function ENT:Think()
+function ENT:Think() -- Note to self: Redo this bit. It could do with a little reordering.
 		
 	local TargPos = nil
+	if !self.Active then
+		TargPos = self.Base2:GetPos() + self.Base2:GetForward() * 200 + self.Base2:GetUp() * 60
+	end
 	if self.CPod && self.CPod:IsValid() then
 		self.CPL = self.CPod:GetPassenger()
 		if (self.CPL && self.CPL:IsValid()) then

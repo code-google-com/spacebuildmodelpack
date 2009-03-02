@@ -26,7 +26,10 @@ function ENT:Initialize()
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	self.CAng = self.Entity:GetAngles()
 	
-
+	self.HPType			= "RBackPanel"
+	self.APPos			= Vector(0,30,40)
+	self.APAng			= Angle(0,0,0)
+	self.WInfo			= "Police Lights"
 end
 
 function ENT:TriggerInput(iname, value)		

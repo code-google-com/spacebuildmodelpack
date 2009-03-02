@@ -11,7 +11,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire1", "Fire2" } )
+	self.Inputs = Wire_CreateInputs( self.Entity, { "Fire" } )
 	
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
@@ -25,6 +25,10 @@ function ENT:Initialize()
 	
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
+	
+	self.MCDown = 0
+	
+	self.BMul = 1
 
 
 end
@@ -46,25 +50,16 @@ function ENT:SpawnFunction( ply, tr )
 end
 
 function ENT:TriggerInput(iname, value)		
-	if (iname == "Fire1") then
+	if (iname == "Fire") then
 		
 		if (value > 0) then
-			if (CurTime() >= self.CDown1) then
+			if (CurTime() >= self.MCDown) then
 				--if (self.val1 >= 1000) then
-					self.Entity:FFire1()
+					self.Entity:HPFire()
 				--end
 			end
 		end
-		
-	elseif (iname == "Fire2") then
-		
-		if (value > 0) then
-			if (CurTime() >= self.CDown2) then
-				--if (self.val1 >= 1000) then
-					self.Entity:FFire2()
-				--end
-			end
-		end
+
 		
 	end
 end
@@ -97,23 +92,9 @@ function ENT:Touch( ent )
 end
 
 function ENT:HPFire()
-	local CDown1 = self.Entity:GetNetworkedFloat("CDown1")
-	local CDown2 = self.Entity:GetNetworkedFloat("CDown2")
-	if (CurTime() >= self.MCDown) then
-		if (CurTime() >= CDown1) then
-			self.Entity:FFire1()
-		else
-			if (CurTime() >= CDown2) then
-				self.Entity:FFire2()
-			end
-		end
-	end
-end
-
-function ENT:FFire1()
 	local NewShell = ents.Create( "SF-FlakShell" )
 	if ( !NewShell:IsValid() ) then return end
-	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * 14) )
+	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * (14 * self.BMul)) )
 	NewShell:SetAngles( self.Entity:GetAngles() )
 	NewShell.SPL = self.SPL
 	NewShell:Spawn()
@@ -129,37 +110,12 @@ function ENT:FFire1()
 	local phys = self.Entity:GetPhysicsObject()  	
 	if (phys:IsValid()) then  		
 		phys:ApplyForceCenter( self.Entity:GetForward() * -1000 ) 
-	end 
+	end
+	
+	self.BMul = self.BMul * -1
 	
 	local effectdata = EffectData()
-	effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * 14)
-	effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * 14)
-	util.Effect( "Explosion", effectdata )
-end
-
-function ENT:FFire2()
-	local NewShell = ents.Create( "SF-FlakShell" )
-	if ( !NewShell:IsValid() ) then return end
-	NewShell:SetPos( self.Entity:GetPos() + (self.Entity:GetUp() * -14) )
-	NewShell:SetAngles( self.Entity:GetAngles() )
-	NewShell.SPL = self.SPL
-	NewShell:Spawn()
-	NewShell:Initialize()
-	NewShell:Activate()
-	local NC = constraint.NoCollide(self.Entity, NewShell, 0, 0)
-	NewShell.PhysObj:SetVelocity(self.Entity:GetForward() * 1000)
-	NewShell:Fire("kill", "", 30)
-	NewShell.ParL = self.Entity
-	--RD_ConsumeResource(self, "Munitions", 1000)
-	self.Entity:SetNetworkedFloat("CDown2",CurTime() + 5)
-	self.MCDown = CurTime() + 0.4
-	local phys = self.Entity:GetPhysicsObject()  	
-	if (phys:IsValid()) then  		
-		phys:ApplyForceCenter( self.Entity:GetForward() * -1000 ) 
-	end 
-	
-	local effectdata = EffectData()
-	effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * -14)
-	effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * -14)
+	effectdata:SetOrigin(self.Entity:GetPos() +  self.Entity:GetUp() * (14 * self.BMul))
+	effectdata:SetStart(self.Entity:GetPos() +  self.Entity:GetUp() * (14 * self.BMul))
 	util.Effect( "Explosion", effectdata )
 end
