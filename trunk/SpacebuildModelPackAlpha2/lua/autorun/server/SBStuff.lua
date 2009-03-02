@@ -109,3 +109,29 @@ function HPLink( cont, pod, weap )
 	return false
 end
 SBEP.HPLink = HPLink
+
+--This is basically a customized version of the standard GCombat explosion. Thanks to Q42 for making the system so maleable :)
+--The only reason this is necessary is to stop certain projectiles from blowing each other up.
+function SBGCSplash( position, radius, damage, pierce, filter )
+	local targets = ents.FindInSphere( position, radius )
+	local tooclose = ents.FindInSphere( position, 5 )
+	
+	for _,i in pairs(targets) do
+		--print(filter)
+		--print(i:GetClass())
+		if !table.HasValue( filter, i:GetClass() ) then
+			--print("Not Matching")
+			local tracedata = {}
+			tracedata.start = position
+			tracedata.endpos = i:LocalToWorld( i:OBBCenter( ) )
+			tracedata.filter = tooclose
+			tracedata.mask = MASK_SOLID
+			local trace = util.TraceLine(tracedata) 
+					
+			if trace.Entity == i then
+				local hitat = trace.HitPos
+				cbt_dealhcghit( i, damage, pierce, hitat, hitat)
+			end
+		end
+	end
+end
