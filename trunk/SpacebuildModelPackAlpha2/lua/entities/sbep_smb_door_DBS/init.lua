@@ -24,7 +24,7 @@ function ENT:Initialize()
 		self.Locked     		= false
 		self.DisableUse 		= false
 		self.DoorModel 			= model[2]
-		self.DoorAngleOffset 	= Angle(0, 90, 0)
+		self.DoorAngleOffset 	= Angle(0, 0, 0)
 
 		if !self.SBdoor or !self.SBdoor:IsValid() then
 			self.SBdoor = ents.Create( "prop_physics" )
