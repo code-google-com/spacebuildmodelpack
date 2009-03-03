@@ -55,7 +55,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent.HasHardpoints = true
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent2:SetModel( "models/smallbridge/sbchair/sbchair.mdl" ) 
+	ent2:SetModel( "models/SmallBridge/Vehicles/SBVPchair.mdl" ) 
 	ent2:SetPos( ent:LocalToWorld(Vector(40,0,20)) )
 	ent2:SetColor(255,255,255,31)
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
