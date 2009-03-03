@@ -1,6 +1,6 @@
 ENT.Type			      = "anim"
 ENT.Base                  = "sbep_base_door" 
-ENT.PrintName		      = "Blast Door"
+ENT.PrintName		      = "Drop Bay - Small Blast Door"
 ENT.Author			      = "Hysteria"
 ENT.Category			  = "SBEP - Other"
 
