@@ -2,7 +2,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( "shared.lua" ) 
 
-local model = { "models/SmallBridge/SBdooranim2/SBdooranim2.mdl" , "models/SmallBridge/SBdoorsquare/SBdoorsquare.mdl" }
+local model = { "models/SmallBridge/SEnts/SBADoor2.mdl" , "models/SmallBridge/Panels/SBdoorSquare.mdl" }
 
 function ENT:Initialize()	
 

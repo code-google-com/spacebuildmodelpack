@@ -389,7 +389,7 @@ local V = {
 
 				Author = "SpaceBuild Model Pack",
 				Information = "SmallBridge Drop Pod",
-				Model = "models/SmallBridge/SBdroppod1/SBdroppod1.mdl",
+				Model = "models/SmallBridge/Vehicles/SBVdroppod1.mdl",
 				KeyValues = {
 								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
 								limitview		=	"0"
@@ -606,7 +606,7 @@ local V = {
 
 				Author = "SpaceBuild Model Pack",
 				Information = "Prometheus Chair",
-				Model = "models/SmallBridge/SBchair/SBchair.mdl",
+				Model = "models/SmallBridge/Vehicles/SBVPchair.mdl",
 				KeyValues = {
 								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
 								limitview		=	"0"

@@ -2,7 +2,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( "shared.lua" ) 
 
-local model = { "models/SmallBridge/SEnts/SBADoorWide.mdl" , "models/SmallBridge/Panels/SBdoorWide.mdl" }
+local model = { "models/SmallBridge/SEnts/SBADoorDBsmall.mdl" , "models/SmallBridge/Panels/SBdoorDBsmall.mdl" }
 
 function ENT:Initialize()	
 
@@ -30,7 +30,7 @@ function ENT:Initialize()
 			self.SBdoor = ents.Create( "prop_physics" )
 		end
 		self:AddDoorPhysics()
-		
+
 		self.Inputs = Wire_CreateInputs(self.Entity, { "Open" , "Lock" , "Disable Use" })
 
 end
@@ -40,9 +40,9 @@ function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,65.1)
-	local RotAng   = Angle(0 , 90 , 0)
+	local RotAng   = Angle(180 , 0 , 0)
 	
-	local ent = ents.Create( "sbep_smb_door_wide" )
+	local ent = ents.Create( "sbep_smb_door_DBS" )
 	ent:SetPos( SpawnPos )
 	ent:SetAngles( RotAng )
 	ent:Spawn()
