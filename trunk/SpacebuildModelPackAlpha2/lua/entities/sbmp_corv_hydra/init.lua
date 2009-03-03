@@ -52,7 +52,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
 	--gamemode.Call("PlayerSpawnedVehicle",ply,ent2)
-	ent2:SetModel( "models/smallbridge/sbchair/sbchair.mdl" )
+	ent2:SetModel( "models/SmallBridge/Vehicles/SBVPchair.mdl" )
 	ent2:SetPos( ent:LocalToWorld( Vector(300,0,75) ) )
 	ent2:SetAngles( ent:LocalToWorldAngles( Angle(0,0,0)) )
 	
