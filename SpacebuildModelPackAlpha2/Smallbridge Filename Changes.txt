@@ -1,8 +1,4 @@
-If you really, really want to keep old dupes, it is possible to fix them. Open up the dupe file (found in the data folder) in a text editor, and whenever you see a SmallBridge part file path, 
-look it up here and replace it with the new one. Remember to keep the "___" around each file path in the dupe file.
-
-
-
+------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
         OLD                                                                                     |        NEW																						
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
 
@@ -19,15 +15,15 @@ look it up here and replace it with the new one. Remember to keep the "___" arou
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBcorridorE4/sbcorridore4.mdl                                            |    models/SmallBridge/Hulls,SW/SBhullE4.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBcorridorE05/sbcorridore05.mdl                                           |    models/SmallBridge/Hulls,SW/SBhullE05.mdl
+    models/SmallBridge/SBcorridorE05/sbcorridore05.mdl                                          |    models/SmallBridge/Hulls,SW/SBhullE05.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl                                          |    models/SmallBridge/Hulls,SW/SBhullEdh.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl                                         |    models/SmallBridge/Hulls,SW/SBhullEdh2.mdl
+    models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl                                        |    models/SmallBridge/Hulls,SW/SBhullEdh2.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBcorridorEdh3/sbcorridoredh3.mdl                                         |    models/SmallBridge/Hulls,SW/SBhullEdh3.mdl
+    models/SmallBridge/SBcorridorEdh3/sbcorridoredh3.mdl                                        |    models/SmallBridge/Hulls,SW/SBhullEdh3.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBcorridorEdh4/sbcorridoredh4.mdl                                         |    models/SmallBridge/Hulls,SW/SBhullEdh4.mdl
+    models/SmallBridge/SBcorridorEdh4/sbcorridoredh4.mdl                                        |    models/SmallBridge/Hulls,SW/SBhullEdh4.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBcorridorEFlip/sbcorridoreflip.mdl                                      |    models/SmallBridge/Hulls,SW/SBhullEFlip.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
@@ -59,7 +55,7 @@ look it up here and replace it with the new one. Remember to keep the "___" arou
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBcorridorX/sbcorridorx.mdl                                              |    models/SmallBridge/Hulls,SW/SBhullX.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl                                        |    models/SmallBridge/Hulls,SW/SBhullXdl.mdl
+    models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl                                          |    models/SmallBridge/Hulls,SW/SBhullXdl.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl                                      |    models/SmallBridge/Hulls,SW/SBhullXdldw.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
@@ -159,7 +155,7 @@ look it up here and replace it with the new one. Remember to keep the "___" arou
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBdropbay1right/sbdropbay1right.mdl                                      |    models/SmallBridge/Hangars/SBDB1R.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
-    models/SmallBridge/SBdropbay1rightS/sbdropbay1rights.mdl                                     |    models/SmallBridge/Hangars/SBDB1Rs.mdl
+    models/SmallBridge/SBdropbay1rightS/sbdropbay1rights.mdl                                    |    models/SmallBridge/Hangars/SBDB1Rs.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
     models/SmallBridge/SBdropbay2left/sbdropbay2left.mdl                                        |    models/SmallBridge/Hangars/SBDB2L.mdl
 ------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------
