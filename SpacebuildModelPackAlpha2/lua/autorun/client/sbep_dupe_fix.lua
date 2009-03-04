@@ -3,14 +3,14 @@ local repTab = {}
 --Smallbridge SW HULLS/CORRIDORS--
 repTab["models/SmallBridge/SBcorridorCurveS/sbcorridorcurves.mdl"] = "models/SmallBridge/Hulls,SW/SBhullCurveS.mdl"
 repTab["models/SmallBridge/SBcorridorE1/sbcorridore1.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE1.mdl"
-repTab["models/SmallBridge/SBcorridorE1/sbcorridore2.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE2.mdl"
-repTab["models/SmallBridge/SBcorridorE1/sbcorridore3.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE3.mdl"
-repTab["models/SmallBridge/SBcorridorE1/sbcorridore4.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE4.mdl"
-repTab["models/SmallBridge/SBcorridorE1/sbcorridore05.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE05.mdl"
+repTab["models/SmallBridge/SBcorridorE2/sbcorridore2.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE2.mdl"
+repTab["models/SmallBridge/SBcorridorE3/sbcorridore3.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE3.mdl"
+repTab["models/SmallBridge/SBcorridorE4/sbcorridore4.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE4.mdl"
+repTab["models/SmallBridge/SBcorridorE05/sbcorridore05.mdl"] = "models/SmallBridge/Hulls,SW/SBhullE05.mdl"
 repTab["models/SmallBridge/SBcorridorEdh/sbcorridoredh.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh.mdl"
-repTab["models/SmallBridge/SBcorridorEdh/sbcorridoredh2.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh2.mdl"
-repTab["models/SmallBridge/SBcorridorEdh/sbcorridoredh3.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh3.mdl"
-repTab["models/SmallBridge/SBcorridorEdh/sbcorridoredh4.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh4.mdl"
+repTab["models/SmallBridge/SBcorridorEdh2/sbcorridoredh2.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh2.mdl"
+repTab["models/SmallBridge/SBcorridorEdh3/sbcorridoredh3.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh3.mdl"
+repTab["models/SmallBridge/SBcorridorEdh4/sbcorridoredh4.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEdh4.mdl"
 repTab["models/SmallBridge/SBcorridorEFlip/sbcorridoreflip.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEFlip.mdl"
 repTab["models/SmallBridge/SBcorridorEnd/sbcorridorend.mdl"] = "models/SmallBridge/Hulls,SW/SBhullEnd.mdl"
 repTab["models/SmallBridge/SBcorridorR/sbcorridorr.mdl"] = "models/SmallBridge/Hulls,SW/SBhullR.mdl"
@@ -26,7 +26,7 @@ repTab["models/SmallBridge/SBtriangleE1/sbtrianglee1.mdl"] = "models/SmallBridge
 repTab["models/SmallBridge/SBtriangleE2/sbtrianglee2.mdl"] = "models/SmallBridge/Hulls,SW/SBhulltri2.mdl"
 repTab["models/SmallBridge/SBtriangleE3/sbtrianglee3.mdl"] = "models/SmallBridge/Hulls,SW/SBhulltri3.mdl"
 repTab["models/SmallBridge/SBcorridorX/sbcorridorx.mdl"] = "models/SmallBridge/Hulls,SW/SBhullX.mdl"
-repTab["models/SmallBridge/SBcorridorXdl/sbcorridorxdldw.mdl"] = "models/SmallBridge/Hulls,SW/SBhullXdl.mdl"
+repTab["models/SmallBridge/SBcorridorXdl/sbcorridorxdl.mdl"] = "models/SmallBridge/Hulls,SW/SBhullXdl.mdl"
 repTab["models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl"] = "models/SmallBridge/Hulls,SW/SBhullXdldw.mdl"
 --Smallbridge Walkways--
 repTab["models/SmallBridge/SBwalkwayE/sbwalkwaye.mdl"] = "models/SmallBridge/Walkways/SBwalkwayE.mdl"
@@ -44,7 +44,6 @@ repTab["models/SmallBridge/SBconsoletop1/sbconsoletop1.mdl"] = "models/SmallBrid
 --Smallbridge SENTs/Animated--
 repTab["models/SmallBridge/SBdooranim1/sbdooranim1.mdl"] = "models/SmallBridge/SEnts/SBADoor1.mdl"
 repTab["models/SmallBridge/SBdooranim2/sbdooranim2.mdl"] = "models/SmallBridge/SEnts/SBADoor2.mdl"
-repTab["models/SmallBridge/sbdooriris2.mdl"] = "models/SmallBridge/SEnts/SBADoorIris.mdl"
 repTab["models/SmallBridge/sbdooranimwide.mdl"] = "models/SmallBridge/SEnts/SBADoorWide.mdl"
 --Smallbridge Panels/Doors--
 repTab["models/SmallBridge/SBdoor/sbdoor.mdl"] = "models/SmallBridge/Panels/SBdoor.mdl"
