@@ -15,7 +15,7 @@ end
 
 function ENT:Initialize()
 	self.BaseClass:Initialize(self)
-	self.Entity:SetModel( "models/SmallBridge/SBdropbaycomplete1S/sbdropbaycomplete1s.mdl" )
+	self.Entity:SetModel( "models/SmallBridge/Hangars/SBDBcomp1.mdl" )
 	self.Entity:SetName("sbHangar")
 end
 
