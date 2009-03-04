@@ -36,8 +36,7 @@ function ENT:Initialize()
 	self.HP[3]["Pos"]	= Vector(72,0,24)
 	self.HP[3]["Angle"] = Angle(0,0,180)
 	
-	local sequence = self.Entity:LookupSequence("canopy_idle_open")
-	self.Entity:SetSequence(sequence)
+	self.Entity:ResetSequence(self.Entity:LookupSequence("canopy_open"))
 end
 
 function ENT:SpawnFunction( ply, tr )
@@ -56,7 +55,7 @@ function ENT:SpawnFunction( ply, tr )
 	
 	local ent2 = ents.Create( "prop_vehicle_prisoner_pod" )
 	ent2:SetModel( "models/SmallBridge/Vehicles/SBVPchair.mdl" ) 
-	ent2:SetPos( ent:LocalToWorld(Vector(40,0,20)) )
+	ent2:SetPos( ent:LocalToWorld(Vector(40,0,10)) )
 	ent2:SetColor(255,255,255,31)
 	ent2:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 	ent2:SetKeyValue("limitview", 0)
@@ -83,15 +82,19 @@ function ENT:SpawnFunction( ply, tr )
 	return ent
 end
 
+local function ChangeAnimTo(ent,sequenceName)
+	ent:ResetSequence(ent:LookupSequence(sequenceName))
+end
+
 function ENT:Use(activator,caller)
 	if ( activator:IsPlayer() ) then
-		local sequence = self.Entity:LookupSequence("BIO_RIO")
 		activator:EnterVehicle( self.Pod )
-		self.Entity:SetSequence(sequence)
+		self.Entity:ResetSequence(self.Entity:LookupSequence("canopy_close"))
+		timer.Simple(1.5,ChangeAnimTo,self.Entity,"BO_RO")
 	end
 end
 
 function ENT:ExitFighter(player,vehicle)
-	sequence = self.Entity:LookupSequence("canopy_idle_open")
-	self.Entity:SetSequence(sequence)
+	self.Entity:ResetSequence(self.Entity:LookupSequence("BC_RC"))
+	timer.Simple(1.5,ChangeAnimTo,self.Entity,"canopy_open")
 end
