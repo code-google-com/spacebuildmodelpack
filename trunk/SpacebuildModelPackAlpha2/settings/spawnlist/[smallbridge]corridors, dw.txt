@@ -39,12 +39,13 @@
 
 "14"		"models/SmallBridge/SBcorridorEdhdw3/sbcorridoredhdw3.mdl"
 		
-"15"		"models/SmallBridge/SBcorridorEdhdw4/sbcorridoredhdw4.mdl"		
+"15"		"models/SmallBridge/SBcorridorEdhdw4/sbcorridoredhdw4.mdl"
+	
 "16"		"models/SmallBridge/SBcorridorTdwdl/sbcorridortdwdl.mdl"
 		
 "17"		"models/SmallBridge/SBcorridorTdwsl/sbcorridortdwsl.mdl"
 		
-"18"		"models/SmallBridge/SBcorridorXdldw/sbcorridorxdldw.mdl"
+"18"		"models/SmallBridge/Hulls,SW/SBhullXdldw.mdl"
 		
 "19"		"models/SmallBridge/SBcorridorXdwdl/sbcorridorxdwdl.mdl"
 		

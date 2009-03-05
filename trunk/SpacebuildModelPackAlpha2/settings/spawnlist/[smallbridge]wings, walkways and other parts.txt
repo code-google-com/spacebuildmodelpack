@@ -31,21 +31,21 @@
 		
 "10"		"models/SmallBridge/SBwingC1R/sbwingc1r.mdl"
 			
-"11"		"models/SmallBridge/SBwalkwayE/sbwalkwaye.mdl"
+"11"		"models/SmallBridge/Walkways/SBwalkwayE.mdl"
 		
-"12"		"models/SmallBridge/SBwalkwayR/sbwalkwayr.mdl"
+"12"		"models/SmallBridge/Walkways/SBwalkwayE2.mdl"
 		
-"13"		"models/SmallBridge/SBwalkwayT/sbwalkwayt.mdl"
+"13"		"models/SmallBridge/Walkways/SBwalkwayR.mdl"
 		
-"14"		"models/SmallBridge/SBwalkwayX/sbwalkwayx.mdl"
+"14"		"models/SmallBridge/Walkways/SBwalkwayT.mdl"
 		
-"15"		"models/SmallBridge/SBwalkwayE2/sbwalkwaye2.mdl"
+"15"		"models/SmallBridge/Walkways/SBwalkwayX.mdl"
 	
-"16"		"models/SmallBridge/SBconsole1low/sbconsole1low.mdl"
+"16"		"models/SmallBridge/Other/SBconsolelow.mdl"
 		
-"17"		"models/SmallBridge/SBconsoletop1/sbconsoletop1.mdl"
+"17"		"models/SmallBridge/Other/SBconsoletop.mdl"
 		
-"18"		"models/SmallBridge/SBconsole1s/sbconsole1s.mdl"
+"18"		"models/SmallBridge/Other/SBconsole.mdl"
 	
 
 
