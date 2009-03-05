@@ -12,7 +12,7 @@ if( SERVER ) then
 
 function ENT:Initialize()
 
-self.Entity:SetModel( "models/Spacebuild/sbepmanual.mdl" )
+self.Entity:SetModel( "models/Spacebuild/BibleBlack/bible.mdl" )
 self.Entity:PhysicsInit( SOLID_VPHYSICS )
 self.Entity:SetMoveType( MOVETYPE_VPHYSICS )							
 self.Entity:SetSolid( SOLID_VPHYSICS )
@@ -41,6 +41,15 @@ function ENT:Touch( ent )
 		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
 	end
 end
+
+function SBEPManualFirstSpawn( ply )
+	if not file.Exists("manuals/spawned.txt") then 
+		umsg.Start("my_message", ply)
+		umsg.End()
+	file.Write("manuals/spawned.txt" ,  "Asphid_Jackal iz mah supreem gawd and ah will folla him forevahz!") 
+	end	
+end
+hook.Add( "PlayerInitialSpawn", "superuniquesbepusermanual", SBEPManualFirstSpawn );
 
 end
 
@@ -83,10 +92,6 @@ end
 		cLabel:SetContentAlignment( 7 )
 		cLabel:SetText( Intro )
 
-
-	
-
-	
 		for k,v in pairs( files ) do 
 	curfile = file.Read( "manuals/"..v )
 	cutoff = string.find( curfile , ">T<" )
