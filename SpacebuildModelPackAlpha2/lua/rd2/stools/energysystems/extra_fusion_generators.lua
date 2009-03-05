@@ -9,7 +9,7 @@ DEVICEGROUP.type			= "generator_energy_fusion"
 DEVICEGROUP.devices = {
 	hyst_1 = {
 		Name		= "SmallBridge Fusion Generator",
-		model		= "models/SmallBridge/SBfusiongen2/SBfusiongen2.mdl",
+		model		= "models/SmallBridge/Life Support/SBfusiongen.mdl",
 		skin 		= 0
 	},
 }
