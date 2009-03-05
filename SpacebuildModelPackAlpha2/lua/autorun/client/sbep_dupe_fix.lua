@@ -34,8 +34,10 @@ function SBEP_FixDupe(player,command,args)
 	for old,new in pairs(SBEP.ReplaceTable) do
 		--print("Replacing "..old.." with "..new)
 		fileString = string.Replace(fileString,old,new)
+		fileString = string.Replace(fileString,string.lower(old),new)
 	end
 	file.Write(filePath,fileString)
+	print(filePath.." fixed.")
 end
 SBEP.FixDupe = SBEP_FixDupe
 concommand.Add("SBEP_FixDupe",SBEP.FixDupe)
