@@ -12,7 +12,7 @@ if( SERVER ) then
 
 function ENT:Initialize()
 
-self.Entity:SetModel( "models/Spacebuild/BibleBlack/bible.mdl" )
+self.Entity:SetModel( "models/Spacebuild/sbepmanual.mdl" )
 self.Entity:PhysicsInit( SOLID_VPHYSICS )
 self.Entity:SetMoveType( MOVETYPE_VPHYSICS )							
 self.Entity:SetSolid( SOLID_VPHYSICS )
