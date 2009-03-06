@@ -83,7 +83,7 @@ function ENT:Think()
 	if self.GType == 1 then
 		TVec = Vector(self.XCo, self.YCo, self.ZCo)
 		
-	elseif self.ParL.GType == 2 then
+	elseif self.GType == 2 then
 		if self.ParL && self.ParL:IsValid() then
 			self.XCo = self.ParL.XCo
 			self.YCo = self.ParL.YCo
