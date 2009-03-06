@@ -49,7 +49,7 @@ function SBEP_RecursiveFix(player,command,args)
 	local dirs = file.FindDir(dir.."/*")
 	--PrintTable(dirs)
 	for _,dirPath in pairs(dirs) do
-		SBEP_RecursiveFix(player,command,{dirPath})
+		SBEP_RecursiveFix(player,command,{dir.."/"..dirPath})
 	end
 	--print("Files Found: ")
 	local files = file.Find(dir.."/*")
