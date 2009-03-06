@@ -106,7 +106,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2.APAng = Angle(0,90,180)
 	
 	local ent3 = ents.Create( "prop_vehicle_prisoner_pod" )
-	ent3:SetModel( "models/SmallBridge/SBchair/SBchair.mdl" )
+	ent3:SetModel( "models/SmallBridge/Vehicles/SBVPchair.mdl" )
 	ent3:SetAngles(Angle(0,90,0))
 	ent3:SetPos( SpawnPos + Vector(20,-20,10) )
 	ent3:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
