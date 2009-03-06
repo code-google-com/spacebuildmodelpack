@@ -4,8 +4,10 @@ ENT.PrintName		= "Hoverbike"
 ENT.Author			= "Paradukes + SlyFo"
 ENT.Category		= "SBEP-Rover Gear"
 
-ENT.Spawnable		= true
-ENT.AdminSpawnable	= true
+local found = file.Exists("../models/hoverbike.mdl")
+
+ENT.Spawnable		= found
+ENT.AdminSpawnable	= found
 ENT.Owner			= nil
 ENT.CPL				= nil
 
