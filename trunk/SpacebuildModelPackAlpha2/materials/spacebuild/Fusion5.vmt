@@ -1,6 +1,13 @@
 "UnlitGeneric"
 {
-	"$basetexture" "spacebuild/Fusion5"
-	"$surfaceprop" "metal"
-	"$model"     1
+   "$basetexture" "spacebuild/Fusion5"
+   "Proxies"
+   {
+      "AnimatedTexture"
+      {
+         "animatedtexturevar" "$basetexture"
+         "animatedtextureframenumvar" "$frame"
+         "animatedtextureframerate" 15
+      }
+   }
 }
