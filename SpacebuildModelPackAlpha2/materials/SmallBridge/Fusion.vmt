@@ -1,6 +1,13 @@
 "UnlitGeneric"
 {
-	"$basetexture" "SmallBridge/Fusion2"
-	"$surfaceprop" "metal"
-	"$model"     1
+   "$basetexture" "SmallBridge/Fusion2"
+   "Proxies"
+   {
+      "AnimatedTexture"
+      {
+         "animatedtexturevar" "$basetexture"
+         "animatedtextureframenumvar" "$frame"
+         "animatedtextureframerate" 15
+      }
+   }
 }
