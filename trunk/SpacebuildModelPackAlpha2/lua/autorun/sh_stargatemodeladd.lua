@@ -15,6 +15,6 @@ list.Set( "StargateShieldModels", "models/Slyfo/powercrystal.mdl", {} )
 list.Set( "WraithHarvesterModels", "models/Slyfo/finfunnel.mdl", {} )
 list.Set( "WraithHarvesterModels", "models/Slyfo/powercrystal.mdl", {} )
 
-list.Set( "MobileDHDModels", "models/SmallBridge/SBconsole1low/sbconsole1low.mdl", {} )
-list.Set( "MobileDHDModels", "models/SmallBridge/SBconsole1s/sbconsole1s.mdl", {} )
+list.Set( "MobileDHDModels", "models/SmallBridge/Other/SBconsolelow.mdl", {} )
+list.Set( "MobileDHDModels", "models/SmallBridge/Other/SBconsole.mdl", {} )
 list.Set( "MobileDHDModels", "models/Slyfo/powercrystal.mdl", {} )
