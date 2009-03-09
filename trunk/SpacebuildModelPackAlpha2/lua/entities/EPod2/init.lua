@@ -72,7 +72,7 @@ function ENT:Use(activator)
 	if (self.NPod == nil || !self.NPod:IsValid()) then
 		self.NPod = ents.Create( "prop_vehicle_prisoner_pod" )
 		if ( !self.NPod:IsValid() ) then return end
-		self.NPod:SetModel( "models/SmallBridge/SBdroppod1/SBdroppod1.mdl" )
+		self.NPod:SetModel( "models/SmallBridge/Vehicles/SBVdroppod1.mdl" )
 		self.NPod:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 		self.NPod:SetKeyValue("limitview", 0)
 		--self.NPod:SetMembers(HandleAnimation, HandleSBMPSitAnimation)

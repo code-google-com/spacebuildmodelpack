@@ -6,7 +6,7 @@ util.PrecacheSound( "SB/Gattling2.wav" )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/SmallBridge/SBwingC1L/sbwingc1l.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/Wings/SBwingC1L.mdl" ) 
 	self.Entity:SetName("SmallMachineGun")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
