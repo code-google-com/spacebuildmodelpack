@@ -17,7 +17,7 @@ function ENT:Draw()
 		Be careful about how many times a model is drawn per frame. Too many can cause serious lag. I learned that to my regret when I made the tank treads.
 		*/
 	self.Entity:SetModelScale( Vector(1,1,1) ) 
-	self.Entity:SetModel( "models/SmallBridge/SBwingC1R/sbwingc1r.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/Wings/SBwingC1R.mdl" ) 
 	self.Entity:DrawModel()
 	
 	local OPos = self.Entity:GetPos()
@@ -27,7 +27,7 @@ function ENT:Draw()
 	local CAngle = self.WingAngle
 	
 	--Position and rotate the upper wing
-	self.Entity:SetModel( "models/SmallBridge/SBwingM1R/sbwingm1r.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/Wings/SBwingM1R.mdl" ) 
 	local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
 	NAng:RotateAroundAxis( self.Entity:GetForward(), CAngle )
 	self.Entity:SetAngles( NAng )
@@ -38,7 +38,7 @@ function ENT:Draw()
 	self.Entity:DrawModel()
 	
 	--Position and rotate the lower wing
-	self.Entity:SetModel( "models/SmallBridge/SBwingM1Re/sbwingm1re.mdl" ) 
+	self.Entity:SetModel( "models/SmallBridge/Wings/SBwingM1Re.mdl" ) 
 	local NAng = OAng - Angle( 0.01, 0.01, 0.01 )
 	self.Entity:SetAngles( NAng )
 	NAng:RotateAroundAxis( self.Entity:GetForward(), -CAngle )
