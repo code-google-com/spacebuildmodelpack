@@ -60,5 +60,15 @@ DEVICEGROUP.devices = {
 		Name		= "SmallBridge, External Wall Cache",
 		model		= "models/SmallBridge/Life Support/SBwallcacheE.mdl",
 	},
+	
+	add_14 = {
+		Name		= "SmallBridge, Small Wall Cache (half length)",
+		model		= "models/SmallBridge/Life Support/SBwallcacheS05.mdl",
+	},
+	
+	add_15 = {
+		Name		= "SmallBridge, Large Wall Cache (half length)",
+		model		= "models/SmallBridge/Life Support/SBwallcacheL05.mdl",
+	},
 }
 
