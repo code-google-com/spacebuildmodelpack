@@ -11,10 +11,13 @@
 		"2"		"models/SmallBridge/Height Transfer/sbhtcramp2d.mdl"
 		"3"		"models/SmallBridge/Height Transfer/sbhtramp.mdl"
 		"4"		"models/SmallBridge/Height Transfer/sbhtramp05.mdl"
-		"5"		"models/SmallBridge/Height Transfer/sbhtsrampd.mdl"
-		"6"		"models/SmallBridge/Height Transfer/sbhtsrampm.mdl"
-		"7"		"models/SmallBridge/Height Transfer/sbhtsrampu.mdl"
-		"8"		"models/SmallBridge/Height Transfer/sbhtsrampz.mdl"
-		"9"		"models/SmallBridge/Height Transfer/sbhtsrampzdw.mdl"
+		"5"		"models/SmallBridge/Height Transfer/sbhtsdwrampd.mdl"
+		"6"		"models/SmallBridge/Height Transfer/sbhtsdwrampm.mdl"
+		"7"		"models/SmallBridge/Height Transfer/sbhtsdwrampu.mdl"
+		"8"		"models/SmallBridge/Height Transfer/sbhtsrampd.mdl"
+		"9"		"models/SmallBridge/Height Transfer/sbhtsrampm.mdl"
+		"10"		"models/SmallBridge/Height Transfer/sbhtsrampu.mdl"
+		"11"		"models/SmallBridge/Height Transfer/sbhtsrampz.mdl"
+		"12"		"models/SmallBridge/Height Transfer/sbhtsrampzdw.mdl"
 	}
 }
