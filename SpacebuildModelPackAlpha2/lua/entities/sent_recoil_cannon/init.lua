@@ -116,3 +116,4 @@ function ENT:Touch( ent )
 		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
 	end
 end 
+
