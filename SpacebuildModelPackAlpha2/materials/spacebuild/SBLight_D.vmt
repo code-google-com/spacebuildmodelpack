@@ -3,7 +3,6 @@
 	"$basetexture" "spacebuild/SBLight_D"
 	"$surfaceprop" "metal"
 	"$model" 1 
-	"$selfillum" 1
 	"$bumpmap" "spacebuild/SBLightBump_D"
 	 "$phong"     "1"
 	"$halflambert"	1
