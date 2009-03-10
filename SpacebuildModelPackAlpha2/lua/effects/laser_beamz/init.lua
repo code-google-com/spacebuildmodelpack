@@ -15,6 +15,7 @@ function EFFECT:Init( data )
 	
 	self.Entity:SetRenderBoundsWS( self.StartPos, self.EndPos )
 	self.full_time = data:GetMagnitude()
+	self.TimeLeft = self.EndTime - CurTime()
 end
 
 /*---------------------------------------------------------
