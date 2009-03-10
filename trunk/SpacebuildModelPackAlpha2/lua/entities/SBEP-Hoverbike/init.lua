@@ -3,7 +3,7 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
 --util.PrecacheSound( "SB/SteamEngine.wav" )
-
+if file.Exists("../addons/Hover_bike V2.0/info.txt") then
 function ENT:Initialize()
 	
 	self.Entity:SetModel( "models/Spacebuild/medbridge2_doublehull_elevatorclamp.mdl" ) 
@@ -275,4 +275,6 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		ent2.APAng = Angle(0,90,180)
 	end
 	self.SPL = ply
+end
+else return Error("You don't have the Hoverbike...")
 end
