@@ -18,7 +18,7 @@ function ENT:Initialize()
 	self.PrevPos = self.Entity:GetPos()
 	self.Straight = true
 	self.ILock = self.MTable[self.Entity:GetCSModel().."I"] -- This is the interlock distance for the current tread model
-	self.RLimit = 50
+	self.RLimit = 80
 end
 
 function ENT:Draw()
