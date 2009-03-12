@@ -1,12 +1,11 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "spacebuild/Floor3"
+	"$basetexture" "spacebuild/sbmetalfloor01bs8"
 	"$surfaceprop" "metal"
-	"$model" 1 
-	"$bumpmap" "spacebuild/Floor3Bump"
+	"$model" 1
 	 "$phong"     "1"
 	"$halflambert"	1
  	"$phongexponent"   "60"
- 	"$phongboost"   "1"
+ 	"$phongboost"   "0.5"
  	"$phongfresnelranges"   "[.5 .8 1]"
 }
