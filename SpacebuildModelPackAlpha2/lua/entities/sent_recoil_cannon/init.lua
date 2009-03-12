@@ -23,10 +23,16 @@ function ENT:Initialize()
 	
 	self.Tip = self:GetAttachment(self:LookupAttachment("Cannon_Tip"))]] --not accurate enough. o.O
 	
+	if not self.laz_r then self.laz_r = 255 end
+	if not self.laz_g then self.laz_g = 255 end
+	if not self.laz_b then self.laz_b = 255 end
+	
 end
 
 function ENT:Think()
-
+	if self.SPL and self.SPL.SBEPWeaponColor then
+		self.laz_r,self.laz_g,self.laz_b = self.SPL.SBEPWeaponColor.r,self.SPL.SBEPWeaponColor.g,self.SPL.SBEPWeaponColor.b
+	end
 end 
 
 function ENT:Use(ply)
@@ -50,6 +56,7 @@ function ENT:FireLazor()
 	efct:SetStart(start)
 	efct:SetOrigin(tr.HitPos)
 	efct:SetMagnitude(2.5)
+	efct:SetAngle(Angle(self.laz_r,self.laz_g,self.laz_b))
 	util.Effect("laser_beamz",efct)
 	
 	util.BlastDamage(self, self.SPL, tr.HitPos, 250, 5000)
@@ -116,4 +123,3 @@ function ENT:Touch( ent )
 		if ent.Cont && ent.Cont:IsValid() then HPLink( ent.Cont, ent.Entity, self.Entity ) end
 	end
 end 
-

@@ -6,7 +6,6 @@ EFFECT.Mat = Material( "weapons/gausslaser_orange" )
    Init( data table )
 ---------------------------------------------------------*/
 function EFFECT:Init( data )
-	-- Keep the start and end pos - we're going to interpolate between them
 	self.StartPos = data:GetStart()
 	self.EndPos = data:GetOrigin()
 	self.EndTime = CurTime() + data:GetMagnitude()
@@ -16,6 +15,12 @@ function EFFECT:Init( data )
 	self.Entity:SetRenderBoundsWS( self.StartPos, self.EndPos )
 	self.full_time = data:GetMagnitude()
 	self.TimeLeft = self.EndTime - CurTime()
+	
+	self.r = (data:GetAngle().p or 255)/255
+	self.g = (data:GetAngle().y or 255)/255
+	self.b = (data:GetAngle().r or 255)/255
+	
+	self.Mat:SetMaterialVector("$color",Vector(self.r,self.g,self.b))
 end
 
 /*---------------------------------------------------------
@@ -37,12 +42,6 @@ function EFFECT:Render()
 		
 	render.SetMaterial( self.Mat )
 	local texcoord = CurTime()
-
-		render.DrawBeam( self.StartPos, 										-- Start
-					 self.EndPos,											-- End
-					 32*self.Frac,											-- Width
-					 texcoord,														-- Start tex coord
-					 texcoord - self.Length / 128,									-- End tex coord
-					 Color( 255, 255, 255, self.Frac*self.Alpha ) )		-- Color (optional)
+	render.DrawBeam( self.StartPos,self.EndPos,32*self.Frac,texcoord,texcoord - self.Length / 128,Color( self.r, self.g, self.b, self.Frac*self.Alpha ) )
 
 end
