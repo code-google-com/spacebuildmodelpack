@@ -1,4 +1,4 @@
-//SpacebuildEnhancementProject function table
+--SpacebuildEnhancementProject function table
 SBEP = SBEP or {}
 
 -- This function basically deals with stuff that happens when a player hops out of a vehicle
@@ -21,6 +21,12 @@ end
 
 hook.Add("PlayerLeaveVehicle", "PlayerRepositioning", SetExPoint)
 SBEP.SetExPoint = SetExPoint
+
+function SBEP_PlayerInitialSpawn(ply)
+	ply.SBEPWeaponColor = Color(ply:GetPData("SBEP_Weapon_Color_Red"),ply:GetPData("SBEP_Weapon_Color_Green"),ply:GetPData("SBEP_Weapon_Color_Blue"),255)
+end
+hook.Add("PlayerInitialSpawn", "SBEP_PlayerInitialSpawn_Hookz", SBEP_PlayerInitialSpawn)
+SBEP.SPlayerInitialSpawn = SBEP_PlayerInitialSpawn
 
 function SBEP.ExitFighter(player,vehicle)
 	if not vehicle.Cont then return end
@@ -143,3 +149,21 @@ function SBGCSplash( position, radius, damage, pierce, filter )
 		end
 	end
 end
+
+function SetPlayerSPEBWeaponColor(ply,cmd,args)
+	args[1],args[2],args[3] = tonumber(args[1]),tonumber(args[2]),tonumber(args[3])
+	if (not args[1]) or (not args[2]) or (not args[3]) then
+		ply:PrintMessage(HUD_PRINTTALK,"Arguments for color invalid, proper format is \"SBEP_Weapon_Color r g b\"")
+		return
+	end
+	ply.SBEPWeaponColor = Color(math.Clamp(args[1],0,255),math.Clamp(args[2],0,255),math.Clamp(args[3],0,255),255)
+	ply:SetPData("SBEP_Weapon_Color_Red",ply.SBEPWeaponColor.r)
+	ply:SetPData("SBEP_Weapon_Color_Green",ply.SBEPWeaponColor.g)
+	ply:SetPData("SBEP_Weapon_Color_Blue",ply.SBEPWeaponColor.b)
+	umsg.Start("IdLikeToRecieveMyOwnColorNow",ply)
+	 umsg.Short(ply.SBEPWeaponColor.r)
+	 umsg.Short(ply.SBEPWeaponColor.g)
+	 umsg.Short(ply.SBEPWeaponColor.b)
+	umsg.End()
+end 
+concommand.Add("SBEP_Weapon_Color",SetPlayerSPEBWeaponColor)
