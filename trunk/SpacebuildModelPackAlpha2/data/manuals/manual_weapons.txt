@@ -10,3 +10,11 @@ Dark Green: Disarmed
 Note: At times you may have to 'cycle' all your weapon ports once to make them properly armed. This is accomplished by arming each slot (the slot
 turns bright green), dearming each slot(the slot returns to dark green), and then rearming each slot. Once done this should arm/disarm that weapon
 port properly afterwords.
+
+BEAM CANNON:  To use these, you have to wire "Config" to a number.
+Config1 = Not Implemented
+Config2 = Green Slasher
+Config3 = Gold Slasher
+Config4 = Green Cannon
+Config5 = Gold Cannon
+If you don't wire a Configuration, then the cannon will NOT work.  Attempting to fire it will result in an error and the cannon being unusable.
