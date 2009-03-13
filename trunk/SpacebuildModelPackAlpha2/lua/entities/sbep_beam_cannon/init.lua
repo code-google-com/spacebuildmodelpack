@@ -27,11 +27,11 @@ end
 
 function ENT:TriggerInput(iname, value)
 	if(iname == "Config") then
-		if(value == 2 || value == 3 || value == 4 || value == 5) then
+		if(--[[value == 1 ||]] value == 2 || value == 3 || value == 4 || value == 5 --[[|| value == 6 || value == 7]]) then
 			beam_config_index = value
 			self.ConfigurationIndex = value
 			self:SetNWInt("ConfigIdx", value)
-		elseif(value == 0 || value == 1) then
+		else
 			beam_config_index = -1
 			self.ConfigurationIndex = -1
 			self:SetNWInt("ConfigIdx", -1)
