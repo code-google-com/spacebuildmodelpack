@@ -5,7 +5,7 @@ function ENT:Draw()
    // self.BaseClass.Draw(self)
    self:DrawEntityOutline( 0.0 ) 			
    self.Entity:DrawModel() 					
-   end
+end
    
 function my_message_hook( um )
 	local player = um:ReadEntity()
