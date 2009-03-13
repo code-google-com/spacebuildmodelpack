@@ -48,5 +48,3 @@ function SBEPManualFirstSpawn( ply )
 	end	
 end
 hook.Add( "PlayerInitialSpawn", "superuniquesbepusermanual", SBEPManualFirstSpawn );
-
-end
