@@ -1,4 +1,4 @@
-TOOL.Category   = "SBMP"
+TOOL.Category   = "SBEP"
 TOOL.Name       = "Beam Cannon"
 TOOL.Command    = nil
 TOOL.ConfigName = ""

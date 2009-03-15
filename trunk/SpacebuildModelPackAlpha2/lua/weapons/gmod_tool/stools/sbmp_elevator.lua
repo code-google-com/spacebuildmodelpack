@@ -1,6 +1,6 @@
 -- By Olivier 'LuaPineapple' Hamel
 
-TOOL.Category		= "SBMP"
+TOOL.Category		= "SBEP"
 TOOL.Name			= "Lift"
 TOOL.Command		= nil
 TOOL.ConfigName		= ""
