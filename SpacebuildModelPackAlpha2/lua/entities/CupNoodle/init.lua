@@ -1,3 +1,5 @@
+include('shared.lua')
+
 function ENT:SpawnFunction( ply, tr )
 	local ent = ents.Create("CupNoodle") 			// Create the entity
 		ent:SetPos(tr.HitPos + Vector(0, 0, 20)) 	// Set it to spawn 20 units over the spot you aim at when spawning it
