@@ -58,6 +58,7 @@ function ENT:FireLazor()
 	efct:SetMagnitude(2.5)
 	efct:SetAngle(Angle(self.laz_r,self.laz_g,self.laz_b))
 	util.Effect("laser_beamz",efct)
+	if tr.HitSky == true then return end
 	
 	util.BlastDamage(self, self.SPL, tr.HitPos, 250, 5000)
 	if (not gcombat) then
