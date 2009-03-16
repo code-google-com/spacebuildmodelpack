@@ -1,12 +1,12 @@
+if !GAMEMODE.IsSpacebuildDerived then return end
 if not CAF or not CAF.GetAddon("Resource Distribution") then return end
-if not GAMEMODE.IsSpacebuildDerived then return end
 
-TOOL.Category			= "SBMP"
+TOOL.Category			= "SBEP"
 TOOL.Name				= "#Habitable Modules"
 
 TOOL.DeviceName			= "Habitable Module"
 TOOL.DeviceNamePlural	= "Habitable Modules"
-TOOL.ClassName			= "sbmp_hab_mods"
+TOOL.ClassName			= "sbep_hab_mods"
 
 TOOL.DevSelect			= true
 TOOL.CCVar_type			= "base_livable_module"
@@ -14,10 +14,10 @@ TOOL.CCVar_sub_type		= "test1"
 TOOL.CCVar_model		= "models/Spacebuild/s1t1.mdl"
 
 TOOL.Limited			= true
-TOOL.LimitName			= "sbmp_hab_mods"
+TOOL.LimitName			= "sbep_hab_mods"
 TOOL.Limit				= 30
 
-RD2ToolSetup.SetLang("SBMP Habitable Modules","Create Habitable Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
+RD2ToolSetup.SetLang("SBEP Habitable Modules","Create Habitable Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {

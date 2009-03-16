@@ -30,6 +30,8 @@ function ENT:Initialize()
 end
 
 function ENT:Think()
+	self.Entity:NextThink( CurTime() + 0.02 )
+	
 	if self.SPL and self.SPL.SBEPWeaponColor then
 		self.laz_r,self.laz_g,self.laz_b = self.SPL.SBEPWeaponColor.r,self.SPL.SBEPWeaponColor.g,self.SPL.SBEPWeaponColor.b
 	end
