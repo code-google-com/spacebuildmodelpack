@@ -1,11 +1,11 @@
 if not CAF or not CAF.GetAddon("Resource Distribution") then return end
 
-TOOL.Category			= "SBMP"
+TOOL.Category			= "SBEP"
 TOOL.Name				= "#Resource Modules"
 
 TOOL.DeviceName			= "Resource Module"
 TOOL.DeviceNamePlural	= "Resource Modules"
-TOOL.ClassName			= "sbmp_res_mods"
+TOOL.ClassName			= "sbep_res_mods"
 
 TOOL.DevSelect			= true
 TOOL.CCVar_type			= "base_default_res_module"
@@ -13,10 +13,10 @@ TOOL.CCVar_sub_type		= "test1"
 TOOL.CCVar_model		= "models/Spacebuild/s1t1.mdl"
 
 TOOL.Limited			= true
-TOOL.LimitName			= "sbmp_res_mods"
+TOOL.LimitName			= "sbep_res_mods"
 TOOL.Limit				= 30
 
-RD2ToolSetup.SetLang("SBMP Resource Modules","Create Resource Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
+RD2ToolSetup.SetLang("SBEP Resource Modules","Create Resource Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {
@@ -57,16 +57,6 @@ TOOL.Devices = {
 		func 	= spawn_res_func,
 		legacy = false,
 		devices = {
-			test1 = {
-				Name	= "Test",
-				model	= "models/props_lab/powerbox01a.mdl",
-				skin	= 0,
-			},
-			test2 = {
-				Name	= "Cargobay",
-				model	= "models/Spacebuild/cbay1.mdl",
-				skin	= 0,
-			},
 		},
 	},
 }
