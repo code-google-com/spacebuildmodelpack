@@ -1,11 +1,11 @@
 
 local EmptyTable = {}
 
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev0s/SBpanelelev0s.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev2s/sbpanelelev2s.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev1s/sbpanelelev1s.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev3s/sbpanelelev3s.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev2sE/sbpanelelev2se.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP0.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP2E.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP1.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP3.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP2R.mdl", EmptyTable)
 
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl",   EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev2sEdw/sbpanelelev2sedw.mdl", EmptyTable)
@@ -62,5 +62,5 @@ list.Set("SBMP_ElevatorMdls","models/Slyfo/frigate1ramp.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Spacebuild/Nova/hull_lift1lift.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Spacebuild/Nova/hull_lift_doublelift.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/foldcargohatch.mdl", EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/Slyfo/models/slyfo/cargocapglass.mdl", EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/Slyfo/models/slyfo/cargohub.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfo/cargocapglass.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfo/cargohub.mdl", EmptyTable)
