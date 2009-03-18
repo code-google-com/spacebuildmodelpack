@@ -3,6 +3,9 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
+util.PrecacheSound( "warpdrive/warp.wav" )
+util.PrecacheSound( "warpdrive/error2.wav" )
+
 function ENT:SpawnFunction( ply, tr )
 	local ent = ents.Create("WarpDrive") 		// Create the entity
 	ent:SetPos(tr.HitPos + Vector(0, 0, 20)) 	// Set it to spawn 20 units over the spot you aim at when spawning it
@@ -48,23 +51,24 @@ function ENT:TriggerInput(iname, value)
 		if not util.IsInWorld(self.JumpCoords) then
 	--	print(self.NTime..", "..CurTime())
 			if(CurTime() >= self.NTime) then
-				self.Entity:EmitSound("error2.wav", 100, 100)
+				self.Entity:EmitSound("warpdrive/error2.wav", 100, 100)
 				self.NTime = CurTime() + 5
 			end
 		return end
 		local WarpDrivePos = self.Entity:GetPos()
 		local ConstrainedEnts = ents.FindInSphere( self.Entity:GetPos() , self.SearchRadius)
 		local DoneList = {}
+		self.Entity:EmitSound("warpdrive/warp.wav", 450, 70)
 		for _, v in pairs(ConstrainedEnts) do
 			if v:IsValid() and !DoneList[v] then
 				local ToTele = constraint.GetAllConstrainedEntities(v)
 				for ent,_ in pairs(ToTele)do
+				 if not (ent.BaseClass and ent.BaseClass.ClassName=="stargate_base" and ent:OnGround()) then
 					if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() ) then
 						if(!ent:IsPlayer()) then
 							DoPropSpawnedEffect( ent )
 						end
 						DoneList[ent]=ent
-						self.Entity:EmitSound("warp.wav", 450, 70)
 						ent:SetPos(self.JumpCoords + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
 						local phys = ent:GetPhysicsObject()
 						if(!phys:IsMoveable())then
@@ -72,6 +76,7 @@ function ENT:TriggerInput(iname, value)
 							phys:EnableMotion(false)
 						end 
 					end
+				 end
 				end
 			end
 		end
