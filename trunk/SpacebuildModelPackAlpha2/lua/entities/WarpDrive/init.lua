@@ -69,7 +69,7 @@ function ENT:TriggerInput(iname, value)
 		else
 			self.JumpCoords.Dest = self.JumpCoords.Vec
 		end
-		print( timer.IsTimer( "warpdrivewaittime" ) )
+	--[[	print( timer.IsTimer( "warpdrivewaittime" ) ) ]]
 		if (CurTime()-self.NTime)>7 and !timer.IsTimer( "warpdrivewaittime" ) and self.JumpCoords.Dest!=self.Entity:GetPos() and util.IsInWorld(self.JumpCoords.Dest) then
 			self.NTime=CurTime()
 			self.Entity:EmitSound("WarpDrive/warp.wav", 450, 70)
@@ -77,10 +77,10 @@ function ENT:TriggerInput(iname, value)
 		else
 			self.Entity:EmitSound("WarpDrive/error2.wav", 450, 70)
 		end
-		print( self.NTime )
+	--[[	print( self.NTime )
 		print( timer.IsTimer( "warpdrivewaittime" ) )
 		print( self.JumpCoords.Dest != self.Entity:GetPos() )
-		print( util.IsInWorld( self.JumpCoords.Dest ) )
+		print( util.IsInWorld( self.JumpCoords.Dest ) ) ]]
 	end
 end
 
@@ -118,8 +118,8 @@ function ENT:Go()
 			self:SharedJump(ent)
 		end
 	end
-	print("----------------------------------------")
-	PrintTable(self.ConstrainedEnts)
+--[[	print("----------------------------------------")
+	PrintTable(self.ConstrainedEnts) ]]
 end
 
 function ENT:SharedJump(ent)
