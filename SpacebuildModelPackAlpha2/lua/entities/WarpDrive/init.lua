@@ -3,8 +3,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
-util.PrecacheSound( "warpdrive/warp.wav" )
-util.PrecacheSound( "warpdrive/error2.wav" )
+ENT.WireDebugName = "Warp Drive"
 
 function ENT:SpawnFunction( ply, tr )
 	local ent = ents.Create("WarpDrive") 		// Create the entity
@@ -17,6 +16,10 @@ end
    Name: Initialize
 ---------------------------------------------------------*/
 function ENT:Initialize()
+
+	util.PrecacheModel( "models/props_c17/consolebox03a.mdl" )
+	util.PrecacheSound( "warpdrive/warp.wav" )
+	util.PrecacheSound( "warpdrive/error2.wav" )
 	
 	self.Entity:SetModel( "models/props_c17/consolebox03a.mdl" )
 	
@@ -35,50 +38,101 @@ function ENT:Initialize()
 		phys:EnableGravity( true )
 		phys:Wake() 
 	end
-
-	self.JumpCoords = Vector(0,0,0)
+	self.JumpCoords = {}
+	self.JumpCoords.Dest = Vector(0,0,0)
 	self.SearchRadius = 512
-	self.Inputs = WireLib.CreateSpecialInputs( self.Entity, { "Radius", "Destination", "Warp" }, { "NORMAL", "VECTOR", "NORMAL" } );
+	self.Constrained = 1
+	self.Inputs = WireLib.CreateSpecialInputs( self.Entity, { "Radius", "UnConstrained", "Destination X", "Destination Y", "Destination Z", "Destination", "Warp" }, { "NORMAL", "NORMAL", "NORMAL", "NORMAL", "NORMAL", "VECTOR", "NORMAL" } );
 end
 
 function ENT:TriggerInput(iname, value)
 	if(iname == "Radius") then
 		self.SearchRadius = value
-		 if self.SearchRadius > 1000 then self.SearchRadius = 1000 end
+		if self.SearchRadius > 1000 then self.SearchRadius = 1000 end
+	elseif(iname == "UnConstrained") then
+		self.Constrained = value
+	elseif(iname == "Destination X") then
+		self.JumpCoords.x = value
+		self.UseWhich = 1
+	elseif(iname == "Destination Y") then
+		self.JumpCoords.y = value
+		self.UseWhich = 1
+	elseif(iname == "Destination Z") then
+		self.JumpCoords.z = value
+		self.UseWhich = 1
 	elseif(iname == "Destination") then
-		self.JumpCoords = value
+		self.JumpCoords.Vec = value
+		self.UseWhich = 2
 	elseif(iname == "Warp" and value > 0) then
-		if not util.IsInWorld(self.JumpCoords) then
-	--	print(self.NTime..", "..CurTime())
-			if(CurTime() >= self.NTime) then
-				self.Entity:EmitSound("warpdrive/error2.wav", 100, 100)
-				self.NTime = CurTime() + 5
-			end
-		return end
-		local WarpDrivePos = self.Entity:GetPos()
-		local ConstrainedEnts = ents.FindInSphere( self.Entity:GetPos() , self.SearchRadius)
-		local DoneList = {}
-		self.Entity:EmitSound("warpdrive/warp.wav", 450, 70)
-		for _, v in pairs(ConstrainedEnts) do
-			if v:IsValid() and !DoneList[v] then
-				local ToTele = constraint.GetAllConstrainedEntities(v)
-				for ent,_ in pairs(ToTele)do
-				 if not (ent.BaseClass and ent.BaseClass.ClassName=="stargate_base" and ent:OnGround()) then
-					if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() ) then
-						if(!ent:IsPlayer()) then
-							DoPropSpawnedEffect( ent )
+		if(self.UseWhich == 1) then
+			self.JumpCoords.Dest = Vector(self.JumpCoords.x, self.JumpCoords.y, self.JumpCoords.z)
+		else
+			self.JumpCoords.Dest = self.JumpCoords.Vec
+		end
+		print( timer.IsTimer( "warpdrivewaittime" ) )
+		if (CurTime()-self.NTime)>7 and !timer.IsTimer( "warpdrivewaittime" ) and self.JumpCoords.Dest!=self.Entity:GetPos() and util.IsInWorld(self.JumpCoords.Dest) then
+			self.NTime=CurTime()
+			self.Entity:EmitSound("WarpDrive/warp.wav", 450, 70)
+			timer.Create( "warpdrivewaittime", 1, 1, function(self) self.Entity:Go() timer.Destroy("warpdrivewaittime") end, self )
+		else
+			self.Entity:EmitSound("WarpDrive/error2.wav", 450, 70)
+		end
+		print( self.NTime )
+		print( timer.IsTimer( "warpdrivewaittime" ) )
+		print( self.JumpCoords.Dest != self.Entity:GetPos() )
+		print( util.IsInWorld( self.JumpCoords.Dest ) )
+	end
+end
+
+function ENT:Go()
+	local WarpDrivePos = self.Entity:GetPos()
+	if(self.Constrained == 1) then
+		self.DoneList = {}
+		self.ConstrainedEnts = ents.FindInSphere( self.Entity:GetPos() , self.SearchRadius)
+		for _, v in pairs(self.ConstrainedEnts) do
+			if v:IsValid() and !self.DoneList[v] then
+				self.ToTele = constraint.GetAllConstrainedEntities(v)
+				for ent,_ in pairs(self.ToTele)do
+				PrintTable(self.ToTele)
+					if not (ent.BaseClass and ent.BaseClass.ClassName=="stargate_base" and ent:OnGround()) then
+						if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() ) then
+							if(!ent:IsPlayer()) then
+								DoPropSpawnedEffect( ent )
+							end
+							self.DoneList[ent]=ent
+						self:SharedJump(ent)
 						end
-						DoneList[ent]=ent
-						ent:SetPos(self.JumpCoords + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
-						local phys = ent:GetPhysicsObject()
-						if(!phys:IsMoveable())then
-							phys:EnableMotion(true)
-							phys:EnableMotion(false)
-						end 
 					end
-				 end
 				end
 			end
 		end
+	else
+		self.ConstrainedEnts = constraint.GetAllConstrainedEntities(self.Entity)
+		local Peeps = player.GetAll()
+		for _, k in pairs(Peeps) do
+			if(k:GetPos():Distance(self.Entity:GetPos()) <= self.SearchRadius ) then
+				self:SharedJump(k)
+			end
+		end
+		for _, ent in pairs(self.ConstrainedEnts) do
+			self:SharedJump(ent)
+		end
 	end
+	print("----------------------------------------")
+	PrintTable(self.ConstrainedEnts)
+end
+
+function ENT:SharedJump(ent)
+local WarpDrivePos = self.Entity:GetPos()
+	local phys = ent:GetPhysicsObject()
+	if ent:IsPlayer() then
+		ent:SetPos(self.JumpCoords.Dest + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
+	else
+		phys:SetPos(self.JumpCoords.Dest + (phys:GetPos() - WarpDrivePos) + Vector(0,0,10))
+	end
+	if(!phys:IsMoveable())then
+		phys:EnableMotion(true)
+		phys:EnableMotion(false)
+	end 
+	phys:Wake()
 end
