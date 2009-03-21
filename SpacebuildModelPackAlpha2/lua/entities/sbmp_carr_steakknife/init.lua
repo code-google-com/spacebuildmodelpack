@@ -63,8 +63,6 @@ function ENT:InitDock()
 	self.Bay["Right"]["pos"] = Vector(0,-326,70)
 	self.Bay["Right"]["canface"] = {Angle(0,0,0)}
 	self.Bay["Right"]["pexit"] = Vector(-100,-168,75)
-	print("Dock Initialized")
-	PrintTable(self.Bay)
 	
 end
 
@@ -171,7 +169,6 @@ function ENT:PreEntityCopy()
 			DupeInfo["EPs"][k] = v.EP:EntIndex()
 		end
 	end
-	PrintTable(DupeInfo)
 	duplicator.StoreEntityModifier(self.Entity,"HangarDupeInfo",DupeInfo)
 end
 
@@ -184,7 +181,6 @@ function ENT:PostEntityPaste(Player,Ent,CreatedEntities)
 			if (!self.Bay[k]["ship"]) then
 				self.Bay[k]["ship"] = ents.GetByIndex(v)
 			end
-			PrintTable(self.Bay)
 		end
 		for k, v in pairs(Ent.EntityMods.HangarDupeInfo.EPs) do
 			self.Bay[k]["EP"] = CreatedEntities[v]
