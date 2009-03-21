@@ -724,3 +724,21 @@ local V = {
 							}
 }
 list.Set( "Vehicles", "sbep_WraithBomber", V )
+
+local V = { 	
+				Name = "Egg Pod", 
+				Class = "prop_vehicle_prisoner_pod",
+				Category = Category,
+
+				Author = "Cerebrate",
+				Information = "Egg Pod vehicle",
+				Model = "models/organicbridge/egg_pod.mdl",
+				KeyValues = {
+								vehiclescript	=	"scripts/vehicles/prisoner_pod.txt",
+								limitview		=	"0"
+							},
+				Members = {
+								HandleAnimation = HandleSBMPSitAnimation,
+							}
+}
+list.Set( "Vehicles", "egg_pod", V )
