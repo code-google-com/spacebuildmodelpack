@@ -125,7 +125,7 @@ end
 function ENT:SharedJump(ent)
 local WarpDrivePos = self.Entity:GetPos()
 	local phys = ent:GetPhysicsObject()
-	if ent:IsPlayer() then
+	if (ent:IsPlayer() or ent:IsNPC()) then
 		ent:SetPos(self.JumpCoords.Dest + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
 	else
 		phys:SetPos(self.JumpCoords.Dest + (phys:GetPos() - WarpDrivePos) + Vector(0,0,10))
