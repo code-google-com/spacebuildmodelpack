@@ -95,8 +95,8 @@ function ENT:Go()
 				for ent,_ in pairs(self.ToTele)do
 				PrintTable(self.ToTele)
 					if not (ent.BaseClass and ent.BaseClass.ClassName=="stargate_base" and ent:OnGround()) then
-						if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() ) then
-							if(!ent:IsPlayer()) then
+						if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() or ent:IsNPC() ) then
+							if(!(ent:IsPlayer() or ent:IsNPC())) then
 								DoPropSpawnedEffect( ent )
 							end
 							self.DoneList[ent]=ent
