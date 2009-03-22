@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture"	"vgui/entities/sbep_wing_wing4"
+	"$vertexcolor"	1
+	"$vertexalpha"	0
+	"$nolod"	1
+}

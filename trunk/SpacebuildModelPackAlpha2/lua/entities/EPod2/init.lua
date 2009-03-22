@@ -28,7 +28,7 @@ function ENT:SpawnFunction( ply, tr )
 
 	if ( !tr.Hit ) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,300)
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,100)
 	
 	local ent = ents.Create( "EPod2" )
 	ent:SetPos( SpawnPos )

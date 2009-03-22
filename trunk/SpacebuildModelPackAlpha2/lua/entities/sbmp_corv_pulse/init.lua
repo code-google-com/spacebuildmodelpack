@@ -70,7 +70,7 @@ end
 function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,50)
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,100)
 	
 	local ent = ents.Create( "sbmp_corv_pulse" )
 	ent:SetPos( SpawnPos )

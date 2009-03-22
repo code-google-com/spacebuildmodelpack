@@ -96,7 +96,7 @@ function ENT:Launch( )
 			if Ply && Ply:IsValid() then
 				local NPod = ents.Create( "prop_vehicle_prisoner_pod" )
 				if ( !NPod:IsValid() ) then return end
-				NPod:SetModel( "models/SmallBridge/SBdroppod1/SBdroppod1.mdl" )
+				NPod:SetModel( "models/SmallBridge/Vehicles/SBVdroppod1.mdl" )
 				NPod:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 				NPod:SetKeyValue("limitview", 0)
 				--NPod:SetMembers(HandleAnimation, HandleSBMPSitAnimation)

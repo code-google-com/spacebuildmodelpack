@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
-	"$basetexture" "VGUI/entities/sbep_flak_gun"
-	"$vertexcolor" 		1 
-	"$vertexalpha" 		0 
-	"$nolod" 		1 
+	"$basetexture"	"vgui/entities/sbep_fs2flak_gun"
+	"$vertexcolor"	1
+	"$vertexalpha"	0
+	"$nolod"	1
 }
