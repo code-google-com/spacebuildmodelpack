@@ -23,7 +23,7 @@ function ENT:SpawnFunction( ply, tr )
 
 	if ( !tr.Hit ) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,10)
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,20)
 	
 	local ent = ents.Create( "LandingPad" )
 	ent:SetPos( SpawnPos )

@@ -23,7 +23,7 @@ function ENT:SpawnFunction( ply, tr )
 
 	if ( !tr.Hit ) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,500)
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,150)
 	
 	local ent = ents.Create( "sbmp_hangar_deck" )
 	ent:SetPos( SpawnPos )

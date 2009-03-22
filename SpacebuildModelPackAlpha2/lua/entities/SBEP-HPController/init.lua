@@ -38,7 +38,7 @@ function ENT:SpawnFunction( ply, tr )
 
 	if ( !tr.Hit ) then return end
 	
-	local SpawnPos = tr.HitPos + tr.HitNormal * 16
+	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,20)
 	
 	local ent = ents.Create( "SBEP-HPController" )
 	ent:SetPos( SpawnPos )

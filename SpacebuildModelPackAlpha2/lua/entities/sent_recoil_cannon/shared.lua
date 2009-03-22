@@ -5,7 +5,7 @@ ENT.Author			= "Levybreak"
 ENT.Contact 		= "Facepunch"
 ENT.Purpose			= "Firein Mah Lasor!"
 ENT.Instructions	= "Firein Mah Lasor!"
-ENT.Category		= "SBEP-Animated Weapons"
+ENT.Category		= "SBEP-Weapons"
 
 ENT.Spawnable		= true
 ENT.AdminSpawnable	= true

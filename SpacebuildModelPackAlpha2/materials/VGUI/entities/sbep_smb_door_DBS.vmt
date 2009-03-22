@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture"	"vgui/entities/sbep_door_DBS"
+	"$vertexcolor"	1
+	"$vertexalpha"	0
+	"$nolod"	1
+}
