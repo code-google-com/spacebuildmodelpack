@@ -96,11 +96,8 @@ function ENT:Go()
 				PrintTable(self.ToTele)
 					if not (ent.BaseClass and ent.BaseClass.ClassName=="stargate_base" and ent:OnGround()) then
 						if ent:IsValid() and ( ent:GetMoveType()==6 or ent:IsPlayer() or ent:IsNPC() ) then
-							if(!(ent:IsPlayer() or ent:IsNPC())) then
-								DoPropSpawnedEffect( ent )
-							end
 							self.DoneList[ent]=ent
-						self:SharedJump(ent)
+							self:SharedJump(ent)
 						end
 					end
 				end
@@ -125,11 +122,8 @@ end
 function ENT:SharedJump(ent)
 local WarpDrivePos = self.Entity:GetPos()
 	local phys = ent:GetPhysicsObject()
-	if (ent:IsPlayer() or ent:IsNPC()) then
-		ent:SetPos(self.JumpCoords.Dest + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
-	else
-		phys:SetPos(self.JumpCoords.Dest + (phys:GetPos() - WarpDrivePos) + Vector(0,0,10))
-	end
+	if !(ent:IsPlayer() or ent:IsNPC()) then DoPropSpawnedEffect( ent ) ent=phys end
+	ent:SetPos(self.JumpCoords.Dest + (ent:GetPos() - WarpDrivePos) + Vector(0,0,10))
 	if(!phys:IsMoveable())then
 		phys:EnableMotion(true)
 		phys:EnableMotion(false)
