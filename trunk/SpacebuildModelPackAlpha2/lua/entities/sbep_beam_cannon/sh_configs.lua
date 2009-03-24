@@ -171,7 +171,7 @@ end
 ENT.Configs[4] = {} -- Green beam cannon
 ENT.Configs[4].Damage       = 500
 ENT.Configs[4].Cooldown     = 25
-ENT.Configs[4].SlashCone    = 100
+ENT.Configs[4].SlashCone    = 1--00
 ENT.Configs[4].GlowSize     = 128
 ENT.Configs[4].BeamWidth    = 64
 
@@ -225,7 +225,7 @@ end
 ENT.Configs[5] = {} -- Gold beam cannon
 ENT.Configs[5].Damage       = 500
 ENT.Configs[5].Cooldown     = 25
-ENT.Configs[5].SlashCone    = 100
+ENT.Configs[5].SlashCone    = 1--00
 ENT.Configs[5].GlowSize     = 128
 ENT.Configs[5].BeamWidth    = 64
 
