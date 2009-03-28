@@ -59,19 +59,49 @@ function ENT:SpawnFunction( ply, tr )
 end
 
 function ENT:TriggerInput(iname, value)		
-	if (iname == "Model") then
+	if (iname == "Model Type") then
 		if (value == "X") then
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevmx.mdl" ) 
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		elseif (value == "T") then
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevmt.mdl" ) 
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		elseif (value == "R") then
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevmr.mdl" )
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		elseif (value == "Corridor") then
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevme.mdl" ) 
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		elseif (value == "Cap") then
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevm.mdl"  )
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		else
 			self.Entity:SetModel( "models/SmallBridge/Elevators,Small/sbselevmx.mdl" )
+			constraint.RemoveAll(self.Entity)
+			self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
+			self.Entity:SetSolid( SOLID_VPHYSICS )
+			self.Entity:PhysicsInit( SOLID_VPHYSICS )
+			self.Entity:GetPhysicsObject():Wake()
 		end
 	end
 end
