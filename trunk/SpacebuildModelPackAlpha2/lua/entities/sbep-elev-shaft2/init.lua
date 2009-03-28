@@ -39,7 +39,7 @@ end
 
 function ENT:SpawnFunction( ply, tr )
 	local ent = ents.Create("sbep-elev-shaft2")
-	ent:SetPos(tr.HitPos + Vector(0, 0, 20))
+	ent:SetPos(tr.HitPos + Vector(0, 0, 180))
 	ent:Spawn()
 	return ent
 end 
