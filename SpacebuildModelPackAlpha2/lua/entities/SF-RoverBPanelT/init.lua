@@ -104,6 +104,9 @@ function ENT:SpawnFunction( ply, tr )
 	ent.Pod2 = ent2
 	ent.Bar = ent3
 	
+	self.Pod2 = ent2
+	self.Bar = ent3
+	
 	return ent
 	
 end
@@ -121,6 +124,14 @@ end
 
 function ENT:PhysicsUpdate()
 
+end
+
+function ENT:OnRemove() 
+
+	self.Pod2:Remove()
+	self.Bar:Remove()
+	self:Remove()
+	
 end
 
 function ENT:Think()
