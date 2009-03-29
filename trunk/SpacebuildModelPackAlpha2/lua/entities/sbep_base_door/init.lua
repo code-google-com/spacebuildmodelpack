@@ -1,9 +1,8 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-include('entities/base_wire_entity/init.lua')
 include( "shared.lua" ) 
 
-ENT.WireDebugName = "SBMP Door"
+ENT.WireDebugName = "SBEP Door"
 
 function ENT:OnRemove() 
 
@@ -20,7 +19,7 @@ function ENT:AddDoorPhysics()
 		self.SBdoor:SetModel( self.DoorModel )
 		self.SBdoor:Spawn()
 		self.SBdoor:SetAngles(self:GetAngles() + self.DoorAngleOffset)
-		self.SBdoor:SetPos(self:GetPos())
+		self.SBdoor:SetPos(self:GetPos() + self.DoorOffset)
 
 		constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
 
@@ -29,9 +28,9 @@ end
 
 function ENT:Open()
 
-	self:ResetSequence( self:LookupSequence( "open" ) )
+	self:ResetSequence( self:LookupSequence( "open" ))
 		self:SetPlaybackRate( 1 )
-		timer.Simple(2, function()
+		timer.Simple(self.OpenTime, function()
 							self.Delay = false
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( true )
@@ -42,9 +41,9 @@ end
 
 function ENT:Close()
 
-	self:ResetSequence( self:LookupSequence( "close" ) )
+	self:ResetSequence( self:LookupSequence( "close" ))
 		self:SetPlaybackRate( 1 )
-		timer.Simple(2, function()
+		timer.Simple(self.CloseTime, function()
 							self.Delay = true
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( false )

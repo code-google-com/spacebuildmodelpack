@@ -24,7 +24,10 @@ function ENT:Initialize()
 		self.Locked     		= false
 		self.DisableUse 		= false
 		self.DoorModel 			= model[2]
-		self.DoorAngleOffset 	= Angle(0, 90, 0)
+		self.DoorOffset 		= Vector(0, 0, 0)
+		self.DoorAngleOffset 	= Angle(0, 0, 0)
+		self.OpenTime		 	= 3
+		self.CloseTime			= 3
 
 		if !self.SBdoor or !self.SBdoor:IsValid() then
 			self.SBdoor = ents.Create( "prop_physics" )
@@ -40,7 +43,7 @@ function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 	
 	local SpawnPos = tr.HitPos + tr.HitNormal * 16 + Vector(0,0,65.1)
-	local RotAng   = Angle(0 , 90 , 0)
+	local RotAng   = Angle(0 , 0 , 0)
 	
 	local ent = ents.Create( "sbep_smb_door_wide" )
 	ent:SetPos( SpawnPos )
