@@ -1,13 +1,16 @@
 "VertexLitGeneric"
 {
 	"$basetexture" "spacebuild/glass"
+	"%compilepassbullets" 1
 	"$translucent" 1
-	"$nocull" 0	
-	"$surfaceprop" "metal"
+	"$surfaceprop" "glass"
+	"$reflectentities" 1
+	"$reflecttexture" "_rt_WaterReflection" 
+	"$reflectentities" 1
 	"$envmap" "env_cubemap"
-	"$envmaptint" "[ 1.0 1.0 1.0 ]"
-	"$selfillum" 0
+	"$envmaptint" "[ 0.9 0.9 1.0 ]"
 	"$model" 1
+	"$halflambert" 1
 }
 
 
