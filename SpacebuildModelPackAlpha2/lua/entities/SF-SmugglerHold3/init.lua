@@ -32,11 +32,12 @@ function ENT:Initialize()
 	self.HP[1]["Ent"]	= nil
 	self.HP[1]["Type"]	= "SHPanelS"
 	self.HP[1]["Pos"]	= Vector(0,194.7,-28.3)
+	self.HP[1]["Angle"]	= Angle(0,0,180)
 	self.HP[2]			= {}
 	self.HP[2]["Ent"]	= nil
 	self.HP[2]["Type"]	= "SHPanelS"
 	self.HP[2]["Pos"]	= Vector(0,-194.7,-28.3)
-	self.HP[2]["Angle"]	= Angle(0,0,180)
+	self.HP[2]["Angle"]	= Angle(0,0,0)
 	
 	
 	self.Cont = self.Entity
