@@ -15,7 +15,7 @@ function ENT:AddDoorPhysics()
 	
 	self.SBdoor:PhysicsInit( SOLID_VPHYSICS )
 		self.SBdoor:SetMoveType( MOVETYPE_VPHYSICS )
-		self.SBdoor:SetSolid( SOLID_VPHYSICS )
+		self.SBdoor:SetSolid( 77 )
 		self.SBdoor:SetModel( self.DoorModel )
 		self.SBdoor:Spawn()
 		self.SBdoor:SetAngles(self:GetAngles() + self.DoorAngleOffset)
