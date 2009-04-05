@@ -40,9 +40,9 @@ list.Set("SBMP_ElevatorMdls","models/SmallBridge/Walkways/SBwalkwayR.mdl",   Emp
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/Walkways/SBwalkwayT.mdl",   EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/Walkways/SBwalkwayX.mdl",   EmptyTable)
 
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBlanddockramp1/SBlanddockramp1.mdl",         EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBlanddockramp1dw/SBlanddockramp1dw.mdl",     EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBlanddockramp1dwdh/SBlanddockramp1dwdh.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Ship Parts/SBlandRampP.mdl",         EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Ship Parts/SBlandRampPdw.mdl",     EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Ship Parts/SBlandRampPdwdh.mdl", EmptyTable)
 
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBbridgeO1cover/SBbridgeO1cover.mdl", EmptyTable)
 
