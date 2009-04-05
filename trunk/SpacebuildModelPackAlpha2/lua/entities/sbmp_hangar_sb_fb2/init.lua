@@ -5,7 +5,7 @@ include( 'shared.lua' )
 
 function ENT:Initialize()
 	self.BaseClass:Initialize(self)
-	self.Entity:SetModel( "models/SmallBridge/SBhangardhdw1UD/sbhangardhdw1ud.mdl" )
+	self.Entity:SetModel( "models/SmallBridge/Station Parts/SBhangarLud.mdl" )
 	self.Entity:SetName("sbfighterbay2")
 end
 

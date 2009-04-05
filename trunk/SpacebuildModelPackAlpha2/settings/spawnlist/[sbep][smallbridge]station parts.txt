@@ -1,0 +1,27 @@
+"SpawnMenu"
+{
+	"Information"
+	{
+		"version"		"2"
+		"name"		"[SBEP][SmallBridge]Station Parts"
+	}
+	"Entries"
+	{
+		"1"		"models/SmallBridge/Station Parts/sbbaydps.mdl"
+		"2"		"models/SmallBridge/Station Parts/sbbridgecomm.mdl"
+		"3"		"models/SmallBridge/Station Parts/sbbridgecommdw.mdl"
+		"4"		"models/SmallBridge/Station Parts/sbbridgecommelev.mdl"
+		"5"		"models/SmallBridge/Station Parts/sbbridgesphere.mdl"
+		"6"		"models/SmallBridge/Station Parts/sbbridgevisor.mdl"
+		"7"		"models/SmallBridge/Station Parts/sbbridgevisorelev.mdl"
+		"8"		"models/SmallBridge/Station Parts/sbdockcs.mdl"
+		"9"		"models/SmallBridge/Station Parts/sbhangarld.mdl"
+		"10"		"models/SmallBridge/Station Parts/sbhangarlu.mdl"
+		"11"		"models/SmallBridge/Station Parts/sbhangarlud.mdl"
+		"12"		"models/SmallBridge/Station Parts/sbhangarlud2.mdl"
+		"13"		"models/SmallBridge/Station Parts/sbhubl.mdl"
+		"14"		"models/SmallBridge/Station Parts/sbhubs.mdl"
+		"15"		"models/SmallBridge/Station Parts/sbrooml1.mdl"
+		"16"		"models/SmallBridge/Station Parts/sbroomsgc.mdl"
+	}
+}
