@@ -20,8 +20,10 @@
 		"11"		"models/SmallBridge/Station Parts/sbhangarlud.mdl"
 		"12"		"models/SmallBridge/Station Parts/sbhangarlud2.mdl"
 		"13"		"models/SmallBridge/Station Parts/sbhubl.mdl"
-		"14"		"models/SmallBridge/Station Parts/sbhubs.mdl"
-		"15"		"models/SmallBridge/Station Parts/sbrooml1.mdl"
-		"16"		"models/SmallBridge/Station Parts/sbroomsgc.mdl"
+		"14"		"models/SmallBridge/Station Parts/sbhuble.mdl"
+		"15"		"models/SmallBridge/Station Parts/sbhubls.mdl"
+		"16"		"models/SmallBridge/Station Parts/sbhubs.mdl"
+		"17"		"models/SmallBridge/Station Parts/sbrooml1.mdl"
+		"18"		"models/SmallBridge/Station Parts/sbroomsgc.mdl"
 	}
 }
