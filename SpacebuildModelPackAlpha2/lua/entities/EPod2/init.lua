@@ -5,7 +5,7 @@ include( 'shared.lua' )
 
 function ENT:Initialize()
 
-	self.Entity:SetModel( "models/SmallBridge/SBpodbay1/sbpodbay1.mdl" )
+	self.Entity:SetModel( "models/SmallBridge/Station Parts/SBbayDPs.mdl" )
 	self.Entity:SetName("AmmoCrate")
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
