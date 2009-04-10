@@ -35,7 +35,7 @@ end
 	Get the Version of this Custom Addon Class
 */
 function RD.GetVersion()
-	return 0.3, "Alpha"
+	return 3.03, "Alpha"
 end
 
 /**
@@ -55,4 +55,4 @@ end
 function RD.AddResourcesToSend()
 	
 end
-CAF.RegisterAddon("Spacebuild Model Pack", RD, "2")
+CAF.RegisterAddon("Spacebuild Enhancement Project", RD, "2")
