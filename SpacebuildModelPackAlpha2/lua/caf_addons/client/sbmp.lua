@@ -36,7 +36,7 @@ end
 	Get the Version of this Custom Addon Class
 */
 function RD.GetVersion()
-	return 0.3, "Alpha"
+	return 3.03, "Alpha"
 end
 
 /**
@@ -61,6 +61,17 @@ function RD.GetCustomStatus()
 	return "Not Implemented Yet"
 end
 
-CAF.RegisterAddon("Spacebuild Model Pack", RD, "2")
+/**
+	Returns a table containing the Description of this addon
+*/
+function RD.GetDescription()
+	return {
+				"Spacebuild Enhancement Project",
+				"",
+				""
+			}
+end
+
+CAF.RegisterAddon("Spacebuild Enhancement Project", RD, "2")
 
 
