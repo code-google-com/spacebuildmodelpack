@@ -67,3 +67,5 @@ list.Set("SBMP_ElevatorMdls","models/Slyfo/models/slyfo/cargohub.mdl", 			EmptyT
 list.Set("SBMP_ElevatorMdls","models/Slyfo/foldcargohatch.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/cargocapglass.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/cargohub.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfowalls/flightbase1_hangardoor.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/Slyfowals/flightbase1_door.mdl", EmptyTable)
