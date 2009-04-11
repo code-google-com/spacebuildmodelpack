@@ -14,16 +14,17 @@ end
 function ENT:AddDoorPhysics()
 	
 	self.SBdoor:PhysicsInit( SOLID_VPHYSICS )
-		self.SBdoor:SetMoveType( MOVETYPE_VPHYSICS )
-		self.SBdoor:SetSolid( 77 )
-		self.SBdoor:SetModel( self.DoorModel )
-		self.SBdoor:Spawn()
-		self.SBdoor:SetAngles(self:GetAngles() + self.DoorAngleOffset)
-		self.SBdoor:SetPos(self:GetPos() + self.DoorOffset)
+	self.SBdoor:SetMoveType( MOVETYPE_VPHYSICS )
+	self.SBdoor:SetSolid( 77 )
+	self.SBdoor:SetModel( self.DoorModel )
+	self.SBdoor:Spawn()
+	self.SBdoor:SetAngles(self:GetAngles() + self.DoorAngleOffset)
+	self.SBdoor:SetPos(self:GetPos() + self.DoorOffset)
 
-		constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
+	constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
 
-		self.SBdoor:SetNoDraw(true)
+	self.SBdoor:SetNoDraw(true)
+	print("Door physics added")
 end
 
 function ENT:Open()
@@ -73,6 +74,7 @@ function ENT:Think()
 	if !self.SBdoor or !self.SBdoor:IsValid() then
 		self.SBdoor = ents.Create( "prop_physics" )
 		self:AddDoorPhysics()
+		print("Door added by think")
 	end
 		
 	self.Entity:NextThink( CurTime() + 0.01 )
@@ -132,6 +134,6 @@ end
 function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 	self.BaseClass.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
 	if (info.SBdoor) then
-		info.SBdoor:Remove()
+		GetEntByID(info.SBdoor):Remove()
 	end
 end
