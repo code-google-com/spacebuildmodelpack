@@ -7,11 +7,11 @@ list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP2E.mdl"
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP2R.mdl",   EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Small/SBSelevP3.mdl",   EmptyTable)
 
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev3sdw/sbpanelelev3sdw.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev2sEdw/sbpanelelev2sedw.mdl", EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev2sdw/sbpanelelev2sdw.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev1sdw/sbpanelelev1sdw.mdl",   EmptyTable)
-list.Set("SBMP_ElevatorMdls","models/SmallBridge/SBpanelelev0sdw/sbpanelelev0sdw.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Large/SBLelevP0.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Large/SBLelevP1.mdl", EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Large/SBLelevP2E.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Large/SBLelevP2R.mdl",   EmptyTable)
+list.Set("SBMP_ElevatorMdls","models/SmallBridge/Elevators,Large/SBLelevP3.mdl",   EmptyTable)
 
 list.Set("SBMP_ElevatorMdls","models/Slyfo/inversebayhatch.mdl", EmptyTable)
 list.Set("SBMP_ElevatorMdls","models/Slyfo/mcpdropbayhatch.mdl", EmptyTable)
