@@ -10,4 +10,9 @@ Alt to decelerate.
 
 (Sprint) to accelerate.
 
+Ctrl to toggle cockpit and exterior view
+bind sbep_zoom_in and sbep_zoom_out to change the zoom levels
+example: 'bind MWHEELDOWN "invnext; sbep_zoom_out 10"'
+If you don't give the zoom a number it will default to 10
+
 For Weapons, see "Weapons Systems."

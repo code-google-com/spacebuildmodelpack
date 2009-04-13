@@ -34,7 +34,7 @@ function ENT:Initialize()
 		end
 		self:AddDoorPhysics()
 		
-		self.Inputs = Wire_CreateInputs(self.Entity, { "Open" , "Lock" , "Disable Use" })
+		self:MakeWire()
 
 end
 

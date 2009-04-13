@@ -4,6 +4,11 @@ include( "shared.lua" )
 
 ENT.WireDebugName = "SBEP Door"
 
+function ENT:MakeWire()
+	self.Inputs = Wire_CreateInputs(self.Entity, { "Open" , "Lock" , "Disable Use" })
+	self.Outputs = WireLib.CreateOutputs(self.Entity,{"Open"})
+end
+
 function ENT:OnRemove() 
 
 	self.SBdoor:Remove()
@@ -24,7 +29,6 @@ function ENT:AddDoorPhysics()
 	constraint.Weld( self.SBdoor, self, 0, 0, 0, true )
 
 	self.SBdoor:SetNoDraw(true)
-	print("Door physics added")
 end
 
 function ENT:Open()
@@ -37,6 +41,7 @@ function ENT:Open()
 								self.SBdoor:SetNotSolid( true )
 							end
 						end)
+	WireLib.TriggerOutput(self.Entity,"Open",1)
 
 end
 
@@ -50,6 +55,7 @@ function ENT:Close()
 								self.SBdoor:SetNotSolid( false )
 							end
 						end)
+	WireLib.TriggerOutput(self.Entity,"Open",0)
 
 end
 
