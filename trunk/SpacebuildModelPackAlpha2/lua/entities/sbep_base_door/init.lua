@@ -6,7 +6,7 @@ ENT.WireDebugName = "SBEP Door"
 
 function ENT:MakeWire()
 	self.Inputs = Wire_CreateInputs(self.Entity, { "Open" , "Lock" , "Disable Use" })
-	self.Outputs = WireLib.CreateOutputs(self.Entity,{"Open"})
+	self.Outputs = WireLib.CreateOutputs(self.Entity,{"Open","Locked"})
 end
 
 function ENT:OnRemove() 
@@ -40,8 +40,9 @@ function ENT:Open()
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( true )
 							end
+							WireLib.TriggerOutput(self.Entity,"Open",1)
 						end)
-	WireLib.TriggerOutput(self.Entity,"Open",1)
+	WireLib.TriggerOutput(self.Entity,"Open",0.5)
 
 end
 
@@ -54,8 +55,9 @@ function ENT:Close()
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( false )
 							end
+							WireLib.TriggerOutput(self.Entity,"Open",0)
 						end)
-	WireLib.TriggerOutput(self.Entity,"Open",0)
+	WireLib.TriggerOutput(self.Entity,"Open",0.5)
 
 end
 
@@ -80,7 +82,6 @@ function ENT:Think()
 	if !self.SBdoor or !self.SBdoor:IsValid() then
 		self.SBdoor = ents.Create( "prop_physics" )
 		self:AddDoorPhysics()
-		print("Door added by think")
 	end
 		
 	self.Entity:NextThink( CurTime() + 0.01 )
@@ -110,10 +111,12 @@ function ENT:TriggerInput(k,v)
 			self:Close()
 		end
 		self.Locked = true
+		WireLib.TriggerOutput(self.Entity,"Locked",1)
 		
 	elseif (k == "Lock" and v == 0) then
 	
 		self.Locked = false
+		WireLib.TriggerOutput(self.Entity,"Locked",0)
 		if self.Opened then
 			self:Open()
 		end
