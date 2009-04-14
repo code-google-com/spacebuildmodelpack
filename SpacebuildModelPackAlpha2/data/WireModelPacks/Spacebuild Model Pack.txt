@@ -18,30 +18,30 @@
 	"Console"
 	{
 		"categories"	"button"
-		"model"			"models/SmallBridge/SBconsole1low/sbconsole1low.mdl"
+		"model"			"models/SmallBridge/Other/SBconsolelow.mdl"
 		"files"
 		{
-			"0"     "models/SmallBridge/SBconsole1low/sbconsole1low.dx80.vtx"
-			"1"     "models/SmallBridge/SBconsole1low/sbconsole1low.dx90.vtx"
-			"2"     "models/SmallBridge/SBconsole1low/sbconsole1low.phy"
-			"3"     "models/SmallBridge/SBconsole1low/sbconsole1low.sw.vtx"
-			"4"     "models/SmallBridge/SBconsole1low/sbconsole1low.vvd"
-			"5"     "models/SmallBridge/SBconsole1low/sbconsole1low.xbox.vtf"
+			"0"     "models/SmallBridge/Other/SBconsolelow.dx80.vtx"
+			"1"     "models/SmallBridge/Other/SBconsolelow.dx90.vtx"
+			"2"     "models/SmallBridge/Other/SBconsolelow.phy"
+			"3"     "models/SmallBridge/Other/SBconsolelow.sw.vtx"
+			"4"     "models/SmallBridge/Other/SBconsolelow.vvd"
+			"5"     "models/SmallBridge/Other/SBconsolelow.xbox.vtf"
 		}
 	}
 
 	"Low Console"
 	{
 		"categories"	"button"
-		"model"			"models/SmallBridge/SBconsole1s/sbconsole1s.mdl"
+		"model"			"models/SmallBridge/Other/SBconsole.mdl"
 		"files"
 		{
-			"0"     "models/SmallBridge/SBconsole1low/sbconsole1s.dx80.vtx"
-			"1"     "models/SmallBridge/SBconsole1low/sbconsole1s.dx90.vtx"
-			"2"     "models/SmallBridge/SBconsole1low/sbconsole1s.phy"
-			"3"     "models/SmallBridge/SBconsole1low/sbconsole1s.sw.vtx"
-			"4"     "models/SmallBridge/SBconsole1low/sbconsole1s.vvd"
-			"5"     "models/SmallBridge/SBconsole1low/sbconsole1s.xbox.vtf"
+			"0"     "models/SmallBridge/Other/SBconsole.dx80.vtx"
+			"1"     "models/SmallBridge/Other/SBconsole.dx90.vtx"
+			"2"     "models/SmallBridge/Other/SBconsole.phy"
+			"3"     "models/SmallBridge/Other/SBconsole.sw.vtx"
+			"4"     "models/SmallBridge/Other/SBconsole.vvd"
+			"5"     "models/SmallBridge/Other/SBconsole.xbox.vtf"
 		}
 	}
 
