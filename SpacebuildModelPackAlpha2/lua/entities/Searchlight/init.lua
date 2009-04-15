@@ -14,8 +14,8 @@ function ENT:Initialize()
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_combine/combinethumper002")
 	self.Inputs = Wire_CreateInputs( self.Entity, { "On", "Searching" } )
-	local outNames = {"TargetFound","X","Y","Z","Vector"}
-	local outTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","VECTOR"}
+	local outNames = {"TargetFound","Target","X","Y","Z","Vector"}
+	local outTypes = {"NORMAL","ENTITY","NORMAL","NORMAL","NORMAL","VECTOR"}
 	local outDescs = {}
 	self.Outputs = WireLib.CreateSpecialOutputs( self.Entity,outNames,outTypes,outDescs)
 	
@@ -110,6 +110,7 @@ function ENT:Think()
 				if Dist < 50 then
 					local Pos = self.Target:GetPos()
 					Wire_TriggerOutput(self.Entity, "TargetFound", 1)
+					Wire_TriggerOutput(self.Entity, "Target", self.Target)
 					Wire_TriggerOutput(self.Entity, "X", Pos.x)
 					Wire_TriggerOutput(self.Entity, "Y", Pos.y)
 					Wire_TriggerOutput(self.Entity, "Z", Pos.z)
@@ -120,6 +121,7 @@ function ENT:Think()
 			end
 		else
 			Wire_TriggerOutput(self.Entity, "TargetFound", 0)
+			Wire_TriggerOutput(self.Entity, "Target", WireLib.DT.ENTITY.Zero)
 			Wire_TriggerOutput(self.Entity, "X", 0)
 			Wire_TriggerOutput(self.Entity, "Y", 0)
 			Wire_TriggerOutput(self.Entity, "Z", 0)
@@ -155,6 +157,7 @@ function ENT:Think()
 		end
 	else
 		Wire_TriggerOutput(self.Entity, "TargetFound", 0)
+		Wire_TriggerOutput(self.Entity, "Target", WireLib.DT.ENTITY.Zero)
 		Wire_TriggerOutput(self.Entity, "X", 0)
 		Wire_TriggerOutput(self.Entity, "Y", 0)
 		Wire_TriggerOutput(self.Entity, "Z", 0)
