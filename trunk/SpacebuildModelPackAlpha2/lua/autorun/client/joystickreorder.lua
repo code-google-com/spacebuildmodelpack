@@ -1,13 +1,20 @@
+local a = joystick
+if not type(a) == "table" then
+	return
+end
+a = tonumber(a.binaryversion)
+if not a then
+	return
+end
+if a > 1.1 then
+	return
+end
+
 SBEP = SBEP or {}
 
 function SBEP.JoystickReorder(category,order)
-	--if SERVER then return end
 	local oldCatTab = jcon.reg.cat[category]
-	--print("Old Order:")
-	--PrintTable(oldCatTab)
 	local newCatTab = {}
-	--print("New Order:")
-	--PrintTable(order)
 	if #oldCatTab != #order then
 		ErrorNoHalt("New order hasn't got the same number of entries as old order")
 		return
@@ -18,10 +25,8 @@ function SBEP.JoystickReorder(category,order)
 				newCatTab[order] = data
 			end
 		end
-		--PrintTable(newCatTab)
 	end
 	jcon.reg.cat[category] = newCatTab
-	--print("========Joystick Reordered=========")
 end
 
 local function JoyReorder()
