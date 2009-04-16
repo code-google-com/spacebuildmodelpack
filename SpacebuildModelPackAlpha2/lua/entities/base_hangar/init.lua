@@ -97,13 +97,13 @@ function ENT:PostEntityPaste(Player,Ent,CreatedEntities)
 			Ent:ApplyDupeInfo(Player, Ent, Ent.EntityMods.WireDupeInfo, function(id) return CreatedEntities[id] end)
 		end
 		if (Ent.EntityMods.HangarDupeInfo) then
-			PrintTable(Ent.EntityMods.HangarDupeInfo)
+			--PrintTable(Ent.EntityMods.HangarDupeInfo)
 			for k, v in pairs(Ent.EntityMods.HangarDupeInfo.ships) do
 				self.Bay[k]["ship"] = CreatedEntities[v]
 				if (!self.Bay[k]["ship"]) then
 					self.Bay[k]["ship"] = ents.GetByIndex(v)
 				end
-				PrintTable(self.Bay)
+				--PrintTable(self.Bay)
 			end
 			for k, v in pairs(Ent.EntityMods.HangarDupeInfo.EPs) do
 				self.Bay[k]["EP"] = CreatedEntities[v]
