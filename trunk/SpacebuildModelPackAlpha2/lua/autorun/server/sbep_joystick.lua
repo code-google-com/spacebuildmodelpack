@@ -1,5 +1,4 @@
 SBEPFjcon = {}
-SBEPTjcon = {}
 local SBEPJoystickControl = function()
 	SBEPFjcon.pitch = jcon.register{
 		uid = "sbepftr_pitch",
@@ -78,73 +77,6 @@ local SBEPJoystickControl = function()
 		type = "digital",
 		description = "Fire 2",
 		category = "Fighters",
-	}
-	--Transport
-	SBEPTjcon.pitch = jcon.register{
-		uid = "sbeptpt_pitch",
-		type = "analog",
-		description = "Pitch",
-		category = "Transports",
-	}
-	SBEPTjcon.yaw = jcon.register{
-		uid = "sbeptpt_yaw",
-		type = "analog",
-		description = "Yaw",
-		category = "Transports",
-	}
-	SBEPTjcon.roll = jcon.register{
-		uid = "sbeptpt_roll",
-		type = "analog",
-		description = "Roll",
-		category = "Transports",
-	}
-	SBEPTjcon.thrust = jcon.register{
-		uid = "sbeptpt_thrust",
-		type = "analog",
-		description = "Thrust",
-		category = "Transports",
-	}
-	SBEPTjcon.accelerate = jcon.register{
-		uid = "sbeptpt_accelerate",
-		type = "analog",
-		description = "Accelerate/Decelerate",
-		category = "Transports",
-	}
-	SBEPTjcon.up = jcon.register{
-		uid = "sbeptpt_strafe_up",
-		type = "digital",
-		description = "Strafe Up",
-		category = "Transports",
-	}
-	SBEPTjcon.down = jcon.register{
-		uid = "sbeptpt_strafe_down",
-		type = "digital",
-		description = "Strafe Down",
-		category = "Transports",
-	}
-	SBEPTjcon.right = jcon.register{
-		uid = "sbeptpt_strafe_right",
-		type = "digital",
-		description = "Strafe Right",
-		category = "Transports",
-	}
-	SBEPTjcon.left = jcon.register{
-		uid = "sbeptpt_strafe_left",
-		type = "digital",
-		description = "Strafe Left",
-		category = "Transports",
-	}
-	SBEPTjcon.launch = jcon.register{
-		uid = "sbeptpt_launch",
-		type = "digital",
-		description = "Launch",
-		category = "Transports",
-	}
-	SBEPTjcon.switch = jcon.register{
-		uid = "sbeptpt_switch",
-		type = "digital",
-		description = "Yaw/Roll Switch",
-		category = "Transports",
 	}
 end
 hook.Add("JoystickInitialize","SBEPJoystickControl",SBEPJoystickControl)

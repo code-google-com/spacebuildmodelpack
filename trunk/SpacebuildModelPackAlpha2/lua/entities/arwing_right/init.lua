@@ -23,6 +23,13 @@ function ENT:Initialize()
 	self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.PhysObj = self.Entity:GetPhysicsObject()
 	
+	local wing = ents.Create("prop_physics")
+	wing:SetModel( "models/Slyfo/arwing_wingright.mdl" )
+	wing:SetPos( self.Entity:LocalToWorld(Vector(-80,-45,75)) )
+	wing:SetAngles( self.Entity:GetAngles() )
+	wing:Spawn()
+	wing:Activate()
+	wing:SetParent(self.Entity)
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
 
@@ -51,13 +58,6 @@ function ENT:SpawnFunction( ply, tr )
 	ent:Activate()
 	ent.SPL = ply
 	
-	local wing = ents.Create("prop_physics")
-	wing:SetModel( "models/Slyfo/arwing_wingright.mdl" )
-	wing:SetPos( ent:LocalToWorld(Vector(-80,-45,75)) )
-	wing:SetAngles( ent:GetAngles() )
-	wing:Spawn()
-	wing:Activate()
-	wing:SetParent(ent)
 	
 	return ent
 	
