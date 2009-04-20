@@ -21,7 +21,7 @@ end
 
 function ENT:Think()
 	if self.FighterPush then
-		self.FighterPush:SetVelocity(self.Entity:LocalToWorld(Vector(0,0,-1000)))
+		self.FighterPush:GetPhysicsObject():SetVelocity(self.FighterPush:LocalToWorld(Vector(0,0,-1000)))
 	end
 	for k, v in pairs(self.Bay) do
 		if not ( v.weld and v.weld:IsValid() ) then
@@ -44,7 +44,7 @@ function ENT:Think()
 				v.ship.ExitPoint = nil
 			end
 			v.ship.Cont.Speed = self.LaunchSpeed
-			self.FighterPush = v.ship:GetPhysicsObject()
+			self.FighterPush = v.ship
 			timer.Simple(1,function() self.FighterPush = nil end)
 			v.ship.docked = false
 			v.ship = nil
