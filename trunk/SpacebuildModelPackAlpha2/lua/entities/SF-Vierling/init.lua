@@ -106,6 +106,7 @@ function ENT:SpawnFunction( ply, tr )
 	Cons = constraint.Ballsocket( ent3, ent2, 0, 0, LPos, 0, 0, 1)
 	
 	ent.TraceMask = {ent,ent2,ent3}
+	ent.TraceData = {filter = ent.TraceMask}
 	
 	return ent
 	
@@ -163,10 +164,9 @@ function ENT:Think() -- Note to self: Redo this bit. It could do with a little r
 			
 			--TargPos = self.CPL:GetEyeTrace().HitPos
 			--Get the target position with a custom trace to ignore the turret, vehicle and guns
-			local trtab = {	start	= self.CPL:GetPos(),
-							endpos	= (self.CPL:GetPos() + (self.CPL:GetAimVector() * 10000)),
-							filter	= self.TraceMask}
-			TargPos = util.TraceLine(trtab).HitPos
+			self.TraceData.start 	= self.CPL:GetPos()
+			self.TraceData.endpos	= self.TraceData.start + self.CPL:GetAimVector() * 10000
+			TargPos = util.TraceLine(self.TraceData).HitPos
 		end
 	end
 	if self.Active then
@@ -227,7 +227,9 @@ end
 function ENT:Touch( ent )
 	if ent && ent:IsValid() && ent:IsVehicle() then
 		self.CPod = ent
-		table.insert(self.TraceMask,ent)
+		if not table.HasValue(self.TraceMask,ent) then
+			table.insert(self.TraceMask,ent)
+		end
 	end
 end
 
@@ -282,6 +284,7 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		end
 	end
 	self.TraceMask = {self.Entity,self.Base,self.Base2,self.CPod}
+	self.TraceData = {filter = self.TraceMask}
 	if (info.guns) then
 		for k,v in pairs(info.guns) do
 			local gun = GetEntByID(v)

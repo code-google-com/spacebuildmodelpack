@@ -116,11 +116,11 @@ function HPLink( cont, pod, weap )
 				weap.HPN = i
 				weap.Mounted = true
 				weap:GetPhysicsObject():EnableGravity(false)
+				if cont.OnHPLink then cont:OnHPLink(weap) end
 				return true
 			end
 		end
 	end
-	if cont.OnHPLink then cont:OnHPLink(weap) end
 	return false
 end
 SBEP.HPLink = HPLink
