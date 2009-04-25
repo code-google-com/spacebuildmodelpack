@@ -120,6 +120,7 @@ function HPLink( cont, pod, weap )
 			end
 		end
 	end
+	if cont.OnHPLink then cont:OnHPLink(weap) end
 	return false
 end
 SBEP.HPLink = HPLink

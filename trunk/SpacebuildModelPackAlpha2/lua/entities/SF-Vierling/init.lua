@@ -29,6 +29,25 @@ function ENT:Initialize()
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
 	
+	self.HPC				= 4
+	self.HP				= {}
+	self.HP[1]			= {}
+	self.HP[1]["Ent"]	= nil
+	self.HP[1]["Type"]	= "Small"
+	self.HP[1]["Pos"]	= Vector(20,-20,53)
+	self.HP[2]			= {}
+	self.HP[2]["Ent"]	= nil
+	self.HP[2]["Type"]	= "Small"
+	self.HP[2]["Pos"]	= Vector(20,-20,23)
+	self.HP[3]			= {}
+	self.HP[3]["Ent"]	= nil
+	self.HP[3]["Type"]	= "Small"
+	self.HP[3]["Pos"]	= Vector(20,20,53)
+	self.HP[4]			= {}
+	self.HP[4]["Ent"]	= nil
+	self.HP[4]["Type"]	= "Small"
+	self.HP[4]["Pos"]	= Vector(20,20,23)
+	
 	self.Cont = self.Entity
 	self.Firing = false
 	self.Active = false
@@ -54,26 +73,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent:Initialize()
 	ent:Activate()
 	ent.SPL = ply
-	
-	ent.HPC				= 4
-	ent.HP				= {}
-	ent.HP[1]			= {}
-	ent.HP[1]["Ent"]	= nil
-	ent.HP[1]["Type"]	= "Small"
-	ent.HP[1]["Pos"]	= Vector(20,-20,53)
-	ent.HP[2]			= {}
-	ent.HP[2]["Ent"]	= nil
-	ent.HP[2]["Type"]	= "Small"
-	ent.HP[2]["Pos"]	= Vector(20,-20,23)
-	ent.HP[3]			= {}
-	ent.HP[3]["Ent"]	= nil
-	ent.HP[3]["Type"]	= "Small"
-	ent.HP[3]["Pos"]	= Vector(20,20,53)
-	ent.HP[4]			= {}
-	ent.HP[4]["Ent"]	= nil
-	ent.HP[4]["Type"]	= "Small"
-	ent.HP[4]["Pos"]	= Vector(20,20,23)
-	
+		
 	local LPos = nil
 	local Cons = nil
 	
@@ -104,6 +104,8 @@ function ENT:SpawnFunction( ply, tr )
 	Cons = constraint.Ballsocket( ent3, ent2, 0, 0, LPos, 0, 0, 1)
 	LPos = ent2:WorldToLocal(ent2:GetPos() + ent2:GetForward() * -32 + ent2:GetUp() * -10)
 	Cons = constraint.Ballsocket( ent3, ent2, 0, 0, LPos, 0, 0, 1)
+	
+	ent.TraceMask = {ent,ent2,ent3}
 	
 	return ent
 	
@@ -145,7 +147,6 @@ function ENT:PhysicsUpdate()
 end
 
 function ENT:Think() -- Note to self: Redo this bit. It could do with a little reordering.
-		
 	local TargPos = nil
 	if !self.Active then
 		TargPos = self.Base2:GetPos() + self.Base2:GetForward() * 200 + self.Base2:GetUp() * 60
@@ -160,7 +161,12 @@ function ENT:Think() -- Note to self: Redo this bit. It could do with a little r
 			
 			self.CPL:CrosshairEnable()
 			
-			TargPos = self.CPL:GetEyeTrace().HitPos				
+			--TargPos = self.CPL:GetEyeTrace().HitPos
+			--Get the target position with a custom trace to ignore the turret, vehicle and guns
+			local trtab = {	start	= self.CPL:GetPos(),
+							endpos	= (self.CPL:GetPos() + (self.CPL:GetAimVector() * 10000)),
+							filter	= self.TraceMask}
+			TargPos = util.TraceLine(trtab).HitPos
 		end
 	end
 	if self.Active then
@@ -221,6 +227,7 @@ end
 function ENT:Touch( ent )
 	if ent && ent:IsValid() && ent:IsVehicle() then
 		self.CPod = ent
+		table.insert(self.TraceMask,ent)
 	end
 end
 
@@ -230,6 +237,9 @@ function ENT:HPFire()
 	end
 end
 
+function ENT:OnHPLink(weap)
+	table.insert(self.TraceMask,weap)
+end
 
 function ENT:BuildDupeInfo()
 	local info = self.BaseClass.BuildDupeInfo(self) or {}
@@ -245,21 +255,13 @@ function ENT:BuildDupeInfo()
 	if (self.Base) and (self.Base:IsValid()) then
 		info.Base = self.Base:EntIndex()
 	end
+	if (self.Base2) and (self.Base2:IsValid()) then
+		info.Base2 = self.Base2:EntIndex()
+	end
 	return info
 end
 
 function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
-	self.HPC				= 4
-	self.HP				= {}
-	for k=1,4 do
-		self.HP[k]			= {}
-		self.HP[k]["Ent"]	= nil
-		self.HP[k]["Type"]	= "Small"
-	end
-	self.HP[1]["Pos"]	= Vector(20,-20,53)
-	self.HP[2]["Pos"]	= Vector(20,-20,23)
-	self.HP[3]["Pos"]	= Vector(20,20,53)
-	self.HP[4]["Pos"]	= Vector(20,20,23)
 	self.BaseClass.ApplyDupeInfo(self, ply, ent, info, GetEntByID)
 	if (info.cpod) then
 		self.CPod = GetEntByID(info.cpod)
@@ -273,6 +275,13 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 			self.Base = ents.GetByIndex(info.Base)
 		end
 	end
+	if (info.Base2) then
+		self.Base2 = GetEntByID(info.Base2)
+		if (!self.Base2) then
+			self.Base2 = ents.GetByIndex(info.Base2)
+		end
+	end
+	self.TraceMask = {self.Entity,self.Base,self.Base2,self.CPod}
 	if (info.guns) then
 		for k,v in pairs(info.guns) do
 			local gun = GetEntByID(v)
@@ -280,6 +289,7 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 			if (!self.HP[k]["Ent"]) then
 				gun = ents.GetByIndex(v)
 				self.HP[k]["Ent"] = gun
+				table.insert(self.TraceMask,gun)
 			end
 		end
 	end
