@@ -1,3 +1,4 @@
+-- The cannons can crash a server
 TOOL.Category   = "SBEP"
 TOOL.Name       = "Beam Cannon"
 TOOL.Command    = nil
@@ -8,6 +9,10 @@ TOOL.ClientConVar["config"] = 2
 cleanup.Register("sbmp_beam_cannon")
 
 function TOOL:LeftClick(trace)
+	if true then
+		print("This has been disabled for game stability")
+		return false
+	end
 	if (not trace.Entity) or trace.Entity:IsPlayer() then return false end
 	if CLIENT then return true end
 
