@@ -10,8 +10,9 @@ ENT.Contact			= "evilpineapple@cox.net"
 ENT.Purpose			= "Blow your fellow players to bits!"
 ENT.Instructions	= "Spawn, fire!"
 
+-- This gun can crash servers, spawning disabled
 ENT.Spawnable       = false
-ENT.AdminSpawnable  = true
+ENT.AdminSpawnable  = false
 
 ENT.Category		= "SBEP-Weapons"
 
