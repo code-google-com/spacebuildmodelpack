@@ -4,8 +4,12 @@ local Fighters = list.Get("sbepfighters")
 
 local function InFighterTable(hangar,fighter)
 	local name = string.lower(fighter.Cont:GetName())
-	local docklist = Fighters[name]["Docklist"]
-	return (Fighters[name] && table.HasValue(docklist, string.lower(hangar:GetName())))
+	if Fighters[name] then
+		local docklist = Fighters[name]["Docklist"]
+		return (Fighters[name] && table.HasValue(docklist, string.lower(hangar:GetName())))
+	else
+		return false
+	end
 end
 
 function SBEP.Hangar.Touch(self,ent)
