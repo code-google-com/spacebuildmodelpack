@@ -21,3 +21,4 @@ ENT.Launchy			= false
 ENT.Pitch			= 0
 ENT.Yaw				= 0
 ENT.Roll			= 0
+ENT.WInfo			= "Rover"
