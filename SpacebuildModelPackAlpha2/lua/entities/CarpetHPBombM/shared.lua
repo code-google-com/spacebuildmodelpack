@@ -9,6 +9,6 @@ ENT.AdminSpawnable	= true
 ENT.Armed			= false
 ENT.Exploded		= false
 ENT.HPType			= "Heavy"
-ENT.APPos			= Vector(0,0,10)
+ENT.APPos			= Vector(0,0,-13)
 ENT.APAng			= Angle(0,0,180)
 ENT.WInfo 			= "Carpet Bomb"
