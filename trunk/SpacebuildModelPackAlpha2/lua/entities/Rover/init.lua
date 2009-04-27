@@ -98,6 +98,7 @@ function ENT:SpawnFunction( ply, tr )
 	ent2:SetNetworkedInt( "HPC", ent.HPC )
 	ent2.HPType = "Vehicle"
 	ent2.APPos = Vector(-20,0,-86)
+	ent2.APAng = Angle(0,0,180)
 	
 	ent.Pod = ent2
 	ent2.Cont = ent
@@ -336,6 +337,7 @@ function ENT:ApplyDupeInfo(ply, ent, info, GetEntByID)
 		ent2:SetNetworkedInt( "HPC", ent.HPC )
 		ent2.HPType = "Vehicle"
 		ent2.APPos = Vector(-20,0,-86)
+		ent2.APAng = Angle(0,0,180)
 	end
 	self.SPL = ply
 end
