@@ -14,7 +14,7 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	local inNames = {"Fire","GuidanceType","X","Y","Z","Vector","WireGuidanceOnly"}
-	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR","WireGuidanceOnly"}
+	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR","NORMAL"}
 	self.Inputs = WireLib.CreateSpecialInputs( self.Entity,inNames,inTypes)
 	self.Outputs = Wire_CreateOutputs( self.Entity, { "ShotsLeft", "CanFire" })
 		
