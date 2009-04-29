@@ -68,6 +68,8 @@ function ENT:Think()
 	end
 end
 
+local PodOffset = Vector(-55,0,-55)
+
 function ENT:Use(activator)
 	if (self.NPod == nil || !self.NPod:IsValid()) then
 		self.NPod = ents.Create( "prop_vehicle_prisoner_pod" )
@@ -76,7 +78,7 @@ function ENT:Use(activator)
 		self.NPod:SetKeyValue("vehiclescript", "scripts/vehicles/prisoner_pod.txt")
 		self.NPod:SetKeyValue("limitview", 0)
 		--self.NPod:SetMembers(HandleAnimation, HandleSBMPSitAnimation)
-		self.NPod:SetPos( self.Entity:GetPos() + self.Entity:GetForward() * -20 + self.Entity:GetUp() * -55)
+		self.NPod:SetPos( self.Entity:LocalToWorld(PodOffset) )
 		self.NPod:SetAngles( self.Entity:GetAngles() )
 		self.NPod:Spawn()
 		self.NPod:Activate()

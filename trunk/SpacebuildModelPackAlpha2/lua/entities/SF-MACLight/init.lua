@@ -49,15 +49,15 @@ end
 function ENT:TriggerInput(iname, value)		
 	if (iname == "Fire") then
 		if (value > 0) then
-			if (CurTime() >= self.CDown && self.Charge >= 5000) then
-				ENT:MACFire()
+			if (CurTime() >= self.CDown && self.Entity:GetNetworkedInt("Charge") >= 5000) then
+				self.Entity:MACFire()
 			end
 		end
 	elseif (iname == "ChargeCannon") then
 		if ( value > 0 && CurTime() >= self.CDown ) then
 			self.Entity:SetNetworkedBool("Charging",true)
 		else
-			self.Entity:SetNetworkedBool("Charging",true)
+			self.Entity:SetNetworkedBool("Charging",false)
 		end
 	end
 end
