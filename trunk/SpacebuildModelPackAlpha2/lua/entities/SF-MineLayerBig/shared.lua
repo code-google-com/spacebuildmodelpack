@@ -13,5 +13,5 @@ ENT.CDown1			= true
 ENT.CDown1			= 0
 ENT.CDown2			= true
 ENT.CDown2			= 0
-ENT.HPType			= "Medium"
+ENT.HPType			= nil
 ENT.APPos			= Vector(0,0,-30)
