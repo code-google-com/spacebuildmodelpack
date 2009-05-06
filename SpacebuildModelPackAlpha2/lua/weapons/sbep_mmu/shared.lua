@@ -163,12 +163,14 @@ function SWEP:ToggleMMUActivation(ply,override)
 	ply.MMV = override
 	self.Active = override
 	end
+	local hookname = ""
+	if SERVER then hookname = ply:SteamID() end
 	if self.Active == true then
 		ply:PrintMessage(HUD_PRINTTALK,"Your MMU is now active!")
-		hook.Add("Think",ply:SteamID().."MMUThink",function() MMUThink(self) end)
+		hook.Add("Think",hookname.."MMUThink",function() MMUThink(self) end)
 	else
 		ply:PrintMessage(HUD_PRINTTALK,"Your MMU is now inactive!")
-		hook.Remove("Think",ply:SteamID().."MMUThink")
+		hook.Remove("Think",hookname.."MMUThink")
 	end
 end
 
