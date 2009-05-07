@@ -107,7 +107,7 @@ local TypeVector  = 15
 local ColWhiteFull = Color(255, 255, 255, 255)
 
 if SERVER then
-	---[[
+	--[[
 	umsg.EnginePoolString = umsg.PoolString
 	umsg.EngineChar       = umsg.Char
 	
