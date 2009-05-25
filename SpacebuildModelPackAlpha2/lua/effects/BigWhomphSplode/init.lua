@@ -2,8 +2,18 @@
  /*--------------------------------------------------------- 
     Initializes the effect. The data is a table of data  
     which was passed from the server. 
- ---------------------------------------------------------*/ 
- function EFFECT:Init( data ) 
+---------------------------------------------------------*/ 
+
+local SmokeRing = function(particle)
+	
+	particle:SetVelocity( particle:GetVelocity() * 0.99 )
+    particle:SetNextThink(CurTime() + 0.1)
+    
+    return particle  
+  
+end
+
+function EFFECT:Init( data ) 
  	 
  	// This is how long the spawn effect  
  	// takes from start to finish. 
@@ -19,43 +29,31 @@
 	
 	self.emitter = ParticleEmitter( self.vOffset )
 	
-	for i = 0, 360, 15 do
+	for i = 0, 360, 10 do
 		local particle = self.emitter:Add( "particles/smokey", self.vOffset )
 		if (particle) then
-			particle:SetVelocity( Vector( math.cos(i) * 400 , math.sin(i) * 400 , 0 ) )
+			particle:SetVelocity( Vector( math.cos(i) * 800 , math.sin(i) * 800 , 0 ) )
 			particle:SetLifeTime( 0 )
-			particle:SetDieTime( math.Rand( 2, 3 ) )
+			particle:SetDieTime( math.Rand( 2.5, 3 ) )
 			particle:SetStartAlpha( math.Rand( 200, 255 ) )
 			particle:SetEndAlpha( 0 )
-			particle:SetStartSize( 90 )
-			particle:SetEndSize( 70 )
+			particle:SetStartSize( 200 )
+			particle:SetEndSize( 120 )
 			particle:SetRoll( math.Rand(0, 360) )
 			particle:SetRollDelta( math.Rand(-0.2, 0.2) )
 			particle:SetColor( 220 , 220 , 180 )
+			particle:SetThinkFunction(SmokeRing)
+			particle:SetNextThink(CurTime() + 0.1)
 		end
 	end
 	local scount = math.random(20,25)
 	for i = 0, scount do
 		
-		local particle = self.emitter:Add( "particles/smokey", self.vOffset )
-		if (particle) then
-			particle:SetVelocity( self.vFw * math.Rand(50, 350) + self.vUp * math.Rand(-200, 200) + self.vRi * math.Rand(-200, 200) )
-			particle:SetLifeTime( 0 )
-			particle:SetDieTime( math.Rand( 2, 3 ) )
-			particle:SetStartAlpha( math.Rand( 200, 255 ) )
-			particle:SetEndAlpha( 0 )
-			particle:SetStartSize( 60 )
-			particle:SetEndSize( 40 )
-			particle:SetRoll( math.Rand(0, 360) )
-			particle:SetRollDelta( math.Rand(-0.2, 0.2) )
-			particle:SetColor( 220 , 220 , 180 )
-		end
-		
 		local particle2 = self.emitter:Add( "particles/flamelet"..math.random(1,5), self.vOffset )
 		if (particle2) then
-			particle2:SetVelocity( self.vFw * math.Rand(30, 100) + self.vUp * math.Rand(-20, 20) + self.vRi * math.Rand(-20, 20) )
+			particle2:SetVelocity( self.vFw * math.Rand(-50, 50) + self.vUp * math.Rand(0, 10) + self.vRi * math.Rand(-50, 50) )
 			particle2:SetLifeTime( 0 )
-			particle2:SetDieTime( math.Rand( 2, 3 ) )
+			particle2:SetDieTime( math.Rand( 1, 2 ) )
 			particle2:SetStartAlpha( math.Rand( 200, 255 ) )
 			particle2:SetEndAlpha( 0 )
 			particle2:SetStartSize( 50 )
@@ -70,14 +68,31 @@
 	
  	self.Entity:SetModel( "models/Combine_Helicopter/helicopter_bomb01.mdl" ) 
  	self.Entity:SetPos( self.vOffset )  
- end 
-   
+end
 
- 
- 
+local Mushroom = function(particle)  
+  
+    if particle:GetLifeTime() >= particle:GetDieTime() * 0.5 then  
+    	particle.ZVel = particle.ZVel + 21
+    	particle.MVel = 2
+    end
+    
+    if particle:GetLifeTime() >= particle:GetDieTime() * 0.9 then  
+    	particle.MVel = 0.1
+    end
+    
+    particle:SetVelocity( particle.BVel * (((particle:GetDieTime()-(particle:GetLifeTime()*2))/particle:GetDieTime()) * particle.MVel) + Vector(0,0,particle.ZVel) )
+    
+    particle:SetNextThink(CurTime() + 0.1)
+    
+    return particle  
+  
+end  
+
+
 function EFFECT:Think( )
 	local LTime = (self.LifeTime - CurTime()) - 1
-	self.CRenPos = self.CRenPos + Vector(0,0,6)
+	self.CRenPos = self.CRenPos + Vector(0,0,7)
 	for i = 0, 2 do
 		local AOff = math.Rand(0,360)
 		local particle = self.emitter:Add( "particles/smokey", self.CRenPos + Vector( math.cos(AOff) * 10 , math.sin(AOff) * 10 , 0 ) )
@@ -87,7 +102,7 @@ function EFFECT:Think( )
 			particle:SetDieTime( math.Rand( LTime * 0.5, LTime ) )
 			particle:SetStartAlpha( math.Rand( 200, 255 ) )
 			particle:SetEndAlpha( 0 )
-			particle:SetStartSize( 90 )
+			particle:SetStartSize( 100 )
 			particle:SetEndSize( 60 )
 			particle:SetRoll( math.Rand(0, 360) )
 			particle:SetRollDelta( math.Rand(-0.2, 0.2) )
@@ -98,16 +113,21 @@ function EFFECT:Think( )
 		local AOff = math.Rand(0,360)
 		local particle = self.emitter:Add( "particles/smokey", self.CRenPos + Vector( math.cos(AOff) * 60 , math.sin(AOff) * 60 , 0 ) )
 		if (particle) then
-			particle:SetVelocity( Vector( math.cos(AOff) * 80 , math.sin(AOff) * 80 , 40 ) )
+			particle:SetVelocity( Vector( math.cos(AOff) * 800 , math.sin(AOff) * 800 , 0 ) )
 			particle:SetLifeTime( 0 )
 			particle:SetDieTime( math.Rand( LTime * 0.5, LTime ) )
 			particle:SetStartAlpha( math.Rand( 200, 255 ) )
 			particle:SetEndAlpha( 0 )
-			particle:SetStartSize( 90 )
+			particle:SetStartSize( 100 )
 			particle:SetEndSize( 60 )
 			particle:SetRoll( math.Rand(0, 360) )
 			particle:SetRollDelta( math.Rand(-0.2, 0.2) )
 			particle:SetColor( 220 , 220 , 180 )
+			particle:SetThinkFunction(Mushroom)
+			particle:SetNextThink(CurTime() + 0.1)
+			particle.BVel = particle:GetVelocity()
+			particle.ZVel = 0
+			particle.MVel = 1
 		end
 	end
 	self.Entity:NextThink( CurTime() + 0.1 )
