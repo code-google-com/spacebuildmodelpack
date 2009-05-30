@@ -17,7 +17,7 @@ TOOL.Limited			= true
 TOOL.LimitName			= "sbep_hab_mods"
 TOOL.Limit				= 30
 
-RD2ToolSetup.SetLang("SBEP Habitable Modules","Create Habitable Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("SBEP Habitable Modules","Create Habitable Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {

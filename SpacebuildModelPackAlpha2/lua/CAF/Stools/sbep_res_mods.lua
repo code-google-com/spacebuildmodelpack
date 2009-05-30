@@ -16,7 +16,7 @@ TOOL.Limited			= true
 TOOL.LimitName			= "sbep_res_mods"
 TOOL.Limit				= 30
 
-RD2ToolSetup.SetLang("SBEP Resource Modules","Create Resource Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
+CAFToolSetup.SetLang("SBEP Resource Modules","Create Resource Modules attached to any surface.","Left-Click: Spawn a Device.  Reload: Repair Device.")
 
 
 TOOL.ExtraCCVars = {
