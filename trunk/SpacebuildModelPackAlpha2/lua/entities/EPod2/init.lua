@@ -11,6 +11,7 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	--self.Entity:SetMaterial("models/props_combine/combinethumper002");
+	self.Outputs = Wire_CreateOutputs( self.Entity, { "Occupied" })
 	local phys = self.Entity:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
@@ -52,11 +53,13 @@ function ENT:Think()
 			--self.NPod.Entity:GetPhysicsObject():ApplyForceCenter( self.Entity:GetUp() * self.LAY )
 			self.NPod = nil
 			self.PR = false
+			Wire_TriggerOutput( self.Entity, "Occupied", 0 )
 		end
 	end
 	if self.NPod and self.NPod:IsValid() then
 		self.CPL = self.NPod:GetPassenger()
 		if (self.CPL && self.CPL:IsValid()) then
+			Wire_TriggerOutput( self.Entity, "Occupied", 1 )
 			if (self.CPL:KeyDown( IN_RELOAD )) then		
 				if (self.WD and self.WD:IsValid()) then
 					self.WD:Remove()
@@ -64,7 +67,11 @@ function ENT:Think()
 				self.PR = true
 				self.NPod:Fire("kill", "", 20)
 			end
+		else
+			Wire_TriggerOutput( self.Entity, "Occupied", 0 )
 		end
+	else
+		Wire_TriggerOutput( self.Entity, "Occupied", 0 )
 	end
 end
 
