@@ -369,6 +369,7 @@ end
 
 function ENT:OnRemove()
 	if self.Pod && self.Pod:IsValid() then
+		self.Pod:StopSound( "k_lab.ambient_powergenerators" )
 		self.Pod:Remove()
 	end
 end
