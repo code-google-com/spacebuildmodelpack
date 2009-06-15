@@ -87,7 +87,7 @@ function ENT:Think()
 		self.Vel = self.Entity:GetForward() * -10000
 		self.Entity:Fire("kill", "", 45)
 	end
-	if CurTime() > self.ATime && self.ATime > 0 then
+	if self.ATime && CurTime() > self.ATime && self.ATime > 0 then
 		self.Entity:GetPhysicsObject():EnableCollisions(true)
 	end
 end
