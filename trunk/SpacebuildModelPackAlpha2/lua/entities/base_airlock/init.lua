@@ -167,7 +167,7 @@ function ENT:Think()
 	if self.ClDMode != self.DMode then
 		self.Entity:SetNWInt( "DMode", self.DMode )
 		self.ClDMode = self.DMode
-		print("Changing DMode to "..self.DMode)
+		--print("Changing DMode to "..self.DMode)
 	end
 end
 
