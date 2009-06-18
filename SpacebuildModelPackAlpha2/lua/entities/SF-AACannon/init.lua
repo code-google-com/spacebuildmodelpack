@@ -93,7 +93,7 @@ function ENT:Think()
 		self.Entity:EmitSound("SB/Gattling2.wav", 400)
 		
 	end
-	self.Entity:NextThink( CurTime() + 0.2 + math.Rand(0,0.3) )
+	self.Entity:NextThink( CurTime() + 0.3 )
 	return true
 end
 

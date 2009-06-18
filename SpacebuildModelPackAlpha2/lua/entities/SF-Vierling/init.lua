@@ -188,7 +188,7 @@ function ENT:Think() -- Note to self: Redo this bit. It could do with a little r
 	end
 	
 	if CurTime() >= self.NST then
-		self.NST = CurTime() + 0.125
+		self.NST = CurTime() + 0.1
 		self.CHP = self.CHP + 1
 		if self.CHP > 4 then
 			self.CHP = 1
