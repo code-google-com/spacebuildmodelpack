@@ -33,10 +33,11 @@ end
 
 function ENT:Open()
 
-	self:ResetSequence( self:LookupSequence( "open" ))
+	self:ResetSequence( self.OpenSequence )
 		self:SetPlaybackRate( 1 )
-		timer.Simple(self.OpenTime, function()
-							self.Delay = false
+		self:OpenDoorSounds()
+		timer.Simple(self.UseDelay, function()
+							self.OpenStatus = true
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( true )
 							end
@@ -48,10 +49,11 @@ end
 
 function ENT:Close()
 
-	self:ResetSequence( self:LookupSequence( "close" ))
+	self:ResetSequence( self.CloseSequence )
 		self:SetPlaybackRate( 1 )
-		timer.Simple(self.CloseTime, function()
-							self.Delay = true
+		self:CloseDoorSounds()
+		timer.Simple(self.UseDelay, function()
+							self.OpenStatus = false
 							if self.SBdoor and self.SBdoor:IsValid() then
 								self.SBdoor:SetNotSolid( false )
 							end
@@ -63,11 +65,11 @@ end
 
 function ENT:Use( activator, caller )
 
-	if self:IsValid() and (self:GetSequence() == self:LookupSequence( "close" )) and self.Delay and not self.DisableUse then
+	if self:IsValid() and self:GetSequence() == self.CloseSequence and not self.OpenStatus and not self.DisableUse then
 
 		self:Open()
 
-	elseif self:IsValid() and (self:GetSequence() == self:LookupSequence( "open" )) and not self.Delay and not self.DisableUse then
+	elseif self:IsValid() and self:GetSequence() == self.OpenSequence and self.OpenStatus and not self.DisableUse then
 
 		self:Close()
 	
@@ -93,21 +95,19 @@ function ENT:TriggerInput(k,v)
 	
 	if (k == "Open" and v > 0) then
 	
-		if not self.Locked and (self:GetSequence() == self:LookupSequence( "close" )) then
+		if not self.Locked and self:GetSequence() == self.CloseSequence then
 			self:Open()
 		end
-		self.Opened = true
 
 	elseif (k == "Open" and v == 0) then
 
-		if not self.Locked and (self:GetSequence() == self:LookupSequence( "open" )) then
+		if not self.Locked and self:GetSequence() == self.OpenSequence then
 			self:Close()
 		end
-		self.Opened = false
 		
 	elseif (k == "Lock" and v > 0) then
 
-		if self:GetSequence() == self:LookupSequence( "open" ) then
+		if self:GetSequence() == self.OpenSequence then
 			self:Close()
 		end
 		self.Locked = true
@@ -117,7 +117,7 @@ function ENT:TriggerInput(k,v)
 	
 		self.Locked = false
 		WireLib.TriggerOutput(self.Entity,"Locked",0)
-		if self.Opened then
+		if self.OpenStatus then
 			self:Open()
 		end
 		

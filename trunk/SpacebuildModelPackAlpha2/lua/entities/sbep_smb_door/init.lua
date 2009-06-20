@@ -19,20 +19,23 @@ function ENT:Initialize()
 		self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 
-		self.Opened       		= false
-		self.Delay      		= true
+		self.OpenStatus      	= false
 		self.Locked     		= false
 		self.DisableUse 		= false
 		self.DoorModel 			= model[2]
 		self.DoorOffset 		= Vector(0, 0, 0)
 		self.DoorAngleOffset 	= Angle(0, 0, 0)
-		self.OpenTime		 	= 3
-		self.CloseTime			= 3
+		self.UseDelay		 	= 3
+
+		self.OpenSequence 	= self:LookupSequence( "open" )
+		self.CloseSequence	= self:LookupSequence( "close" )
 
 		if !self.SBdoor or !self.SBdoor:IsValid() then
 			self.SBdoor = ents.Create( "prop_physics" )
 		end
 		self:AddDoorPhysics()
+
+		self:Close()
 
 		self:MakeWire()
 
@@ -54,3 +57,45 @@ function ENT:SpawnFunction( ply, tr )
 	return ent
 	
 end
+
+function ENT:OpenDoorSounds()
+
+	self:EmitSound("Doors.Move14")
+	timer.Simple(1.45, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(2.75, function()
+									self:EmitSound("Doors.FullOpen9")
+								end)
+
+end
+
+function ENT:CloseDoorSounds()
+
+	self:EmitSound("Doors.Move14")
+	timer.Simple(1.45, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(2.75, function()
+									self:EmitSound("Doors.FullOpen9")
+								end)
+
+end
+
+/*-------------
+possible sounds
+
+Doors.FullOpen1
+Doors.FullOpen8
+Doors.FullOpen9
+Doors.FullOpen14
+Doors.Move14
+Doors.CombineGate_citizen_stop1
+Doors.CombineGate_citizen_stop2
+Ladder.StepLeft
+Ladder.StepRight
+MetalGrate.StepLeft
+MetalGrate.StepRight
+
+
+-------------*/
