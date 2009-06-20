@@ -19,20 +19,23 @@ function ENT:Initialize()
 		self:ResetSequence( self:LookupSequence( "close" ) )
 		self:SetPlaybackRate( 1 )
 
-		self.Opened       		= false
-		self.Delay      		= true
+		self.OpenStatus      	= false
 		self.Locked     		= false
 		self.DisableUse 		= false
 		self.DoorModel 			= model[2]
 		self.DoorOffset 		= Vector(0, 0, 0)
 		self.DoorAngleOffset 	= Angle(0, 0, 0)
-		self.OpenTime		 	= 5
-		self.CloseTime			= 5
+		self.UseDelay		 	= 5
+		
+		self.OpenSequence 	= self:LookupSequence( "open" )
+		self.CloseSequence	= self:LookupSequence( "close" )
 
 		if !self.SBdoor or !self.SBdoor:IsValid() then
 			self.SBdoor = ents.Create( "prop_physics" )
 		end
 		self:AddDoorPhysics()
+
+		self:Close()
 
 		self:MakeWire()
 
@@ -53,4 +56,37 @@ function ENT:SpawnFunction( ply, tr )
 	
 	return ent
 	
+end
+
+function ENT:OpenDoorSounds()
+
+	self:EmitSound("Doors.Move14")
+	timer.Simple(1.3, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(2.6, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(3.9, function()
+									self:EmitSound("Doors.FullOpen9")
+								end)
+	timer.Simple(4.9, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+
+end
+
+function ENT:CloseDoorSounds()
+
+	self:EmitSound("Doors.Move14")
+	timer.Simple(2.6, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(3.95, function()
+									self:EmitSound("Doors.FullOpen8")
+								end)
+	timer.Simple(4.9, function()
+									self:EmitSound("Doors.FullOpen9")
+								end)
+
 end
