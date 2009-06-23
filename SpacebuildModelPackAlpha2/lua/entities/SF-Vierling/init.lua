@@ -12,8 +12,8 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit( SOLID_VPHYSICS )
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
-	local inNames = {"Active", "Fire", "X", "Y", "Z","Vector"}
-	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR"}
+	local inNames = {"Active", "Fire", "X", "Y", "Z","Vector", "Mode", "Pitch", "Yaw", "Lateral", "Vertical"}
+	local inTypes = {"NORMAL","NORMAL","NORMAL","NORMAL","NORMAL","VECTOR","NORMAL","NORMAL","NORMAL","NORMAL","NORMAL"}
 	self.Inputs = WireLib.CreateSpecialInputs( self.Entity,inNames,inTypes)
 	
 	local phys = self.Entity:GetPhysicsObject()
@@ -29,7 +29,7 @@ function ENT:Initialize()
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
 	
-	self.HPC				= 4
+	self.HPC			= 4
 	self.HP				= {}
 	self.HP[1]			= {}
 	self.HP[1]["Ent"]	= nil
@@ -48,9 +48,15 @@ function ENT:Initialize()
 	self.HP[4]["Type"]	= "Small"
 	self.HP[4]["Pos"]	= Vector(20,20,23)
 	
+	self.Mode = 0
 	self.Cont = self.Entity
 	self.Firing = false
 	self.Active = false
+	
+	self.Pitch = 0
+	self.Yaw = 0
+	self.Vertical = 0
+	self.Lateral = 0
 	
 	self.XCo = 0
 	self.YCo = 0
@@ -119,7 +125,14 @@ function ENT:TriggerInput(iname, value)
 		else
 			self.Active = false
 		end
-		
+	
+	elseif (iname == "Mode") then
+		if (value == 0) then
+			self.Mode = 0
+		else
+			self.Mode = 1
+		end
+			
 	elseif (iname == "Fire") then
 		if (value > 0) then
 			self.Firing = true
@@ -140,6 +153,19 @@ function ENT:TriggerInput(iname, value)
 		self.XCo = value.x
 		self.YCo = value.y
 		self.ZCo = value.z
+
+	elseif (iname == "Pitch") then
+		self.Pitch = value
+	
+	elseif (iname == "Yaw") then
+		self.Yaw = value
+		
+	elseif (iname == "Lateral") then
+		self.Lateral = value
+	
+	elseif (iname == "Vertical") then
+		self.Vertical = value
+		
 	end
 end
 
@@ -170,7 +196,19 @@ function ENT:Think() -- Note to self: Redo this bit. It could do with a little r
 		end
 	end
 	if self.Active then
-		TargPos = Vector(self.XCo,self.YCo,self.ZCo)
+		if self.Mode == 0 then
+			TargPos = Vector(self.XCo,self.YCo,self.ZCo)
+		elseif self.Mode == 1 then
+			self.Pitch = self.Pitch + self.Vertical
+			self.Yaw = self.Yaw + self.Lateral
+		
+			local TAngle = Angle(0,0,0)
+			TAngle.r = self.Base2:GetAngles().r
+			TAngle.p = math.fmod(self.Base2:GetAngles().p + self.Pitch,360)
+			TAngle.y = math.fmod(self.Base2:GetAngles().y + self.Yaw,360)
+			
+			TargPos = self.Entity:GetPos() + TAngle:Forward() * 1000
+		end
 	end
 	if TargPos then
 		local FDist = TargPos:Distance( self.Entity:GetPos() + self.Entity:GetUp() * 120 ) --100 with compensation
@@ -187,8 +225,8 @@ function ENT:Think() -- Note to self: Redo this bit. It could do with a little r
 		physi2:AddAngleVelocity((physi2:GetAngleVelocity() * -1) + Angle(0,Pitch,0))
 	end
 	
-	if CurTime() >= self.NST then
-		self.NST = CurTime() + 0.1
+	if CurTime() >= self.NST then --This just cycles through the guns, to make sure every weapon gets fired, but not all at once. The timing is synchronized for the aa-blaster cannon.
+		self.NST = CurTime() + 0.15
 		self.CHP = self.CHP + 1
 		if self.CHP > 4 then
 			self.CHP = 1
