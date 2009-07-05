@@ -23,6 +23,7 @@ function ENT:Initialize()
 	end
 	self.Entity:SetKeyValue("rendercolor", "255 255 255")
 	self.PhysObj = self.Entity:GetPhysicsObject()
+	self.CDown = 0
 	
 	--self.val1 = 0
 	--RD_AddResource(self.Entity, "Munitions", 0)
@@ -63,7 +64,7 @@ end
 
 function ENT:Think()
 	
-	if (self.Active == true || self.FTime > CurTime() ) then	
+	if (self.Active == true || self.FTime > CurTime() ) && CurTime() >= self.CDown then	
 	
 		local vStart = self.Entity:GetPos()
 		local vForward = self.Entity:GetForward()
@@ -92,8 +93,9 @@ function ENT:Think()
 				
 		self.Entity:EmitSound("SB/Gattling2.wav", 400)
 		
+		self.CDown = CurTime() + 0.3
 	end
-	self.Entity:NextThink( CurTime() + 0.3 )
+	self.Entity:NextThink( CurTime() + 0.01 )
 	return true
 end
 
@@ -116,5 +118,5 @@ function ENT:Touch( ent )
 end
 
 function ENT:HPFire()
-	self.FTime = CurTime() + 0.1
+	self.FTime = CurTime() + 0.3
 end
