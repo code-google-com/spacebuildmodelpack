@@ -87,11 +87,11 @@ function SWEP:Think()
 end
 
 local ZeroVec = Vector(0,0,0)
-function MMUThink(swep)
+function MMUThink(swep) --Q: Why is this also on the client? A: To help with prediction.
 	local ply = swep.Owner
 	if not ply:Alive() then 
 		swep:ToggleMMUActivation(ply,false) 
-		swep.Unit:SetParent() 
+		swep.Unit:SetParent(nil) 
 		swep.Unit:Remove() 
 		if swep.SoundFileThing then swep.SoundFileThing:Stop() end
 		return 
