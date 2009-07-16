@@ -63,6 +63,7 @@ function SWEP:Initialize()
 		end)
 	end
 	if SERVER then
+		self.Owner.MMUSwep = self
 		timer.Simple(1,function()
 		local model = "models/Slyfo_2/mmu_mk_1.mdl"
 		self.Unit = ents.Create("prop_physics")
@@ -217,3 +218,13 @@ end
 function SWEP:ShouldDropOnDie()
 	return false
 end 
+
+local function APlayerDiedWithAMMUOMG(ply,dontneed,dontcare)
+	if ply.MMUSwep and ply.MMUSwep.Unit and ply.MMUSwep.Unit:IsValid() then
+		ply.MMUSwep:ToggleMMUActivation(ply,false) 
+		ply.MMUSwep.Unit:SetParent(nil) 
+		ply.MMUSwep.Unit:Remove() 
+		if ply.MMUSwep.SoundFileThing then ply.MMUSwep.SoundFileThing:Stop() end
+	end
+end
+hook.Add("PlayerDeath","APlayerDiedWithAMMUOMG",APlayerDiedWithAMMUOMG)
