@@ -657,7 +657,7 @@ function ENT:Gravity()  --Turns on/off gravity for all constrained entities
 		if (!ents:IsValid()) then return end
 		local linkphys = ents:GetPhysicsObject()
 		linkphys:EnableDrag(false)
-		if self.SystemOn or (GAMEMODE.IsSpacebuildDerived and self.environment and !self.OnPlanet) then
+		if self.SystemOn or !self.OnPlanet then
 			linkphys:EnableGravity(false)
 		else 
 			linkphys:EnableGravity(true)
@@ -771,6 +771,13 @@ function ENT:OnRemove()
 	if self.sound then
 		self.HighEngineSound:Stop()
 		self.LowDroneSound:Stop()
+	end	
+	local constrained = self.AllGyroConstraints
+	for _, ents in pairs( constrained ) do
+		if (!ents:IsValid()) then return end
+		local linkphys = ents:GetPhysicsObject()
+		linkphys:EnableDrag(true)
+		linkphys:EnableGravity(true)
 	end	
 end
 
