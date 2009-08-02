@@ -55,5 +55,5 @@
 	"46"		"models\Cerus\Modbridge\Core\x-331.mdl"	
 	"47"		"models\Cerus\Modbridge\Core\xo-111.mdl"
 				
-	"}"			
-"}"				
+	}			
+}		
