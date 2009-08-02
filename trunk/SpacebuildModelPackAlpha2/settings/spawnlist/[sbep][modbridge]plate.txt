@@ -60,5 +60,5 @@
 	"51"		"models\Cerus\Modbridge\Plate\Flat\wt121.mdl"	
 	"52"		"models\Cerus\Modbridge\Plate\Flat\wt131.mdl"	
 				
-	"}"			
-"}"				
+	}	
+}			
