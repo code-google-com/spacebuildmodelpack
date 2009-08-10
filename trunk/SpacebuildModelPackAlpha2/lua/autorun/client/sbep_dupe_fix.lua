@@ -22,13 +22,13 @@ SBEP.LoadReplaceTable = SBEP_LoadReplaceTable
 concommand.Add("SBEP_LoadReplaceTable",SBEP.LoadReplaceTable)
 
 --replaces all instances of models in the replace table with 
-function SBEP_FixDupe(player,command,args)
+function SBEP_FixDupe(_,_,arg)
 	--if the replace table hasn't been made yet, remake it
 	if not SBEP.ReplaceTable then
 		SBEP.LoadReplaceTable()
 	end
 	--print("FixDupe called")
-	local filePath = args[1]
+	local filePath = table.concat(arg,' ')
 	--print("File Path = ",filePath)
 	local fileString = file.Read(filePath)
 	for old,new in pairs(SBEP.ReplaceTable) do
@@ -42,30 +42,28 @@ end
 SBEP.FixDupe = SBEP_FixDupe
 concommand.Add("SBEP_FixDupe",SBEP.FixDupe)
 
-function SBEP_RecursiveFix(player,command,args)
+function SBEP_RecursiveFix(_,_,args)
 	--print("Recursive Fix Called")
-	local dir = args[1]
+	local dir = table.concat(args,' ')
 	--print("Directories Found: ")
 	local dirs = file.FindDir(dir.."/*")
 	--PrintTable(dirs)
 	for _,dirPath in pairs(dirs) do
-		SBEP_RecursiveFix(player,command,{dir.."/"..dirPath})
+		SBEP_RecursiveFix(nil,nil,{dir.."/"..dirPath})
 	end
 	--print("Files Found: ")
-	local files = file.Find(dir.."/*")
+	local files = file.Find(dir.."/*.txt")
 	--PrintTable(files)
 	for _,filePath in pairs(files) do
-		if (string.GetExtensionFromFilename(filePath) == "txt") then
-			SBEP.FixDupe(player,command,{dir.."/"..filePath})
-		end
+		SBEP.FixDupe(nil,nil,{dir.."/"..filePath})
 	end
 end
 SBEP.RecursiveFix = SBEP_RecursiveFix
 concommand.Add("SBEP_FixDupeFolder",SBEP.RecursiveFix)
 
-function SBEP_FixAllDupes(player,command)
+function SBEP_FixAllDupes()
 	--print("Fix Dupes Called")
-	SBEP.RecursiveFix(player,command,{"adv_duplicator"})
+	SBEP.RecursiveFix(nil,nil,{"adv_duplicator"})
 end
 SBEP.FixAllDupes = SBEP_FixAllDupes
 concommand.Add("SBEP_FixAllDupes",SBEP.FixAllDupes)
