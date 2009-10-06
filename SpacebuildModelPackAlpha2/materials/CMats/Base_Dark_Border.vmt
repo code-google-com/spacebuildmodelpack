@@ -3,9 +3,9 @@
 	"$baseTexture" "CMats/Base_Dark_Border"
 	"$surfaceprop" "metal"
 	"$model" 1
+	"$bumpmap" "CMats/Base_Dark_Border_B"
 	"$phong"     "1"
 	"$halflambert"	1
- 	"$phongexponent"   "2"
- 	"$phongboost"   "0.3"
- 	"$phongfresnelranges"   "[0.02 0.1 0.2]"
+ 	"$phongboost"   "0.8"
+ 	"$phongfresnelranges"   "[0.08 0.17 0.95]"
 }
